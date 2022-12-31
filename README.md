@@ -1,2 +1,3 @@
-# GranularSynth
-GranularSynth with Tone JS
+# Buffer_GranularSynthesis
+
+
