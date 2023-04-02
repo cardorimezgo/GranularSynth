@@ -1,4 +1,10 @@
-int maze_l = 50; //<>//
+import oscP5.*; /// libraries for communication with supercollider via OSC
+import netP5.*;
+
+OscP5 osc;
+NetAddress supercollider;
+
+int maze_l = 50;
 int maze_w = 50;
 int cell_size= 15;
 float cent = width;
@@ -16,10 +22,17 @@ Recursive_Backtracker rb = new Recursive_Backtracker();
 Colored_Grid cg = new Colored_Grid(maze_l, maze_w);
 Dead_Ends dead = new Dead_Ends();
 
+Polar_Grid pg= new Polar_Grid(7); //maze_l
 void setup()
 {
   size(1000, 1000); 
   background(255, 255, 255);
+  
+  ////// OSC_COM ///////////////////
+  osc = new OscP5(this, 12000);
+  supercollider = new NetAddress("127.0.0.1" , 57120);
+  ///////////////////////////////////////////////////
+  
   /// Algo ////
   //bt.On(); // Binary Tree Maze
   //sw.On(); //Sidewinder Maze
@@ -28,13 +41,13 @@ void setup()
   //hk.On(); // Hunt and kill Maze
   //rb.On(); // Recursive Backtracker Maze
   ////////////
-  
+  pg.draw_polar_grid();
   //dead.run(3); //calculate average n deadends per algo 
-  g.display_Maze();
+  //g.display_Maze();
 }
 
 void draw()
 {
-  cg.color_flood(count);
-  count= count + 10;
+  //cg.color_flood(count);
+  //count= count + 10;
 }
