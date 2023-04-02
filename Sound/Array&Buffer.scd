@@ -1,13 +1,29 @@
 s.boot
+
 s.plotTree;
+
 b = Buffer.read(s,"E:/Interface/Audio/SuperCollider/AudioSamples/668451__strangehorizon__zephy-people-act.wav");
 
-c = Buffer.read(s,"E:/Interface/Audio/SuperCollider/AudioSamples/japanese-yes.wav");
-
-c.numFrames
 b.numFrames
-d=50;
+d = 200;
 n = b.numFrames/d;
+
+////////////////////////// OSC_COM//////////////////////////////////////
+//Receiving data
+m = NetAddr.new("127.0.0.1",12000); //listening to processing port 12000
+m.sendMsg("/rows:",d); //how to send a variable ?
+
+//Sending data
+NetAddr.localAddr // asking supercollider for listening port for OSC communication
+(
+OSCdef('listener',{
+	Synth(\Sample_size, [\bufnum, b.bufnum]);
+}, "/rows"); //segment of the cloud played
+)
+
+n.postln; //command for console printing
+////////////////////////////////////////////////////////////////////////
+
 
 ///access to predetermined frame in sample
 (
@@ -18,7 +34,7 @@ x= {
 		b,
 		1,
 		1,
-		n, ////
+		n,
 		doneAction:2
 	);
 }.play;
@@ -28,9 +44,22 @@ x= {
 // 0 to numFrames for whole sample
 { BufRd.ar(1, b.bufnum, Phasor.ar(0, BufRateScale.kr(b.bufnum), 0, n),0) }.play;  //<-- get into synthDef?
 
+(
+SynthDef(\Sample_size, { |out = 0, bufnum = 0, amp = 0.4, dur = 0.5|
+    var phasor, sound, env;
+	env = EnvGen.kr(Env.sine(dur , amp), doneAction:2); //doneAction:2
+	phasor = Phasor.ar(0, BufRateScale.kr(bufnum), 0, n);
+    sound = BufRd.ar(1, bufnum, phasor, 0);
+    Out.ar(out, sound);
+}).add;
+)
+
+x = Synth(\Sample_size, [\bufnum, b.bufnum]);
+
+
+
 { BufRd.ar(1, b.bufnum, Phasor.ar(0, BufRateScale.kr(b.bufnum), n, n*2),0) }.play;
 
-{TGrains.ar(2, Impulse.ar(MouseY.kr(1, 30)), b, 1, MouseX.kr(0,BufDur.kr(b)), 2/MouseY.kr(1, 10), 0, 0.8, 2)}.play
 
 (
 SynthDef(\testa,{arg  freq = 800, amp = 0.4, dur = 0.1, pan = 0; //out = 0
