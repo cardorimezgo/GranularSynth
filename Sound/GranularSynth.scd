@@ -8,7 +8,11 @@ b = Buffer.read(s,"E:/Interface/Audio/SuperCollider/AudioSamples/668451__strange
 	var sampleRate = buffer.sampleRate;
 	var duration = (numFrames / sampleRate); //Sample duration in minutes
 
-	"Sample duration: ".post;
+	" numFrames: ".post;
+	numFrames.post;
+	",sampleRate: ".post;
+	sampleRate.post;
+	",Sample duration: ".post;
 	duration.post;
 	" seconds".post;
 });
@@ -16,7 +20,7 @@ b = Buffer.read(s,"E:/Interface/Audio/SuperCollider/AudioSamples/668451__strange
 
 ////////////////// sample fragments //////////////////////////////////
 (
-SynthDef(\Sample_size, { |out = 0, bufnum = 0, amp = 0.4,  startFrame = 200000, endFrame = 215000|
+SynthDef(\Sample_size, { |out = 0, bufnum = 0, amp = 0.4,  startFrame = 500000, endFrame = 570000|
     var phasor, sound, env, sectionDur;
 	sectionDur = (endFrame - startFrame) / BufSampleRate.kr(bufnum);
 	env = EnvGen.kr(Env.sine(sectionDur , amp), doneAction:2); //doneAction:2
