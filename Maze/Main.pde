@@ -4,10 +4,10 @@ import netP5.*;
 OscP5 osc;
 NetAddress supercollider;
 
-int maze_l = 50;
-int maze_w = 50;
+int maze_l = 60; /// check for blank squares when low count
+int maze_w = 60; /// check for blank squares when low count
 int cell_size= 15;
-float cent = width;
+float cent = 50;
 int count = 0;
 
 Grid g = new Grid(maze_l, maze_w);
@@ -26,28 +26,28 @@ Polar_Grid pg= new Polar_Grid(7); //maze_l
 void setup()
 {
   size(1000, 1000); 
-  background(255, 255, 255);
-  
+  background(0, 0, 0);
+  /*
   ////// OSC_COM ///////////////////
   osc = new OscP5(this, 12000);
   supercollider = new NetAddress("127.0.0.1" , 57120);
   ///////////////////////////////////////////////////
-  
+  */
   /// Algo ////
   //bt.On(); // Binary Tree Maze
   //sw.On(); //Sidewinder Maze
   //ab.On(); // AldousBroder Maze
   //w.On(); // Wilson's Maze
   //hk.On(); // Hunt and kill Maze
-  //rb.On(); // Recursive Backtracker Maze
+  rb.On(); // Recursive Backtracker Maze
   ////////////
-  pg.draw_polar_grid();
+  //pg.draw_polar_grid();
   //dead.run(3); //calculate average n deadends per algo 
-  //g.display_Maze();
+  g.display_Maze();
 }
 
 void draw()
 {
   //cg.color_flood(count);
-  //count= count + 10;
+  count= count + 10;
 }
