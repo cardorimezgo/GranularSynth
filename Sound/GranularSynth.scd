@@ -1,12 +1,22 @@
 s.boot
 s.plotTree;
 
-b = Buffer.read(s,"E:/Interface/Audio/SuperCollider/AudioSamples/668451__strangehorizon__zephy-people-act.wav");
+( // Sample Data
+b = Buffer.read(s,"E:/Interface/Audio/SuperCollider/AudioSamples/668451__strangehorizon__zephy-people-act.wav", action: { |buffer|
 
-b.numFrames
+	var numFrames = buffer.numFrames;
+	var sampleRate = buffer.sampleRate;
+	var duration = (numFrames / sampleRate); //Sample duration in minutes
 
+	"Sample duration: ".post;
+	duration.post;
+	" seconds".post;
+});
+)
+
+////////////////// sample fragments //////////////////////////////////
 (
-SynthDef(\Sample_size, { |out = 0, bufnum = 0, amp = 0.4,  startFrame = 200000, endFrame = 235000|
+SynthDef(\Sample_size, { |out = 0, bufnum = 0, amp = 0.4,  startFrame = 200000, endFrame = 215000|
     var phasor, sound, env, sectionDur;
 	sectionDur = (endFrame - startFrame) / BufSampleRate.kr(bufnum);
 	env = EnvGen.kr(Env.sine(sectionDur , amp), doneAction:2); //doneAction:2
@@ -17,6 +27,7 @@ SynthDef(\Sample_size, { |out = 0, bufnum = 0, amp = 0.4,  startFrame = 200000, 
 )
 
 x = Synth(\Sample_size, [\bufnum, b.bufnum]);
+///////////////////////////////////////////////////////////////////
 
 
 (
