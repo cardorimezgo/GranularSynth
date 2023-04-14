@@ -109,7 +109,7 @@ q = Synth(\Sample_granular, [\bufnum, b.bufnum, \startFrame, 000000, \endFrame, 
 
 
 (
-SynthDef(\Sample_size, { |out = 0, bufnum = 0, amp = 0.4, startFrame = 0, endFrame = 425000|
+SynthDef(\Sample_size, { |out = 0, bufnum = 0, amp = 0.4, startFrame = 0, endFrame = 426491|
     var phasor, sound, env, sectionDur;
     sectionDur = (endFrame - startFrame) / BufSampleRate.kr(bufnum);
     env = EnvGen.kr(Env.sine(sectionDur , amp), doneAction:2);
@@ -119,17 +119,47 @@ SynthDef(\Sample_size, { |out = 0, bufnum = 0, amp = 0.4, startFrame = 0, endFra
 }).add;
 )
 
-// Define the frame increment
-~frameIncrement = 110;
-
 (
+var totalFrames = 426491;
+var chunkSize = 1000;
+var numberOfSteps = (totalFrames / chunkSize).round;
+var chunkDuration = chunkSize / s.sampleRate;
+var origDur = totalFrames / s.sampleRate;
+
 Pbind(
     \instrument, \Sample_size,
     \bufnum, b.bufnum,
-    \startFrame, Pseries(0, 110, 12),
-    \endFrame, Pseries(110, 110, 12),
-    \dur, 1.0,
-    \legato, 1.0
+    \startFrame, Pseries(0, chunkSize, numberOfSteps),
+    \endFrame, Pseries(chunkSize, chunkSize, numberOfSteps).collect { |val| val.min(totalFrames) },
+    \dur, chunkDuration,
+    \legato, chunkDuration / origDur,
 ).play;
 )
 
+
+///////// fragments segmented with fade in and out///////////
+(
+SynthDef(\Sample_size, { |out, bufnum, startFrame, endFrame, fadeInTime=0.0001, fadeOutTime=0.0001|
+    var sig = PlayBuf.ar(1, bufnum, BufRateScale.kr(bufnum), startPos: startFrame, doneAction: Done.freeSelf);
+    var env = EnvGen.kr(Env.linen(fadeInTime, (endFrame - startFrame) / s.sampleRate - fadeInTime - fadeOutTime, fadeOutTime), doneAction: Done.freeSelf);
+    Out.ar(out, sig * env);
+}).add;
+)
+
+(
+var totalFrames = 426491;
+var chunkSize = 1000;
+var numberOfSteps = (totalFrames / chunkSize).round;
+var chunkDuration = chunkSize / s.sampleRate;
+var origDur = totalFrames / s.sampleRate;
+
+Pbind(
+    \instrument, \Sample_size,
+    \bufnum, b.bufnum,
+    \startFrame, Pseries(0, chunkSize, numberOfSteps),
+    \endFrame, Pseries(chunkSize, chunkSize, numberOfSteps).collect { |val| val.min(totalFrames) },
+    \dur, chunkDuration,
+    \legato, chunkDuration / origDur,
+).play;
+)
+//////////////////////////////////////////////////////
