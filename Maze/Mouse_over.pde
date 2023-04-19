@@ -1,23 +1,26 @@
-int rectSz = 100;
-int or = 5;
-void setup()
-{
-  size(400 , 400);
-  rect(or, or, rectSz, rectSz);
-  rect((width/2) + or, or, rectSz, rectSz);
+int squareSize = 15;
+
+void setup() {
+  size(600, 600);
 }
 
-void draw()
-{
-  if (mouseX > or && 
-      mouseX < or + rectSz &&
-      mouseY > or &&
-      mouseY < or + rectSz)
-      {
-        println("On");
-      }
-      else
-      {
-        println("Off");
-      }       
+void draw() {
+  background(255);
+  drawGrid();
+  int row = mouseY / squareSize;
+  int col = mouseX / squareSize;
+  fill(255, 0, 0, 128);
+  rect(col * squareSize, row * squareSize, squareSize, squareSize);
+  println("row:"+row+""+"col:"+col);
+  println(((row) * (col)));
+}
+
+void drawGrid() {
+  for (int i = 0; i < width; i += squareSize) {
+    for (int j = 0; j < height; j += squareSize) {
+      stroke(0);
+      noFill();
+      rect(i, j, squareSize, squareSize);
+    }
+  }
 }
