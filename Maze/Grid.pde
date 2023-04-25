@@ -5,13 +5,15 @@ class Grid
   int rows, cols;
   Cell[][] matrix;
   Random rand;
-
+  HashMap<Cell , Integer> dist; //access to distance of each cell
+  
   Grid(int _rows, int _cols)
   {
     rows = _rows;
     cols = _cols;
     rand = new Random();
     matrix = new Cell[_rows][_cols];
+    dist = new HashMap();
   }
 
   void create_grid()
@@ -70,10 +72,12 @@ class Grid
 
   void display_Maze()
   {
-    Dijkstra d= new Dijkstra();
+    Dijkstra d= new Dijkstra(); /// used for distance & longest/shortest pad
     strokeWeight(3); //maze line thickness
     text_style();
-
+    int max_dist = 0;
+    int new_dist = 0;
+    
     for (int r = 0; r < g.rows; r++)
     {
       for (int c = 0; c < g.cols; c++)
@@ -104,17 +108,24 @@ class Grid
         /// Dijkstra /////////////////////////////
         //text(d.distance(cell) , (x1+x2)/2 , (y1+y2)/2);
         //text(d.shortest_path(cell) , (x1+x2)/2, (y1+y2)/2);
-        //text(d.longest_path(cell) , (x1+x2)/2, (y1+y2)/2);
+        text(d.longest_path(cell) , (x1+x2)/2, (y1+y2)/2);
         //////////////////////////////////////////
+        dist.put(cell , d.distance(cell)); //storing cells distances from origin
+        max_dist = d.longest_path(cell);
+        if(max_dist > new_dist)
+        {
+          new_dist = max_dist;
+        }
       }
     }
+    println("longest_path:"+" "+new_dist);
   }
 
   void text_style()
   {
     PFont f;
-    f = createFont("Arial", 15, true);  
-    fill(0, 0, 0);
+    f = createFont("Arial", 10, true);  
+    fill(255, 255, 255);
     textFont(f);
   }
 }              
