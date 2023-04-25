@@ -4,9 +4,9 @@ import netP5.*;
 OscP5 osc;
 NetAddress supercollider;
 
-int maze_l = 60; /// check for blank squares when low count
-int maze_w = 60; /// check for blank squares when low count
-int cell_size= 15;
+int maze_l = 20; /// check for blank squares when low count
+int maze_w = 20; /// check for blank squares when low count
+int cell_size= 25;
 float cent = 50;
 int count = 0;
 
@@ -22,11 +22,13 @@ Recursive_Backtracker rb = new Recursive_Backtracker();
 Colored_Grid cg = new Colored_Grid(maze_l, maze_w);
 Dead_Ends dead = new Dead_Ends();
 
+// work in progress 
 Polar_Grid pg= new Polar_Grid(7); //maze_l
+
 void setup()
 {
-  size(1000, 1000); 
-  background(0, 0, 0);
+  size(600, 600); 
+  background(10, 10, 10);
   /*
   ////// OSC_COM ///////////////////
   osc = new OscP5(this, 12000);
@@ -36,18 +38,19 @@ void setup()
   /// Algo ////
   //bt.On(); // Binary Tree Maze
   //sw.On(); //Sidewinder Maze
-  //ab.On(); // AldousBroder Maze
+  ab.On(); // AldousBroder Maze
   //w.On(); // Wilson's Maze
   //hk.On(); // Hunt and kill Maze
-  rb.On(); // Recursive Backtracker Maze
+  //rb.On(); // Recursive Backtracker Maze
   ////////////
   //pg.draw_polar_grid();
   //dead.run(3); //calculate average n deadends per algo 
   g.display_Maze();
+  println(g.dist.get(g.matrix[10][10]));
 }
 
 void draw()
 {
   //cg.color_flood(count);
-  count= count + 10;
+  //count = count + 30;
 }
