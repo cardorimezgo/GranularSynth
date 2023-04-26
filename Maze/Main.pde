@@ -4,10 +4,10 @@ import netP5.*;
 OscP5 osc;
 NetAddress supercollider;
 
-int maze_l = 20; /// check for blank squares when low count
-int maze_w = 20; /// check for blank squares when low count
-int cell_size= 25;
-float cent = 50;
+int maze_l = 64; /// check for blank squares when low count
+int maze_w = 64; /// check for blank squares when low count
+int cell_size= 8;
+int margin = 0;
 int count = 0;
 
 Grid g = new Grid(maze_l, maze_w);
@@ -27,14 +27,15 @@ Polar_Grid pg= new Polar_Grid(7); //maze_l
 
 void setup()
 {
-  size(600, 600); 
+  size(512 , 512); 
   background(10, 10, 10);
-  /*
+  
   ////// OSC_COM ///////////////////
   osc = new OscP5(this, 12000);
   supercollider = new NetAddress("127.0.0.1" , 57120);
   ///////////////////////////////////////////////////
-  */
+  
+  
   /// Algo ////
   //bt.On(); // Binary Tree Maze
   //sw.On(); //Sidewinder Maze
@@ -46,11 +47,22 @@ void setup()
   //pg.draw_polar_grid();
   //dead.run(3); //calculate average n deadends per algo 
   g.display_Maze();
-  println(g.dist.get(g.matrix[10][10]));
+  //println("cell[10][10]"+" "+g.dist.get(g.matrix[10][10]));
+  //println("longest_path:"+" "+g.max_dist);
 }
 
 void draw()
+{/*
+  int r = (mouseX / cell_size);
+  int c = (mouseY / cell_size);
+  println(r,c);
+  */
+  cg.color_flood(count);
+  count = count + 30;
+}
+
+void mousePressed()
 {
-  //cg.color_flood(count);
-  //count = count + 30;
+  OscMessage myMessage =  new OscMessage("/num_samples");
+  osc.send(myMessage, supercollider);
 }
