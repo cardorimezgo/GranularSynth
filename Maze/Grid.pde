@@ -6,6 +6,7 @@ class Grid
   Cell[][] matrix;
   Random rand;
   HashMap<Cell , Integer> dist; //access to distance of each cell
+  int max_dist; /// longest_path cnt
   
   Grid(int _rows, int _cols)
   {
@@ -14,6 +15,7 @@ class Grid
     rand = new Random();
     matrix = new Cell[_rows][_cols];
     dist = new HashMap();
+    max_dist = 0;
   }
 
   void create_grid()
@@ -75,8 +77,7 @@ class Grid
     Dijkstra d= new Dijkstra(); /// used for distance & longest/shortest pad
     strokeWeight(3); //maze line thickness
     text_style();
-    int max_dist = 0;
-    int new_dist = 0;
+    int current_dist = 0;
     
     for (int r = 0; r < g.rows; r++)
     {
@@ -84,10 +85,10 @@ class Grid
       {  
         Cell cell = visit_cell(r, c);
 
-        float x1 = cent + (cell.row * cell_size); 
-        float y1 = cent + (cell.col * cell_size);
-        float x2 = cent + ((cell.row + 1) * cell_size);
-        float y2 = cent + ((cell.col + 1) * cell_size);
+        float x1 = margin + (cell.row * cell_size); 
+        float y1 = margin + (cell.col * cell_size);
+        float x2 = margin + ((cell.row + 1) * cell_size);
+        float y2 = margin + ((cell.col + 1) * cell_size);
 
         if (cell.linked(Direction.NORTH) == false)
         {
@@ -108,17 +109,21 @@ class Grid
         /// Dijkstra /////////////////////////////
         //text(d.distance(cell) , (x1+x2)/2 , (y1+y2)/2);
         //text(d.shortest_path(cell) , (x1+x2)/2, (y1+y2)/2);
-        text(d.longest_path(cell) , (x1+x2)/2, (y1+y2)/2);
+        //text(d.longest_path(cell) , (x1+x2)/2, (y1+y2)/2);
         //////////////////////////////////////////
         dist.put(cell , d.distance(cell)); //storing cells distances from origin
-        max_dist = d.longest_path(cell);
-        if(max_dist > new_dist)
+        
+        current_dist = d.longest_path(cell);
+        if(current_dist > max_dist)
         {
-          new_dist = max_dist;
+          max_dist = current_dist; //getting longest_path
         }
       }
     }
-    println("longest_path:"+" "+new_dist);
+    if(max_dist != 0)
+    {
+      max_dist_done = true;
+    }
   }
 
   void text_style()
