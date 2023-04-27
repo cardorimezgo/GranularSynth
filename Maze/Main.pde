@@ -9,6 +9,7 @@ int maze_w = 64; /// check for blank squares when low count
 int cell_size= 8;
 int margin = 0;
 int count = 0;
+boolean max_dist_done = false; //finished calculating longest_dist for sc
 
 Grid g = new Grid(maze_l, maze_w);
 
@@ -48,7 +49,7 @@ void setup()
   //dead.run(3); //calculate average n deadends per algo 
   g.display_Maze();
   //println("cell[10][10]"+" "+g.dist.get(g.matrix[10][10]));
-  //println("longest_path:"+" "+g.max_dist);
+  
 }
 
 void draw()
@@ -59,10 +60,19 @@ void draw()
   */
   cg.color_flood(count);
   count = count + 30;
+  
+  
+  if(max_dist_done)
+  {
+    println("longest_path:"+" "+g.max_dist);
+    sendOscMessage("/num_segments" , g.max_dist);
+    max_dist_done = false;
+  }
 }
 
-void mousePressed()
+void sendOscMessage(String address , int value)
 {
-  OscMessage myMessage =  new OscMessage("/num_samples");
-  osc.send(myMessage, supercollider);
+  OscMessage msg =  new OscMessage(address);
+  msg.add(value);
+  osc.send(msg, supercollider);
 }
