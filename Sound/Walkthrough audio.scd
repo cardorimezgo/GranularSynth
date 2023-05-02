@@ -88,19 +88,42 @@ SynthDef("playBuffer", { |out = 0, bufnum = 0, amp = 1|
 // Example usage: play the first chunk (index 0)
 ~playChunk.(12);
 
-// Function to play a specified number of consecutive chunk samples
+
+
 (
-~playConsecutiveChunks = { |startIndex, numberOfChunks|
+SynthDef("playBuffer", { |out = 0, bufnum = 0, amp = 1, fadeInTime = 0.1, fadeOutTime = 0.1|
+    var source = PlayBuf.ar(1, bufnum, doneAction: Done.freeSelf);
+    var env = Env([0, 1, 1, 0], [fadeInTime, BufDur.kr(bufnum) - fadeInTime - fadeOutTime, fadeOutTime], curve: \linear);
+    var fadeInOut = EnvGen.kr(env, doneAction: 2);
+    Out.ar(out, source * amp * fadeInOut);
+}).add;
+)
+
+// Define the ~playChunk function
+(
+~playChunk = { |index, amp = 1|
+    if(index < 0 or: { index >= ~buffers.size }) {
+        "Invalid buffer index.".postln;
+    } {
+        Synth("playBuffer", [
+            \bufnum, ~buffers[index].bufnum,
+            \amp, amp
+        ]);
+    };
+};
+)
+
+(
+~playConsecutiveChunks = { |startIndex, numberOfChunks, amp = 1, fadeInTime = 0.1, fadeOutTime = 0.1|
     if(startIndex < 0 or: { startIndex + numberOfChunks > ~buffers.size }) {
         "Invalid index or number of chunks. Please choose a valid range.".postln;
     } {
         (startIndex..(startIndex + numberOfChunks - 1)).do { |index|
-            ~playChunk.(index);
-            (~chunkSize / s.sampleRate).wait;  // Wait for the chunk to finish playing
+            ~playChunk.(index, amp, fadeInTime, fadeOutTime);
+            ((~chunkSize / s.sampleRate) - fadeOutTime).wait;  // Wait for the chunk to finish playing minus fade out time
         };
     };
 };
 )
 
-// Example usage: play 3 consecutive chunks starting from index 1
-fork { ~playConsecutiveChunks.(1, 19); }
+fork { ~playConsecutiveChunks.(20, 100, 6, 0.09, 0.029); }
