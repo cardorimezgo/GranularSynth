@@ -60,7 +60,7 @@ x = Synth(\Sample_size, [\bufnum, b.bufnum]);
 
 { BufRd.ar(1, b.bufnum, Phasor.ar(0, BufRateScale.kr(b.bufnum), n, n*2),0) }.play;
 
-
+///test
 (
 SynthDef(\testa,{arg  freq = 800, amp = 0.4, dur = 0.1, pan = 0; //out = 0
 	var signal, env;
