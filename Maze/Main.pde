@@ -10,9 +10,13 @@ int cell_size= 8;
 int margin = 0;
 int count = 0;
 boolean max_dist_done = false; //finished calculating longest_dist for sc
+///// Circle cursor /////
+int rad = 0;
+int xc = 0, yc = 0;
+int lastPressTime = 0;
 
 Grid g = new Grid(maze_l, maze_w);
-
+//////////Maze algos////////////////////
 BinaryTree bt = new BinaryTree();
 Sidewinder sw = new Sidewinder();
 AldousBroder ab = new AldousBroder();
@@ -25,6 +29,7 @@ Dead_Ends dead = new Dead_Ends();
 
 // work in progress 
 Polar_Grid pg= new Polar_Grid(7); //maze_l
+Draw_Circle drawC= new Draw_Circle();
 
 void setup()
 {
@@ -50,6 +55,7 @@ void setup()
   g.display_Maze();
   //println("cell[10][10]"+" "+g.dist.get(g.matrix[10][10]));
   
+  
 }
 
 void draw()
@@ -67,6 +73,52 @@ void draw()
     println("longest_path:"+" "+g.max_dist);
     sendOscMessage("/num_segments" , g.max_dist);
     max_dist_done = false;
+  }
+  
+  
+  if(mousePressed && mouseButton == LEFT) {
+    if(millis() - lastPressTime > 100) {  // If half a second has passed
+      if(rad < cell_size) {  // If the radius is less than 8
+        rad++;  // Increase the radius
+      }
+      lastPressTime = millis();  // Update the last press time
+    }
+    xc = mouseX/cell_size;  // Update the position of the circle
+    yc = mouseY/cell_size;
+
+    int x = rad, y = 0;  // Starting position
+
+    // Initial decision parameter
+    int p = 1 - rad; 
+
+    drawC.drawCirclePoints(xc, yc, x, y, cell_size);
+
+    while(x > y) {
+      y++;
+
+      // Decision parameter is less than 0
+      if(p <= 0) {
+        p = p + 2*y + 1;  
+      }
+      else { // Decision parameter is greater than 0
+        x--;
+        p = p + 2*y - 2*x + 1;
+      }
+
+      // Draw the points
+      if(x < y) {
+        break;
+      }
+
+      drawC.drawCirclePoints(xc, yc, x, y, cell_size);
+
+      // If the generated point is on the line x = y then the perimeter points have already been printed
+      if(x != y) {
+        drawC.drawCirclePoints(xc, yc, y, x, cell_size);
+      }
+    }
+  } else {
+    rad = 0;  // Reset the radius when the mouse is not pressed
   }
 }
 
