@@ -48,30 +48,32 @@ void setup()
   /// Algo ////
   //bt.On(); // Binary Tree Maze
   //sw.On(); //Sidewinder Maze
-  ab.On(); // AldousBroder Maze
-  //w.On(); // Wilson's Maze
+  //ab.On(); // AldousBroder Maze
+  w.On(); // Wilson's Maze
   //hk.On(); // Hunt and kill Maze
   //rb.On(); // Recursive Backtracker Maze
   ////////////
+  
   //pgrid.draw_polar_grid();
   //dead.run(3); //calculate average n deadends per algo 
   //g.display_Maze(); //<- elapsed time increase for storing distance values 
   //println("cell[10][10]"+" "+g.dist.get(g.matrix[10][10]));
   //cg.color_flood(maze_l * maze_w); //test
-  
-  // Storing maze in PGraphics Object
   pg = createGraphics(width , height);
-  pg.beginDraw();
-  cg.color_flood(maze_l * maze_w , pg);
-  pg.endDraw();
 }
 
 void draw()
 {   ///////////////////BUG IN HOW THE SQUARES ARE DRAWN!!! ^
-  cg.color_flood(count, pg);
-  count = count + 30;
-  image(pg, 0, 0);
-  
+  //cg.color_flood(count,pg);
+  //count = count + 30;
+  if(count < maze_l * maze_w)
+  {
+    pg.beginDraw();
+    cg.color_flood(count , pg);
+    pg.endDraw();
+    count += 20;
+  }
+ image(pg, 0, 0);
   /* 
   ///////////// Sending info. supercollider
   if(max_dist_done)
@@ -81,7 +83,6 @@ void draw()
     max_dist_done = false;
   }
   */
-  
   mouse_click();
 }
 
@@ -138,5 +139,6 @@ void mouse_click()
     }
   } else {
     rad = 0;  // Reset the radius when the mouse is not pressed
-  } 
+  }
+  
 }
