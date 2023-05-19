@@ -6,8 +6,8 @@ NetAddress supercollider;
 
 PGraphics pg;
 
-int maze_l = 64; /// check for blank squares when low count
-int maze_w = 64; /// check for blank squares when low count
+int maze_l = 64; 
+int maze_w = 64; 
 int cell_size= 8;
 int margin = 0;
 int count = 0;
@@ -63,15 +63,13 @@ void setup()
 }
 
 void draw()
-{   ///////////////////BUG IN HOW THE SQUARES ARE DRAWN!!! ^
-  //cg.color_flood(count,pg);
-  //count = count + 30;
-  if(count < maze_l * maze_w)
+{ 
+  if(count <= maze_l * maze_w)
   {
     pg.beginDraw();
     cg.color_flood(count , pg);
     pg.endDraw();
-    count += 20;
+    count += 64; /// factor of maze_l * maze_w 
   }
  image(pg, 0, 0);
   /* 
