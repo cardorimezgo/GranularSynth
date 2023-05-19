@@ -5,32 +5,32 @@ class Colored_Grid extends Grid
     super(_rows, _cols);
   }
 
-  void color_flood(int count)
+  void color_flood(int count , PGraphics pg)
   {
-    Cell root = g.visit_cell(0, 0);
+    Cell root = g.visit_cell(0 , 0);
     HashMap dist = root.distances().cells;
     HashMap dist_sorted = sortByValue(dist);
     Iterator dist_itera = dist_sorted.entrySet().iterator();
-    float bright = (maze_l * maze_w) + 100;
-    float red = 0.4;
-    float green = 0.4;
-    float blue = 0.2;
-
+    float brightness = 30000;//(maze_l * maze_w) + 100;
+    float red = 1.0;
+    float green = 1.0;
+    float blue = 1.0;
+    
     for (int i = 0; i < count; i++)
-    {
+    {  
       if (count > dist_sorted.size())
-      {
+      { 
         break;
       }
       Map.Entry map_d = (Map.Entry)dist_itera.next();
       int val = (int)map_d.getValue();
       Cell cell = (Cell)map_d.getKey();
-      float x_coord = cent + (cell.row * cell_size);
-      float y_coord = cent + (cell.col * cell_size);
+      float x_coord = margin + (cell.row * cell_size);
+      float y_coord = margin + (cell.col * cell_size);
 
-      strokeWeight(0);
-      fill(bright/(val * red), bright/(val * green), bright/(val * blue)); //alpha, 10
-      rect(x_coord, y_coord, cell_size, cell_size);
+      pg.strokeWeight(0);
+      pg.fill(brightness/(val * red), brightness/(val * green), brightness/(val * blue)); //alpha, 10
+      pg.rect(x_coord, y_coord, cell_size, cell_size);
     }
   }
 
