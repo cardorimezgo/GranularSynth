@@ -3,7 +3,7 @@
 //--------------------------------------------------------------
 void ofApp::setup(){
 
-    touch.init("/dev/input/event0");    // change according to your setup (evdev)
+    touch.init("/dev/input/event2");    // change according to your setup (evdev)
     ofLog()<<touch.getName();
     
 }
