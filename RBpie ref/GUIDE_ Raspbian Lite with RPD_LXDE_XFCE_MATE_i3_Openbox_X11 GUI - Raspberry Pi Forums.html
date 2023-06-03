@@ -1,0 +1,2939 @@
+<!DOCTYPE html>
+<!-- saved from url=(0059)https://forums.raspberrypi.com//viewtopic.php?f=66&t=133691 -->
+<html dir="ltr" lang="en-gb"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>GUIDE:  Raspbian Lite with RPD/LXDE/XFCE/MATE/i3/Openbox/X11 GUI - Raspberry Pi Forums</title>
+
+	<link rel="alternate" type="application/atom+xml" title="Feed - Raspberry Pi Forums" href="https://forums.raspberrypi.com/app.php/feed">			<link rel="alternate" type="application/atom+xml" title="Feed - New Topics" href="https://forums.raspberrypi.com/app.php/feed/topics">		<link rel="alternate" type="application/atom+xml" title="Feed - Forum - Raspberry Pi OS" href="https://forums.raspberrypi.com/app.php/feed/forum/66">	<link rel="alternate" type="application/atom+xml" title="Feed - Topic - GUIDE:  Raspbian Lite with RPD/LXDE/XFCE/MATE/i3/Openbox/X11 GUI" href="https://forums.raspberrypi.com/app.php/feed/topic/133691">
+	
+
+<!--[if IE]><link rel="shortcut icon" href="./../styles/rpi/theme/images/favicon.png"><![endif]-->
+<!-- <link rel="apple-touch-icon-precomposed" href="./../styles/rpi/theme/images/apple-touch-icon-precomposed.gif"> -->
+<link rel="icon" href="https://forums.raspberrypi.com/styles/rpi/theme/images/favicon.png">
+
+	<link rel="canonical" href="https://forums.raspberrypi.com/viewtopic.php?t=133691">
+
+<link href="./GUIDE_ Raspbian Lite with RPD_LXDE_XFCE_MATE_i3_Openbox_X11 GUI - Raspberry Pi Forums_files/font-awesome.min.css" rel="stylesheet" type="text/css" media="screen, projection">
+<link href="./GUIDE_ Raspbian Lite with RPD_LXDE_XFCE_MATE_i3_Openbox_X11 GUI - Raspberry Pi Forums_files/legacy.min.css" rel="stylesheet">
+<link href="./GUIDE_ Raspbian Lite with RPD_LXDE_XFCE_MATE_i3_Openbox_X11 GUI - Raspberry Pi Forums_files/stylesheet.css" rel="stylesheet" type="text/css" media="screen, projection">
+<link href="./GUIDE_ Raspbian Lite with RPD_LXDE_XFCE_MATE_i3_Openbox_X11 GUI - Raspberry Pi Forums_files/colours_rpi.css" rel="stylesheet" type="text/css" media="screen, projection">
+<link href="./GUIDE_ Raspbian Lite with RPD_LXDE_XFCE_MATE_i3_Openbox_X11 GUI - Raspberry Pi Forums_files/print.css" rel="stylesheet" type="text/css" media="print">
+
+
+
+
+
+
+<script type="text/javascript" src="chrome-extension://aggiiclaiamajehmlfpkjmlbadmkledi/popup.js" async=""></script><script type="text/javascript" src="chrome-extension://aggiiclaiamajehmlfpkjmlbadmkledi/tat_popup.js" async=""></script></head>
+
+<body id="phpbb" class="notouch section-viewtopic//viewtopic ltr section-forums hasjs">
+
+
+<div id="overall-wrap">
+  <a id="top" class="anchor" accesskey="t"></a>
+  <style>
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap");
+#__rptl-header {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  line-height: 1;
+  font-family: "Roboto", sans-serif;
+  font-size: medium;
+  font-weight: 400;
+  text-rendering: optimizeLegibility;
+  -webkit-text-size-adjust: 100%;
+     -moz-text-size-adjust: 100%;
+          text-size-adjust: 100%;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  position: relative;
+  z-index: 100;
+}
+#__rptl-header .__rptl-header-wrapper {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  box-sizing: border-box;
+  max-width: 1300px;
+  margin-left: auto;
+  margin-right: auto;
+  position: relative;
+}
+#__rptl-header .__rptl-header-navbar {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  box-sizing: border-box;
+  position: relative;
+  z-index: 1;
+  background-color: #fff;
+  border-bottom: 1px solid #dedede;
+  width: 100%;
+  padding: 16px;
+}
+@media (min-width: 800px) {
+  #__rptl-header .__rptl-header-navbar {
+    padding: 16px 76px;
+  }
+}
+@media (min-width: 1200px) {
+  #__rptl-header .__rptl-header-navbar {
+    padding: 16px 84px;
+    border-bottom-style: none;
+  }
+}
+#__rptl-header .__rptl-header-brand {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  text-decoration: none;
+  box-sizing: border-box;
+  display: inline-block;
+  vertical-align: middle;
+}
+#__rptl-header .__rptl-header-logo {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  box-sizing: border-box;
+  display: block;
+  vertical-align: middle;
+}
+#__rptl-header .__rptl-header-burger {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  box-sizing: border-box;
+  width: 30px;
+  height: 30px;
+  transform: rotate(0deg);
+  cursor: pointer;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  margin-top: auto;
+  margin-bottom: auto;
+}
+@media (min-width: 1200px) {
+  #__rptl-header .__rptl-header-burger {
+    display: none;
+  }
+}
+@media (prefers-reduced-motion: no-preference) {
+  #__rptl-header .__rptl-header-burger {
+    transition: 0.5s ease-in-out;
+  }
+}
+#__rptl-header .__rptl-header-burger-stroke {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  box-sizing: border-box;
+  position: absolute;
+  left: 0;
+  height: 2px;
+  width: 100%;
+  background: #707070;
+  border-radius: 9px;
+  transform: rotate(0deg);
+}
+#__rptl-header .__rptl-header-burger-stroke:nth-child(1) {
+  top: 0;
+  transform-origin: left center;
+}
+#__rptl-header .__rptl-header-burger-stroke:nth-child(2) {
+  top: 14px;
+  transform-origin: left center;
+}
+#__rptl-header .__rptl-header-burger-stroke:nth-child(3) {
+  top: 28px;
+  transform-origin: left center;
+}
+@media (prefers-reduced-motion: no-preference) {
+  #__rptl-header .__rptl-header-burger-stroke {
+    transition: 0.25s ease-in-out;
+  }
+}
+#__rptl-header .__rptl-header-burger-state {
+  display: none;
+}
+#__rptl-header .__rptl-header-burger-state:checked + .__rptl-header-navbar .__rptl-header-burger-stroke:nth-child(1) {
+  transform: rotate(45deg);
+  top: 4.5px;
+  left: 4.5px;
+}
+#__rptl-header .__rptl-header-burger-state:checked + .__rptl-header-navbar .__rptl-header-burger-stroke:nth-child(2) {
+  width: 0;
+  opacity: 0;
+}
+#__rptl-header .__rptl-header-burger-state:checked + .__rptl-header-navbar .__rptl-header-burger-stroke:nth-child(3) {
+  transform: rotate(-45deg);
+  top: 25.5px;
+  left: 4.5px;
+}
+#__rptl-header .__rptl-header-burger-state:checked ~ .__rptl-header-nav {
+  transform: translateY(100%);
+  transition-duration: 500ms;
+  transition-timing-function: ease-out;
+}
+#__rptl-header .__rptl-header-nav {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font: inherit;
+  font-size: 100%;
+  display: block;
+  box-sizing: border-box;
+  position: absolute;
+  bottom: 0;
+  background-color: #fff;
+  width: 100%;
+  border-bottom: 1px solid #dedede;
+}
+#__rptl-header .__rptl-header-nav:focus-within {
+  transform: translateY(100%);
+}
+@media (min-width: 1200px) {
+  #__rptl-header .__rptl-header-nav {
+    position: static;
+    padding: 0 84px;
+    background-color: #f7f8fa;
+    transform: none !important;
+    transition: none !important;
+  }
+}
+@media (prefers-reduced-motion: no-preference) {
+  #__rptl-header .__rptl-header-nav {
+    transition: transform 0.25s ease-in;
+  }
+}
+#__rptl-header .__rptl-header-nav-inner {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font: inherit;
+  font-size: 100%;
+  display: block;
+  box-sizing: border-box;
+}
+@media (min-width: 1200px) {
+  #__rptl-header .__rptl-header-nav-inner {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+  }
+}
+#__rptl-header .__rptl-header-nav-list {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font: inherit;
+  font-size: 100%;
+  list-style: none;
+  display: block;
+  box-sizing: border-box;
+}
+#__rptl-header .__rptl-header-nav-list:first-child .__rptl-header-nav-list-item:first-child {
+  border: 0;
+}
+#__rptl-header .__rptl-header-nav-list-item {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font: inherit;
+  font-size: 100%;
+  display: block;
+  box-sizing: border-box;
+  border-top: 1px solid #dedede;
+}
+@media (min-width: 1200px) {
+  #__rptl-header .__rptl-header-nav-list-item {
+    display: inline-block;
+    border-style: none;
+  }
+}
+#__rptl-header .__rptl-header-nav-link {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font: inherit;
+  display: block;
+  text-decoration: none;
+  box-sizing: border-box;
+  color: #333;
+  font-size: 1.65em;
+  padding: 16px;
+}
+#__rptl-header .__rptl-header-nav-link:hover {
+  color: #fff;
+  background-color: #333;
+}
+#__rptl-header .__rptl-header-nav-link--for-home {
+  color: #cd2355;
+  font-weight: 700;
+}
+#__rptl-header .__rptl-header-nav-link--for-home:hover {
+  background-color: #cd2355;
+}
+#__rptl-header .__rptl-header-nav-link--for-industry {
+  font-weight: 700;
+}
+@media (min-width: 800px) {
+  #__rptl-header .__rptl-header-nav-link {
+    padding: 16px 76px;
+  }
+}
+@media (min-width: 1200px) {
+  #__rptl-header .__rptl-header-nav-link {
+    font-size: 1em;
+    padding: 16px;
+  }
+}
+</style>
+<header id="__rptl-header">
+  <input type="checkbox" class="__rptl-header-burger-state" id="__rptl-header-burger-state">
+
+  <div class="__rptl-header-navbar">
+    <div class="__rptl-header-wrapper">
+      <a href="https://www.raspberrypi.com/" class="__rptl-header-brand">
+        <svg class="__rptl-header-logo" aria-hidden="true" focusable="false" height="44" viewBox="0 0 270 57" xmlns="http://www.w3.org/2000/svg" aria-labelledby="__rptl-header-logo"><title id="__rptl-header-logo">Raspberry Pi</title><g fill-rule="nonzero" fill="none"><path d="M65.275 33.317h-4.477v9.46c0 .29-.235.526-.525.526h-4.57a.525.525 0 0 1-.526-.525V16.55a.525.525 0 0 1 .525-.525h9.61c3.223 0 5.709.718 7.457 2.154a7.437 7.437 0 0 1 2.623 6.09 8.391 8.391 0 0 1-1.208 4.655 8.24 8.24 0 0 1-3.663 2.97l5.635 10.638a.525.525 0 0 1-.464.77h-4.917a.63.63 0 0 1-.56-.342l-4.94-9.643Zm-4.477-4.552h4.534a4.641 4.641 0 0 0 3.278-1.078 3.85 3.85 0 0 0 1.162-2.97 4.122 4.122 0 0 0-1.096-3.034 4.556 4.556 0 0 0-3.363-1.106h-4.515v8.188ZM90.426 42.997a6.562 6.562 0 0 1-.402-1.511 6.551 6.551 0 0 1-5.114 2.192 7.195 7.195 0 0 1-4.937-1.724 5.542 5.542 0 0 1-1.958-4.347 5.73 5.73 0 0 1 2.389-4.946c1.592-1.148 3.894-1.73 6.904-1.742h2.491v-1.162a3.342 3.342 0 0 0-.72-2.248 2.838 2.838 0 0 0-2.277-.843 3.226 3.226 0 0 0-2.145.656 2.13 2.13 0 0 0-.748 1.37.513.513 0 0 1-.513.428h-4.375a.533.533 0 0 1-.524-.596 5.494 5.494 0 0 1 1.054-2.663 7.184 7.184 0 0 1 3.073-2.352 11.2 11.2 0 0 1 4.459-.852 8.848 8.848 0 0 1 5.948 1.883 6.587 6.587 0 0 1 2.202 5.292v8.787a9.948 9.948 0 0 0 .629 3.93.525.525 0 0 1-.47.754h-4.485a.515.515 0 0 1-.48-.306Zm-4.336-3.46c.77.007 1.529-.176 2.21-.534a3.509 3.509 0 0 0 1.5-1.433v-3.485h-2.024c-2.71 0-4.153.937-4.328 2.81l-.019.319a2.166 2.166 0 0 0 .712 1.667 2.764 2.764 0 0 0 1.949.656ZM109.963 37.701a1.745 1.745 0 0 0-.983-1.564 11.18 11.18 0 0 0-3.157-1.021c-4.822-1.012-7.232-3.06-7.232-6.145a5.57 5.57 0 0 1 2.24-4.506 9.031 9.031 0 0 1 5.854-1.808 9.723 9.723 0 0 1 6.173 1.817 5.699 5.699 0 0 1 2.292 4.175.52.52 0 0 1-.525.546h-4.382a.514.514 0 0 1-.514-.435 2.538 2.538 0 0 0-.721-1.485 3.172 3.172 0 0 0-2.342-.759 3.24 3.24 0 0 0-2.117.619c-.483.377-.76.96-.75 1.573.001.603.327 1.158.853 1.452a8.76 8.76 0 0 0 2.876.956 23.54 23.54 0 0 1 3.41.908c2.86 1.05 4.29 2.867 4.29 5.452a5.288 5.288 0 0 1-2.38 4.487 10.264 10.264 0 0 1-6.145 1.715c-1.556.029-3.1-.281-4.524-.91a7.586 7.586 0 0 1-3.1-2.49 5.853 5.853 0 0 1-1.094-2.824.533.533 0 0 1 .523-.596h4.11a.513.513 0 0 1 .513.418c.091.71.46 1.354 1.024 1.793a4.233 4.233 0 0 0 2.66.768c.827.057 1.65-.15 2.352-.59.508-.35.807-.93.796-1.546ZM136.719 33.355a12.159 12.159 0 0 1-2.127 7.503 6.817 6.817 0 0 1-5.742 2.82 6.315 6.315 0 0 1-4.965-2.136v9.03c0 .29-.235.525-.525.525h-4.364a.525.525 0 0 1-.525-.525V23.557a.525.525 0 0 1 .525-.525h4.018c.27 0 .497.206.523.475l.142 1.51a6.363 6.363 0 0 1 5.134-2.36 6.865 6.865 0 0 1 5.826 2.773c1.387 1.848 2.08 4.396 2.08 7.644v.28Zm-5.415-.394a7.982 7.982 0 0 0-1.002-4.365 3.266 3.266 0 0 0-2.913-1.536 3.546 3.546 0 0 0-3.504 1.948v8.3a3.605 3.605 0 0 0 3.541 2.004c2.586 0 3.878-2.117 3.878-6.35ZM158.159 33.355c0 3.247-.694 5.78-2.08 7.597a6.889 6.889 0 0 1-5.808 2.726 6.329 6.329 0 0 1-5.264-2.53l-.191 1.689a.525.525 0 0 1-.522.466h-3.877a.525.525 0 0 1-.525-.525V15.05c0-.29.235-.525.525-.525h4.364a.525.525 0 0 1 .525.525v9.798a6.166 6.166 0 0 1 4.928-2.192 6.945 6.945 0 0 1 5.817 2.726c1.405 1.817 2.108 4.374 2.108 7.672v.3Zm-5.415-.394a8.068 8.068 0 0 0-.974-4.487 3.295 3.295 0 0 0-2.904-1.414 3.572 3.572 0 0 0-3.56 2.117v8a3.62 3.62 0 0 0 3.597 2.135c1.626.093 3.081-.999 3.448-2.585.31-1.23.442-2.498.393-3.766ZM170.555 43.678a9.95 9.95 0 0 1-7.26-2.736 9.722 9.722 0 0 1-2.8-7.288v-.524a12.247 12.247 0 0 1 1.18-5.461 8.666 8.666 0 0 1 3.344-3.71 9.387 9.387 0 0 1 4.936-1.302 8.413 8.413 0 0 1 6.548 2.623c1.593 1.749 2.39 4.228 2.39 7.438v1.685a.525.525 0 0 1-.526.525h-12.383a5.028 5.028 0 0 0 1.583 3.185 4.785 4.785 0 0 0 3.344 1.2 5.886 5.886 0 0 0 4.524-1.837.527.527 0 0 1 .773.026l1.964 2.198c.17.188.182.47.028.672a8.216 8.216 0 0 1-3.036 2.34 10.82 10.82 0 0 1-4.609.966Zm-.618-16.656a3.382 3.382 0 0 0-2.614 1.092 5.65 5.65 0 0 0-1.283 3.124h7.531v-.433a4.034 4.034 0 0 0-.974-2.795 3.492 3.492 0 0 0-2.66-.988ZM193.333 27.525a.523.523 0 0 1-.575.515c-.459-.051-.92-.078-1.382-.081-2.049 0-3.391.693-4.028 2.08v12.739a.525.525 0 0 1-.525.525h-4.364a.525.525 0 0 1-.525-.525V23.557a.525.525 0 0 1 .525-.525h4.096c.277 0 .507.215.524.492l.12 1.924a5.017 5.017 0 0 1 4.514-2.791c.434-.002.867.044 1.29.138a.515.515 0 0 1 .39.515l-.06 4.215ZM207.017 27.525a.523.523 0 0 1-.575.515c-.459-.051-.92-.078-1.382-.081-2.048 0-3.39.693-4.028 2.08v12.739a.525.525 0 0 1-.525.525h-4.364a.525.525 0 0 1-.525-.525V23.557a.525.525 0 0 1 .525-.525h4.096c.277 0 .507.215.524.492l.12 1.924a5.018 5.018 0 0 1 4.514-2.791c.434-.002.867.044 1.29.138a.515.515 0 0 1 .39.515l-.06 4.215ZM217.934 35.64l3.635-12.233a.525.525 0 0 1 .504-.375h4.677a.525.525 0 0 1 .496.697l-7.907 22.721-.45 1.068a6.18 6.18 0 0 1-5.995 3.972 8.368 8.368 0 0 1-2.003-.25.529.529 0 0 1-.395-.513v-3.15a.525.525 0 0 1 .546-.524l.538.02a3.442 3.442 0 0 0 2.035-.492 3.08 3.08 0 0 0 1.19-1.555l.637-1.667-6.857-19.63a.525.525 0 0 1 .496-.697h4.696c.232 0 .437.152.503.374l3.654 12.234ZM245.156 33.692v9.086c0 .29-.235.525-.525.525h-4.57a.525.525 0 0 1-.526-.525V16.55a.525.525 0 0 1 .525-.525h10.117a12.31 12.31 0 0 1 5.405 1.124 8.284 8.284 0 0 1 3.587 3.194 8.91 8.91 0 0 1 1.256 4.712 7.833 7.833 0 0 1-2.745 6.323c-1.83 1.543-4.362 2.314-7.597 2.314h-4.927Zm0-4.553h5.02a4.934 4.934 0 0 0 3.401-1.049 3.816 3.816 0 0 0 1.171-2.998 4.5 4.5 0 0 0-1.18-3.24 4.41 4.41 0 0 0-3.26-1.275h-5.152v8.562ZM263.081 17.786a2.666 2.666 0 0 1 .815-2.005 3.512 3.512 0 0 1 4.431 0 2.86 2.86 0 0 1-.01 4.028 3.473 3.473 0 0 1-4.402 0 2.66 2.66 0 0 1-.834-2.023Zm5.227 25.517h-4.383a.525.525 0 0 1-.525-.525V23.557a.525.525 0 0 1 .525-.525h4.383a.525.525 0 0 1 .525.525v19.22a.525.525 0 0 1-.525.526ZM45.008 32.949a8.74 8.74 0 0 0-3.104-6.182 7.664 7.664 0 0 0-1.44-2.801 8.594 8.594 0 0 0-3.058-5.777c.284-.244.524-.536.708-.862a6.186 6.186 0 0 0 3.63-4.23 5.558 5.558 0 0 0 1.755-3.64 3.481 3.481 0 0 0-.31-1.638 3.114 3.114 0 0 0 .81-3.215c-.606-1.756-2.73-2.896-5.584-3.017a4.497 4.497 0 0 0-3.11-1.065 7.188 7.188 0 0 0-1.678.207 3.821 3.821 0 0 0-1.65-.334 6.458 6.458 0 0 0-3.148.858 2.894 2.894 0 0 0-.38-.025 6.276 6.276 0 0 0-3.551 1.558 10.765 10.765 0 0 0-1.866 1.944 10.768 10.768 0 0 0-1.867-1.944 6.278 6.278 0 0 0-3.55-1.558c-.127 0-.254.008-.38.025a6.46 6.46 0 0 0-3.148-.858 3.822 3.822 0 0 0-1.65.334 7.188 7.188 0 0 0-1.68-.207 4.498 4.498 0 0 0-3.109 1.065c-2.854.12-4.978 1.261-5.585 3.018a3.114 3.114 0 0 0 .812 3.214 3.482 3.482 0 0 0-.31 1.639 5.557 5.557 0 0 0 1.755 3.64 6.186 6.186 0 0 0 3.63 4.229c.183.326.423.618.707.862A8.594 8.594 0 0 0 5.6 23.966a7.663 7.663 0 0 0-1.44 2.801 8.74 8.74 0 0 0-3.104 6.182 8.424 8.424 0 0 0 1.92 6.578c.26 1.31.8 2.549 1.581 3.632a9.452 9.452 0 0 0 2.386 5.514 9.768 9.768 0 0 0 5.262 3.126 12.74 12.74 0 0 0 4.208 2.605 9.763 9.763 0 0 0 13.24 0c1.559-.585 2.988-1.47 4.207-2.605a9.768 9.768 0 0 0 5.262-3.126 9.452 9.452 0 0 0 2.386-5.514 9.311 9.311 0 0 0 1.582-3.632 8.424 8.424 0 0 0 1.919-6.578Z" fill="#000"></path><path d="M28.366 4.192a.225.225 0 0 1 .286.24c-.072.672.335.587.432.468a3.526 3.526 0 0 1 3.188-1.53.225.225 0 0 1 .154.363c-.4.593.03.706.19.6 1.631-1.02 3.187-1.023 3.785-.594a.225.225 0 0 1 .013.349c-.604.514-.266.77-.052.692a5.802 5.802 0 0 1 4.74.607.227.227 0 0 1 .006.343 4.493 4.493 0 0 0-1.73 3.018c-.045.396.614.313.891.241a.225.225 0 0 1 .28.21c.026.954-.876 2.002-2.218 2.898-.18.12-.154.408.256.42a.222.222 0 0 1 .191.334c-.478.888-1.13 1.724-3.345 2.298a.227.227 0 0 0-.032.429.217.217 0 0 1 .071.384c-2.207 1.896-7.8 1.148-8.51-2.043a.224.224 0 0 1 .04-.182 21.262 21.262 0 0 1 9.276-7.058.176.176 0 0 0-.087-.34 15.168 15.168 0 0 0-10.074 6.074.227.227 0 0 1-.289.065c-3.585-1.851-.64-7.317 2.538-8.286ZM7.285 12.85a.222.222 0 0 1 .191-.334c.41-.01.436-.299.256-.419C6.39 11.201 5.49 10.153 5.514 9.2a.225.225 0 0 1 .28-.21c.278.072.936.155.891-.241a4.493 4.493 0 0 0-1.73-3.017.227.227 0 0 1 .006-.344 5.802 5.802 0 0 1 4.74-.607c.214.079.552-.178-.052-.692a.225.225 0 0 1 .014-.35c.597-.428 2.153-.426 3.785.594.159.107.589-.006.19-.599a.225.225 0 0 1 .153-.363A3.526 3.526 0 0 1 16.98 4.9c.096.12.503.204.432-.469a.225.225 0 0 1 .286-.239c3.178.97 6.122 6.435 2.537 8.286a.227.227 0 0 1-.289-.065A15.168 15.168 0 0 0 9.873 6.34a.176.176 0 0 0-.088.34 21.262 21.262 0 0 1 9.276 7.057c.04.052.054.119.04.183-.71 3.19-6.303 3.938-8.51 2.042a.217.217 0 0 1 .071-.384.227.227 0 0 0-.031-.429c-2.216-.574-2.867-1.41-3.346-2.298Z" fill="#46AF4B"></path><path d="M37.158 22.605c.92 2.446.203 3.622-1.978 2.377a15.632 15.632 0 0 1-4.58-3.84c-1.644-1.952-.576-2.821 2.012-2.352a6.985 6.985 0 0 1 4.546 3.815ZM27.375 19.853c3.12 2.593-.454 4.428-4.343 4.428-3.89 0-7.463-1.835-4.344-4.428a6.935 6.935 0 0 1 8.687 0ZM8.906 22.605a6.985 6.985 0 0 1 4.545-3.815c2.588-.47 3.656.4 2.013 2.352a15.632 15.632 0 0 1-4.58 3.84c-2.182 1.245-2.898.069-1.978-2.377ZM4.394 36.196a6.983 6.983 0 0 1 .518-5.942c1.153-1.96 2.313-1.883 2.773-.222.585 2.29.373 4.712-.6 6.867-.854 1.696-1.921 1.123-2.691-.703ZM12.704 48.896A6.942 6.942 0 0 1 7.482 42.7c.433-10.066 14.94 7.91 5.222 6.196ZM12.999 36.358c-2.433-1.404-3.077-4.844-1.438-7.682 1.639-2.839 4.94-4 7.372-2.596 2.433 1.404 3.077 4.844 1.438 7.682-1.639 2.839-4.94 4-7.372 2.596ZM27.091 52.737a6.947 6.947 0 0 1-8.119 0c-2.41-1.664.015-3.58 4.06-3.58s6.47 1.916 4.06 3.58Z" fill="#CD2355"></path><ellipse fill="#CD2355" cx="23.032" cy="41.795" rx="5.647" ry="4.84"></ellipse><path d="M25.692 33.762c-1.639-2.838-.995-6.278 1.438-7.682 2.433-1.405 5.734-.243 7.372 2.596 1.64 2.838.995 6.278-1.438 7.682-2.432 1.405-5.733.243-7.372-2.596ZM33.36 48.896C23.64 50.61 38.149 32.634 38.58 42.7a6.941 6.941 0 0 1-5.221 6.196ZM41.67 36.196c-.77 1.826-1.838 2.399-2.691.703a10.417 10.417 0 0 1-.6-6.867c.46-1.66 1.62-1.739 2.772.222a6.983 6.983 0 0 1 .518 5.942Z" fill="#CD2355"></path></g></svg>
+      </a>
+
+      <label class="__rptl-header-burger" for="__rptl-header-burger-state">
+        <span class="__rptl-header-burger-stroke"></span>
+        <span class="__rptl-header-burger-stroke"></span>
+        <span class="__rptl-header-burger-stroke"></span>
+      </label>
+    </div>
+  </div>
+
+  <nav class="__rptl-header-nav">
+    <div class="__rptl-header-wrapper">
+      <div class="__rptl-header-nav-inner">
+        <ul class="__rptl-header-nav-list">
+          <li class="__rptl-header-nav-list-item"><a href="https://www.raspberrypi.com/for-home/" class="__rptl-header-nav-link __rptl-header-nav-link--for-home">For home</a>
+          </li><li class="__rptl-header-nav-list-item"><a href="https://www.raspberrypi.com/for-industry/" class="__rptl-header-nav-link __rptl-header-nav-link--for-industry">For industry</a>
+        </li></ul>
+        <ul class="__rptl-header-nav-list">
+          <li class="__rptl-header-nav-list-item"><a href="https://www.raspberrypi.com/products/" class="__rptl-header-nav-link">Hardware</a>
+          </li><li class="__rptl-header-nav-list-item"><a href="https://www.raspberrypi.com/software/" class="__rptl-header-nav-link">Software</a>
+          </li><li class="__rptl-header-nav-list-item"><a href="https://www.raspberrypi.com/documentation/" class="__rptl-header-nav-link">Documentation</a>
+          </li><li class="__rptl-header-nav-list-item"><a href="https://www.raspberrypi.com/news/" class="__rptl-header-nav-link">News</a>
+          </li><li class="__rptl-header-nav-list-item"><a href="https://forums.raspberrypi.com/" class="__rptl-header-nav-link">Forums</a>
+          </li><li class="__rptl-header-nav-list-item"><a href="https://www.raspberrypi.org/" class="__rptl-header-nav-link " rel="noopener">Foundation</a>
+        </li></ul>
+      </div>
+    </div>
+  </nav>
+</header>
+<script async="" src="./GUIDE_ Raspbian Lite with RPD_LXDE_XFCE_MATE_i3_Openbox_X11 GUI - Raspberry Pi Forums_files/analytics.js.download"></script><script>
+  (function() {
+    var header = document.getElementById("__rptl-header"),
+        burgerState = document.getElementById("__rptl-header-burger-state");
+
+    document.addEventListener("click", function (e) {
+      if (!header.contains(e.target)) {
+        burgerState.checked = false;
+      }
+    });
+  })();
+</script>
+
+	<div id="wrap-head">
+		<div id="site-header">
+			<div class="chunk">
+				<ul id="site-menu">
+					<li data-skip-responsive="true" class="site-menu"><a href="https://forums.raspberrypi.com/app.php/help/faq" rel="help" title="Frequently Asked Questions">Forum FAQ</a></li>
+<li class="site-menu">
+	<a href="https://forums.raspberrypi.com//viewtopic.php?f=66&amp;t=133691#" title="About">About</a>
+	<ul>
+		<li><a href="https://www.raspberrypi.com/about/">About us</a></li>
+		<li><a href="https://www.raspberrypi.com/contact/">Contact us</a></li>
+		<li><a href="https://www.raspberrypi.com/documentation/">Documentation</a></li>
+		<li><a href="https://www.raspberrypi.com/trademark-rules/">Trademark rules</a></li>
+	</ul>
+</li>
+				</ul>
+			</div>
+		</div>
+
+		<div id="site-nav" role="navigation">
+			<div class="chunk">
+
+				
+				<div class="site-nav">
+
+					
+										<div id="site-search" role="search">
+						<form action="https://forums.raspberrypi.com/search.php" method="get">
+							<fieldset>
+								<input name="keywords" type="search" maxlength="128" title="Search for keywords" size="20" value="" placeholder="Search"><button type="submit" title="Search"><i class="fa fa-search"></i></button>
+							</fieldset>
+						</form>
+					</div>
+					
+					<ul role="menubar">
+											<li class="font-icon rightside" data-skip-responsive="true"><a href="https://forums.raspberrypi.com/ucp.php?mode=login&amp;redirect=viewtopic.php%2F%2Fviewtopic.php%3Ff%3D66%26t%3D133691" title="Login" accesskey="x" role="menuitem"><i class="fa fa-power-off"></i><span class="nav-rh-2">Login</span></a></li>
+												<li class="font-icon rightside" data-skip-responsive="true"><a href="https://forums.raspberrypi.com/ucp.php?mode=register" role="menuitem"><i class="fa fa-pencil-square-o"></i><span class="nav-rh-2">Register</span></a></li>
+																																		</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	
+	<a id="start_here" class="anchor"></a>
+		
+		
+		<!-- main element closes in overall_footer.html -->
+		<main id="rp-app-landmark-main">
+
+<div id="wrap-subhead">
+	<div class="chunk">
+		<div class="wrap-subhead">
+			<ul id="breadcrumbs" role="menubar">
+				<li class="font-icon responsive-menu dropdown-container" data-skip-responsive="true">
+  <a href="https://forums.raspberrypi.com//viewtopic.php?f=66&amp;t=133691#" class="responsive-menu-link dropdown-trigger dropdown-toggle"><i class="fa fa-bars"></i></a>
+  <div class="dropdown hidden">
+    <div class="pointer"><div class="pointer-inner"></div></div>
+    <ul class="dropdown-contents" role="menu">
+      
+              <li class="separator"></li>
+                                <li class="font-icon icon-search-unanswered"><a href="https://forums.raspberrypi.com/search.php?search_id=unanswered" role="menuitem"><i class="fa fa-file-o"></i>Unanswered topics</a></li>
+        <li class="font-icon icon-search-active"><a href="https://forums.raspberrypi.com/search.php?search_id=active_topics" role="menuitem"><i class="fa fa-fire"></i>Active topics</a></li>
+            <li class="separator site-menu"></li>
+
+      <li data-skip-responsive="true" class="site-menu"><a href="https://forums.raspberrypi.com/app.php/help/faq" rel="help" title="Frequently Asked Questions">Forum FAQ</a></li>
+<li class="site-menu">
+	<a href="https://forums.raspberrypi.com//viewtopic.php?f=66&amp;t=133691#" title="About">About</a>
+	<ul>
+		<li><a href="https://www.raspberrypi.com/about/">About us</a></li>
+		<li><a href="https://www.raspberrypi.com/contact/">Contact us</a></li>
+		<li><a href="https://www.raspberrypi.com/documentation/">Documentation</a></li>
+		<li><a href="https://www.raspberrypi.com/trademark-rules/">Trademark rules</a></li>
+	</ul>
+</li>
+
+          </ul>
+  </div>
+</li>
+								
+								<li class="breadcrumbs rightside" itemscope="" itemtype="https://schema.org/BreadcrumbList">
+															<span class="crumb" itemtype="http://schema.org/ListItem" itemprop="itemListElement" itemscope="">
+						<a itemprop="item" href="https://forums.raspberrypi.com/index.php" accesskey="h" data-navbar-reference="index" title="Board index"><i class="fa fa-home"></i><span itemprop="name">Board index</span></a>
+						<meta itemprop="position" content="1">
+					</span>
+					                    <span class="crumb" itemtype="http://schema.org/ListItem" itemprop="itemListElement" itemscope="" data-forum-id="18">
+    <a itemprop="item" href="https://forums.raspberrypi.com/viewforum.php?f=18" title="Operating system distributions"><span itemprop="name">Operating system distributions</span></a>
+    <meta itemprop="position" content="2">
+  </span>
+                      <span class="crumb" itemtype="http://schema.org/ListItem" itemprop="itemListElement" itemscope="" data-forum-id="66">
+    <a itemprop="item" href="https://forums.raspberrypi.com/viewforum.php?f=66" title="Raspberry Pi OS"><span itemprop="name">Raspberry Pi OS</span></a>
+    <meta itemprop="position" content="3">
+  </span>
+  									</li>
+							</ul>
+
+		</div>
+
+		<div id="subhead-title">
+			<h2 class="topic-title"><a href="https://forums.raspberrypi.com/viewtopic.php?t=133691">GUIDE:  Raspbian Lite with RPD/LXDE/XFCE/MATE/i3/Openbox/X11 GUI</a></h2>
+			
+					</div>
+
+	</div>
+</div>
+
+<div id="wrap-body">
+	<div class="chunk">
+
+		
+		<div class="action-bar top">
+
+			<div class="buttons">
+				
+							<a href="https://forums.raspberrypi.com/posting.php?mode=reply&amp;t=133691" class="button font-icon" title="This topic is locked, you cannot edit posts or make further replies.">
+					<i class="fa fa-lock"></i>Locked				</a>
+			
+							</div>
+
+				<div class="dropdown-container dropdown-button-control topic-tools">
+		<span title="Topic tools" class="button icon-button tools-icon dropdown-trigger dropdown-select dropdown-toggle"><i class="fa fa-wrench"></i></span>
+		<div class="dropdown hidden">
+			<div class="pointer"><div class="pointer-inner"></div></div>
+			<ul class="dropdown-contents">
+																								<li class="font-icon icon-print"><a href="https://forums.raspberrypi.com/viewtopic.php?t=133691&amp;view=print" title="Print view" accesskey="p"><i class="fa fa-print"></i>Print view</a></li>							</ul>
+		</div>
+	</div>
+
+			
+							<div class="search-box" role="search">
+					<form method="get" id="topic-search" action="https://forums.raspberrypi.com/search.php">
+					<fieldset>
+						<input class="inputbox search" type="search" name="keywords" id="search_keywords" size="20" placeholder="Search this topic…">
+						<button class="button" type="submit" title="Search"><i class="fa fa-search"></i></button>
+						<input type="hidden" name="t" value="133691">
+<input type="hidden" name="sf" value="msgonly">
+
+					</fieldset>
+					</form>
+				</div>
+			
+							<div class="pagination">
+					201 posts
+											<ul>
+	<li class="dropdown-container dropdown-button-control dropdown-page-jump page-jump">
+		<a href="https://forums.raspberrypi.com//viewtopic.php?f=66&amp;t=133691#" class="dropdown-trigger dropdown-toggle" title="Click to jump to page…" role="button">Page <strong>1</strong> of <strong>9</strong></a>
+		<div class="dropdown hidden">
+			<div class="pointer"><div class="pointer-inner"></div></div>
+			<ul class="dropdown-contents">
+				<li>Jump to page:</li>
+				<li class="page-jump-form">
+					<input type="number" name="page-number" min="1" max="999999" title="Enter the page number you wish to go to" class="inputbox tiny" data-per-page="25" data-base-url="./../viewtopic.php?t=133691" data-start-name="start">
+					<input class="button2" value="Go" type="button">
+				</li>
+			</ul>
+		</div>
+	</li><li class="active"><span>1</span></li><li><a href="https://forums.raspberrypi.com/viewtopic.php?t=133691&amp;start=25" role="button">2</a></li><li><a href="https://forums.raspberrypi.com/viewtopic.php?t=133691&amp;start=50" role="button">3</a></li><li><a href="https://forums.raspberrypi.com/viewtopic.php?t=133691&amp;start=75" role="button">4</a></li><li><a href="https://forums.raspberrypi.com/viewtopic.php?t=133691&amp;start=100" role="button">5</a></li><li class="ellipsis" role="separator"><span>…</span></li><li><a href="https://forums.raspberrypi.com/viewtopic.php?t=133691&amp;start=200" role="button">9</a></li><li class="next"><a href="https://forums.raspberrypi.com/viewtopic.php?t=133691&amp;start=25" rel="next" role="button"><i class="fa fa-chevron-right"></i></a></li></ul>
+									</div>
+			
+			
+		</div>
+
+		
+		
+		
+											<div id="p890408" class="post has-profile bg2">
+				<div class="inner">
+
+				<dl class="postprofile" id="profile890408">
+					<dt class="no-profile-rank no-avatar">
+						<div class="avatar-container">
+																											</div>
+
+						
+						<a href="https://forums.raspberrypi.com/memberlist.php?mode=viewprofile&amp;u=174543" class="username">GhostRaider</a>
+						
+					</dt>
+
+					
+					
+					
+				<dd class="profile-posts"><strong>Posts:</strong> <a href="https://forums.raspberrypi.com/search.php?author_id=174543&amp;sr=posts">54</a></dd>				<dd class="profile-joined"><strong>Joined:</strong> Fri Jan 22, 2016 9:04 pm</dd>				
+				
+												
+												
+				</dl>
+
+				<div class="postbody">
+										<div id="post_content890408">
+					
+					<h3 class="first"><a href="https://forums.raspberrypi.com//viewtopic.php?f=66&amp;t=133691#p890408">GUIDE:  Raspbian Lite with RPD/LXDE/XFCE/MATE/i3/Openbox/X11 GUI</a></h3>
+
+				
+				
+													
+				
+					
+					<p class="author"><a href="https://forums.raspberrypi.com/viewtopic.php?p=890408#p890408">Sat Jan 23, 2016 3:19 am</a> </p>
+
+					
+					
+					
+					<div class="content"><img src="./GUIDE_ Raspbian Lite with RPD_LXDE_XFCE_MATE_i3_Openbox_X11 GUI - Raspberry Pi Forums_files/FQZ5jVC.png" class="postimage" alt="Image"><br>
+<strong>Table of Contents</strong><br>
+1. Introduction<br>
+2. Memory Usage<br>
+3. Part 1 - Build the Foundation<br>
+4. Part 2 - Bring in the Furniture<br>
+5. Sample Screenshots<br>
+6. What Do I Use?<br>
+7. Virtual Machine Playground<br>
+8. Advanced - X11 Forwarding (Remote Applications)<br>
+9. Advanced - Remote Desktop Protocol (RDP)<br>
+10. Advanced - Custom Desktop Environment using i3 WM<br>
+11. Advanced - Custom Desktop Environment using Openbox WM<br>
+12. Extras<br>
+<br>
+<strong>Requirements:</strong><br>
+1. Any Raspberry Pi microcomputer<br>
+2. Raspbian Lite image<br>
+3. SD / microSD card (At least 4GB or higher, but it is possible to use smaller storage space depending on your configuration)<br>
+4. Keyboard and Mouse (For using the GUI, but can vary depending on how the Raspberry Pi will be used)<br>
+5. TV / Monitor (For seeing the GUI) (<strong><span style="color:#BF0000">NOTE:</span></strong> <strong>For those wanting to use a touchscreen, I do not cover this in this guide. You need to research this.</strong>)<br>
+6. A normal computer with Linux, macOS, or Windows (For burning Rasbian Lite image to SD / microSD)<br>
+7. Internet connection<br>
+<br>
+<strong><span style="color:#0000BF"><span style="font-size: 150%; line-height: normal">Introduction</span></span></strong><br>
+<br>
+There are two official Linux distributions for the Raspberry Pi which are Raspbian and Raspbian Lite. Rasbian is a full Linux distribution for the Raspberry Pi which uses Raspberry Pi Desktop (RPD) desktop environment. The desktop environment is the GUI (Graphical User Interface) of the operating system. Raspbian includes preinstalled applications for word processing, games, programming, and so on. This is great for beginners and people who just want to start using their Raspberry Pi immediately.<br>
+<br>
+But, some of us don't like that. We want the ability to work with a GUI,  but with our own preferences. In other words, we want to start with a clean install, and then install whatever packages we need on top. Packages can consist of desktop environments, drivers, compilers, applications, utilities, and so on.<br>
+<br>
+As a reward, there would be more storage space, less usage on memory, and GUI customization! This is where Raspbian Lite comes into play.<br>
+<br>
+Raspbian Lite is similar to that of a core. A core basically contains all the essential packages needed to make the hardware on the Raspberry Pi work correctly. Raspbian Lite was made so that the Pi can run as a headless system where the Pi is controlled by commands sent from an external source. Raspbian Lite does not contain a GUI but has a command line interface (CLI) which is shown automatically if it is connected to an external display. Configuration of Raspbian Lite can also be done via SSH (Secure Shell) from a computer connected to the same network as the Raspberry Pi. More information on SSH in the official Raspberry Pi documentation.<br>
+<br>
+If you have ever heard of Arch Linux, Raspbian Lite is similar to that. Since Raspbian Lite is supported by the Raspberry Pi Foundation, it is the preferred operating system for most Raspberry Pi microcomputers.<br>
+<br>
+To summarize, this guide talks about how to run Raspbian Lite with a GUI, in this case you choose your desktop environment, RPD, LXDE, XFCE, or MATE. There is an advanced section in this guide that talks about how to create your own desktop environment if you are interested. The official Rasbian distribution uses RPD as its default desktop environment, but reality, it is actually a fork (or a branch) of LXDE. Other distributions such as Xubuntu uses XFCE as its default desktop environment, and Ubuntu MATE uses MATE as its default desktop environment. If you are not familiar with Linux desktop environments, be sure to watch videos or research on the types of GUIs available. That way, you will have and idea of what GUI to install, if any.<br>
+<br>
+For those that are really consciousness about memory usage, a desktop environment based on LXDE would be a recommended choice. For those that prefer a prettier or modern look, then XFCE or MATE would be a recommended choice. However, both do the exact same job which is to make your Raspberry Pi a simple desktop computer that is easy to use. This is assuming that you want to use a prebuilt desktop environment. Otherwise you are free to create your own desktop environment.<br>
+<br>
+So why do this? Well, you decide how your desktop looks like, you decide what applications to install, and finally, you decide what do to next!<br>
+<br>
+Let's begin!<br>
+<br>
+<strong><span style="color:#0000BF"><span style="font-size: 150%; line-height: normal">Memory Usage</span></span></strong><br>
+<br>
+Before beginning to install Raspbian Lite with a GUI, let's explore memory usage. In a nutshell, the less memory your Raspberry Pi consumes, the more applications it can run. Raspbian Lite itself consumes very little memory since it is a core. As discussed earlier, a core only has the essential packages that make the hardware on the Raspberry Pi work.<br>
+<br>
+<strong><span style="color:#BF0000">NOTE:</span></strong> <strong>The memory used shown in the screenshots may be different than what your installation may actually use. Use this information as a reference to determine what desktop environment is right for you.</strong><br>
+<br>
+So how much memory does Raspbian Lite itself use? <br>
+<br>
+<img src="./GUIDE_ Raspbian Lite with RPD_LXDE_XFCE_MATE_i3_Openbox_X11 GUI - Raspberry Pi Forums_files/PDXx4Ej.png" class="postimage" alt="Image"><br>
+*Right Click &gt; Open Image in New Tab to see full size image.<br>
+<br>
+If we take a look at the screenshot, the memory is displayed in megabytes. This Raspberry Pi has 925MB of total memory. Some of the memory is internally allocated to the GPU by default. This means that the operating system and applications can use up to 925MB of memory. <br>
+<br>
+Currently, Raspbian Lite is using 30MB of memory. Very impressive. This means that the available memory to use is now 895MB.<br>
+<br>
+How does this compare to Raspbian with RPD? <br>
+<br>
+<img src="./GUIDE_ Raspbian Lite with RPD_LXDE_XFCE_MATE_i3_Openbox_X11 GUI - Raspberry Pi Forums_files/42K9oh3.png" class="postimage" alt="Image"><br>
+*Right Click &gt; Open Image in New Tab to see full size image.<br>
+<br>
+On a clean installation, Raspbian with RPD is using about 90MB of memory. That's pretty good. Now, let's see what the memory usage is with Raspbian Lite running various GUIs.<br>
+<br>
+If Raspbian Lite is running RPD Desktop Environment:<br>
+<br>
+<img src="./GUIDE_ Raspbian Lite with RPD_LXDE_XFCE_MATE_i3_Openbox_X11 GUI - Raspberry Pi Forums_files/gj1EekG.png" class="postimage" alt="Image"><br>
+*Right Click &gt; Open Image in New Tab to see full size image.<br>
+<br>
+Here we see that Raspbian Lite with RPD is using about 76MB of Memory.<br>
+<br>
+If Raspbian Lite is running LXDE Desktop Environment:<br>
+<br>
+<img src="./GUIDE_ Raspbian Lite with RPD_LXDE_XFCE_MATE_i3_Openbox_X11 GUI - Raspberry Pi Forums_files/OdRhsJl.png" class="postimage" alt="Image"><br>
+*Right Click &gt; Open Image in New Tab to see full size image.<br>
+<br>
+Here we see that Raspbian Lite with LXDE is using about 97MB of Memory.<br>
+<br>
+If Raspbian Lite is running the XFCE Desktop Environment:<br>
+<br>
+<img src="./GUIDE_ Raspbian Lite with RPD_LXDE_XFCE_MATE_i3_Openbox_X11 GUI - Raspberry Pi Forums_files/YTN7S5P.png" class="postimage" alt="Image"><br>
+*Right Click &gt; Open Image in New Tab to see full size image.<br>
+<br>
+Here we see that Raspbian Lite with XFCE is using about 107MB of Memory.<br>
+<br>
+If Raspbian Lite is running the MATE Desktop Environment:<br>
+<br>
+<img src="./GUIDE_ Raspbian Lite with RPD_LXDE_XFCE_MATE_i3_Openbox_X11 GUI - Raspberry Pi Forums_files/05Y0uQH.png" class="postimage" alt="Image"><br>
+*Right Click &gt; Open Image in New Tab to see full size image.<br>
+<br>
+Here we see that Raspbian Lite with MATE is using about 101MB of Memory.<br>
+<br>
+Running a desktop environment with Raspbian Lite can consume quite a bit of memory. Now, we have to remember that Linux operating systems are flexible. Not every package required for a desktop environment is needed to be installed. This means that memory usage (as well as storage space) can be lowered even further, but you would have to be very familiar with how a package as well as its dependencies work. Not installing a required package or dependency may bring unwanted behavior. However, the good news is that it won't break your Raspberry Pi so long it is software related!<br>
+<br>
+<strong><span style="font-size: 150%; line-height: normal"><span style="color:#0000BF">Part 1 - Build the Foundation</span></span></strong><br>
+<br>
+In this part, we will focus on preparing Raspbian Lite.<br>
+<br>
+1. Download the latest Raspbian Lite image. (<a href="https://www.raspberrypi.org/downloads/raspbian/" class="postlink">https://www.raspberrypi.org/downloads/raspbian/</a>)<br>
+2. Flash the SD / microSD card with Raspbian Lite. (balenaEtcher is an easy to use application that runs on macOS, Linux, and Windows that can help you do this: <a href="https://www.balena.io/etcher/" class="postlink">https://www.balena.io/etcher/</a>)<br>
+3. Insert the SD / microSD card into the Pi. <br>
+4. Connect the Pi to the Internet. Ethernet would be the fastest way. Otherwise, if you have to use Wi-Fi, you will have to read on how to configure the Wi-Fi receiver using the command line after your Pi has finished booting.<br>
+5. Connect your TV / Monitor and keyboard. (Mouse is optional at this time.) Turn on the Pi. The Pi should boot up successfully and a prompt to log in will appear.<br>
+6. Log into Raspbian. The username is <strong>pi</strong> and the password is <strong>raspberry</strong>.<br>
+<br>
+7. We need to expand the file system so that Raspbian takes full use of the SD / microSD space. To do this, we need to use raspi-config. Type in:
+<div class="codebox"><p>Code: <a href="https://forums.raspberrypi.com//viewtopic.php?f=66&amp;t=133691#" onclick="selectCode(this); return false;">Select all</a></p><pre><code>sudo raspi-config</code></pre></div>
+and press Enter. <br>
+<br>
+8. The Raspberry Pi Software Configuration Tool (raspi-config) main menu will appear. The option we are interested is option #7 (Advanced Options). Select that option using the arrow keys on your keyboard and press Enter. Then select option #A1 (Expand Filesystem) and press Enter. A message will appear saying that the boot partition has been resized. Select OK using arrow keys on your keyboard and press Enter. The main menu will reappear. Select Finish at the bottom of the menu and press Enter. A popup message will ask you to reboot your Raspberry Pi. Reboot the Pi.<br>
+<br>
+9. Log into Raspbian again. We want to make sure we currently have the latest files and packages so type in:
+<div class="codebox"><p>Code: <a href="https://forums.raspberrypi.com//viewtopic.php?f=66&amp;t=133691#" onclick="selectCode(this); return false;">Select all</a></p><pre><code>sudo apt-get update</code></pre></div>
+and press Enter. If there are updates available, install them. To install the updates, you would type in the letter "y" when asked "Do you want to continue?" and then press Enter. When finished, the message "pi@raspberrypi:~ $" will appear signifying that the Pi is ready to receive a command. Now, type in:
+<div class="codebox"><p>Code: <a href="https://forums.raspberrypi.com//viewtopic.php?f=66&amp;t=133691#" onclick="selectCode(this); return false;">Select all</a></p><pre><code>sudo apt-get upgrade</code></pre></div>
+and press Enter. If there are updates available, install them. Now, type in:
+<div class="codebox"><p>Code: <a href="https://forums.raspberrypi.com//viewtopic.php?f=66&amp;t=133691#" onclick="selectCode(this); return false;">Select all</a></p><pre><code>sudo apt-get dist-upgrade</code></pre></div>
+and press Enter. If there are any updates available, install them.<br>
+<br>
+If packages were updated and installed, then these packages were stored somewhere in the SD / microSD card. We need to delete them so that they don't take up valuable space. To clean up leftover packages, type in:
+<div class="codebox"><p>Code: <a href="https://forums.raspberrypi.com//viewtopic.php?f=66&amp;t=133691#" onclick="selectCode(this); return false;">Select all</a></p><pre><code>sudo apt-get clean</code></pre></div>
+and press Enter. <br>
+<br>
+10. At this time, you may want to configure your localization settings which include language, keyboard layout, and regional settings. To change this, we need to go back to raspi-config. Type in:
+<div class="codebox"><p>Code: <a href="https://forums.raspberrypi.com//viewtopic.php?f=66&amp;t=133691#" onclick="selectCode(this); return false;">Select all</a></p><pre><code>sudo raspi-config</code></pre></div>
+and press Enter.<br>
+<br>
+The option we are interested is option #4 (Localization Options). Select that option and press Enter. You will be presented with 4 different options. <br>
+<br>
+Begin by selecting option #I1 (Change Locale) and press Enter. Find your locale by scrolling through the list using the up and down arrow keys on your keyboard. By default, en_GB.UTF-8 UTF8 will contain an asterisk, meaning that Raspbian Lite is using this locale. However, this may be incorrect if you live in another country, like the US. You can deselect this locale by highlighting it and pressing the Space bar on your keyboard. For example, if you live in the US, then the locale used should be en.US.UTF-8 UTF8. You would find this locale on the list and then press the Spacebar to select it. An asterisk will appear meaning that this locale will be used. Once you are ready, press Enter. A popup will appear asking you to select the default locale used for the entire system. Select the same locale you selected previously by highlighting it using the up and down arrow keys and then press Enter. Raspbian Lite will configure your system automatically and return to the main menu.<br>
+<br>
+<strong><span style="color:#BF0000">NOTE:</span></strong> <strong>You may notice that after you have changed your locale, if you change other internationalization settings, you may get some text randomly popping up at the bottom of the screen saying that setting the locale has failed and that LC_CTYPE, LC_Message, LC_ALL complain that there is no such file or directory. No problem. Exit out of raspi-config and type in:</strong>
+<div class="codebox"><p>Code: <a href="https://forums.raspberrypi.com//viewtopic.php?f=66&amp;t=133691#" onclick="selectCode(this); return false;">Select all</a></p><pre><code>sudo reboot</code></pre></div>
+<strong>and press Enter. This will reboot your Pi. Now you can reopen raspi-config and you will no longer see that weird message. Don't ask me why that hasn't been fixed yet.</strong><br>
+<br>
+Return to the Localization Options menu by selecting option #4 and press Enter. Now configure your timezone by selecting option #I2 (Change Timezone) and press Enter. Select your geological area using the arrow keys and press Enter. Select your region or city and press Enter. Raspbian Lite will configure your system automatically and return to the main menu.<br>
+<br>
+Return to the Localization Options menu by selecting option #4 and press Enter. Now configure your keyboard layout by selecting option #I3 (Change Keyboard Layout) and press Enter. Select your keyboard model using the arrow keys and press Enter (In a case where you don't know what keyboard model to select, the Generic 105-key (Intl) PC keyboard model would be good choice). Now, you will select the keyboard layout. Select the appropriate keyboard layout and press Enter (If you don't see your keyboard layout, select Other and press Enter. Select the keyboard language and press Enter. Now you will be presented with various keyboard layouts corresponding to your language. Select the appropriate layout and press Enter). The next few prompts may ask you about configuring the AltGr and Compose key. This is up for you to decide. Select the appropriate options and press Enter. You will then return to the main menu.<br>
+<br>
+If you are using a Raspberry Pi with built in Wi-Fi/Bluetooth receiver, you may want to change the Wi-Fi country settings. Return to the Internationalization Options menu by selecting option #4 and press Enter. Now configure your Wi-Fi country settings by selecting option #I4 (Change Wi-Fi Country) and press Enter. Select your country using the arrow keys and press Enter. A confirmation message will appear confirming your selection. Select OK. You will return to the main menu.<br>
+<br>
+12. Select Finish and press Enter. If you are asked to reboot, then reboot the Pi by selecting Yes and pressing Enter. If you are not asked to reboot, reboot anyways by typing in:
+<div class="codebox"><p>Code: <a href="https://forums.raspberrypi.com//viewtopic.php?f=66&amp;t=133691#" onclick="selectCode(this); return false;">Select all</a></p><pre><code>sudo reboot</code></pre></div>
+
+13. That's it! The foundation has been built! The Pi is ready to be used now, well obviously without the GUI. We have built the house but there's no furniture inside. <br>
+<br>
+<strong><span style="font-size: 150%; line-height: normal"><span style="color:#0000BF">Part 2 - Bring in the Furniture</span></span></strong><br>
+<br>
+This next part focuses on installing a GUI on top of Raspbian Lite. In order to have a GUI, we need these 4 things:<br>
+<br>
+1. Display Server<br>
+2. Desktop Environment<br>
+3. Window Manager<br>
+4. Login Manager<br>
+<br>
+Since we need 4 things, to make life easier, these 4 things are:<br>
+<br>
+1. Xorg Display Server<br>
+2. Raspberry Pi Desktop (RPD) or Lightweight X11 Desktop Environment (LXDE) or XFCE Desktop Environment (XFCE) or MATE Desktop Environment (MATE)<br>
+3. Openbox Window Manager (RPD/LXDE) or XFWM Window Manager (XFCE) or Marco Window Manager (MATE)<br>
+4. LightDM Login Manager<br>
+<br>
+For those that know about Linux, you may be wondering why the login manager chosen here is LightDM. For the most part, it is lightweight and it looks nice. But one feature that I believe stands out from other login managers is the ability to run <strong>Synergy</strong> client without errors. <strong>Synergy</strong> is a utility that allows you to use a computer's mouse and keyboard (Windows, Mac, or Linux) and share it with another computer, in this case, a Raspberry Pi. Of course you can install another login manager if you don't want LightDM.<br>
+<br>
+Some users may not want a login manager. This is perfectly fine depending on how you will use your Raspberry Pi. For example, we may want the Pi to boot into the command line always and if there is a need to launch a desktop environment, a simple command will let you launch it. Continue to read on for more information.<br>
+<br>
+Since we are focusing on Raspbian Lite, then the GUI installed will also be "lite". I understand that "lite" can have different meanings, but beginners are the main focus here. The important thing here is for users to personalize their Pi, without relying on prebuilt Raspbian. I believe these are the best GUI options. As always, you are free to use whatever you want. Moving forward, we will be installing the core of RPD, LXDE, XFCE, or MATE. This will give us only the GUI. There won't be any applications installed other than the required PIXEL, LXDE, XFCE, or MATE components such as a file manager, terminal, and settings. <br>
+<br>
+1. Turn on your Pi and log in. We will install Xorg. To do this type in:
+<div class="codebox"><p>Code: <a href="https://forums.raspberrypi.com//viewtopic.php?f=66&amp;t=133691#" onclick="selectCode(this); return false;">Select all</a></p><pre><code>sudo apt-get install --no-install-recommends xserver-xorg</code></pre></div>
+and press Enter. There will be a lot of dependent packages to install but these must be installed for the GUI to work. Install the packages. <br>
+<br>
+If you only install xserver-xorg, you will not have the ability to launch the Xorg Display Server from the command line. This would be a problem if you are not planning on installing a login manager. Otherwise, you do not need to do this. If this is the case, you may want to also install xinit by typing in:
+<div class="codebox"><p>Code: <a href="https://forums.raspberrypi.com//viewtopic.php?f=66&amp;t=133691#" onclick="selectCode(this); return false;">Select all</a></p><pre><code>sudo apt-get install --no-install-recommends xinit</code></pre></div>
+and press Enter. There will be some more dependent packages to install but these must be installed so that you can have the ability to start the Xorg Display Server from the command line if no login manager is installed. Install the packages.<br>
+<br>
+-----<br>
+<br>
+2. Now, choose your path:<br>
+<br>
+<strong>Raspberry Pi Desktop (RPD) GUI</strong><br>
+<br>
+1 (RPD). You're reading this part because you want to install RPD right? Let's continue. RPD is a desktop environment designed by the Raspberry Pi Foundation. It is designed to be easy to use, which is why it looks simple. The backend of RPD is LXDE, which is a great choice as it is known for its low memory usage. For this desktop environment, you have two choices. You can either install the basic RPD desktop environment or a stripped version of it. The basic RPD desktop environment is the same as the one included in the regular Raspbian distribution, but without preinstalled applications. Essentials such as settings, task manager, terminal and file manager are included. To install the basic RPD desktop environment, type in:
+<div class="codebox"><p>Code: <a href="https://forums.raspberrypi.com//viewtopic.php?f=66&amp;t=133691#" onclick="selectCode(this); return false;">Select all</a></p><pre><code>sudo apt-get install raspberrypi-ui-mods</code></pre></div>
+and press Enter. There will be a lot of dependent packages to install but these must be installed for the GUI to work. Install the packages.<br>
+<br>
+The stripped version of the RPD desktop environment only contains the file manager and settings for appearance, audio, network, and bluetooth. There is no trash support, no mounting of drives, or terminal included since the required components are not installed by default. No other applications are included either. However, you can add these components later if you wish. If you want to install the stripped version of the RPD desktop environment, type in:
+<div class="codebox"><p>Code: <a href="https://forums.raspberrypi.com//viewtopic.php?f=66&amp;t=133691#" onclick="selectCode(this); return false;">Select all</a></p><pre><code>sudo apt-get install --no-install-recommends raspberrypi-ui-mods lxsession</code></pre></div>
+and press Enter. There will be a lot of dependent packages to install but these must be installed for the GUI to work. Install the packages.<br>
+<br>
+Now, here are some list of packages you may want to install if you are installing the stripped version of RPD:
+<div class="codebox"><p>Code: <a href="https://forums.raspberrypi.com//viewtopic.php?f=66&amp;t=133691#" onclick="selectCode(this); return false;">Select all</a></p><pre><code>pi-greeter : The Raspberry Pi LightDM login theme
+rpd-icons : The Raspberry Pi Desktop icon theme
+gtk2-engines-clearlookspix : GTK Theme Engine (used to render Raspberry Pi LightDM login/desktop theme properly)
+</code></pre></div>
+
+2 (RPD). Openbox Window Manager is installed by default when you install RPD. You do not need to do anything here.<br>
+<br>
+<strong>LXDE GUI</strong><br>
+<br>
+1 (LXDE). You're reading this part because you want to install LXDE right? Let's continue. We will be installing the LXDE core. When you install LXDE, some essentials such as settings, terminal and file manager are included. LXAppearance is used to change the look of applications such as panels, icons, progress bars, cursors, and so on. This is optional to install but I recommend installing it in order to give yourself more customization abilities. To install LXDE with LXAppearance type in:
+<div class="codebox"><p>Code: <a href="https://forums.raspberrypi.com//viewtopic.php?f=66&amp;t=133691#" onclick="selectCode(this); return false;">Select all</a></p><pre><code>sudo apt-get install lxde-core lxappearance</code></pre></div>
+and press Enter. There will be a lot of dependent packages to install but these must be installed for the GUI to work. Install the packages.<br>
+<br>
+2 (LXDE). Openbox Window Manager is actually installed by default when you install lxde-core. You do not need to do anything here. You can customize the look of the titlebar using the Openbox settings which is also installed by default. By using LXAppearance and Openbox settings together, you chose what LXDE looks like!<br>
+<br>
+Now, go to STEP 3.<br>
+<br>
+<strong>XFCE GUI</strong><br>
+<br>
+1 (XFCE). You're reading this part because you want to install XFCE right? Let's continue. We will be installing the XFCE core. When you install XFCE, some essentials such as settings and file manager are included. By default, XFCE uses XFCE4 Terminal. <strong>This is optional to install, however if you choose not to install it, then XTerm will be the default Terminal app.</strong>. To install XFCE with XFCE4 Terminal, type in:
+<div class="codebox"><p>Code: <a href="https://forums.raspberrypi.com//viewtopic.php?f=66&amp;t=133691#" onclick="selectCode(this); return false;">Select all</a></p><pre><code>sudo apt-get install xfce4 xfce4-terminal</code></pre></div>
+and press Enter. There will be a lot of dependent packages to install but these must be installed for the GUI to work. Install the packages.<br>
+<br>
+2 (XFCE). XFWM Window Manager is actually installed by default when you install xfce4. You do not need to do anything here!<br>
+<br>
+Now, go to STEP 3.<br>
+<br>
+<strong>MATE GUI</strong><br>
+<br>
+1 (MATE). You're reading this part because you want to install MATE right? Let's continue. We will be installing the MATE core. When you install MATE, some essentials such as settings, terminal, and file manager are included. To install MATE, type in:
+<div class="codebox"><p>Code: <a href="https://forums.raspberrypi.com//viewtopic.php?f=66&amp;t=133691#" onclick="selectCode(this); return false;">Select all</a></p><pre><code>sudo apt-get install mate-desktop-environment-core</code></pre></div>
+and press Enter. There will be a lot of dependent packages to install but these must be installed for the GUI to work. Install the packages.<br>
+<br>
+2 (MATE). Marco Window Manager is actually installed by default when you install MATE. You do not need to do anything here!<br>
+<br>
+Now, go to STEP 3.<br>
+<br>
+-------------<br>
+<br>
+3 (STEP 3). Finally, we need to install LightDM login manager. If you have installed the basic or stripped version of the RPD desktop environment, then LightDM package is installed automatically so you can skip this step. As of the release of Raspbian Stretch, if you installed the XFCE desktop environment, LightDM is also installed automatically so you do not need to do this step.  Otherwise, to install LightDM, type in:
+<div class="codebox"><p>Code: <a href="https://forums.raspberrypi.com//viewtopic.php?f=66&amp;t=133691#" onclick="selectCode(this); return false;">Select all</a></p><pre><code>sudo apt-get install lightdm</code></pre></div>
+and press Enter. Install the packages.<br>
+<br>
+If you choose not to install a login manager but you did install xinit earlier, then this means that everytime your Pi boots, you will always boot into the command line. However, the desktop environment is already set up for you and is ready to be launched at any time. <br>
+<br>
+4. Everything we need to have Raspbian Lite with a GUI is ready! Fortunately, we don't have to do anything else but reboot! Reboot your Pi. When it finishes booting, you will see the LightDM login screen. From here, you will need use both a keyboard and a mouse. Log in and you should now see either RPD, LXDE, XFCE, or MATE desktop!<br>
+<br>
+Otherwise, if no login manager was installed, then just login via the command line! At anytime, you can launch the Xorg Display Server by typing in:
+<div class="codebox"><p>Code: <a href="https://forums.raspberrypi.com//viewtopic.php?f=66&amp;t=133691#" onclick="selectCode(this); return false;">Select all</a></p><pre><code>startx</code></pre></div>
+and press Enter. You should now see either RPD, LXDE, XFCE, or MATE desktop! From here, you will need use both a keyboard and a mouse.<br>
+<br>
+5. So what now? This is where you decide what you want to do with your custom Rasbian Lite installation with a GUI. You can change the look, install applications, start programming, do what is necessary to make it work the way you want it to!<br>
+<br>
+<strong><span style="color:#0000BF"><span style="font-size: 150%; line-height: normal">Sample Screenshots</span></span></strong><br>
+<br>
+<strong><span style="color:#BF0000">NOTE:</span></strong> <strong>The screenshots shown below do not represent the desktop that you will see after installation. For more information, see the GUI Customization section. Be aware that using composition effects (transparency, shadows, etc.) may impact performance and memory usage depending on your configuration.</strong><br>
+<br>
+<strong>Raspberry Pi Desktop (RPD)</strong><br>
+<br>
+Right Click &gt; Open Image in New Tab to see full size image. Screenshot shown is a customized RPD desktop.<br>
+<br>
+<img src="./GUIDE_ Raspbian Lite with RPD_LXDE_XFCE_MATE_i3_Openbox_X11 GUI - Raspberry Pi Forums_files/FQunYxC.png" class="postimage" alt="Image"><br>
+A clean desktop showing HTop System Monitor.<br>
+<br>
+<img src="./GUIDE_ Raspbian Lite with RPD_LXDE_XFCE_MATE_i3_Openbox_X11 GUI - Raspberry Pi Forums_files/AIlT1Y1.png" class="postimage" alt="Image"><br>
+A desktop showing various windows opened.<br>
+<br>
+<strong>LXDE</strong><br>
+<br>
+Right Click &gt; Open Image in New Tab to see full size images. Screenshots shown are of a customized LXDE desktop. The memory used will vary depending on how you configure LXDE.<br>
+<br>
+<img src="./GUIDE_ Raspbian Lite with RPD_LXDE_XFCE_MATE_i3_Openbox_X11 GUI - Raspberry Pi Forums_files/bYFxZRy.png" class="postimage" alt="Image"><br>
+A clean desktop showing Terminal.<br>
+<br>
+<img src="./GUIDE_ Raspbian Lite with RPD_LXDE_XFCE_MATE_i3_Openbox_X11 GUI - Raspberry Pi Forums_files/XaGNNWw.png" class="postimage" alt="Image"><br>
+A desktop showing various windows opened.<br>
+<br>
+<strong>XFCE</strong><br>
+<br>
+Right Click &gt; Open Image in New Tab to see full size images. Screenshots shown are of a customized XFCE desktop. The memory used will vary depending on how you configure XFCE.<br>
+<br>
+<img src="./GUIDE_ Raspbian Lite with RPD_LXDE_XFCE_MATE_i3_Openbox_X11 GUI - Raspberry Pi Forums_files/xDlfenF.png" class="postimage" alt="Image"><br>
+A clean desktop showing Terminal. No composition effects enabled.<br>
+<br>
+<img src="./GUIDE_ Raspbian Lite with RPD_LXDE_XFCE_MATE_i3_Openbox_X11 GUI - Raspberry Pi Forums_files/NNjNI0Q.png" class="postimage" alt="Image"><br>
+A desktop showing various windows opened. No composition effects enabled.<br>
+<br>
+<img src="./GUIDE_ Raspbian Lite with RPD_LXDE_XFCE_MATE_i3_Openbox_X11 GUI - Raspberry Pi Forums_files/HyIZECl.png" class="postimage" alt="Image"><br>
+A clean desktop showing Terminal. Composition effects enabled.<br>
+<br>
+<img src="./GUIDE_ Raspbian Lite with RPD_LXDE_XFCE_MATE_i3_Openbox_X11 GUI - Raspberry Pi Forums_files/K4fGRcP.png" class="postimage" alt="Image"><br>
+A desktop showing various windows opened. Composition effects enabled.<br>
+<br>
+<strong>MATE</strong><br>
+<br>
+Right Click &gt; Open Image in New Tab to see full size images. Screenshots shown are of a customized MATE desktop. The memory used will vary depending on how you configure MATE.<br>
+<br>
+<img src="./GUIDE_ Raspbian Lite with RPD_LXDE_XFCE_MATE_i3_Openbox_X11 GUI - Raspberry Pi Forums_files/4npD5jy.png" class="postimage" alt="Image"><br>
+A clean desktop showing Terminal. No composition effects enabled.<br>
+<br>
+<img src="./GUIDE_ Raspbian Lite with RPD_LXDE_XFCE_MATE_i3_Openbox_X11 GUI - Raspberry Pi Forums_files/QYbrvIZ.png" class="postimage" alt="Image"><br>
+A desktop showing various windows opened. No composition effects enabled.<br>
+<br>
+<img src="./GUIDE_ Raspbian Lite with RPD_LXDE_XFCE_MATE_i3_Openbox_X11 GUI - Raspberry Pi Forums_files/gp0SpP5.png" class="postimage" alt="Image"><br>
+A clean desktop showing Terminal. Composition effects enabled.<br>
+<br>
+<img src="./GUIDE_ Raspbian Lite with RPD_LXDE_XFCE_MATE_i3_Openbox_X11 GUI - Raspberry Pi Forums_files/8nVEE3h.png" class="postimage" alt="Image"><br>
+A desktop showing various windows opened. Composition effects enabled.<br>
+<br>
+<strong><span style="color:#0000BF"><span style="font-size: 150%; line-height: normal">What Do I Use?</span></span></strong><br>
+<br>
+So the question is, what desktop environment does the author of this thread use? I actually use my own custom desktop environment. Let's take a look at my Raspbian Lite desktop:<br>
+<br>
+<img src="./GUIDE_ Raspbian Lite with RPD_LXDE_XFCE_MATE_i3_Openbox_X11 GUI - Raspberry Pi Forums_files/hTmiDJ2.png" class="postimage" alt="Image"><br>
+<br>
+This a custom desktop environment using Openbox as the foundation. First impression; it looks clean, simple, and beautiful (to me of course!). The main reason I don't use a prebuilt desktop environment is because I want control over how the desktop environment looks. However, I will say that XFCE would be my preferred choice if I were to use a prebuilt desktop environment. This is how my desktop environment is laid out:<br>
+<br>
+<img src="./GUIDE_ Raspbian Lite with RPD_LXDE_XFCE_MATE_i3_Openbox_X11 GUI - Raspberry Pi Forums_files/pxf1pni.png" class="postimage" alt="Image"><br>
+<br>
+The top and bottom panels are Tint2 panels. I customized the Tint2 panels to my liking to achieve this look. The notifications displayed on the desktop are from xfce4-notifyd. I want to be notified of things such as disconnection from the Internet, or Raspberry Pi is getting hot, or other notifications thrown by Raspbian Lite. Let's see the memory usage of my custom desktop environment:<br>
+<br>
+<img src="./GUIDE_ Raspbian Lite with RPD_LXDE_XFCE_MATE_i3_Openbox_X11 GUI - Raspberry Pi Forums_files/oBVM0nS.png" class="postimage" alt="Image"><br>
+<br>
+The desktop environment itself is using around ~146 MB which is very good. There is plenty of memory left for applications. Finally, here is a look of how the desktop looks when there is a lot of activities going on:<br>
+<br>
+<img src="./GUIDE_ Raspbian Lite with RPD_LXDE_XFCE_MATE_i3_Openbox_X11 GUI - Raspberry Pi Forums_files/JKoxWQD.png" class="postimage" alt="Image"><br>
+<br>
+And that's my brief tour of the desktop environment I use on Raspbian Lite! That's the reason why I wrote this guide. For you to learn how to become independent from regular Raspbian and personalize Raspbian Lite to your own liking. Personalization is of the greatest things about Linux in general.<br>
+<br>
+<strong><span style="color:#0000BF"><span style="font-size: 150%; line-height: normal">Virtual Machine Playground</span></span></strong><br>
+<br>
+Installing a GUI on Raspbian Lite can either be easy or hard. If you want a particular desktop environment, you just follow the steps to install that environment. For the majority of Raspberry Pi users, that's more than enough. <br>
+<br>
+But what if we wanted to get our hands dirty? In other words, what if we want the desktop environment to be focused solely on a particular application. For example, the desktop environment should just be focused on a web browser, or it should just be focused on a music player. Is it really necessary for a file manager to be in an operating system that its primary focus is to display web pages? Is it really necessary for an operating system to be running blown desktop environment just to play music? This is where you explore ideas for what kind of GUI Raspian Lite should have.<br>
+<br>
+Can you explore GUI ideas directly on Raspbian Lite? Yes, but the idea of a virtual desktop is for you to explore those GUI ideas in the comfort of your own computer. It is basically a playground. You don't need to worry about reformatting SD / microSD cards, and you can go back in time using a feature called "snapshots" included in most virtual machine virtualizers in case if you made a mistake or you broke your installation. There is no risk. Not only that, but you also learn more about the inner workings of Linux.<br>
+<br>
+Once you build your desktop environment to your liking in the virtual machine, you simply follow the steps you did on the virtual machine and apply them to your Raspbian Lite installation. If you are interested in reading more on this topic, simply click on the link below to see the full tutorial:<br>
+<br>
+<a href="https://www.raspberrypi.org/forums/viewtopic.php?p=1109518#p1109518" class="postlink">viewtopic.php?p=1109518#p1109518</a><br>
+<br>
+<strong><span style="color:#0000BF"><span style="font-size: 150%; line-height: normal">Advanced - X11 Forwarding (Remote Applications)</span></span></strong><br>
+<br>
+X11 Forwarding is an SSH remote tunneling system where you can run applications installed on a Linux system remotely from another system running Windows, macOS, or Linux. <br>
+<br>
+For example, let's say that you have a clean Raspbian Lite installation on your Raspberry Pi. Now, if you physically want use your Raspberry Pi like a normal computer (with monitor, keyboard, mouse), then most likely you want to install a GUI on Raspbian Lite. However, if you only care about running specific applications on Rasbian Lite and don't have a need to use it as a normal computer (no monitor/keyboard/mouse/GUI), then X11 Forwarding may be something you'd like to use.<br>
+<br>
+Here's how it works. You would connect to your Raspberry Pi via SSH with X11 Forwarding option enabled from another system. When it is connected, if you type in an application name, lets say "leafpad" and press Enter, the application will open on your desktop. That's it! So in other words, your system will show you the application's GUI while the Raspberry Pi handles the workload for that application. Pretty neat right?<br>
+<br>
+If you want to use X11 Forwarding, it's very simple. Follow the instructions below:<br>
+<br>
+1. Follow the steps on <strong>Part 1 - Build the Foundation</strong> to have a clean installation of Raspbian Lite. If you already installed a desktop environment and still want to enable X11 Forwarding, continue to step 2.<br>
+<br>
+2. You need to enable SSH on Raspbian Lite. Using the command line (or Terminal window), type in:
+<div class="codebox"><p>Code: <a href="https://forums.raspberrypi.com//viewtopic.php?f=66&amp;t=133691#" onclick="selectCode(this); return false;">Select all</a></p><pre><code>sudo raspi-config</code></pre></div>
+and press Enter. Select option #5 (Interfacing Options) and press Enter. Then select option #P2 (SSH) and press Enter. You will be asked if you want to enable the SSH server. Select "Yes" and press enter. A popup will open saying the SSH server has been enabled. Select "Ok" and you will be returned to the main menu.  Select Finish and press Enter to exit raspi-config. <br>
+<br>
+3. Obtain the IP address of your Raspberry Pi. Using the command line (or Terminal window), type in:
+<div class="codebox"><p>Code: <a href="https://forums.raspberrypi.com//viewtopic.php?f=66&amp;t=133691#" onclick="selectCode(this); return false;">Select all</a></p><pre><code>hostname -I</code></pre></div>
+and press Enter. Take note of that IP address since you need it to connect to the Raspberry Pi via SSH.<br>
+<br>
+4. Reboot the Raspberry Pi by typing in:
+<div class="codebox"><p>Code: <a href="https://forums.raspberrypi.com//viewtopic.php?f=66&amp;t=133691#" onclick="selectCode(this); return false;">Select all</a></p><pre><code>sudo reboot</code></pre></div>
+and press Enter.<br>
+<br>
+5. Once the Raspberry Pi has been rebooted, you no longer need to physically use the Raspberry Pi since you can now remotely log onto the Raspberry Pi via SSH. <br>
+<br>
+6 (Windows). You will need to install an SSH client with X11 Forwarding capabilities on the computer you wish to run the Raspberry Pi applications on. In order for the applications to appear on the computer, you also need to install Xorg Server on the computer as well. For Windows, there is an application called <strong>MobaXterm</strong> which is free and it is an SSH client that integrates Xorg Server. No need to install Xorg Server separately.<br>
+<br>
+<img src="./GUIDE_ Raspbian Lite with RPD_LXDE_XFCE_MATE_i3_Openbox_X11 GUI - Raspberry Pi Forums_files/x0v9JjG.png" class="postimage" alt="Image"><br>
+<br>
+Create a session by clicking on the "Session" icon on the toolbar.<br>
+<br>
+<img src="./GUIDE_ Raspbian Lite with RPD_LXDE_XFCE_MATE_i3_Openbox_X11 GUI - Raspberry Pi Forums_files/XTGn0HK.png" class="postimage" alt="Image"><br>
+<br>
+Enter the IP address of the Raspberry Pi as well as the Raspberry Pi username. Make sure that X11 Forwarding is enabled by click on the Advanced SSH Settings tab. When ready, click OK. You will be asked to enter the password.<br>
+<br>
+<img src="./GUIDE_ Raspbian Lite with RPD_LXDE_XFCE_MATE_i3_Openbox_X11 GUI - Raspberry Pi Forums_files/HsRfOVJ.png" class="postimage" alt="Image"><br>
+<br>
+Once you are logged in, you are ready to launch Raspberry Pi applications remotely! To launch applications remotely, type in:
+<div class="codebox"><p>Code: <a href="https://forums.raspberrypi.com//viewtopic.php?f=66&amp;t=133691#" onclick="selectCode(this); return false;">Select all</a></p><pre><code>nameOfApp &amp;</code></pre></div>
+and press Enter. The "&amp;" symbol allows you to continue to use the MobaXterm window and open multiple Raspberry Pi applications without freezing it.<br>
+<br>
+<img src="./GUIDE_ Raspbian Lite with RPD_LXDE_XFCE_MATE_i3_Openbox_X11 GUI - Raspberry Pi Forums_files/cu9te0m.png" class="postimage" alt="Image"><br>
+<br>
+6 (macOS). You will need to install an SSH client with X11 Forwarding capabilities on the computer you wish to run the Raspberry Pi applications on. In order for the applications to appear on the computer, you also need to install Xorg Server on the computer as well. On macOS, you will need to install <strong>XQuartz</strong> since no application comes with Xorg Server integrated. Once XQuartz has been installed, you can use Terminal to connect to your Raspberry Pi. To start an SSH session with X11 forwarding, type in:
+<div class="codebox"><p>Code: <a href="https://forums.raspberrypi.com//viewtopic.php?f=66&amp;t=133691#" onclick="selectCode(this); return false;">Select all</a></p><pre><code>ssh -Y username@raspberrypiaddress</code></pre></div>
+where "username" is your Raspberry Pi username and "raspberrypiadrress" is your Raspberry Pi's IP address. Then press Enter. You may be asked if you are sure if you want to connect to the host. Type in "yes". Enter the Raspberry Pi password when asked.<br>
+<br>
+<img src="./GUIDE_ Raspbian Lite with RPD_LXDE_XFCE_MATE_i3_Openbox_X11 GUI - Raspberry Pi Forums_files/lpvrBmg.png" class="postimage" alt="Image"><br>
+<br>
+Once you are logged in, you are ready to launch Raspberry Pi applications remotely! To launch applications remotely, type in:
+<div class="codebox"><p>Code: <a href="https://forums.raspberrypi.com//viewtopic.php?f=66&amp;t=133691#" onclick="selectCode(this); return false;">Select all</a></p><pre><code>nameOfApp &amp;</code></pre></div>
+and press Enter. The "&amp;" symbol allows you to continue to use the MobaXterm window and open multiple Raspberry Pi applications without freezing it.<br>
+<br>
+<img src="./GUIDE_ Raspbian Lite with RPD_LXDE_XFCE_MATE_i3_Openbox_X11 GUI - Raspberry Pi Forums_files/Lu4XUGl.png" class="postimage" alt="Image"><br>
+<br>
+For those wondering about memory usage, the memory used on Raspbian Lite is only the application as well as essential processes. The usage is very small. No Xorg, no desktop environment, no login manager memory consumption. More memory, more storage space!<br>
+<img src="./GUIDE_ Raspbian Lite with RPD_LXDE_XFCE_MATE_i3_Openbox_X11 GUI - Raspberry Pi Forums_files/ZfcioxR.png" class="postimage" alt="Image"><br>
+<strong><span style="color:#0000BF"><span style="font-size: 150%; line-height: normal">Advanced - Remote Desktop Protocol (RDP)</span></span></strong><br>
+<br>
+If you are a Windows user, you may be interested in accessing your Raspberry Pi desktop remotely without having to connect your Raspberry Pi to a TV or monitor to use it. This is where the Remote Desktop Protocol (RDP) comes into play. With this protocol, you will be able to use the built-in Remote Desktop Connection application on Windows to access your Raspberry Pi desktop remotely.<br>
+<br>
+Assuming that your Raspberry Pi is running Raspbian Lite with a desktop environment and has no installation of VNC Server or TightVNC Server, the installation and configuration should be very easy.<br>
+<br>
+To use the Remote Desktop Protocol, you must install XRDP on Raspbian Lite. Simply run the command below:
+<div class="codebox"><p>Code: <a href="https://forums.raspberrypi.com//viewtopic.php?f=66&amp;t=133691#" onclick="selectCode(this); return false;">Select all</a></p><pre><code>sudo apt-get install xrdp</code></pre></div>
+
+Once XRDP has been installed, it will run automatically in the background and will transmit the Raspberry Pi desktop whenever Remote Desktop Connection on Windows connects to your Raspberry Pi.<br>
+<br>
+Now, run Remote Desktop Connection on Windows.<br>
+<br>
+<img src="./GUIDE_ Raspbian Lite with RPD_LXDE_XFCE_MATE_i3_Openbox_X11 GUI - Raspberry Pi Forums_files/hUgv2eW.png" class="postimage" alt="Image"><br>
+<br>
+On the Computer textfield, enter the Raspberry Pi IP address and then press Connect.<br>
+<br>
+<img src="./GUIDE_ Raspbian Lite with RPD_LXDE_XFCE_MATE_i3_Openbox_X11 GUI - Raspberry Pi Forums_files/3kUSTx4.png" class="postimage" alt="Image"><br>
+<br>
+You may get a warning saying that the computer you are connecting to cannot be verified. Just click on Yes.<br>
+<br>
+<img src="./GUIDE_ Raspbian Lite with RPD_LXDE_XFCE_MATE_i3_Openbox_X11 GUI - Raspberry Pi Forums_files/f3J39ax.png" class="postimage" alt="Image"><br>
+<br>
+Now you will be presented with the XRDP login window.<br>
+<br>
+<img src="./GUIDE_ Raspbian Lite with RPD_LXDE_XFCE_MATE_i3_Openbox_X11 GUI - Raspberry Pi Forums_files/4gSDKEc.png" class="postimage" alt="Image"><br>
+<br>
+Enter your Raspberry Pi's username and password and press OK.<br>
+<br>
+<img src="./GUIDE_ Raspbian Lite with RPD_LXDE_XFCE_MATE_i3_Openbox_X11 GUI - Raspberry Pi Forums_files/xVJUHR3.png" class="postimage" alt="Image"><br>
+<br>
+And that's it! You can now remotely use the Raspberry Pi desktop on Windows!<br>
+<br>
+<strong><span style="color:#0000BF"><span style="font-size: 150%; line-height: normal">Advanced - Custom Desktop Environment using i3 WM</span></span></strong><br>
+<br>
+Let's get serious now. The real reason to use Raspbian Lite is to make the Raspberry Pi microcomputer work for a specific application purpose. The operating system should be customized to that specific application. What kind of applications?<br>
+<br>
+Anything really. Some people use the Raspberry Pi just for:<br>
+<br>
+Clock and Weather<br>
+Internet Radio<br>
+Web Browser<br>
+Music Player<br>
+Surveillance<br>
+Retro Game Console<br>
+<br>
+and the list goes on and on. What will you be building? To understand the idea of a custom desktop environment, I will go over some examples and maybe it can give you an idea of how to approach and implement your idea. If you are interested in reading more on this topic, simply click on the link below to see the full tutorial:<br>
+<br>
+<a href="https://www.raspberrypi.org/forums/viewtopic.php?p=1109520#p1109520" class="postlink">viewtopic.php?p=1109520#p1109520</a><br>
+<br>
+<strong><span style="color:#0000BF"><span style="font-size: 150%; line-height: normal">Advanced - Custom Desktop Environment using Openbox WM</span></span></strong><br>
+<br>
+Openbox is a window manager that can run as a standalone desktop environment, or with another desktop environment. Window managers normally handle application windows as well as their window decorations and effects. If you run Openbox as a standale desktop environment, you would have control over how your desktop environment looks. Openbox does not have any panels, desktop icons, wallpapers, or other UI elements since that is not the job of Openbox. You would have to provide that yourself.<br>
+<br>
+There are some benefits of going this route. The main benefit is resource usage. Since you would only have Openbox running, most of the memory used will be used for applications that you run. The second benefit is simplicity. There are many users who only want to run a single application and don't need a full desktop environment. Third benefit is customization. You can build your own desktop environment and use Openbox as its window manager.<br>
+<br>
+If you think Openbox window manager sounds like something you want to use on Raspbian Lite, let's continue!<br>
+<br>
+1) In order to use Openbox, you need to have Xorg Display Server installed. To install Xorg, type in:
+<div class="codebox"><p>Code: <a href="https://forums.raspberrypi.com//viewtopic.php?f=66&amp;t=133691#" onclick="selectCode(this); return false;">Select all</a></p><pre><code>sudo apt-get install --no-install-recommends xserver-xorg</code></pre></div>
+and press Enter. <br>
+<br>
+If you are planning on not using a login manager, then you will also need to install Xinit. This will allow you to start Openbox manually. To install Xinit, type in:
+<div class="codebox"><p>Code: <a href="https://forums.raspberrypi.com//viewtopic.php?f=66&amp;t=133691#" onclick="selectCode(this); return false;">Select all</a></p><pre><code>sudo apt-get install --no-install-recommends xinit</code></pre></div>
+and press Enter.<br>
+<br>
+2) Now you need to install Openbox. Remember that Openbox does not include any applications other than Openbox Configuration Manager. If you need to use Terminal in Openbox, you have to install one yourself. In the command below, I included LXTerminal. Otherwise, install your own Terminal if needed. To install Openbox with LXTerminal, type in:
+<div class="codebox"><p>Code: <a href="https://forums.raspberrypi.com//viewtopic.php?f=66&amp;t=133691#" onclick="selectCode(this); return false;">Select all</a></p><pre><code>sudo apt-get install openbox lxterminal</code></pre></div>
+and press Enter.<br>
+<br>
+3) If you are planning on installing a login manager, to install LightDM login manager, type in:
+<div class="codebox"><p>Code: <a href="https://forums.raspberrypi.com//viewtopic.php?f=66&amp;t=133691#" onclick="selectCode(this); return false;">Select all</a></p><pre><code>sudo apt-get install lightdm</code></pre></div>
+and press Enter. <br>
+<br>
+However, if you plan on starting Openbox manually, then you need to do some more work. First, we need to generate an .xinitrc file. This file will have all the commands to start your custom desktop environment. For this case, we only need to implement the Openbox command to the file.<br>
+<br>
+First, copy a sample xinitrc file and paste it to your home directory. To do this type in:
+<div class="codebox"><p>Code: <a href="https://forums.raspberrypi.com//viewtopic.php?f=66&amp;t=133691#" onclick="selectCode(this); return false;">Select all</a></p><pre><code>cp /etc/X11/xinit/xinitrc ~/.xinitrc</code></pre></div>
+and press Enter. Now, edit the xinitrc file by typing in:
+<div class="codebox"><p>Code: <a href="https://forums.raspberrypi.com//viewtopic.php?f=66&amp;t=133691#" onclick="selectCode(this); return false;">Select all</a></p><pre><code>nano ~/.xinitrc</code></pre></div>
+and press Enter.<br>
+<br>
+<img src="./GUIDE_ Raspbian Lite with RPD_LXDE_XFCE_MATE_i3_Openbox_X11 GUI - Raspberry Pi Forums_files/5GvLg21.png" class="postimage" alt="Image"><br>
+<br>
+Delete everything inside this file. After that, copy the command below onto your xinitrc file:
+<div class="codebox"><p>Code: <a href="https://forums.raspberrypi.com//viewtopic.php?f=66&amp;t=133691#" onclick="selectCode(this); return false;">Select all</a></p><pre><code>exec openbox-session</code></pre></div>
+
+<img src="./GUIDE_ Raspbian Lite with RPD_LXDE_XFCE_MATE_i3_Openbox_X11 GUI - Raspberry Pi Forums_files/mx8NehR.png" class="postimage" alt="Image"><br>
+<br>
+Save the xinitrc file.<br>
+<br>
+4) Now, restart your Raspberry Pi. For those that installed LightDM login manager, you should see LightDM appear. Login with your username and password and you should now see the Openbox desktop! Well actually, you would see nothing. If you right-click, you will see the Openbox menu.<br>
+<br>
+For those that did not install a login manager, simply log onto the Raspberry Pi. To start Xorg with Openbox, type in:
+<div class="codebox"><p>Code: <a href="https://forums.raspberrypi.com//viewtopic.php?f=66&amp;t=133691#" onclick="selectCode(this); return false;">Select all</a></p><pre><code>startx</code></pre></div>
+and press Enter. Similarly, you should see nothing but a blank screen. If you right-click, you will see the Openbox menu. <br>
+<br>
+That's it! After this, you decide what to do next with Openbox! <br>
+<br>
+For those wondering about memory usage, Openbox uses very little memory.<br>
+<br>
+<img src="./GUIDE_ Raspbian Lite with RPD_LXDE_XFCE_MATE_i3_Openbox_X11 GUI - Raspberry Pi Forums_files/cJSH9Jn.png" class="postimage" alt="Image"><br>
+<br>
+As you can see, it's very lightweight!<br>
+<br>
+<strong><span style="font-size: 150%; line-height: normal"><span style="color:#0000BF">Extras</span></span></strong><br>
+<br>
+<strong>1. Raspberry Pi Configuration Tool</strong><br>
+<br>
+If you have used the regular Rasbian distribution, you probably noticed that there was a tool for configuring the Raspberry Pi. No problem, you can bring it back in Raspbian Lite.<br>
+<br>
+In Terminal, type in:
+<div class="codebox"><p>Code: <a href="https://forums.raspberrypi.com//viewtopic.php?f=66&amp;t=133691#" onclick="selectCode(this); return false;">Select all</a></p><pre><code>sudo apt-get install rc-gui</code></pre></div>
+and press Enter. Install the necessary packages. You may have to reboot your Raspberry Pi to see the configuration tool in your Applications menu or Preferences menu.<br>
+<br>
+<strong>2. GUI Package Dependency List</strong><br>
+<br>
+Sometimes you may want to know what dependency packages are required for a primary package to work. Here I created PDF documents listing all dependency packages for the following primary packages. Packages listed under "The following additional packages will be installed" and "The following NEW packages will be installed" are installed. Packages listed under "Suggested packages" are not installed but are shown in case you want to install them manually later on. Packages listed under "Recommended packages" are installed only if you do not use the --no-install-recommends flag with apt-get. The current package lists are updated as of 3/11/2018:<br>
+<br>
+<span style="text-decoration:underline">xserver-xorg</span><br>
+<a href="https://onedrive.live.com/download?cid=54F1EF223B92DE56&amp;resid=54F1EF223B92DE56%2146119&amp;authkey=ABe59MVKY1yx57I&amp;em=2" class="postlink">https://onedrive.live.com/download?cid= ... yx57I&amp;em=2</a><br>
+<br>
+<span style="text-decoration:underline">xserver-xorg (No Install Recommends)</span><br>
+<a href="https://onedrive.live.com/download?cid=54F1EF223B92DE56&amp;resid=54F1EF223B92DE56%2146118&amp;authkey=AKEEPdajaGz-BvU&amp;em=2" class="postlink">https://onedrive.live.com/download?cid= ... z-BvU&amp;em=2</a><br>
+<br>
+<span style="text-decoration:underline">raspberrypi-ui-mods</span><br>
+<a href="https://onedrive.live.com/download?cid=54F1EF223B92DE56&amp;resid=54F1EF223B92DE56%2146120&amp;authkey=AGf8Yfd4tEdII7I&amp;em=2" class="postlink">https://onedrive.live.com/download?cid= ... dII7I&amp;em=2</a><br>
+<br>
+<span style="text-decoration:underline">raspberrypi-ui-mods (No Install Recommends)</span><br>
+<a href="https://onedrive.live.com/download?cid=54F1EF223B92DE56&amp;resid=54F1EF223B92DE56%2146121&amp;authkey=AIyu2ztDbAcgmYk&amp;em=2" class="postlink">https://onedrive.live.com/download?cid= ... cgmYk&amp;em=2</a><br>
+<br>
+-----------------------------------------------------------------<br>
+<br>
+<strong>Hope you found this guide useful! If there are any questions, comments, suggestions, or concerns, you are free to say down below. </strong> <img class="smilies" src="./GUIDE_ Raspbian Lite with RPD_LXDE_XFCE_MATE_i3_Openbox_X11 GUI - Raspberry Pi Forums_files/icon_e_smile.gif" width="15" height="17" alt=":)" title="Smile"></div>
+
+					
+																					<div class="notice">
+							Last edited by <a href="https://forums.raspberrypi.com/memberlist.php?mode=viewprofile&amp;u=174543" class="username">GhostRaider</a> on Mon Jan 14, 2019 2:53 am, edited 220 times in total.
+													</div>
+					
+															<div id="sig890408" class="signature">Guides I have created on the Raspberry Pi Forums:<br>
+<br>
+1) [GUIDE] Raspbian Lite with PIXEL/LXDE/XFCE/MATE/Openbox/i3<br>
+2) [GUIDE] Communicate between iOS and Raspberry Pi using MQTT</div>
+										</div>
+
+				</div>
+
+				</div>
+											</div>
+
+			<hr class="divider">
+														<div id="p895876" class="post has-profile bg1">
+				<div class="inner">
+
+				<dl class="postprofile" id="profile895876">
+					<dt class="no-profile-rank has-avatar">
+						<div class="avatar-container">
+																						<a href="https://forums.raspberrypi.com/memberlist.php?mode=viewprofile&amp;u=18150" class="avatar"><img class="avatar" src="./GUIDE_ Raspbian Lite with RPD_LXDE_XFCE_MATE_i3_Openbox_X11 GUI - Raspberry Pi Forums_files/18150.jpg" width="85" height="85" alt="User avatar"></a>																				</div>
+
+						
+						<a href="https://forums.raspberrypi.com/memberlist.php?mode=viewprofile&amp;u=18150" class="username">NickT</a>
+						
+					</dt>
+
+					
+					
+					
+				<dd class="profile-posts"><strong>Posts:</strong> <a href="https://forums.raspberrypi.com/search.php?author_id=18150&amp;sr=posts">285</a></dd>				<dd class="profile-joined"><strong>Joined:</strong> Mon May 21, 2012 10:43 am</dd>				
+				
+																			<dd class="profile-custom-field profile-phpbb_location"><strong>Location:</strong> UK</dd>
+													
+												
+				</dl>
+
+				<div class="postbody">
+										<div id="post_content895876">
+					
+					<h3><a href="https://forums.raspberrypi.com//viewtopic.php?f=66&amp;t=133691#p895876">Re: [GUIDE] Raspberry Lite with LXDE GUI</a></h3>
+
+				
+				
+													
+				
+					
+					<p class="author"><a href="https://forums.raspberrypi.com/viewtopic.php?p=895876#p895876">Sat Jan 30, 2016 8:19 pm</a> </p>
+
+					
+					
+					
+					<div class="content">Most useful information, thank you for posting this</div>
+
+					
+															
+															
+										</div>
+
+				</div>
+
+				</div>
+											</div>
+
+			<hr class="divider">
+														<div id="p896534" class="post has-profile bg2">
+				<div class="inner">
+
+				<dl class="postprofile" id="profile896534">
+					<dt class="no-profile-rank no-avatar">
+						<div class="avatar-container">
+																											</div>
+
+						
+						<a href="https://forums.raspberrypi.com/memberlist.php?mode=viewprofile&amp;u=72030" class="username">lcww1</a>
+						
+					</dt>
+
+					
+					
+					
+				<dd class="profile-posts"><strong>Posts:</strong> <a href="https://forums.raspberrypi.com/search.php?author_id=72030&amp;sr=posts">31</a></dd>				<dd class="profile-joined"><strong>Joined:</strong> Sat Jun 01, 2013 6:40 pm</dd>				
+				
+												
+												
+				</dl>
+
+				<div class="postbody">
+										<div id="post_content896534">
+					
+					<h3><a href="https://forums.raspberrypi.com//viewtopic.php?f=66&amp;t=133691#p896534">Re: [GUIDE] Raspberry Lite with LXDE GUI</a></h3>
+
+				
+				
+													
+				
+					
+					<p class="author"><a href="https://forums.raspberrypi.com/viewtopic.php?p=896534#p896534">Sun Jan 31, 2016 6:38 pm</a> </p>
+
+					
+					
+					
+					<div class="content">Hey, GhostRaider - <br>
+<br>
+in a magnificent instance of synchronicity, you have posted this brilliant guide at just the moment that I went looking for it!<br>
+<br>
+This worked wonderfully for me on Jessie Lite; it has saved a huge amount of space on my SD card, and was faster than deleting packages from the standard Jessie distro.<br>
+<br>
+Many thanks!</div>
+
+					
+															
+															
+										</div>
+
+				</div>
+
+				</div>
+											</div>
+
+			<hr class="divider">
+														<div id="p905436" class="post has-profile bg1">
+				<div class="inner">
+
+				<dl class="postprofile" id="profile905436">
+					<dt class="no-profile-rank has-avatar">
+						<div class="avatar-container">
+																						<a href="https://forums.raspberrypi.com/memberlist.php?mode=viewprofile&amp;u=23035" class="avatar"><img class="avatar" src="./GUIDE_ Raspbian Lite with RPD_LXDE_XFCE_MATE_i3_Openbox_X11 GUI - Raspberry Pi Forums_files/23035.jpg" width="90" height="90" alt="User avatar"></a>																				</div>
+
+						
+						<a href="https://forums.raspberrypi.com/memberlist.php?mode=viewprofile&amp;u=23035" class="username">dliloch</a>
+						
+					</dt>
+
+					
+					
+					
+				<dd class="profile-posts"><strong>Posts:</strong> <a href="https://forums.raspberrypi.com/search.php?author_id=23035&amp;sr=posts">173</a></dd>				<dd class="profile-joined"><strong>Joined:</strong> Wed Jun 27, 2012 6:28 pm</dd>				
+				
+																			<dd class="profile-custom-field profile-phpbb_location"><strong>Location:</strong> cleveland, ohio usa</dd>
+													
+												
+				</dl>
+
+				<div class="postbody">
+										<div id="post_content905436">
+					
+					<h3><a href="https://forums.raspberrypi.com//viewtopic.php?f=66&amp;t=133691#p905436">Re: [GUIDE] Raspberry Lite with LXDE GUI</a></h3>
+
+				
+				
+													
+				
+					
+					<p class="author"><a href="https://forums.raspberrypi.com/viewtopic.php?p=905436#p905436">Sat Feb 13, 2016 7:24 pm</a> </p>
+
+					
+					
+					
+					<div class="content">thanks for the great guide.. and the shout out to the Apple Pi-Baker for OSX people .. I was using windows but with<br>
+the Apple Pi-Baker I don't need the sd format program any longer since that process is included..</div>
+
+					
+															
+															
+										</div>
+
+				</div>
+
+				</div>
+											</div>
+
+			<hr class="divider">
+														<div id="p910235" class="post has-profile bg2">
+				<div class="inner">
+
+				<dl class="postprofile" id="profile910235">
+					<dt class="no-profile-rank no-avatar">
+						<div class="avatar-container">
+																											</div>
+
+						
+						<a href="https://forums.raspberrypi.com/memberlist.php?mode=viewprofile&amp;u=178283" class="username">genie</a>
+						
+					</dt>
+
+					
+					
+					
+				<dd class="profile-posts"><strong>Posts:</strong> <a href="https://forums.raspberrypi.com/search.php?author_id=178283&amp;sr=posts">1</a></dd>				<dd class="profile-joined"><strong>Joined:</strong> Sun Feb 21, 2016 8:50 am</dd>				
+				
+												
+												
+				</dl>
+
+				<div class="postbody">
+										<div id="post_content910235">
+					
+					<h3><a href="https://forums.raspberrypi.com//viewtopic.php?f=66&amp;t=133691#p910235">Re: [GUIDE] Raspberry Lite with LXDE GUI</a></h3>
+
+				
+				
+													
+				
+					
+					<p class="author"><a href="https://forums.raspberrypi.com/viewtopic.php?p=910235#p910235">Sun Feb 21, 2016 8:58 am</a> </p>
+
+					
+					
+					
+					<div class="content">Great guide! I was worried not to fit my 4G SD card but there are almost 1G left after this GUI installation. The only package I left out is lxappearance.<br>
+<br>
+Thanks  <img class="smilies" src="./GUIDE_ Raspbian Lite with RPD_LXDE_XFCE_MATE_i3_Openbox_X11 GUI - Raspberry Pi Forums_files/icon_cool.gif" width="15" height="17" alt="8-)" title="Cool"></div>
+
+					
+															
+															
+										</div>
+
+				</div>
+
+				</div>
+											</div>
+
+			<hr class="divider">
+														<div id="p916260" class="post has-profile bg1">
+				<div class="inner">
+
+				<dl class="postprofile" id="profile916260">
+					<dt class="no-profile-rank no-avatar">
+						<div class="avatar-container">
+																											</div>
+
+						
+						<a href="https://forums.raspberrypi.com/memberlist.php?mode=viewprofile&amp;u=179433" class="username">MillmoorRon</a>
+						
+					</dt>
+
+					
+					
+					
+				<dd class="profile-posts"><strong>Posts:</strong> <a href="https://forums.raspberrypi.com/search.php?author_id=179433&amp;sr=posts">13</a></dd>				<dd class="profile-joined"><strong>Joined:</strong> Mon Feb 29, 2016 7:28 pm</dd>				
+				
+												
+												
+				</dl>
+
+				<div class="postbody">
+										<div id="post_content916260">
+					
+					<h3><a href="https://forums.raspberrypi.com//viewtopic.php?f=66&amp;t=133691#p916260">Re: [GUIDE] Raspbian Lite with LXDE GUI</a></h3>
+
+				
+				
+													
+				
+					
+					<p class="author"><a href="https://forums.raspberrypi.com/viewtopic.php?p=916260#p916260">Mon Feb 29, 2016 7:33 pm</a> </p>
+
+					
+					
+					
+					<div class="content">I followed all the instructions above but my desktop is very messy and badly displayed.<br>
+<br>
+What do I need to install to get the desktop appearance as shown on this page?<br>
+<br>
+<a href="https://www.raspberrypi.org/blog/changes-to-the-raspbian-user-interface/" class="postlink">https://www.raspberrypi.org/blog/change ... interface/</a></div>
+
+					
+															
+															
+										</div>
+
+				</div>
+
+				</div>
+											</div>
+
+			<hr class="divider">
+														<div id="p918213" class="post has-profile bg2">
+				<div class="inner">
+
+				<dl class="postprofile" id="profile918213">
+					<dt class="no-profile-rank no-avatar">
+						<div class="avatar-container">
+																											</div>
+
+						
+						<a href="https://forums.raspberrypi.com/memberlist.php?mode=viewprofile&amp;u=174543" class="username">GhostRaider</a>
+						
+					</dt>
+
+					
+					
+					
+				<dd class="profile-posts"><strong>Posts:</strong> <a href="https://forums.raspberrypi.com/search.php?author_id=174543&amp;sr=posts">54</a></dd>				<dd class="profile-joined"><strong>Joined:</strong> Fri Jan 22, 2016 9:04 pm</dd>				
+				
+												
+												
+				</dl>
+
+				<div class="postbody">
+										<div id="post_content918213">
+					
+					<h3><a href="https://forums.raspberrypi.com//viewtopic.php?f=66&amp;t=133691#p918213">Re: [GUIDE] Raspbian Lite with LXDE GUI</a></h3>
+
+				
+				
+													
+				
+					
+					<p class="author"><a href="https://forums.raspberrypi.com/viewtopic.php?p=918213#p918213">Wed Mar 02, 2016 4:46 pm</a> </p>
+
+					
+					
+					
+					<div class="content"><blockquote><div><cite>MillmoorRon wrote:</cite>I followed all the instructions above but my desktop is very messy and badly displayed.<br>
+<br>
+What do I need to install to get the desktop appearance as shown on this page?<br>
+<br>
+<a href="https://www.raspberrypi.org/blog/changes-to-the-raspbian-user-interface/" class="postlink">https://www.raspberrypi.org/blog/change ... interface/</a></div></blockquote>
+
+Okay no problem.<br>
+<br>
+When you install LXDE for the first time, the first boot will show a "default" desktop look. Why doesn't it look pretty by default is unknown but we have the tools to customize it.<br>
+<br>
+The window border theme (with the titlebar, close min max buttons) can be customized using OpenBox settings. This is installed by default and can be found in the applications menu. <br>
+<br>
+LXAppearance is an application that allows you to change the icons, toolbar icons, toolbar theme, progress bar, cursors, and so on when using the LXDE desktop interface. This is not installed by default which was mentioned in the guide. If you have it installed then you also find it in the applications menu.<br>
+<br>
+I guess to start I would create a new blank panel and then delete the pre-existing ones. Then customize it. I mean all of this is up to you. You decide the look that you want. <br>
+<br>
+What exact theme does Raspbian use I'm not sure. But there are other themes out there that look better anyways.</div>
+
+					
+															
+															<div id="sig918213" class="signature">Guides I have created on the Raspberry Pi Forums:<br>
+<br>
+1) [GUIDE] Raspbian Lite with PIXEL/LXDE/XFCE/MATE/Openbox/i3<br>
+2) [GUIDE] Communicate between iOS and Raspberry Pi using MQTT</div>
+										</div>
+
+				</div>
+
+				</div>
+											</div>
+
+			<hr class="divider">
+														<div id="p918582" class="post has-profile bg1">
+				<div class="inner">
+
+				<dl class="postprofile" id="profile918582">
+					<dt class="no-profile-rank no-avatar">
+						<div class="avatar-container">
+																											</div>
+
+						
+						<a href="https://forums.raspberrypi.com/memberlist.php?mode=viewprofile&amp;u=7243" class="username">dukla2000</a>
+						
+					</dt>
+
+					
+					
+					
+				<dd class="profile-posts"><strong>Posts:</strong> <a href="https://forums.raspberrypi.com/search.php?author_id=7243&amp;sr=posts">190</a></dd>				<dd class="profile-joined"><strong>Joined:</strong> Tue Jan 10, 2012 12:02 am</dd>				
+				
+																			<dd class="profile-custom-field profile-phpbb_location"><strong>Location:</strong> Reading.UK.EU</dd>
+													
+												
+				</dl>
+
+				<div class="postbody">
+										<div id="post_content918582">
+					
+					<h3><a href="https://forums.raspberrypi.com//viewtopic.php?f=66&amp;t=133691#p918582">Re: [GUIDE] Raspbian Lite with LXDE GUI</a></h3>
+
+				
+				
+													
+				
+					
+					<p class="author"><a href="https://forums.raspberrypi.com/viewtopic.php?p=918582#p918582">Thu Mar 03, 2016 12:20 am</a> </p>
+
+					
+					
+					
+					<div class="content">Many thanks for the guide. Equally fortuitous here as my last Pi was an original in 2012 and got my Pi3 this morning so was a really handy refresher back to Debian (my normal poison is OpenSuse).<br>
+
+<blockquote><div><cite>MillmoorRon wrote:</cite>I followed all the instructions above but my desktop is very messy and badly displayed.<br>
+<br>
+What do I need to install to get the desktop appearance as shown on this page?<br>
+<br>
+<a href="https://www.raspberrypi.org/blog/changes-to-the-raspbian-user-interface/" class="postlink">https://www.raspberrypi.org/blog/change ... interface/</a></div></blockquote>
+sudo apt-get install raspberrypi-ui-mods</div>
+
+					
+															
+															<div id="sig918582" class="signature"><span style="text-decoration:underline">Daily driver:</span> Pi3B, 64GB Samsung Evo+ @100MHz, DVB-T, onboard WiFi for internet, BT/USB dongle for KB/mouse, 250GB HDD via USB for media, Raspbian Jessie Lite with Openbox desktop.<br>
+<span style="text-decoration:underline">Museum:</span> Pi B</div>
+										</div>
+
+				</div>
+
+				</div>
+											</div>
+
+			<hr class="divider">
+														<div id="p935773" class="post has-profile bg2">
+				<div class="inner">
+
+				<dl class="postprofile" id="profile935773">
+					<dt class="no-profile-rank no-avatar">
+						<div class="avatar-container">
+																											</div>
+
+						
+						<a href="https://forums.raspberrypi.com/memberlist.php?mode=viewprofile&amp;u=174543" class="username">GhostRaider</a>
+						
+					</dt>
+
+					
+					
+					
+				<dd class="profile-posts"><strong>Posts:</strong> <a href="https://forums.raspberrypi.com/search.php?author_id=174543&amp;sr=posts">54</a></dd>				<dd class="profile-joined"><strong>Joined:</strong> Fri Jan 22, 2016 9:04 pm</dd>				
+				
+												
+												
+				</dl>
+
+				<div class="postbody">
+										<div id="post_content935773">
+					
+					<h3><a href="https://forums.raspberrypi.com//viewtopic.php?f=66&amp;t=133691#p935773">Re: [GUIDE] Raspbian Lite with LXDE or XFCE GUI</a></h3>
+
+				
+				
+													
+				
+					
+					<p class="author"><a href="https://forums.raspberrypi.com/viewtopic.php?p=935773#p935773">Wed Mar 23, 2016 2:17 am</a> </p>
+
+					
+					
+					
+					<div class="content">I just updated this guide to include XFCE. I just though maybe some users would want this. Thanks guys for the feedback. <br>
+<br>
+I kind of have to admit that XFCE looks better out of the box than LXDE. But both can look great as long as you have the time to customize it.</div>
+
+					
+															
+															<div id="sig935773" class="signature">Guides I have created on the Raspberry Pi Forums:<br>
+<br>
+1) [GUIDE] Raspbian Lite with PIXEL/LXDE/XFCE/MATE/Openbox/i3<br>
+2) [GUIDE] Communicate between iOS and Raspberry Pi using MQTT</div>
+										</div>
+
+				</div>
+
+				</div>
+											</div>
+
+			<hr class="divider">
+														<div id="p936930" class="post has-profile bg1">
+				<div class="inner">
+
+				<dl class="postprofile" id="profile936930">
+					<dt class="no-profile-rank no-avatar">
+						<div class="avatar-container">
+																											</div>
+
+						
+						<a href="https://forums.raspberrypi.com/memberlist.php?mode=viewprofile&amp;u=165311" class="username">donjulio</a>
+						
+					</dt>
+
+					
+					
+					
+				<dd class="profile-posts"><strong>Posts:</strong> <a href="https://forums.raspberrypi.com/search.php?author_id=165311&amp;sr=posts">2</a></dd>				<dd class="profile-joined"><strong>Joined:</strong> Sat Nov 14, 2015 10:06 am</dd>				
+				
+												
+												
+				</dl>
+
+				<div class="postbody">
+										<div id="post_content936930">
+					
+					<h3><a href="https://forums.raspberrypi.com//viewtopic.php?f=66&amp;t=133691#p936930">Re: [GUIDE] Raspbian Lite with LXDE or XFCE GUI</a></h3>
+
+				
+				
+													
+				
+					
+					<p class="author"><a href="https://forums.raspberrypi.com/viewtopic.php?p=936930#p936930">Thu Mar 24, 2016 11:59 am</a> </p>
+
+					
+					
+					
+					<div class="content">Thank you so much for this excellent guide. Very well explained!!</div>
+
+					
+															
+															
+										</div>
+
+				</div>
+
+				</div>
+											</div>
+
+			<hr class="divider">
+														<div id="p940018" class="post has-profile bg2">
+				<div class="inner">
+
+				<dl class="postprofile" id="profile940018">
+					<dt class="no-profile-rank no-avatar">
+						<div class="avatar-container">
+																											</div>
+
+						
+						<a href="https://forums.raspberrypi.com/memberlist.php?mode=viewprofile&amp;u=172241" class="username">cahir1987</a>
+						
+					</dt>
+
+					
+					
+					
+				<dd class="profile-posts"><strong>Posts:</strong> <a href="https://forums.raspberrypi.com/search.php?author_id=172241&amp;sr=posts">3</a></dd>				<dd class="profile-joined"><strong>Joined:</strong> Wed Jan 06, 2016 5:30 pm</dd>				
+				
+												
+												
+				</dl>
+
+				<div class="postbody">
+										<div id="post_content940018">
+					
+					<h3><a href="https://forums.raspberrypi.com//viewtopic.php?f=66&amp;t=133691#p940018">Re: [GUIDE] Raspbian Lite with LXDE or XFCE GUI</a></h3>
+
+				
+				
+													
+				
+					
+					<p class="author"><a href="https://forums.raspberrypi.com/viewtopic.php?p=940018#p940018">Mon Mar 28, 2016 2:08 pm</a> </p>
+
+					
+					
+					
+					<div class="content">Hello, i have a request...  Can any one make a image of clean jessie lite + LXDE or XFCE GUI and put to megaupload or something like this? I have to many problems with installing the GUI (problems with apt-get and dpkg...)</div>
+
+					
+															
+															
+										</div>
+
+				</div>
+
+				</div>
+											</div>
+
+			<hr class="divider">
+														<div id="p941721" class="post has-profile bg1">
+				<div class="inner">
+
+				<dl class="postprofile" id="profile941721">
+					<dt class="no-profile-rank has-avatar">
+						<div class="avatar-container">
+																						<a href="https://forums.raspberrypi.com/memberlist.php?mode=viewprofile&amp;u=129738" class="avatar"><img class="avatar" src="./GUIDE_ Raspbian Lite with RPD_LXDE_XFCE_MATE_i3_Openbox_X11 GUI - Raspberry Pi Forums_files/129738.png" width="50" height="50" alt="User avatar"></a>																				</div>
+
+						
+						<a href="https://forums.raspberrypi.com/memberlist.php?mode=viewprofile&amp;u=129738" class="username">buja</a>
+						
+					</dt>
+
+					
+					
+					
+				<dd class="profile-posts"><strong>Posts:</strong> <a href="https://forums.raspberrypi.com/search.php?author_id=129738&amp;sr=posts">626</a></dd>				<dd class="profile-joined"><strong>Joined:</strong> Wed Dec 31, 2014 8:21 am</dd>				
+				
+																			<dd class="profile-custom-field profile-phpbb_location"><strong>Location:</strong> Netherlands</dd>
+													
+												
+				</dl>
+
+				<div class="postbody">
+										<div id="post_content941721">
+					
+					<h3><a href="https://forums.raspberrypi.com//viewtopic.php?f=66&amp;t=133691#p941721">Re: [GUIDE] Raspbian Lite with LXDE or XFCE GUI</a></h3>
+
+				
+				
+													
+				
+					
+					<p class="author"><a href="https://forums.raspberrypi.com/viewtopic.php?p=941721#p941721">Wed Mar 30, 2016 6:03 pm</a> </p>
+
+					
+					
+					
+					<div class="content">Great guide!<br>
+I just installed Jessie Lite and LXDE following this guide, works perfectly.<br>
+<br>
+One question though: how do I start the GUI when I boot to the command line? I tried  "startx", but that returns "-bash: startx: command not found".</div>
+
+					
+															
+															
+										</div>
+
+				</div>
+
+				</div>
+											</div>
+
+			<hr class="divider">
+														<div id="p941977" class="post has-profile bg2">
+				<div class="inner">
+
+				<dl class="postprofile" id="profile941977">
+					<dt class="no-profile-rank no-avatar">
+						<div class="avatar-container">
+																											</div>
+
+						
+						<a href="https://forums.raspberrypi.com/memberlist.php?mode=viewprofile&amp;u=174543" class="username">GhostRaider</a>
+						
+					</dt>
+
+					
+					
+					
+				<dd class="profile-posts"><strong>Posts:</strong> <a href="https://forums.raspberrypi.com/search.php?author_id=174543&amp;sr=posts">54</a></dd>				<dd class="profile-joined"><strong>Joined:</strong> Fri Jan 22, 2016 9:04 pm</dd>				
+				
+												
+												
+				</dl>
+
+				<div class="postbody">
+										<div id="post_content941977">
+					
+					<h3><a href="https://forums.raspberrypi.com//viewtopic.php?f=66&amp;t=133691#p941977">Re: [GUIDE] Raspbian Lite with LXDE or XFCE GUI</a></h3>
+
+				
+				
+													
+				
+					
+					<p class="author"><a href="https://forums.raspberrypi.com/viewtopic.php?p=941977#p941977">Thu Mar 31, 2016 1:06 am</a> </p>
+
+					
+					
+					
+					<div class="content"><blockquote><div><cite>buja wrote:</cite>Great guide!<br>
+I just installed Jessie Lite and LXDE following this guide, works perfectly.<br>
+<br>
+One question though: how do I start the GUI when I boot to the command line? I tried  "startx", but that returns "-bash: startx: command not found".</div></blockquote>
+
+So I'm assuming you did not install LightDM correct? Normally when the login manager is installed after LXDE or XFCE, it displays the login screen when Pi boots. Or are you intentionally wanting to boot to command line and then start the display server whenever you want?</div>
+
+					
+															
+															<div id="sig941977" class="signature">Guides I have created on the Raspberry Pi Forums:<br>
+<br>
+1) [GUIDE] Raspbian Lite with PIXEL/LXDE/XFCE/MATE/Openbox/i3<br>
+2) [GUIDE] Communicate between iOS and Raspberry Pi using MQTT</div>
+										</div>
+
+				</div>
+
+				</div>
+											</div>
+
+			<hr class="divider">
+														<div id="p942026" class="post has-profile bg1">
+				<div class="inner">
+
+				<dl class="postprofile" id="profile942026">
+					<dt class="no-profile-rank has-avatar">
+						<div class="avatar-container">
+																						<a href="https://forums.raspberrypi.com/memberlist.php?mode=viewprofile&amp;u=129738" class="avatar"><img class="avatar" src="./GUIDE_ Raspbian Lite with RPD_LXDE_XFCE_MATE_i3_Openbox_X11 GUI - Raspberry Pi Forums_files/129738.png" width="50" height="50" alt="User avatar"></a>																				</div>
+
+						
+						<a href="https://forums.raspberrypi.com/memberlist.php?mode=viewprofile&amp;u=129738" class="username">buja</a>
+						
+					</dt>
+
+					
+					
+					
+				<dd class="profile-posts"><strong>Posts:</strong> <a href="https://forums.raspberrypi.com/search.php?author_id=129738&amp;sr=posts">626</a></dd>				<dd class="profile-joined"><strong>Joined:</strong> Wed Dec 31, 2014 8:21 am</dd>				
+				
+																			<dd class="profile-custom-field profile-phpbb_location"><strong>Location:</strong> Netherlands</dd>
+													
+												
+				</dl>
+
+				<div class="postbody">
+										<div id="post_content942026">
+					
+					<h3><a href="https://forums.raspberrypi.com//viewtopic.php?f=66&amp;t=133691#p942026">Re: [GUIDE] Raspbian Lite with LXDE or XFCE GUI</a></h3>
+
+				
+				
+													
+				
+					
+					<p class="author"><a href="https://forums.raspberrypi.com/viewtopic.php?p=942026#p942026">Thu Mar 31, 2016 4:31 am</a> </p>
+
+					
+					
+					
+					<div class="content"><blockquote><div><cite>GhostRaider wrote:</cite><blockquote><div><cite>buja wrote:</cite>Great guide!<br>
+I just installed Jessie Lite and LXDE following this guide, works perfectly.<br>
+<br>
+One question though: how do I start the GUI when I boot to the command line? I tried  "startx", but that returns "-bash: startx: command not found".</div></blockquote>
+
+So I'm assuming you did not install LightDM correct? Normally when the login manager is installed after LXDE or XFCE, it displays the login screen when Pi boots. <strong><em>Or are you intentionally wanting to boot to command line and then start the display server whenever you want?</em></strong></div></blockquote>
+That's exactly what I want.</div>
+
+					
+															
+															
+										</div>
+
+				</div>
+
+				</div>
+											</div>
+
+			<hr class="divider">
+														<div id="p942344" class="post has-profile bg2">
+				<div class="inner">
+
+				<dl class="postprofile" id="profile942344">
+					<dt class="no-profile-rank has-avatar">
+						<div class="avatar-container">
+																						<a href="https://forums.raspberrypi.com/memberlist.php?mode=viewprofile&amp;u=129738" class="avatar"><img class="avatar" src="./GUIDE_ Raspbian Lite with RPD_LXDE_XFCE_MATE_i3_Openbox_X11 GUI - Raspberry Pi Forums_files/129738.png" width="50" height="50" alt="User avatar"></a>																				</div>
+
+						
+						<a href="https://forums.raspberrypi.com/memberlist.php?mode=viewprofile&amp;u=129738" class="username">buja</a>
+						
+					</dt>
+
+					
+					
+					
+				<dd class="profile-posts"><strong>Posts:</strong> <a href="https://forums.raspberrypi.com/search.php?author_id=129738&amp;sr=posts">626</a></dd>				<dd class="profile-joined"><strong>Joined:</strong> Wed Dec 31, 2014 8:21 am</dd>				
+				
+																			<dd class="profile-custom-field profile-phpbb_location"><strong>Location:</strong> Netherlands</dd>
+													
+												
+				</dl>
+
+				<div class="postbody">
+										<div id="post_content942344">
+					
+					<h3><a href="https://forums.raspberrypi.com//viewtopic.php?f=66&amp;t=133691#p942344">Re: [GUIDE] Raspbian Lite with LXDE or XFCE GUI</a></h3>
+
+				
+				
+													
+				
+					
+					<p class="author"><a href="https://forums.raspberrypi.com/viewtopic.php?p=942344#p942344">Thu Mar 31, 2016 3:35 pm</a> </p>
+
+					
+					
+					
+					<div class="content"><blockquote><div><cite>buja wrote:</cite>Great guide!<br>
+I just installed Jessie Lite and LXDE following this guide, works perfectly.<br>
+<br>
+One question though: how do I start the GUI when I boot to the command line? I tried  "startx", but that returns "-bash: startx: command not found".</div></blockquote>
+I found it: <div class="codebox"><p>Code: <a href="https://forums.raspberrypi.com//viewtopic.php?f=66&amp;t=133691#" onclick="selectCode(this); return false;">Select all</a></p><pre><code>sudo apt-get install xinit</code></pre></div></div>
+
+					
+															
+															
+										</div>
+
+				</div>
+
+				</div>
+											</div>
+
+			<hr class="divider">
+														<div id="p942563" class="post has-profile bg1">
+				<div class="inner">
+
+				<dl class="postprofile" id="profile942563">
+					<dt class="no-profile-rank no-avatar">
+						<div class="avatar-container">
+																											</div>
+
+						
+						<a href="https://forums.raspberrypi.com/memberlist.php?mode=viewprofile&amp;u=174543" class="username">GhostRaider</a>
+						
+					</dt>
+
+					
+					
+					
+				<dd class="profile-posts"><strong>Posts:</strong> <a href="https://forums.raspberrypi.com/search.php?author_id=174543&amp;sr=posts">54</a></dd>				<dd class="profile-joined"><strong>Joined:</strong> Fri Jan 22, 2016 9:04 pm</dd>				
+				
+												
+												
+				</dl>
+
+				<div class="postbody">
+										<div id="post_content942563">
+					
+					<h3><a href="https://forums.raspberrypi.com//viewtopic.php?f=66&amp;t=133691#p942563">Re: [GUIDE] Raspbian Lite with LXDE or XFCE GUI</a></h3>
+
+				
+				
+													
+				
+					
+					<p class="author"><a href="https://forums.raspberrypi.com/viewtopic.php?p=942563#p942563">Thu Mar 31, 2016 9:00 pm</a> </p>
+
+					
+					
+					
+					<div class="content"><blockquote><div><cite>buja wrote:</cite><blockquote><div><cite>buja wrote:</cite>Great guide!<br>
+I just installed Jessie Lite and LXDE following this guide, works perfectly.<br>
+<br>
+One question though: how do I start the GUI when I boot to the command line? I tried  "startx", but that returns "-bash: startx: command not found".</div></blockquote>
+I found it: <div class="codebox"><p>Code: <a href="https://forums.raspberrypi.com//viewtopic.php?f=66&amp;t=133691#" onclick="selectCode(this); return false;">Select all</a></p><pre><code>sudo apt-get install xinit</code></pre></div></div></blockquote>
+
+Okay, i see. Originally I had mentioned to install xinit in the guide  but the problem was that it did install extras that probably people wouldn't have used anyways. The consequence was that the ability to launch x-server from command line wasn't available which i was not aware of. Thank you for sharing this info.</div>
+
+					
+															
+															<div id="sig942563" class="signature">Guides I have created on the Raspberry Pi Forums:<br>
+<br>
+1) [GUIDE] Raspbian Lite with PIXEL/LXDE/XFCE/MATE/Openbox/i3<br>
+2) [GUIDE] Communicate between iOS and Raspberry Pi using MQTT</div>
+										</div>
+
+				</div>
+
+				</div>
+											</div>
+
+			<hr class="divider">
+														<div id="p989620" class="post has-profile bg2">
+				<div class="inner">
+
+				<dl class="postprofile" id="profile989620">
+					<dt class="no-profile-rank has-avatar">
+						<div class="avatar-container">
+																						<a href="https://forums.raspberrypi.com/memberlist.php?mode=viewprofile&amp;u=6868" class="avatar"><img class="avatar" src="./GUIDE_ Raspbian Lite with RPD_LXDE_XFCE_MATE_i3_Openbox_X11 GUI - Raspberry Pi Forums_files/6868.jpg" width="90" height="87" alt="User avatar"></a>																				</div>
+
+						
+						<a href="https://forums.raspberrypi.com/memberlist.php?mode=viewprofile&amp;u=6868" class="username">cpcnw</a>
+						
+					</dt>
+
+					
+					
+					
+				<dd class="profile-posts"><strong>Posts:</strong> <a href="https://forums.raspberrypi.com/search.php?author_id=6868&amp;sr=posts">69</a></dd>				<dd class="profile-joined"><strong>Joined:</strong> Thu Jan 05, 2012 5:36 pm</dd>				
+				
+																			<dd class="profile-custom-field profile-phpbb_location"><strong>Location:</strong> NW UK</dd>
+													
+												
+				</dl>
+
+				<div class="postbody">
+										<div id="post_content989620">
+					
+					<h3><a href="https://forums.raspberrypi.com//viewtopic.php?f=66&amp;t=133691#p989620">Re: [GUIDE] Raspbian Lite with LXDE or XFCE GUI</a></h3>
+
+				
+				
+													
+				
+					
+					<p class="author"><a href="https://forums.raspberrypi.com/viewtopic.php?p=989620#p989620">Tue Jun 07, 2016 5:58 am</a> </p>
+
+					
+					
+					
+					<div class="content">Great guide although I am surprised as this is 'lite' the author chose xfce / lxde over say something like i3 or one of the 'boxes' - anyway this gets me something akin to Arch with less bother - setting up wifi from cli was a cinch and everything else [so far] has been dead easy to setup! Top job!</div>
+
+					
+															
+															<div id="sig989620" class="signature">If you don't know what you want, you end up with a lot you don't!</div>
+										</div>
+
+				</div>
+
+				</div>
+											</div>
+
+			<hr class="divider">
+														<div id="p989916" class="post has-profile bg1">
+				<div class="inner">
+
+				<dl class="postprofile" id="profile989916">
+					<dt class="no-profile-rank no-avatar">
+						<div class="avatar-container">
+																											</div>
+
+						
+						<a href="https://forums.raspberrypi.com/memberlist.php?mode=viewprofile&amp;u=193912" class="username">jkarlmen</a>
+						
+					</dt>
+
+					
+					
+					
+				<dd class="profile-posts"><strong>Posts:</strong> <a href="https://forums.raspberrypi.com/search.php?author_id=193912&amp;sr=posts">2</a></dd>				<dd class="profile-joined"><strong>Joined:</strong> Mon Jun 06, 2016 8:30 pm</dd>				
+				
+												
+												
+				</dl>
+
+				<div class="postbody">
+										<div id="post_content989916">
+					
+					<h3><a href="https://forums.raspberrypi.com//viewtopic.php?f=66&amp;t=133691#p989916">Re: [GUIDE] Raspbian Lite with LXDE or XFCE GUI</a></h3>
+
+				
+				
+													
+				
+					
+					<p class="author"><a href="https://forums.raspberrypi.com/viewtopic.php?p=989916#p989916">Tue Jun 07, 2016 2:55 pm</a> </p>
+
+					
+					
+					
+					<div class="content">Hi,<br>
+<br>
+I followed your guide and everything worked out but I ran into an additional issue. The network manager and Bluetooth manager were not visible. Sure i could do it via command line but i wanted a GUI in XFCE if at all possible. So i went ahead and took a full version of raspbian and attempted to install XFCE on it. I figured out how to install network-manager-gnome and that solved the network part but for the life of me bluetooth is not cooperating. I installed blueman but while it works for my mouse (with some difficulty) it will not connect to my keyboard. Switching back to LXDE, the Bluetooth applet that is part of LXDE panel works perfectly and quickly. I even tested it side by side in LXDE since i still had blueman installed ... works on the built in panel applet doesn't work on blueman. Does anyone have ideas or suggestions on how they got Bluetooth to work on these light installs on XFCE?<br>
+<br>
+Pi: Raspberry Pi 3<br>
+Wireless units: Built in wifi and bluetooth<br>
+Window Manager: XFCE</div>
+
+					
+															
+															
+										</div>
+
+				</div>
+
+				</div>
+											</div>
+
+			<hr class="divider">
+														<div id="p992081" class="post has-profile bg2">
+				<div class="inner">
+
+				<dl class="postprofile" id="profile992081">
+					<dt class="no-profile-rank no-avatar">
+						<div class="avatar-container">
+																											</div>
+
+						
+						<a href="https://forums.raspberrypi.com/memberlist.php?mode=viewprofile&amp;u=174543" class="username">GhostRaider</a>
+						
+					</dt>
+
+					
+					
+					
+				<dd class="profile-posts"><strong>Posts:</strong> <a href="https://forums.raspberrypi.com/search.php?author_id=174543&amp;sr=posts">54</a></dd>				<dd class="profile-joined"><strong>Joined:</strong> Fri Jan 22, 2016 9:04 pm</dd>				
+				
+												
+												
+				</dl>
+
+				<div class="postbody">
+										<div id="post_content992081">
+					
+					<h3><a href="https://forums.raspberrypi.com//viewtopic.php?f=66&amp;t=133691#p992081">Re: [GUIDE] Raspbian Lite with LXDE or XFCE GUI</a></h3>
+
+				
+				
+													
+				
+					
+					<p class="author"><a href="https://forums.raspberrypi.com/viewtopic.php?p=992081#p992081">Sat Jun 11, 2016 7:23 am</a> </p>
+
+					
+					
+					
+					<div class="content"><blockquote><div><cite>jkarlmen wrote:</cite>Hi,<br>
+<br>
+I followed your guide and everything worked out but I ran into an additional issue. The network manager and Bluetooth manager were not visible. Sure i could do it via command line but i wanted a GUI in XFCE if at all possible. So i went ahead and took a full version of raspbian and attempted to install XFCE on it. I figured out how to install network-manager-gnome and that solved the network part but for the life of me bluetooth is not cooperating. I installed blueman but while it works for my mouse (with some difficulty) it will not connect to my keyboard. Switching back to LXDE, the Bluetooth applet that is part of LXDE panel works perfectly and quickly. I even tested it side by side in LXDE since i still had blueman installed ... works on the built in panel applet doesn't work on blueman. Does anyone have ideas or suggestions on how they got Bluetooth to work on these light installs on XFCE?<br>
+<br>
+Pi: Raspberry Pi 3<br>
+Wireless units: Built in wifi and bluetooth<br>
+Window Manager: XFCE</div></blockquote>
+
+Have you fixed your Bluetooth problem? I haven't found a need to use Bluetooth but I might investigate on both cases if necessary. Been busy is all.</div>
+
+					
+															
+															<div id="sig992081" class="signature">Guides I have created on the Raspberry Pi Forums:<br>
+<br>
+1) [GUIDE] Raspbian Lite with PIXEL/LXDE/XFCE/MATE/Openbox/i3<br>
+2) [GUIDE] Communicate between iOS and Raspberry Pi using MQTT</div>
+										</div>
+
+				</div>
+
+				</div>
+											</div>
+
+			<hr class="divider">
+														<div id="p996481" class="post has-profile bg1">
+				<div class="inner">
+
+				<dl class="postprofile" id="profile996481">
+					<dt class="no-profile-rank has-avatar">
+						<div class="avatar-container">
+																						<a href="https://forums.raspberrypi.com/memberlist.php?mode=viewprofile&amp;u=6868" class="avatar"><img class="avatar" src="./GUIDE_ Raspbian Lite with RPD_LXDE_XFCE_MATE_i3_Openbox_X11 GUI - Raspberry Pi Forums_files/6868.jpg" width="90" height="87" alt="User avatar"></a>																				</div>
+
+						
+						<a href="https://forums.raspberrypi.com/memberlist.php?mode=viewprofile&amp;u=6868" class="username">cpcnw</a>
+						
+					</dt>
+
+					
+					
+					
+				<dd class="profile-posts"><strong>Posts:</strong> <a href="https://forums.raspberrypi.com/search.php?author_id=6868&amp;sr=posts">69</a></dd>				<dd class="profile-joined"><strong>Joined:</strong> Thu Jan 05, 2012 5:36 pm</dd>				
+				
+																			<dd class="profile-custom-field profile-phpbb_location"><strong>Location:</strong> NW UK</dd>
+													
+												
+				</dl>
+
+				<div class="postbody">
+										<div id="post_content996481">
+					
+					<h3><a href="https://forums.raspberrypi.com//viewtopic.php?f=66&amp;t=133691#p996481">Re: [GUIDE] Raspbian Lite with LXDE/XFCE/MATE GUI</a></h3>
+
+				
+				
+													
+				
+					
+					<p class="author"><a href="https://forums.raspberrypi.com/viewtopic.php?p=996481#p996481">Sun Jun 19, 2016 6:23 am</a> </p>
+
+					
+					
+					
+					<div class="content">A great follow up article would be the steps required to do the desktop customizations?<br>
+<br>
+i.e. what did you do to get that look?<br>
+<br>
+GTK Themes, LXDE Themes, Wallpaper etc?<br>
+<br>
+Thanks!</div>
+
+					
+															
+															<div id="sig996481" class="signature">If you don't know what you want, you end up with a lot you don't!</div>
+										</div>
+
+				</div>
+
+				</div>
+											</div>
+
+			<hr class="divider">
+														<div id="p1025236" class="post has-profile bg2">
+				<div class="inner">
+
+				<dl class="postprofile" id="profile1025236">
+					<dt class="no-profile-rank no-avatar">
+						<div class="avatar-container">
+																											</div>
+
+						
+						<a href="https://forums.raspberrypi.com/memberlist.php?mode=viewprofile&amp;u=27623" class="username">throstur62</a>
+						
+					</dt>
+
+					
+					
+					
+				<dd class="profile-posts"><strong>Posts:</strong> <a href="https://forums.raspberrypi.com/search.php?author_id=27623&amp;sr=posts">9</a></dd>				<dd class="profile-joined"><strong>Joined:</strong> Thu Jul 26, 2012 1:34 pm</dd>				
+				
+												
+												
+				</dl>
+
+				<div class="postbody">
+										<div id="post_content1025236">
+					
+					<h3><a href="https://forums.raspberrypi.com//viewtopic.php?f=66&amp;t=133691#p1025236">Re: [GUIDE] Raspbian Lite with LXDE/XFCE/MATE/Openbox GUI</a></h3>
+
+				
+				
+													
+				
+					
+					<p class="author"><a href="https://forums.raspberrypi.com/viewtopic.php?p=1025236#p1025236">Wed Aug 17, 2016 12:04 pm</a> </p>
+
+					
+					
+					
+					<div class="content">Hi,<br>
+I don't understand why  I should use this Raspian Lite + extra GUI instead fo using Raspina, as this article says that Raspian is using 93MB while the least consuming Lite + extra GUI is using 97MB. Well 93 &lt; 97, so if I 'm not concerned about disk storage, full blown Raspian is the best choise, Right?</div>
+
+					
+															
+															
+										</div>
+
+				</div>
+
+				</div>
+											</div>
+
+			<hr class="divider">
+														<div id="p1025325" class="post has-profile bg1 online">
+				<div class="inner">
+
+				<dl class="postprofile" id="profile1025325">
+					<dt class="no-profile-rank has-avatar">
+						<div class="avatar-container">
+																						<a href="https://forums.raspberrypi.com/memberlist.php?mode=viewprofile&amp;u=73731" class="avatar"><img class="avatar" src="./GUIDE_ Raspbian Lite with RPD_LXDE_XFCE_MATE_i3_Openbox_X11 GUI - Raspberry Pi Forums_files/73731.jpg" width="89" height="90" alt="User avatar"></a>																				</div>
+
+						
+						<a href="https://forums.raspberrypi.com/memberlist.php?mode=viewprofile&amp;u=73731" class="username">DougieLawson</a>
+						
+					</dt>
+
+					
+					
+					
+				<dd class="profile-posts"><strong>Posts:</strong> <a href="https://forums.raspberrypi.com/search.php?author_id=73731&amp;sr=posts">42480</a></dd>				<dd class="profile-joined"><strong>Joined:</strong> Sun Jun 16, 2013 11:19 pm</dd>				
+				
+																			<dd class="profile-custom-field profile-phpbb_location"><strong>Location:</strong> A small cave in deepest darkest Basingstoke, UK</dd>
+													
+												
+				</dl>
+
+				<div class="postbody">
+										<div id="post_content1025325">
+					
+					<h3><a href="https://forums.raspberrypi.com//viewtopic.php?f=66&amp;t=133691#p1025325">Re: [GUIDE] Raspbian Lite with LXDE/XFCE/MATE/Openbox GUI</a></h3>
+
+				
+				
+													
+				
+					
+					<p class="author"><a href="https://forums.raspberrypi.com/viewtopic.php?p=1025325#p1025325">Wed Aug 17, 2016 3:48 pm</a> </p>
+
+					
+					
+					
+					<div class="content"><blockquote><div><cite>throstur62 wrote:</cite>Hi,<br>
+I don't understand why  I should use this Raspian Lite + extra GUI instead fo using Raspina, as this article says that Raspian is using 93MB while the least consuming Lite + extra GUI is using 97MB. Well 93 &lt; 97, so if I 'm not concerned about disk storage, full blown Raspian is the best choise, Right?</div></blockquote>
+If you have an SDCard that's larger than 8GB (or a RPi3 set up to boot from an 8GB (or larger) USB stick or a USB HD) then you can freely choose whether to use Raspbian or Raspbian Lite. If you're plannng to use the GUI installing Raspbian Lite then adding the GUI stuff afterwards seems like a pointless waste of time to me.</div>
+
+					
+															
+															<div id="sig1025325" class="signature"><span style="font-size: 90%; line-height: normal">Languages using left-hand whitespace for syntax are ridiculous<br>
+<br>
+DMs sent on https://twitter.com/DougieLawson or LinkedIn will be answered next month.<br>
+Fake doctors - are all on my foes list.<br>
+<br>
+The use of crystal balls and mind reading is prohibited.</span></div>
+										</div>
+
+				</div>
+
+				</div>
+											</div>
+
+			<hr class="divider">
+														<div id="p1025366" class="post has-profile bg2">
+				<div class="inner">
+
+				<dl class="postprofile" id="profile1025366">
+					<dt class="no-profile-rank no-avatar">
+						<div class="avatar-container">
+																											</div>
+
+						
+						<a href="https://forums.raspberrypi.com/memberlist.php?mode=viewprofile&amp;u=174543" class="username">GhostRaider</a>
+						
+					</dt>
+
+					
+					
+					
+				<dd class="profile-posts"><strong>Posts:</strong> <a href="https://forums.raspberrypi.com/search.php?author_id=174543&amp;sr=posts">54</a></dd>				<dd class="profile-joined"><strong>Joined:</strong> Fri Jan 22, 2016 9:04 pm</dd>				
+				
+												
+												
+				</dl>
+
+				<div class="postbody">
+										<div id="post_content1025366">
+					
+					<h3><a href="https://forums.raspberrypi.com//viewtopic.php?f=66&amp;t=133691#p1025366">Re: [GUIDE] Raspbian Lite with LXDE/XFCE/MATE/Openbox GUI</a></h3>
+
+				
+				
+													
+				
+					
+					<p class="author"><a href="https://forums.raspberrypi.com/viewtopic.php?p=1025366#p1025366">Wed Aug 17, 2016 5:10 pm</a> </p>
+
+					
+					
+					
+					<div class="content"><blockquote><div><cite>throstur62 wrote:</cite>Hi,<br>
+I don't understand why  I should use this Raspian Lite + extra GUI instead fo using Raspina, as this article says that Raspian is using 93MB while the least consuming Lite + extra GUI is using 97MB. Well 93 &lt; 97, so if I 'm not concerned about disk storage, full blown Raspian is the best choise, Right?</div></blockquote>
+
+It really depends on what the Raspberry Pi will be used for. If you just want the Raspberry Pi to just work, then it's pretty obvious that using Raspbian is the way to go. <br>
+<br>
+But if you have time and you like to personalize it a bit more, or you just want to tinker with the operating system, then Raspian Lite would be a better choice. <br>
+<br>
+If you're going to look at this from an educational perspective, its not a waste of time. You learn how Linux works. You get to learn about creating sessions, configuring xorg, services, packages. If I have to say my opinion, I didn't like the look of Raspbian. I didn't like having useless applications installed, I didn't like the overall look. From using Windows and OS X for years, Raspbian looked boring.<br>
+<br>
+As for memory, you can always turn off services you don't need. That's what uses memory in the background most of the time. If you want to take it a step further, then having a tiling window manager will use less memory. Then if you want to take it another step forward, then Arch Linux would be a better choice since you can pretty much customize every aspect of it.<br>
+<br>
+It's really up to you.</div>
+
+					
+															
+															<div id="sig1025366" class="signature">Guides I have created on the Raspberry Pi Forums:<br>
+<br>
+1) [GUIDE] Raspbian Lite with PIXEL/LXDE/XFCE/MATE/Openbox/i3<br>
+2) [GUIDE] Communicate between iOS and Raspberry Pi using MQTT</div>
+										</div>
+
+				</div>
+
+				</div>
+											</div>
+
+			<hr class="divider">
+														<div id="p1051830" class="post has-profile bg1">
+				<div class="inner">
+
+				<dl class="postprofile" id="profile1051830">
+					<dt class="no-profile-rank no-avatar">
+						<div class="avatar-container">
+																											</div>
+
+						
+						<a href="https://forums.raspberrypi.com/memberlist.php?mode=viewprofile&amp;u=207633" class="username">huxmut</a>
+						
+					</dt>
+
+					
+					
+					
+				<dd class="profile-posts"><strong>Posts:</strong> <a href="https://forums.raspberrypi.com/search.php?author_id=207633&amp;sr=posts">1</a></dd>				<dd class="profile-joined"><strong>Joined:</strong> Wed Oct 12, 2016 10:11 pm</dd>				
+				
+												
+												
+				</dl>
+
+				<div class="postbody">
+										<div id="post_content1051830">
+					
+					<h3><a href="https://forums.raspberrypi.com//viewtopic.php?f=66&amp;t=133691#p1051830">Re: [GUIDE] Raspbian Lite with LXDE/XFCE/MATE/Openbox GUI</a></h3>
+
+				
+				
+													
+				
+					
+					<p class="author"><a href="https://forums.raspberrypi.com/viewtopic.php?p=1051830#p1051830">Wed Oct 12, 2016 10:14 pm</a> </p>
+
+					
+					
+					
+					<div class="content">Signed up to say thanks, and then i can ask a silly question later when i break something <img class="smilies" src="./GUIDE_ Raspbian Lite with RPD_LXDE_XFCE_MATE_i3_Openbox_X11 GUI - Raspberry Pi Forums_files/icon_e_smile.gif" width="15" height="17" alt=":)" title="Smile"><br>
+<br>
+Thanks</div>
+
+					
+															
+															
+										</div>
+
+				</div>
+
+				</div>
+											</div>
+
+			<hr class="divider">
+														<div id="p1053901" class="post has-profile bg2">
+				<div class="inner">
+
+				<dl class="postprofile" id="profile1053901">
+					<dt class="no-profile-rank no-avatar">
+						<div class="avatar-container">
+																											</div>
+
+						
+						<a href="https://forums.raspberrypi.com/memberlist.php?mode=viewprofile&amp;u=208024" class="username">paqfan</a>
+						
+					</dt>
+
+					
+					
+					
+				<dd class="profile-posts"><strong>Posts:</strong> <a href="https://forums.raspberrypi.com/search.php?author_id=208024&amp;sr=posts">1</a></dd>				<dd class="profile-joined"><strong>Joined:</strong> Sun Oct 16, 2016 9:44 pm</dd>				
+				
+												
+												
+				</dl>
+
+				<div class="postbody">
+										<div id="post_content1053901">
+					
+					<h3><a href="https://forums.raspberrypi.com//viewtopic.php?f=66&amp;t=133691#p1053901">Re: [GUIDE] Raspbian Lite with LXDE/XFCE/MATE/Openbox GUI</a></h3>
+
+				
+				
+													
+				
+					
+					<p class="author"><a href="https://forums.raspberrypi.com/viewtopic.php?p=1053901#p1053901">Sun Oct 16, 2016 9:50 pm</a> </p>
+
+					
+					
+					
+					<div class="content">MANY-MANY THANKS for this great, long, heavy post!<br>
+<br>
+Anyway, I found a small lack in the post, which caused me some headache - in case i'm a starter - to get the gui:<br>
+If you install the X-Windows system, to able to launch the "xstart" command, you also have to install the X-Org system:<br>
+<br>
+sudo apt-get install xinit xorg<br>
+<br>
+Thats it.</div>
+
+					
+															
+															
+										</div>
+
+				</div>
+
+				</div>
+											</div>
+
+			<hr class="divider">
+					
+		
+					<form id="viewtopic" method="post" action="https://forums.raspberrypi.com/viewtopic.php?t=133691">
+			<fieldset class="display-options" style="margin-top: 0; ">
+								<label>Display posts from previous:<select name="st" id="st" style="display: none;"><option value="0" selected="selected">All posts</option><option value="1">1 day</option><option value="7">7 days</option><option value="14">2 weeks</option><option value="30">1 month</option><option value="90">3 months</option><option value="180">6 months</option><option value="365">1 year</option></select><div class="chosen-container chosen-container-single chosen-container-single-nosearch" style="width: auto;" title="" id="st_chosen"><a class="chosen-single" tabindex="-1"><span>All posts</span><div><b></b></div></a><div class="chosen-drop"><div class="chosen-search"><input type="text" autocomplete="off" readonly=""></div><ul class="chosen-results"></ul></div></div></label><label>Sort by<select name="sk" id="sk" style="display: none;"><option value="a">Author</option><option value="t" selected="selected">Post time</option><option value="s">Subject</option></select><div class="chosen-container chosen-container-single chosen-container-single-nosearch" style="width: auto;" title="" id="sk_chosen"><a class="chosen-single" tabindex="-1"><span>Post time</span><div><b></b></div></a><div class="chosen-drop"><div class="chosen-search"><input type="text" autocomplete="off" readonly=""></div><ul class="chosen-results"></ul></div></div></label><label><select name="sd" id="sd" style="display: none;"><option value="a" selected="selected">Ascending</option><option value="d">Descending</option></select><div class="chosen-container chosen-container-single chosen-container-single-nosearch" style="width: auto;" title="" id="sd_chosen"><a class="chosen-single" tabindex="-1"><span>Ascending</span><div><b></b></div></a><div class="chosen-drop"><div class="chosen-search"><input type="text" autocomplete="off" readonly=""></div><ul class="chosen-results"></ul></div></div></label><input type="submit" name="sort" value="Go" class="button2">
+							</fieldset>
+			</form>
+		
+				<div class="action-bar bottom">
+			<div class="buttons">
+				
+							<a href="https://forums.raspberrypi.com/posting.php?mode=reply&amp;t=133691" class="button font-icon" title="This topic is locked, you cannot edit posts or make further replies.">
+					<i class="fa fa-lock"></i>Locked				</a>
+			
+							</div>
+
+				<div class="dropdown-container dropdown-button-control topic-tools">
+		<span title="Topic tools" class="button icon-button tools-icon dropdown-trigger dropdown-select dropdown-toggle"><i class="fa fa-wrench"></i></span>
+		<div class="dropdown hidden">
+			<div class="pointer"><div class="pointer-inner"></div></div>
+			<ul class="dropdown-contents">
+																								<li class="font-icon icon-print"><a href="https://forums.raspberrypi.com/viewtopic.php?t=133691&amp;view=print" title="Print view" accesskey="p"><i class="fa fa-print"></i>Print view</a></li>							</ul>
+		</div>
+	</div>
+
+			
+			
+							<div class="pagination">
+					201 posts
+											<ul>
+	<li class="dropdown-container dropdown-button-control dropdown-page-jump page-jump">
+		<a href="https://forums.raspberrypi.com//viewtopic.php?f=66&amp;t=133691#" class="dropdown-trigger dropdown-toggle" title="Click to jump to page…" role="button">Page <strong>1</strong> of <strong>9</strong></a>
+		<div class="dropdown hidden">
+			<div class="pointer"><div class="pointer-inner"></div></div>
+			<ul class="dropdown-contents">
+				<li>Jump to page:</li>
+				<li class="page-jump-form">
+					<input type="number" name="page-number" min="1" max="999999" title="Enter the page number you wish to go to" class="inputbox tiny" data-per-page="25" data-base-url="./../viewtopic.php?t=133691" data-start-name="start">
+					<input class="button2" value="Go" type="button">
+				</li>
+			</ul>
+		</div>
+	</li><li class="active"><span>1</span></li><li><a href="https://forums.raspberrypi.com/viewtopic.php?t=133691&amp;start=25" role="button">2</a></li><li><a href="https://forums.raspberrypi.com/viewtopic.php?t=133691&amp;start=50" role="button">3</a></li><li><a href="https://forums.raspberrypi.com/viewtopic.php?t=133691&amp;start=75" role="button">4</a></li><li><a href="https://forums.raspberrypi.com/viewtopic.php?t=133691&amp;start=100" role="button">5</a></li><li class="ellipsis" role="separator"><span>…</span></li><li><a href="https://forums.raspberrypi.com/viewtopic.php?t=133691&amp;start=200" role="button">9</a></li><li class="next"><a href="https://forums.raspberrypi.com/viewtopic.php?t=133691&amp;start=25" rel="next" role="button"><i class="fa fa-chevron-right"></i></a></li></ul>
+									</div>
+						<div class="clear"></div>
+		</div>
+
+				
+	<p class="jumpbox-return"><a href="https://forums.raspberrypi.com/viewforum.php?f=66" class="left-box arrow-left" accesskey="r">Return to “Raspberry Pi OS”</a></p>
+
+	<div class="dropdown-container dropdown-container-right dropdown-up dropdown-left dropdown-button-control" id="jumpbox">
+		<span title="Jump to" class="dropdown-trigger button dropdown-select dropdown-toggle">
+			Jump to		</span>
+		<div class="dropdown hidden">
+			<div class="pointer"><div class="pointer-inner"></div></div>
+			<ul class="dropdown-contents">
+																			<li><a href="https://forums.raspberrypi.com/viewforum.php?f=19">Community</a></li>
+																<li>&nbsp; &nbsp;<a href="https://forums.raspberrypi.com/viewforum.php?f=63">General discussion</a></li>
+																<li>&nbsp; &nbsp;<a href="https://forums.raspberrypi.com/viewforum.php?f=117">Announcements</a></li>
+																<li>&nbsp; &nbsp;<a href="https://forums.raspberrypi.com/viewforum.php?f=90">Other languages</a></li>
+																<li>&nbsp; &nbsp;&nbsp; &nbsp;<a href="https://forums.raspberrypi.com/viewforum.php?f=75">Deutsch</a></li>
+																<li>&nbsp; &nbsp;&nbsp; &nbsp;<a href="https://forums.raspberrypi.com/viewforum.php?f=76">Español</a></li>
+																<li>&nbsp; &nbsp;&nbsp; &nbsp;<a href="https://forums.raspberrypi.com/viewforum.php?f=65">Français</a></li>
+																<li>&nbsp; &nbsp;&nbsp; &nbsp;<a href="https://forums.raspberrypi.com/viewforum.php?f=79">Italiano</a></li>
+																<li>&nbsp; &nbsp;&nbsp; &nbsp;<a href="https://forums.raspberrypi.com/viewforum.php?f=88">Nederlands</a></li>
+																<li>&nbsp; &nbsp;&nbsp; &nbsp;<a href="https://forums.raspberrypi.com/viewforum.php?f=82">日本語</a></li>
+																<li>&nbsp; &nbsp;&nbsp; &nbsp;<a href="https://forums.raspberrypi.com/viewforum.php?f=103">Polski</a></li>
+																<li>&nbsp; &nbsp;&nbsp; &nbsp;<a href="https://forums.raspberrypi.com/viewforum.php?f=74">Português</a></li>
+																<li>&nbsp; &nbsp;&nbsp; &nbsp;<a href="https://forums.raspberrypi.com/viewforum.php?f=84">Русский</a></li>
+																<li>&nbsp; &nbsp;&nbsp; &nbsp;<a href="https://forums.raspberrypi.com/viewforum.php?f=89">Türkçe</a></li>
+																<li>&nbsp; &nbsp;<a href="https://forums.raspberrypi.com/viewforum.php?f=57">User groups and events</a></li>
+																<li>&nbsp; &nbsp;<a href="https://forums.raspberrypi.com/viewforum.php?f=106">The MagPi</a></li>
+																<li><a href="https://forums.raspberrypi.com/viewforum.php?f=12">Using the Raspberry Pi</a></li>
+																<li>&nbsp; &nbsp;<a href="https://forums.raspberrypi.com/viewforum.php?f=91">Beginners</a></li>
+																<li>&nbsp; &nbsp;<a href="https://forums.raspberrypi.com/viewforum.php?f=28">Troubleshooting</a></li>
+																<li>&nbsp; &nbsp;<a href="https://forums.raspberrypi.com/viewforum.php?f=29">Advanced users</a></li>
+																<li>&nbsp; &nbsp;<a href="https://forums.raspberrypi.com/viewforum.php?f=102">Assistive technology and accessibility</a></li>
+																<li><a href="https://forums.raspberrypi.com/viewforum.php?f=17">Education</a></li>
+																<li>&nbsp; &nbsp;<a href="https://forums.raspberrypi.com/viewforum.php?f=99">Picademy</a></li>
+																<li>&nbsp; &nbsp;<a href="https://forums.raspberrypi.com/viewforum.php?f=49">Teaching and learning resources</a></li>
+																<li>&nbsp; &nbsp;<a href="https://forums.raspberrypi.com/viewforum.php?f=48">Staffroom, classroom and projects</a></li>
+																<li>&nbsp; &nbsp;&nbsp; &nbsp;<a href="https://forums.raspberrypi.com/viewforum.php?f=104">Astro Pi</a></li>
+																<li>&nbsp; &nbsp;&nbsp; &nbsp;<a href="https://forums.raspberrypi.com/viewforum.php?f=94">Mathematica</a></li>
+																<li>&nbsp; &nbsp;&nbsp; &nbsp;<a href="https://forums.raspberrypi.com/viewforum.php?f=111">High Altitude Balloon</a></li>
+																<li>&nbsp; &nbsp;&nbsp; &nbsp;<a href="https://forums.raspberrypi.com/viewforum.php?f=112">Weather station</a></li>
+																<li><a href="https://forums.raspberrypi.com/viewforum.php?f=14">Programming</a></li>
+																<li>&nbsp; &nbsp;<a href="https://forums.raspberrypi.com/viewforum.php?f=33">C/C++</a></li>
+																<li>&nbsp; &nbsp;<a href="https://forums.raspberrypi.com/viewforum.php?f=81">Java</a></li>
+																<li>&nbsp; &nbsp;<a href="https://forums.raspberrypi.com/viewforum.php?f=32">Python</a></li>
+																<li>&nbsp; &nbsp;<a href="https://forums.raspberrypi.com/viewforum.php?f=77">Scratch</a></li>
+																<li>&nbsp; &nbsp;<a href="https://forums.raspberrypi.com/viewforum.php?f=34">Other programming languages</a></li>
+																<li>&nbsp; &nbsp;&nbsp; &nbsp;<a href="https://forums.raspberrypi.com/viewforum.php?f=105">Windows 10 for IoT</a></li>
+																<li>&nbsp; &nbsp;&nbsp; &nbsp;<a href="https://forums.raspberrypi.com/viewforum.php?f=95">Wolfram Language</a></li>
+																<li>&nbsp; &nbsp;<a href="https://forums.raspberrypi.com/viewforum.php?f=72">Bare metal, Assembly language</a></li>
+																<li>&nbsp; &nbsp;<a href="https://forums.raspberrypi.com/viewforum.php?f=67">Graphics programming</a></li>
+																<li>&nbsp; &nbsp;&nbsp; &nbsp;<a href="https://forums.raspberrypi.com/viewforum.php?f=68">OpenGLES</a></li>
+																<li>&nbsp; &nbsp;&nbsp; &nbsp;<a href="https://forums.raspberrypi.com/viewforum.php?f=69">OpenVG</a></li>
+																<li>&nbsp; &nbsp;&nbsp; &nbsp;<a href="https://forums.raspberrypi.com/viewforum.php?f=70">OpenMAX</a></li>
+																<li>&nbsp; &nbsp;<a href="https://forums.raspberrypi.com/viewforum.php?f=31">General programming discussion</a></li>
+																<li><a href="https://forums.raspberrypi.com/viewforum.php?f=15">Projects</a></li>
+																<li>&nbsp; &nbsp;<a href="https://forums.raspberrypi.com/viewforum.php?f=36">Networking and servers</a></li>
+																<li>&nbsp; &nbsp;<a href="https://forums.raspberrypi.com/viewforum.php?f=37">Automation, sensing and robotics</a></li>
+																<li>&nbsp; &nbsp;<a href="https://forums.raspberrypi.com/viewforum.php?f=38">Graphics, sound and multimedia</a></li>
+																<li>&nbsp; &nbsp;<a href="https://forums.raspberrypi.com/viewforum.php?f=41">Other projects</a></li>
+																<li>&nbsp; &nbsp;<a href="https://forums.raspberrypi.com/viewforum.php?f=35">Media centres</a></li>
+																<li>&nbsp; &nbsp;&nbsp; &nbsp;<a href="https://forums.raspberrypi.com/viewforum.php?f=78">Gaming</a></li>
+																<li>&nbsp; &nbsp;&nbsp; &nbsp;<a href="https://forums.raspberrypi.com/viewforum.php?f=114">AIY Projects</a></li>
+																<li><a href="https://forums.raspberrypi.com/viewforum.php?f=16">Hardware and peripherals</a></li>
+																<li>&nbsp; &nbsp;<a href="https://forums.raspberrypi.com/viewforum.php?f=43">Camera board</a></li>
+																<li>&nbsp; &nbsp;<a href="https://forums.raspberrypi.com/viewforum.php?f=98">Compute Module</a></li>
+																<li>&nbsp; &nbsp;<a href="https://forums.raspberrypi.com/viewforum.php?f=108">Official Display</a></li>
+																<li>&nbsp; &nbsp;<a href="https://forums.raspberrypi.com/viewforum.php?f=45">HATs and other add-ons</a></li>
+																<li>&nbsp; &nbsp;<a href="https://forums.raspberrypi.com/viewforum.php?f=107">Device Tree</a></li>
+																<li>&nbsp; &nbsp;<a href="https://forums.raspberrypi.com/viewforum.php?f=44">Interfacing (DSI, CSI, I2C, etc.)</a></li>
+																<li>&nbsp; &nbsp;<a href="https://forums.raspberrypi.com/viewforum.php?f=140">Raspberry Pi 400</a></li>
+																<li>&nbsp; &nbsp;<a href="https://forums.raspberrypi.com/viewforum.php?f=143">Raspberry Pi Pico</a></li>
+																<li>&nbsp; &nbsp;&nbsp; &nbsp;<a href="https://forums.raspberrypi.com/viewforum.php?f=144">General</a></li>
+																<li>&nbsp; &nbsp;&nbsp; &nbsp;<a href="https://forums.raspberrypi.com/viewforum.php?f=145">SDK</a></li>
+																<li>&nbsp; &nbsp;&nbsp; &nbsp;<a href="https://forums.raspberrypi.com/viewforum.php?f=146">MicroPython</a></li>
+																<li>&nbsp; &nbsp;&nbsp; &nbsp;<a href="https://forums.raspberrypi.com/viewforum.php?f=147">Other RP2040 boards</a></li>
+																<li><a href="https://forums.raspberrypi.com/viewforum.php?f=18">Operating system distributions</a></li>
+																<li>&nbsp; &nbsp;<a href="https://forums.raspberrypi.com/viewforum.php?f=66">Raspberry Pi OS</a></li>
+																<li>&nbsp; &nbsp;<a href="https://forums.raspberrypi.com/viewforum.php?f=116">Raspberry Pi Desktop for PC and Mac</a></li>
+																<li>&nbsp; &nbsp;<a href="https://forums.raspberrypi.com/viewforum.php?f=56">Other</a></li>
+																<li>&nbsp; &nbsp;&nbsp; &nbsp;<a href="https://forums.raspberrypi.com/viewforum.php?f=73">Android</a></li>
+																<li>&nbsp; &nbsp;&nbsp; &nbsp;<a href="https://forums.raspberrypi.com/viewforum.php?f=50">Debian</a></li>
+																<li>&nbsp; &nbsp;&nbsp; &nbsp;<a href="https://forums.raspberrypi.com/viewforum.php?f=85">FreeBSD</a></li>
+																<li>&nbsp; &nbsp;&nbsp; &nbsp;<a href="https://forums.raspberrypi.com/viewforum.php?f=54">Gentoo</a></li>
+																<li>&nbsp; &nbsp;&nbsp; &nbsp;<a href="https://forums.raspberrypi.com/viewforum.php?f=71">Linux Kernel</a></li>
+																<li>&nbsp; &nbsp;&nbsp; &nbsp;<a href="https://forums.raspberrypi.com/viewforum.php?f=86">NetBSD</a></li>
+																<li>&nbsp; &nbsp;&nbsp; &nbsp;<a href="https://forums.raspberrypi.com/viewforum.php?f=87">openSUSE</a></li>
+																<li>&nbsp; &nbsp;&nbsp; &nbsp;<a href="https://forums.raspberrypi.com/viewforum.php?f=80">Plan 9</a></li>
+																<li>&nbsp; &nbsp;&nbsp; &nbsp;<a href="https://forums.raspberrypi.com/viewforum.php?f=52">Puppy</a></li>
+																<li>&nbsp; &nbsp;&nbsp; &nbsp;<a href="https://forums.raspberrypi.com/viewforum.php?f=53">Arch</a></li>
+																<li>&nbsp; &nbsp;&nbsp; &nbsp;<a href="https://forums.raspberrypi.com/viewforum.php?f=51">Pidora / Fedora</a></li>
+																<li>&nbsp; &nbsp;&nbsp; &nbsp;<a href="https://forums.raspberrypi.com/viewforum.php?f=55">RISCOS</a></li>
+																<li>&nbsp; &nbsp;&nbsp; &nbsp;<a href="https://forums.raspberrypi.com/viewforum.php?f=131">Ubuntu</a></li>
+																<li><a href="https://forums.raspberrypi.com/viewforum.php?f=20">Ye Olde Pi Shoppe</a></li>
+																<li>&nbsp; &nbsp;<a href="https://forums.raspberrypi.com/viewforum.php?f=93">For sale</a></li>
+																<li>&nbsp; &nbsp;<a href="https://forums.raspberrypi.com/viewforum.php?f=61">Wanted</a></li>
+																<li><a href="https://forums.raspberrypi.com/viewforum.php?f=21">Off topic</a></li>
+																<li>&nbsp; &nbsp;<a href="https://forums.raspberrypi.com/viewforum.php?f=62">Off topic discussion</a></li>
+										</ul>
+		</div>
+	</div>
+
+		
+	</div>
+</div>
+
+        <!-- main element opens in overall_header.html -->
+        </main>
+		
+	
+	<div id="wrap-footer">
+		<div id="site-footer-nav" role="navigation">
+			<div class="chunk">
+				<ul class="site-footer-nav" role="menubar">
+					<li class="small-icon icon-home breadcrumbs">
+																		<span class="crumb"><a href="https://forums.raspberrypi.com/index.php" data-navbar-reference="index" title="Board index">Board index</a></span>
+											</li>
+					
+										<li class="rightside">All times are <span title="UTC">UTC</span></li>
+																<li class="small-icon icon-delete-cookies rightside"><a href="https://forums.raspberrypi.com/ucp.php?mode=delete_cookies" data-ajax="true" data-refresh="true" role="menuitem">Delete cookies</a></li>
+															</ul>
+			</div>
+		</div>
+
+    <style>
+#__rptl-footer .__rptl-footer-link, #__rptl-footer .__rptl-footer-link--with-icon, #__rptl-footer .__rptl-footer-item, #__rptl-footer .__rptl-footer-list, #__rptl-footer .__rptl-footer-heading, #__rptl-footer .__rptl-footer-column, #__rptl-footer .__rptl-footer-row, #__rptl-footer .__rptl-footer-container, #__rptl-footer {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font: inherit;
+  font-size: 100%;
+  vertical-align: baseline;
+}
+
+#__rptl-footer {
+  display: block;
+  font-family: "Roboto", sans-serif;
+  font-size: medium;
+  font-weight: 400;
+  line-height: 1.5;
+  text-rendering: optimizeLegibility;
+  -webkit-text-size-adjust: 100%;
+     -moz-text-size-adjust: 100%;
+          text-size-adjust: 100%;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background: #f5f6f9;
+  overflow: hidden;
+}
+#__rptl-footer .__rptl-footer-container {
+  width: 100%;
+  max-width: 1300px;
+  padding-left: 16px;
+  padding-right: 16px;
+  margin: auto;
+  margin-top: 32px;
+}
+@media (min-width: 800px) {
+  #__rptl-footer .__rptl-footer-container {
+    padding: 0 76px;
+  }
+}
+@media (min-width: 1200px) {
+  #__rptl-footer .__rptl-footer-container {
+    padding: 0 84px;
+  }
+}
+#__rptl-footer .__rptl-footer-row {
+  display: flex;
+  flex-wrap: wrap;
+}
+#__rptl-footer .__rptl-footer-column {
+  flex-basis: 1;
+  width: 100%;
+  padding-right: 8px;
+}
+@media (min-width: 640px) {
+  #__rptl-footer .__rptl-footer-column {
+    width: 50%;
+  }
+}
+@media (min-width: 1024px) {
+  #__rptl-footer .__rptl-footer-column {
+    width: 25%;
+  }
+}
+#__rptl-footer .__rptl-footer-heading {
+  font-weight: 700;
+  color: #333333;
+  margin-bottom: 8px;
+}
+#__rptl-footer .__rptl-footer-list {
+  list-style: none;
+  margin-bottom: 32px;
+}
+#__rptl-footer .__rptl-footer-item {
+  margin-bottom: 8px;
+}
+#__rptl-footer .__rptl-footer-icon {
+  margin-right: 0.5em;
+  fill: #333;
+}
+#__rptl-footer .__rptl-footer-link, #__rptl-footer .__rptl-footer-link--with-icon {
+  font-weight: 400;
+  color: #333;
+  text-decoration: none;
+}
+#__rptl-footer .__rptl-footer-link--with-icon {
+  display: inline-flex;
+  align-items: center;
+}
+#__rptl-footer .__rptl-footer-link:hover, #__rptl-footer .__rptl-footer-link--with-icon:hover {
+  text-decoration: underline;
+}
+</style>
+<footer id="__rptl-footer">
+  <div class="__rptl-footer-container">
+    <div class="__rptl-footer-row">
+      <div class="__rptl-footer-column">
+        <div class="__rptl-footer-heading">Follow us</div>
+        <ul class="__rptl-footer-list">
+          <li class="__rptl-footer-item">
+            <a href="https://www.raspberrypi.com/weekly/" class="__rptl-footer-link--with-icon">
+              <svg class="__rptl-footer-icon" aria-hidden="true" focusable="false" width="1.25em" height="1.25em" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M1 6v12a2 2 0 0 0 2 2h18a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2H3a2 2 0 0 0-2 2Zm19.707 10.293a1 1 0 1 1-1.414 1.414L15 13.414l-.515.515a3.518 3.518 0 0 1-4.97 0L9 13.414l-4.293 4.293a1 1 0 0 1-1.414-1.414L7.586 12 3.293 7.707a1 1 0 0 1 1.414-1.414l5 5 1.222 1.222a1.516 1.516 0 0 0 2.142 0l1.222-1.222 5-5a1 1 0 0 1 1.414 1.414L16.414 12Z"></path></svg>
+              Sign up to newsletter
+            </a>
+          </li>
+          <li class="__rptl-footer-item">
+            <a href="https://twitter.com/Raspberry_Pi" class="__rptl-footer-link--with-icon">
+              <svg class="__rptl-footer-icon" aria-hidden="true" focusable="false" width="1.25em" height="1.25em" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2Zm4.72 7.982q.006.148.007.298a6.535 6.535 0 0 1-10.06 5.505 4.667 4.667 0 0 0 .547.032 4.61 4.61 0 0 0 2.854-.983 2.3 2.3 0 0 1-2.146-1.596 2.303 2.303 0 0 0 1.038-.04 2.3 2.3 0 0 1-1.844-2.253v-.029a2.285 2.285 0 0 0 1.041.288 2.3 2.3 0 0 1-.71-3.068 6.523 6.523 0 0 0 4.735 2.4 2.3 2.3 0 0 1 3.916-2.095 4.59 4.59 0 0 0 1.459-.558 2.306 2.306 0 0 1-1.01 1.272 4.601 4.601 0 0 0 1.32-.362 4.67 4.67 0 0 1-1.147 1.19Z"></path></svg>
+              Twitter
+            </a>
+          </li>
+          <li class="__rptl-footer-item">
+            <a href="https://raspberrypi.social/@Raspberry_Pi" rel="me" class="__rptl-footer-link--with-icon">
+              <svg class="__rptl-footer-icon" aria-hidden="true" focusable="false" width="1.25em" height="1.25em" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="M11.19 12.195c2.016-.24 3.77-1.475 3.99-2.603.348-1.778.32-4.339.32-4.339 0-3.47-2.286-4.488-2.286-4.488C12.062.238 10.083.017 8.027 0h-.05C5.92.017 3.942.238 2.79.765c0 0-2.285 1.017-2.285 4.488l-.002.662c-.004.64-.007 1.35.011 2.091.083 3.394.626 6.74 3.78 7.57 1.454.383 2.703.463 3.709.408 1.823-.1 2.847-.647 2.847-.647l-.06-1.317s-1.303.41-2.767.36c-1.45-.05-2.98-.156-3.215-1.928a3.614 3.614 0 0 1-.033-.496s1.424.346 3.228.428c1.103.05 2.137-.064 3.188-.189zm1.613-2.47H11.13v-4.08c0-.859-.364-1.295-1.091-1.295-.804 0-1.207.517-1.207 1.541v2.233H7.168V5.89c0-1.024-.403-1.541-1.207-1.541-.727 0-1.091.436-1.091 1.296v4.079H3.197V5.522c0-.859.22-1.541.66-2.046.456-.505 1.052-.764 1.793-.764.856 0 1.504.328 1.933.983L8 4.39l.417-.695c.429-.655 1.077-.983 1.934-.983.74 0 1.336.259 1.791.764.442.505.661 1.187.661 2.046v4.203z"></path></svg>
+              Mastodon
+            </a>
+          </li>
+          <li class="__rptl-footer-item">
+            <a href="https://youtube.com/raspberrypi" class="__rptl-footer-link--with-icon">
+              <svg class="__rptl-footer-icon" aria-hidden="true" focusable="false" width="1.25em" height="1.25em" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.751 15.27V8.73L15.498 12l-5.747 3.27Zm12.783-8.597a2.763 2.763 0 0 0-1.944-1.956C18.876 4.254 12 4.254 12 4.254s-6.876 0-8.59.463a2.763 2.763 0 0 0-1.944 1.956A28.982 28.982 0 0 0 1.006 12a28.982 28.982 0 0 0 .46 5.327 2.763 2.763 0 0 0 1.943 1.956c1.715.463 8.591.463 8.591.463s6.876 0 8.59-.463a2.763 2.763 0 0 0 1.944-1.956 28.98 28.98 0 0 0 .46-5.327 28.98 28.98 0 0 0-.46-5.327Z"></path></svg>
+              YouTube
+            </a>
+          </li>
+          <li class="__rptl-footer-item">
+            <a href="https://www.instagram.com/raspberrypi/" class="__rptl-footer-link--with-icon">
+              <svg class="__rptl-footer-icon" aria-hidden="true" focusable="false" width="1.25em" height="1.25em" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12.25 3.667c2.67 0 2.986.01 4.04.058a5.534 5.534 0 0 1 1.858.344 3.312 3.312 0 0 1 1.898 1.898 5.534 5.534 0 0 1 .344 1.857c.048 1.054.058 1.37.058 4.04s-.01 2.987-.058 4.042a5.534 5.534 0 0 1-.344 1.857 3.312 3.312 0 0 1-1.898 1.897 5.533 5.533 0 0 1-1.857.345c-1.054.048-1.37.058-4.041.058s-2.987-.01-4.04-.058a5.533 5.533 0 0 1-1.858-.345 3.312 3.312 0 0 1-1.898-1.897 5.534 5.534 0 0 1-.344-1.857c-.048-1.055-.058-1.371-.058-4.041s.01-2.987.058-4.041a5.534 5.534 0 0 1 .344-1.857A3.312 3.312 0 0 1 6.352 4.07a5.533 5.533 0 0 1 1.857-.344c1.055-.048 1.37-.058 4.041-.058m0-1.802c-2.716 0-3.056.011-4.123.06A7.34 7.34 0 0 0 5.7 2.39a5.113 5.113 0 0 0-2.925 2.924 7.34 7.34 0 0 0-.465 2.428c-.049 1.066-.06 1.407-.06 4.123s.011 3.056.06 4.123a7.34 7.34 0 0 0 .465 2.427A5.113 5.113 0 0 0 5.7 21.34a7.34 7.34 0 0 0 2.427.465c1.067.048 1.407.06 4.123.06s3.056-.012 4.123-.06a7.34 7.34 0 0 0 2.427-.465 5.113 5.113 0 0 0 2.925-2.925 7.34 7.34 0 0 0 .465-2.427c.048-1.067.06-1.407.06-4.123s-.012-3.057-.06-4.123a7.34 7.34 0 0 0-.465-2.428A5.113 5.113 0 0 0 18.8 2.39a7.34 7.34 0 0 0-2.427-.465c-1.067-.049-1.407-.06-4.123-.06Z"></path><path class="cls-1" d="M12.25 6.73a5.135 5.135 0 1 0 5.135 5.135A5.135 5.135 0 0 0 12.25 6.73Zm0 8.468a3.333 3.333 0 1 1 3.333-3.333 3.333 3.333 0 0 1-3.333 3.333Z"></path><circle cx="17.588" cy="6.527" r="1.2"></circle></svg>
+              Instagram
+            </a>
+          </li>
+          <li class="__rptl-footer-item">
+            <a href="https://www.linkedin.com/company/raspberrypi/" class="__rptl-footer-link--with-icon">
+              <svg class="__rptl-footer-icon" aria-hidden="true" focusable="false" width="1.25em" height="1.25em" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.435 2.1H3.561a1.445 1.445 0 0 0-1.462 1.426v16.946a1.446 1.446 0 0 0 1.462 1.429h16.874a1.449 1.449 0 0 0 1.466-1.429V3.526A1.448 1.448 0 0 0 20.435 2.1ZM7.972 18.972H5.035v-9.45h2.937ZM6.504 8.23a1.703 1.703 0 1 1 1.702-1.703A1.703 1.703 0 0 1 6.504 8.23Zm12.468 10.742h-2.934v-4.596c0-1.096-.02-2.505-1.527-2.505-1.528 0-1.762 1.193-1.762 2.426v4.675H9.814v-9.45h2.817v1.291h.04a3.086 3.086 0 0 1 2.778-1.526c2.974 0 3.523 1.957 3.523 4.501Z"></path></svg>
+              LinkedIn
+            </a>
+          </li>
+          <li class="__rptl-footer-item">
+            <a href="https://www.facebook.com/raspberrypi" class="__rptl-footer-link--with-icon">
+              <svg class="__rptl-footer-icon" aria-hidden="true" focusable="false" width="1.25em" height="1.25em" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M22 12.06a10 10 0 1 0-11.563 9.88V14.95H7.899v-2.89h2.54V9.858a3.529 3.529 0 0 1 3.777-3.891 15.378 15.378 0 0 1 2.238.195v2.461h-1.26a1.445 1.445 0 0 0-1.63 1.562v1.876h2.773l-.443 2.89h-2.33v6.988A10.002 10.002 0 0 0 22 12.061Z"></path></svg>
+              Facebook
+            </a>
+          </li>
+        </ul>
+      </div>
+      <div class="__rptl-footer-column">
+        <div class="__rptl-footer-heading">About Raspberry Pi</div>
+        <ul class="__rptl-footer-list">
+          <li class="__rptl-footer-item"><a href="https://www.raspberrypi.com/news/" class="__rptl-footer-link">News</a></li>
+          <li class="__rptl-footer-item"><a href="https://www.raspberrypi.com/contact/" class="__rptl-footer-link">Contact us</a></li>
+          <li class="__rptl-footer-item"><a href="https://www.raspberrypi.com/trademark-rules/" class="__rptl-footer-link">Trademark</a></li>
+          <li class="__rptl-footer-item"><a href="https://www.raspberrypi.com/about/" class="__rptl-footer-link">About us</a></li>
+          <li class="__rptl-footer-item"><a href="https://www.raspberrypi.com/resellers/" class="__rptl-footer-link">Our Approved Resellers</a></li>
+          <li class="__rptl-footer-item"><a href="https://www.raspberrypi.com/jobs/" class="__rptl-footer-link">Jobs</a></li>
+          <li class="__rptl-footer-item"><a href="https://www.raspberrypi.com/accessibility/" class="__rptl-footer-link">Accessibility</a></li>
+          <li class="__rptl-footer-item"><a href="https://www.raspberrypi.com/terms-and-conditions/" class="__rptl-footer-link">Site use terms and conditions</a></li>
+          <li class="__rptl-footer-item"><a href="https://www.raspberrypi.com/acceptable-use/" class="__rptl-footer-link">Acceptable use</a></li>
+          <li class="__rptl-footer-item"><a href="https://www.raspberrypi.com/cookies/" class="__rptl-footer-link">Cookies</a></li>
+          <li class="__rptl-footer-item"><a href="https://www.raspberrypi.com/licensing/" class="__rptl-footer-link">Licensing</a></li>
+          <li class="__rptl-footer-item"><a href="https://www.raspberrypi.com/terms-conditions-sale/" class="__rptl-footer-link">Terms and conditions of sale</a></li>
+          <li class="__rptl-footer-item"><a href="https://www.raspberrypi.com/privacy/" class="__rptl-footer-link">Privacy</a></li>
+          <li class="__rptl-footer-item"><a href="https://www.raspberrypi.com/contact/security/" class="__rptl-footer-link">Security</a></li>
+          <li class="__rptl-footer-item"><a href="https://www.raspberrypi.com/verify/" class="__rptl-footer-link">Verify our bank details</a></li>
+        </ul>
+      </div>
+      <div class="__rptl-footer-column">
+        <div class="__rptl-footer-heading">For home</div>
+        <ul class="__rptl-footer-list">
+          <li class="__rptl-footer-item"><a href="https://www.raspberrypi.com/for-home/" class="__rptl-footer-link">Raspberry Pi for home</a></li>
+          <li class="__rptl-footer-item"><a href="https://www.raspberrypi.com/tutorials/" class="__rptl-footer-link">Tutorials</a></li>
+        </ul>
+        <div class="__rptl-footer-heading">For industry</div>
+        <ul class="__rptl-footer-list">
+          <li class="__rptl-footer-item"><a href="https://www.raspberrypi.com/for-industry/" class="__rptl-footer-link">Raspberry Pi for industry</a></li>
+          <li class="__rptl-footer-item"><a href="https://www.raspberrypi.com/for-industry/thin-clients/" class="__rptl-footer-link">Thin clients</a></li>
+          <li class="__rptl-footer-item"><a href="https://www.raspberrypi.com/for-industry/powered-by/" class="__rptl-footer-link">Powered by Raspberry Pi</a></li>
+          <li class="__rptl-footer-item"><a href="https://www.raspberrypi.com/for-industry/design-partners/" class="__rptl-footer-link">Design partners</a></li>
+          <li class="__rptl-footer-item"><a href="https://www.raspberrypi.com/success-stories/" class="__rptl-footer-link">Success stories</a></li>
+        </ul>
+        <div class="__rptl-footer-heading">Hardware</div>
+        <ul class="__rptl-footer-list">
+          <li class="__rptl-footer-item"><a href="https://www.raspberrypi.com/products/#raspberry-pi-computers-and-microcontrollers" class="__rptl-footer-link">Computers and microcontrollers</a></li>
+          <li class="__rptl-footer-item"><a href="https://www.raspberrypi.com/products/#cameras-and-displays" class="__rptl-footer-link">Cameras and displays</a></li>
+          <li class="__rptl-footer-item"><a href="https://www.raspberrypi.com/products/#add-on-boards" class="__rptl-footer-link">Add-on boards</a></li>
+          <li class="__rptl-footer-item"><a href="https://www.raspberrypi.com/products/#power-supplies-and-cables" class="__rptl-footer-link">Power supplies and cables</a></li>
+          <li class="__rptl-footer-item"><a href="https://www.raspberrypi.com/products/#cases" class="__rptl-footer-link">Cases</a></li>
+          <li class="__rptl-footer-item"><a href="https://www.raspberrypi.com/products/#peripherals" class="__rptl-footer-link">Peripherals</a></li>
+        </ul>
+        <div class="__rptl-footer-heading">Software</div>
+        <ul class="__rptl-footer-list">
+          <li class="__rptl-footer-item"><a href="https://www.raspberrypi.com/software/operating-systems/#raspberry-pi-os-32-bit" class="__rptl-footer-link">Raspberry Pi OS</a></li>
+          <li class="__rptl-footer-item"><a href="https://www.raspberrypi.com/software/" class="__rptl-footer-link">Raspberry Pi Imager</a></li>
+          <li class="__rptl-footer-item"><a href="https://www.raspberrypi.com/software/raspberry-pi-desktop/" class="__rptl-footer-link">Raspberry Pi Desktop</a></li>
+        </ul>
+      </div>
+      <div class="__rptl-footer-column">
+        <div class="__rptl-footer-heading">Documentation</div>
+        <ul class="__rptl-footer-list">
+          <li class="__rptl-footer-item"><a href="https://www.raspberrypi.com/documentation/" class="__rptl-footer-link">All categories</a></li>
+          <li class="__rptl-footer-item"><a href="https://pip.raspberrypi.com/" class="__rptl-footer-link">Product information portal</a></li>
+          <li class="__rptl-footer-item"><a href="https://datasheets.raspberrypi.com/" class="__rptl-footer-link">Datasheets</a></li>
+        </ul>
+        <div class="__rptl-footer-heading">Community</div>
+        <ul class="__rptl-footer-list">
+          <li class="__rptl-footer-item"><a href="https://forums.raspberrypi.com/" class="__rptl-footer-link">Forums</a></li>
+          <li class="__rptl-footer-item"><a href="https://events.raspberrypi.com/" class="__rptl-footer-link">Events</a></li>
+        </ul>
+        <div class="__rptl-footer-heading">Raspberry Pi Store</div>
+        <ul class="__rptl-footer-list">
+          <li class="__rptl-footer-item"><a href="https://www.raspberrypi.com/raspberry-pi-store/" class="__rptl-footer-link">Cambridge Store</a></li>
+        </ul>
+        <div class="__rptl-footer-heading">Raspberry Pi Press</div>
+        <ul class="__rptl-footer-list">
+          <li class="__rptl-footer-item"><a href="https://www.raspberrypi.com/books-magazines/" class="__rptl-footer-link">About Raspberry Pi Press</a></li>
+          <li class="__rptl-footer-item"><a href="https://magpi.raspberrypi.com/" class="__rptl-footer-link">The MagPi</a></li>
+          <li class="__rptl-footer-item"><a href="https://hackspace.raspberrypi.com/" class="__rptl-footer-link">HackSpace</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</footer>
+
+		<div id="darkenwrapper" data-ajax-error-title="AJAX error" data-ajax-error-text="Something went wrong when processing your request." data-ajax-error-text-abort="User aborted request." data-ajax-error-text-timeout="Your request timed out; please try again." data-ajax-error-text-parsererror="Something went wrong with the request and the server returned an invalid reply.">
+			<div id="darken">&nbsp;</div>
+		</div>
+
+		<div id="phpbb_alert" class="phpbb_alert" data-l-err="Error" data-l-timeout-processing-req="Request timed out.">
+			<a href="https://forums.raspberrypi.com//viewtopic.php?f=66&amp;t=133691#" class="alert_close"></a>
+			<h3 class="alert_title">&nbsp;</h3><p class="alert_text"></p>
+		</div>
+		<div id="phpbb_confirm" class="phpbb_alert">
+			<a href="https://forums.raspberrypi.com//viewtopic.php?f=66&amp;t=133691#" class="alert_close"></a>
+			<div class="alert_text"></div>
+		</div>
+
+		<div style="display: none;">
+			<a id="bottom" class="anchor" accesskey="z"></a>
+			<img class="sr-only" aria-hidden="true" src="./GUIDE_ Raspbian Lite with RPD_LXDE_XFCE_MATE_i3_Openbox_X11 GUI - Raspberry Pi Forums_files/cron.task.auto_lock_topics" width="1" height="1" alt="">
+		</div>
+</div>
+
+<script type="text/javascript" src="./GUIDE_ Raspbian Lite with RPD_LXDE_XFCE_MATE_i3_Openbox_X11 GUI - Raspberry Pi Forums_files/jquery-3.6.0.min.js.download"></script>
+<script type="text/javascript" src="./GUIDE_ Raspbian Lite with RPD_LXDE_XFCE_MATE_i3_Openbox_X11 GUI - Raspberry Pi Forums_files/core.js.download"></script>
+<script type="text/javascript" src="./GUIDE_ Raspbian Lite with RPD_LXDE_XFCE_MATE_i3_Openbox_X11 GUI - Raspberry Pi Forums_files/js.cookie.js.download"></script>
+<script type="text/javascript" src="./GUIDE_ Raspbian Lite with RPD_LXDE_XFCE_MATE_i3_Openbox_X11 GUI - Raspberry Pi Forums_files/forum_fn.js.download"></script>
+<script type="text/javascript" src="./GUIDE_ Raspbian Lite with RPD_LXDE_XFCE_MATE_i3_Openbox_X11 GUI - Raspberry Pi Forums_files/ajax.js.download"></script>
+<script type="text/javascript" src="./GUIDE_ Raspbian Lite with RPD_LXDE_XFCE_MATE_i3_Openbox_X11 GUI - Raspberry Pi Forums_files/chosen.jquery.min.js.download"></script>
+
+
+<script>
+	$(function() {
+		$("#st, #sd, #sk, #ch").chosen({
+			disable_search: true,
+			width: "auto"
+		});
+	});
+</script>
+
+<script>
+	// $(function() {
+	//
+	// 	var sidebarRecentPostDiv = document.getElementById("sidebar-recent-posts");
+	//
+	// 	$.get('/app.php/feed', function (data) {
+	// 		$(data).find("entry").each(function (i) {
+	// 			var el = $(this);
+	// 			var entryWrap = document.createElement("div");
+	//
+	// 			var entryTitle = document.createElement("a");
+	// 			var entryAuthor = document.createElement("span");
+	// 			var entryContent = document.createElement("span");
+	//
+	// 			entryTitle.className = ("sidebar-recent-title");
+	// 			entryAuthor.className = ("sidebar-recent-author");
+	// 			entryContent.className = ("sidebar-recent-content");
+	//
+	// 			function cutText(name) {
+	// 				var elementText = el.find(name).text();
+	//
+	// 				if (name == "title") {
+	// 					elementText = elementText.substring(elementText.indexOf("•") + 2);
+	// 				} else if (name == "content") {
+	// 					elementText = elementText.replace(/(<([^>]+)>)/ig,"");
+	// 				}
+	//
+	// 				if (elementText.length > 50) {
+	// 					return elementText.substr(0, 50);
+	// 				} else {
+	// 					return elementText;
+	// 				};
+	// 			};
+	//
+	// 			entryTitle.textContent = cutText("title");
+	// 			entryAuthor.textContent = "by " + cutText("author");
+	// 			entryContent.textContent = cutText("content");
+	// 			entryURL = el.find("id").text();
+	//
+	// 			$(entryTitle).attr("href", entryURL);
+	//
+	// 			entryWrap.appendChild(entryTitle);
+	// 			entryWrap.appendChild(entryAuthor);
+	// 			entryWrap.appendChild(entryContent);
+	//
+	// 			sidebarRecentPostDiv.appendChild(entryWrap);
+	//
+	// 			if (++i >= 5) {
+	// 				return false;
+	// 			}
+	// 		});
+	// 	});
+	//
+	// });
+</script>
+
+
+
+
+
+</div>
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-46270871-9', 'auto');
+  ga('set', 'anonymizeIp', true);
+  ga('send', 'pageview');
+</script>
+
+<!-- Google tag (gtag.js) -->
+<script async="" src="./GUIDE_ Raspbian Lite with RPD_LXDE_XFCE_MATE_i3_Openbox_X11 GUI - Raspberry Pi Forums_files/js"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-9633Z0KS6W');
+</script>
+
+<script type="text/javascript" id="cookiebanner" src="./GUIDE_ Raspbian Lite with RPD_LXDE_XFCE_MATE_i3_Openbox_X11 GUI - Raspberry Pi Forums_files/cookiebanner.min.js.download" data-bg="#999798" data-fg="#ffffff" data-link="#ffffff" data-moreinfo="https://www.raspberrypi.com/cookies" data-accept-on-scroll="true" data-message="We use cookies to ensure that we give you the best experience on our website. By continuing to visit this site you agree to our use of cookies." data-moreinfo-decoration="underline" integrity="sha384-ZtuZyMr5oH1P/r7ZKXXHFBkIZoNaDZ+aHMHxGUZWP0Zfwk6TgyUlgcR5QIx1kj1U" crossorigin="anonymous"></script>
+
+
+</body><template id="transover-popup-template"></template><template id="transover-tat-popup-template"></template></html>
