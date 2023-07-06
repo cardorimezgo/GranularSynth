@@ -12,7 +12,8 @@ enum class Direction {
 
 Direction IntToDirection(int num);
 
-
+//creation of custom unordered_map for Direction
+//ref: https://marknelson.us/posts/2011/09/03/hash-functions-for-c-unordered-containers.html
 struct EnumClassHash
 {
 	template <typename T>
@@ -24,17 +25,4 @@ struct EnumClassHash
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-#endif
+#endif //DIR_H
