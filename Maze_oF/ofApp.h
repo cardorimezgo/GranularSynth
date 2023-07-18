@@ -22,5 +22,7 @@ class ofApp : public ofBaseApp{
 		void dragEvent(ofDragInfo dragInfo);
 		void gotMessage(ofMessage msg);
 		
-        //Grid grid;
+        Grid grid= Grid(7, 7);
+
+
 };
