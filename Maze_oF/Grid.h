@@ -26,9 +26,11 @@ public:
         {
             for(int c = 0; c < cols; c++)
             {
+                // grid creation
                 cells[r][c]= new Cell(r,c);
             }
         }
+        // assigning cardinal directions to cells "configuring cells"
         Reset();
     }
 
@@ -53,8 +55,7 @@ public:
 
     //Identifies invalid cells, including those on the outer edge of the maze
     bool IsInvalid(int r, int c){
-        if(r >= rows || r < 0
-                || c >= cols || c < 0){
+        if(r >= rows || r < 0 || c >= cols || c < 0){
             return true;
         }
         return false;
@@ -65,9 +66,10 @@ public:
 
     void Display();
 
+    //Unmask cell at [row, col] if valid, else return false
+    bool Unmask(int row, int col);
+
     void Reset();
-
-
 
 };
 
