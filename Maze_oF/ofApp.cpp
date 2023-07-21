@@ -1,9 +1,11 @@
 #include "ofApp.h"
+#include "Binary_Tree.h"
 
 //--------------------------------------------------------------
 void ofApp::setup(){
     ofBackground(0,0,0);
-   
+    BinaryTreeGenerator generator(draw_maze);
+    generator.Generate();
 }
 
 //--------------------------------------------------------------
@@ -13,7 +15,7 @@ void ofApp::update(){
 
 //--------------------------------------------------------------
 void ofApp::draw(){
-    grid.Display();
+    draw_maze.Display();
 }
 
 //--------------------------------------------------------------
