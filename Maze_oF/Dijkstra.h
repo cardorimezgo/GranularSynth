@@ -22,11 +22,38 @@ class DijkstraSolver{
         }
     }
 
+    void Print(){
+        for(int r = 2*grid_.GetNumRows(); r >= 0; r--){
+            for(int c = 0; c < grid_.GetNumCols() + 1; c++){
+                std::cout << std::setw(2) <<flood_fill[r][c] << " ";
+            }
+            std::cout << std::endl;
+        }
+    }
+
+public:
+    DijkstraSolver (Grid& grid):
+    grid_(grid), flood_fill(grid_.GetNumRows(),
+    std::vector<int>(grid_.GetNumCols(), -1))
+    {}
+
+    void Reset(){
+        for(int r = 0; r < grid_.GetNumRows(); r++){
+            for(int c = 0; c < grid_.GetNumCols(); c++){
+                flood_fill[r][c] = -1;
+            }
+        }
+    }
+
+    //Finds a Path from the NW corner to the SE corner
+    void Solve(){
+        Cell* const nw_corner = grid_.GetCell(grid_.GetNumRows()-1, 0);
+        Cell* const se_corner = grid_.GetCell(0, grid_.GetNumCols()-1);
+        SolveHelper(nw_corner->row, nw_corner->col, 0);
+        //grid_.Display();
+    }
 
 
 };
-
-for(int c = 0; c < )
-
 
 #endif // DIJKSTRA_H
