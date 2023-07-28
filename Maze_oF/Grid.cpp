@@ -21,6 +21,11 @@ void Grid::Display(){
          float x2 = margin + ((cell->row + 1) * cell_sz);
          float y2 = margin + ((cell->col + 1) * cell_sz);
 
+         // Draw rectangles
+         rects[r][c] = ofRectangle(x1, y1, cell_sz, cell_sz);
+         ofDrawRectangle(rects[r][c]);
+
+         //Draw Walls
          Cell* neighborN = cell->GetNeighbor(Direction::North);
          if(neighborN == nullptr || !cell->Linked(neighborN)){
              ofDrawLine(x1, y1, x2, y1);
