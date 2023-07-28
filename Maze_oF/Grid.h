@@ -11,21 +11,27 @@ class Grid
 {
     int rows;
     int cols;
+    int margin;
+    int cell_sz;
 
     //2D vector storing cells in the grid
     std::vector<std::vector<Cell*>>cells;
 
     //Stores list of cells masked out
-    //std::unordered_set<int>masked_cells_:
+    std::unordered_set<int>masked_cells_;
+
+    //Create a 2D grid of rectangles
+    std::vector<std::vector<ofRectangle>> rects;
 
 public:
-    Grid(int rows_, int cols_) : rows(rows_), cols(cols_),
-                                 cells(rows_, std::vector<Cell*>(cols_,nullptr))
+    Grid(int rows_, int cols_, int margin_, int cell_sz_):
+        rows(rows_), cols(cols_),
+        margin(margin_), cell_sz(cell_sz_),
+        cells(rows_, std::vector<Cell*>(cols_,nullptr)),
+        rects(rows_, std::vector<ofRectangle>(cols_))
     {
-        for(int r = 0; r < rows; r++)
-        {
-            for(int c = 0; c < cols; c++)
-            {
+        for(int r = 0; r < rows; r++){
+            for(int c = 0; c < cols; c++){
                 // grid creation
                 cells[r][c]= new Cell(r,c);
             }
@@ -45,9 +51,9 @@ public:
     }
 
     //Returns the number of unmasked cells
-    //int GetNumCells(){
-//        return cols * rows - masked_cells_.size();
-//    }
+    int GetNumCells(){
+        return cols * rows - masked_cells_.size();
+    }
 
     Cell* const GetCell(int row, int col){
         return cells[row][col];
@@ -64,13 +70,23 @@ public:
     //Text based display of cells in the maze
     void DebugDisplay();
 
+    //Draw lines for each cell of the Grid
     void Display();
+
+    //close the dir side border of the cell at (row , col)
+    bool Unlink(int row, int col, Direction dir);
+
+    //open the dir side border of the cell at (row , col)
+    bool Link(int row, int col, Direction dir);
+
+    //Mask cell at (row , col) if valid, else return false
+    bool Mask(int row, int col);
 
     //Unmask cell at [row, col] if valid, else return false
     bool Unmask(int row, int col);
 
+    //close all walls of the Grid
     void Reset();
-
 };
 
 
