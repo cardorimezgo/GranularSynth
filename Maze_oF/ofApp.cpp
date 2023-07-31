@@ -8,7 +8,7 @@ void ofApp::setup(){
     BinaryTreeGenerator generator(draw_maze);
     generator.Generate();
 
-    dj = new DijkstraSolver(draw_maze);
+     DijkstraSolver dj(draw_maze);
 }
 
 //--------------------------------------------------------------
@@ -18,10 +18,9 @@ void ofApp::update(){
 
 //--------------------------------------------------------------
 void ofApp::draw(){
+    ofSetColor(0,150,0,200);
     draw_maze.Display();
-    dj->Reset();
-    dj->Solve();
-    //ofSetColor(200,150,3,200);
+
 
 }
 
