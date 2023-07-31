@@ -3,10 +3,12 @@
 #include "ofMain.h"
 #include "Grid.h"
 #include "Maze_Generator.h"
+#include "Dijkstra.h"
 
-constexpr auto GRID_DIM = 9;
-constexpr auto MARG = 50;
-constexpr auto CELL_SZ = 50;
+constexpr auto GRID_DIM_X = 50;
+constexpr auto GRID_DIM_Y = 30;
+constexpr auto MARG = 0;
+constexpr auto CELL_SZ = 16;
 
 class ofApp : public ofBaseApp{
 
@@ -27,6 +29,6 @@ class ofApp : public ofBaseApp{
 		void dragEvent(ofDragInfo dragInfo);
         void gotMessage(ofMessage msg);
 
-        Grid draw_maze = Grid(GRID_DIM, GRID_DIM, MARG, CELL_SZ);
+        Grid draw_maze = Grid(GRID_DIM_X, GRID_DIM_Y, MARG, CELL_SZ);
 
 };
