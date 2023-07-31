@@ -6,9 +6,11 @@
 
 class DijkstraSolver{
     Grid& grid_;
+
     // -1 for unvisited, -2 for blocked, else distance from source
     std::vector<std::vector<int>> flood_fill;
 
+    //Recursive function to populate vector
     void SolveHelper(int r, int c, int distance){
         //return if invalid cell or already visited
         if(grid_.IsInvalid(r , c) || flood_fill[r][c] != -1)
@@ -23,7 +25,16 @@ class DijkstraSolver{
                 SolveHelper(neighbor->row, neighbor->col, distance + 1);
         }
     }
-
+/*
+    void ColorGrid(){
+        for(int r = grid_.GetNumRows() - 1; r >= 0; r--){
+            for(int c = 0; c < grid_.GetNumCols(); c++){
+                int val = flood_fill[r][c];
+                grid_.setCellColor(r, c, ofColor(3*val,3*val,3*val,200));
+            }
+        }
+    }
+*/
     void Print(){
         for(int r = grid_.GetNumRows() - 1; r >= 0; r--){
             for(int c = 0; c < grid_.GetNumCols(); c++){
@@ -47,21 +58,14 @@ public:
         }
     }
 
-    //Finds a Path from the NW corner to the SE corner
+    //(start cell - end cell)Finds a Path from the NW corner to the SE corner
     void Solve(){
         Cell* const nw_corner = grid_.GetCell(grid_.GetNumRows()-1, 0);
         Cell* const se_corner = grid_.GetCell(0, grid_.GetNumCols()-1);
         SolveHelper(nw_corner->row, nw_corner->col, 0);
 
+        //Debbuging num cells
         Print();
-        //print upper left corner "color intensity"
-        std::cout << std::setw(2) <<flood_fill[grid_.GetNumRows()-1][0] << " ";
-        //
-        ofRectangle myRect(0, 0, ofGetWidth() / 2, ofGetHeight() / 2);
-        ofDrawRectangle(myRect);
-        //grid_.Display();
-        //TAKE ADVANTAGE OF THE DISPLAY FUNCTION IN THE GRID CLASS
-        // USE FLOOD_FILL METHOD FROM THE DIJKSTRA CLASS
     }
 
 
