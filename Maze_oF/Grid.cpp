@@ -9,7 +9,7 @@ void Grid::DebugDisplay(){
         }
     }
 }
-
+/*
 void Grid::Display(){
 
  for(int r = rows - 1; r >= 0; r--){
@@ -22,30 +22,30 @@ void Grid::Display(){
          float y2 = margin + ((cell->col + 1) * cell_sz);
 
          // Draw rectangles
-         rects[r][c] = ofRectangle(x1, y1, cell_sz, cell_sz);
-         ofDrawRectangle(rects[r][c]);
+         //rects[r][c] = ofRectangle(x1, y1, cell_sz, cell_sz);
+         //ofDrawRectangle(rects[r][c]);
 
          //Draw Walls
          Cell* neighborN = cell->GetNeighbor(Direction::North);
          if(neighborN == nullptr || !cell->Linked(neighborN)){
-             ofDrawLine(x1, y1, x2, y1);
+             //ofDrawLine(x1, y1, x2, y1);
          }
          Cell* neighborW = cell->GetNeighbor(Direction::West);
          if(neighborW == nullptr || !cell->Linked(neighborW)){
-             ofDrawLine(x1, y1, x1, y2);
+             //ofDrawLine(x1, y1, x1, y2);
          }
          Cell* neighborE = cell->GetNeighbor((Direction::East));
          if(neighborE == nullptr || !cell->Linked(neighborE)){
-             ofDrawLine(x2, y1, x2, y2);
+             //ofDrawLine(x2, y1, x2, y2);
          }
          Cell* neighborS = cell->GetNeighbor((Direction::South));
          if(neighborS == nullptr || !cell->Linked(neighborS)){
-             ofDrawLine(x1, y2, x2, y2);
+             //ofDrawLine(x1, y2, x2, y2);
          }
       }
    }
 }
-
+*/
 bool Grid::Unlink(int r, int c, Direction dir){
     Cell* cell = cells[r][c];
     return cell->UnlinkCell(dir);
@@ -85,9 +85,3 @@ void Grid::Reset(){
         }
     }
 }
-
-//bool Grid::
-
-//bool Grid::Mask(int r, int c){
-
-//}
