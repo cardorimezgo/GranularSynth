@@ -1,27 +1,26 @@
 #include "ofApp.h"
 #include "Binary_Tree.h"
 
-//--------------------------------------------------------------
+//--Default startup:  BinaryTree------------------------------------------------------------
 void ofApp::setup(){
+
     ofBackground(0,0,0);
+    std::vector<MazeGenerator*> generators;
+    generators.push_back(new BinaryTreeGenerator(draw_maze));
+    generators[0]->Generate();
 
-    BinaryTreeGenerator generator(draw_maze);
-    generator.Generate();
-
-     DijkstraSolver dj(draw_maze);
+    DijkstraSolver dj(draw_maze);
+    dj.Reset();
+    dj.Solve();
 }
 
-//--------------------------------------------------------------
+//-Model--Controller-----------------------------------------------------------
 void ofApp::update(){
-
 }
 
-//--------------------------------------------------------------
+//-View-------------------------------------------------------------
 void ofApp::draw(){
-    ofSetColor(0,150,0,200);
     draw_maze.Display();
-
-
 }
 
 //--------------------------------------------------------------
