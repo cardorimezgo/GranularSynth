@@ -6,6 +6,7 @@
 #include <unordered_set>
 #include <vector>
 
+class DijkstraSolver;
 
 class Grid
 {
@@ -20,15 +21,12 @@ class Grid
     //Stores list of cells masked out
     std::unordered_set<int>masked_cells_;
 
-    //Create a 2D grid of rectangles
-    std::vector<std::vector<ofRectangle>> rects;
-
 public:
     Grid(int rows_, int cols_, int margin_, int cell_sz_):
         rows(rows_), cols(cols_),
         margin(margin_), cell_sz(cell_sz_),
-        cells(rows_, std::vector<Cell*>(cols_,nullptr)),
-        rects(rows_, std::vector<ofRectangle>(cols_))
+        cells(rows_, std::vector<Cell*>(cols_,nullptr))
+       // rects(rows_, std::vector<ofRectangle>(cols_))
     {
         for(int r = 0; r < rows; r++){
             for(int c = 0; c < cols; c++){
