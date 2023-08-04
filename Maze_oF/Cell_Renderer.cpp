@@ -2,29 +2,22 @@
 
 void  Cell_Renderer::Display(){
 
-    BinaryTreeGenerator generator(draw_maze);
-    generator.Generate();
-
-     DijkstraSolver dj(draw_maze);
-     dj.Reset();
-     dj.Solve();
-
  for(int r = draw_maze.GetNumRows() - 1; r >= 0; r--){
      for(int c = 0; c < draw_maze.GetNumCols(); c++){
          Cell* cell = draw_maze.GetCell(r , c);
 
-         float x1 = MARG + (cell->row * CELL_SZ);
-         float y1 = MARG + (cell->col * CELL_SZ);
-         float x2 = MARG + ((cell->row + 1) * CELL_SZ);
-         float y2 = MARG + ((cell->col + 1) * CELL_SZ);
+         float x1 = marg + (cell->row * cell_sz);
+         float y1 = marg + (cell->col * cell_sz);
+         float x2 = marg + ((cell->row + 1) * cell_sz);
+         float y2 = marg + ((cell->col + 1) * cell_sz);
 
          // Intensity color of each cell
          int color = dj.GetDistance(r , c);
          ofSetColor(3*color, 3*color, 3*color, 200);
 
          // Draw rectangles
-         rects[r][c] = ofRectangle(x1, y1, CELL_SZ, CELL_SZ);
-         ofDrawRectangle(rects[r][c]);
+         //rects[r][c] = ofRectangle(x1, y1, CELL_SZ, CELL_SZ);
+         ofDrawRectangle(x1, y1, cell_sz, cell_sz);
 
          //Draw Walls
          Cell* neighborN = cell->GetNeighbor(Direction::North);
