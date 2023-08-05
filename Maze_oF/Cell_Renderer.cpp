@@ -2,22 +2,21 @@
 
 void  Cell_Renderer::Display(){
 
- for(int r = draw_maze.GetNumRows() - 1; r >= 0; r--){
-     for(int c = 0; c < draw_maze.GetNumCols(); c++){
-         Cell* cell = draw_maze.GetCell(r , c);
+ for(int r = grid.GetNumRows() - 1; r >= 0; r--){
+     for(int c = 0; c < grid.GetNumCols(); c++){
+         Cell* cell = grid.GetCell(r , c);
 
-         float x1 = marg + (cell->row * cell_sz);
-         float y1 = marg + (cell->col * cell_sz);
-         float x2 = marg + ((cell->row + 1) * cell_sz);
-         float y2 = marg + ((cell->col + 1) * cell_sz);
+         float x1 = grid.GetMargin() + (cell->row * grid.GetCell_Sz());
+         float y1 = grid.GetMargin() + (cell->col * grid.GetCell_Sz());
+         float x2 = grid.GetMargin() + ((cell->row + 1) * grid.GetCell_Sz());
+         float y2 = grid.GetMargin() + ((cell->col + 1) * grid.GetCell_Sz());
 
          // Intensity color of each cell
          int color = dj.GetDistance(r , c);
-         ofSetColor(3*color, 3*color, 3*color, 200);
+         ofSetColor(3*color, 3*color, 3*color, 100);
 
          // Draw rectangles
-         //rects[r][c] = ofRectangle(x1, y1, CELL_SZ, CELL_SZ);
-         ofDrawRectangle(x1, y1, cell_sz, cell_sz);
+         ofDrawRectangle(x1, y1, grid.GetCell_Sz(), grid.GetCell_Sz());
 
          //Draw Walls
          Cell* neighborN = cell->GetNeighbor(Direction::North);
