@@ -4,6 +4,7 @@
 #include "Grid.h"
 #include "Maze_Generator.h"
 #include "Dijkstra.h"
+#include "Cell_Renderer.h"
 
 constexpr auto GRID_DIM_X = 50;
 constexpr auto GRID_DIM_Y = 30;
@@ -30,5 +31,7 @@ class ofApp : public ofBaseApp{
         void gotMessage(ofMessage msg);
 
         Grid draw_maze = Grid(GRID_DIM_X, GRID_DIM_Y, MARG, CELL_SZ);
+        DijkstraSolver dj = DijkstraSolver(draw_maze);
+        Cell_Renderer c_render = Cell_Renderer(draw_maze,dj);
 
 };
