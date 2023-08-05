@@ -6,26 +6,18 @@
 #include "Dijkstra.h"
 #include "Grid.h"
 
-constexpr auto GRID_DIM_X = 50;
-constexpr auto GRID_DIM_Y = 30;
-constexpr auto MARG = 0;
-constexpr auto CELL_SZ = 16;
-
 class Cell_Renderer{
-    Grid draw_maze;
-    DijkstraSolver dj;
-
-    //Create a 2D grid of rectangles
-    std::vector<std::vector<ofRectangle>> rects;
-
+    Grid& grid;
+    DijkstraSolver& dj;
 
 public:
-    Cell_Renderer() : draw_maze(GRID_DIM_X, GRID_DIM_Y, MARG, CELL_SZ),
-                      rects(draw_maze.GetNumRows(), std::vector<ofRectangle>(draw_maze.GetNumCols())),
-                      dj(draw_maze)
-                      {}
-
+    Cell_Renderer(Grid& g , DijkstraSolver& d) : grid(g),
+                                                 dj(d)
+                                                 {}
+    // Draw walls and rectangles, set colors for each cell
     void Display();
+
+
 };
 
 
