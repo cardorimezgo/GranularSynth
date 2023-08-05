@@ -1,7 +1,7 @@
 #include "ofApp.h"
 #include "Binary_Tree.h"
 
-//--Default startup:  BinaryTree------------------------------------------------------------
+//-Default startup:  BinaryTree------------------------------------------------------------
 void ofApp::setup(){
 
     ofBackground(0,0,0);
@@ -9,9 +9,9 @@ void ofApp::setup(){
     generators.push_back(new BinaryTreeGenerator(draw_maze));
     generators[0]->Generate();
 
-    DijkstraSolver dj(draw_maze);
     dj.Reset();
     dj.Solve();
+
 }
 
 //-Model--Controller-----------------------------------------------------------
@@ -20,7 +20,7 @@ void ofApp::update(){
 
 //-View-------------------------------------------------------------
 void ofApp::draw(){
-    draw_maze.Display();
+    c_render.Display();
 }
 
 //--------------------------------------------------------------
