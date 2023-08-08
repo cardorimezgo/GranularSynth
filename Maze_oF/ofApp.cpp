@@ -5,6 +5,8 @@
 void ofApp::setup(){
 
     ofBackground(0,0,0);
+
+    // Maze algos initialization
     std::vector<MazeGenerator*> generators;
     generators.push_back(new BinaryTreeGenerator(draw_maze));
     generators[0]->Generate();
@@ -12,15 +14,27 @@ void ofApp::setup(){
     dj.Reset();
     dj.Solve();
 
+
+    testFbo.allocate(ofGetWidth(), ofGetHeight(), GL_RGBA);
+    testFbo.begin();
+    ofClear(255 , 255 , 255 , 255);
+    c_render.DrawBuffer();
+    testFbo.end();
 }
 
 //-Model--Controller-----------------------------------------------------------
 void ofApp::update(){
+    //start animating the maze
 }
 
 //-View-------------------------------------------------------------
-void ofApp::draw(){
-    c_render.Display();
+void ofApp::draw(){ //IMPLEMENTAR COLOR GRADIENT
+                    //check cell color order flood_fill
+
+    testFbo.draw(0 , 0);
+
+    //c_render.DrawBuffer();
+
 }
 
 //--------------------------------------------------------------
