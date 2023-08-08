@@ -30,6 +30,7 @@ class ofApp : public ofBaseApp{
 		void dragEvent(ofDragInfo dragInfo);
         void gotMessage(ofMessage msg);
 
+        ofFbo testFbo;
         Grid draw_maze = Grid(GRID_DIM_X, GRID_DIM_Y, MARG, CELL_SZ);
         DijkstraSolver dj = DijkstraSolver(draw_maze);
         Cell_Renderer c_render = Cell_Renderer(draw_maze,dj);
