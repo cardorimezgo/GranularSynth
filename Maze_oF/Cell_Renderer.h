@@ -14,11 +14,17 @@ class Cell_Renderer{
     bool needsRedraw = true;
 
 public:
-    Cell_Renderer(Grid& g , DijkstraSolver& d) : grid(g),
-                                                 dj(d)
-                                                 {}
-    // Draw walls and rectangles, set colors for each cell
-    void Display();
+
+    Cell_Renderer(Grid& g , DijkstraSolver& d) :
+    grid(g),
+    dj(d)
+    {}
+
+    void Draw_Walls();
+
+    void Draw_Rects();
+
+    void Anima_Maze(int cnt);
 };
 
 
