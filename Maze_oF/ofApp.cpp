@@ -15,26 +15,31 @@ void ofApp::setup(){
     dj.Solve();
 
 
-    testFbo.allocate(ofGetWidth(), ofGetHeight(), GL_RGBA);
-    testFbo.begin();
+    Draw_Buffer.allocate(ofGetWidth(), ofGetHeight(), GL_RGBA);
+    Draw_Buffer.begin();
     ofClear(255 , 255 , 255 , 255);
-    c_render.DrawBuffer();
-    testFbo.end();
+    c_render.Draw_Rects();
+    c_render.Draw_Walls();
+    Draw_Buffer.end();
+
+    circleYPos = 0;
+
 }
 
 //-Model--Controller-----------------------------------------------------------
 void ofApp::update(){
     //start animating the maze
+    circleYPos+=2;
+    if(circleYPos > 300) circleYPos = 0;
+
 }
 
 //-View-------------------------------------------------------------
 void ofApp::draw(){ //IMPLEMENTAR COLOR GRADIENT
                     //check cell color order flood_fill
-
-    testFbo.draw(0 , 0);
-
-    //c_render.DrawBuffer();
-
+    ofClear(255, 255, 255, 255);
+    c_render.Anima_Maze(circleYPos);
+    //Draw_Buffer.draw(0 , 0);
 }
 
 //--------------------------------------------------------------
