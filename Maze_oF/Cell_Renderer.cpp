@@ -1,6 +1,6 @@
 #include "Cell_Renderer.h"
 
-void  Cell_Renderer::Display(){
+void  Cell_Renderer::Draw_Walls(){
 
     if(!needsRedraw)return;
 
@@ -8,18 +8,11 @@ void  Cell_Renderer::Display(){
         for(int c = 0; c < grid.GetNumCols(); c++){
              Cell* cell = grid.GetCell(r , c);
 
+             // Calculating coordinates
              float x1 = grid.GetMargin() + (cell->row * grid.GetCell_Sz());
              float y1 = grid.GetMargin() + (cell->col * grid.GetCell_Sz());
              float x2 = grid.GetMargin() + ((cell->row + 1) * grid.GetCell_Sz());
              float y2 = grid.GetMargin() + ((cell->col + 1) * grid.GetCell_Sz());
-
-             // Intensity color of each cell
-             int color = dj.GetDistance(r , c);
-             std::cout << std::setw(2) << color << " ";
-             ofSetColor(3*color, 3*color, 3*color, 100);
-
-             // Draw rectangles
-             ofDrawRectangle(x1, y1, grid.GetCell_Sz(), grid.GetCell_Sz());
 
              //Draw Walls
              Cell* neighborN = cell->GetNeighbor(Direction::North);
@@ -41,6 +34,30 @@ void  Cell_Renderer::Display(){
          }
      }
      needsRedraw = false;
+}
+
+void Cell_Renderer::Draw_Rects(){
+    vector<pair<int , pair<int , int>>> sorted = dj.Sort_Distance();
+    for(const auto& entry : sorted){
+
+        int color = entry.first;
+        int row = entry.second.first;
+        int col = entry.second.second;
+
+        float x1 = grid.GetMargin() + (row * grid.GetCell_Sz());
+        float y1 = grid.GetMargin() + (col * grid.GetCell_Sz());
+
+        // Intensity color of each cell
+        ofSetColor(3*color, 3*color, 3*color, 200);
+        //std::cout << std::setw(2) << color << " ";
+        ofDrawRectangle(x1 , y1, grid.GetCell_Sz(), grid.GetCell_Sz());
+
+    }
+}
+
+void Cell_Renderer::Anima_Maze(int cnt){
+    ofSetColor(0,0,0,200);
+    ofDrawCircle(20, cnt, 50);
 }
 
 
