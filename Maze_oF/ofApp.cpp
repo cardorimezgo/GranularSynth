@@ -14,32 +14,33 @@ void ofApp::setup(){
     dj.Reset();
     dj.Solve();
 
-
+    // allocating memory for image buffer
     Draw_Buffer.allocate(ofGetWidth(), ofGetHeight(), GL_RGBA);
+    //guarantee that the FBO starts with a clean slate
     Draw_Buffer.begin();
-    ofClear(255 , 255 , 255 , 255);
-    c_render.Draw_Rects();
-    c_render.Draw_Walls();
+    ofClear(255 , 255 , 255 , 0);
     Draw_Buffer.end();
-
-    circleYPos = 0;
+    // start from frame 0
+    anima_frame = 0;
 
 }
 
 //-Model--Controller-----------------------------------------------------------
 void ofApp::update(){
-    //start animating the maze
-    circleYPos+=2;
-    if(circleYPos > 300) circleYPos = 0;
 
+    while(anima_frame < GRID_DIM_X * GRID_DIM_Y){
+        Draw_Buffer.begin();
+        //ofClear(255,255,255,0);
+        c_render.Draw_Rects(anima_frame);
+        Draw_Buffer.end();
+        anima_frame++;
+    }
 }
 
 //-View-------------------------------------------------------------
 void ofApp::draw(){ //IMPLEMENTAR COLOR GRADIENT
                     //check cell color order flood_fill
-    ofClear(255, 255, 255, 255);
-    c_render.Anima_Maze(circleYPos);
-    //Draw_Buffer.draw(0 , 0);
+    Draw_Buffer.draw(0 , 0);
 }
 
 //--------------------------------------------------------------
