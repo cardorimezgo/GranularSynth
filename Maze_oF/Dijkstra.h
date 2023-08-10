@@ -10,11 +10,15 @@ class DijkstraSolver{
     // -1 for unvisited, -2 for blocked, else distance from source
     std::vector<std::vector<int>> flood_fill;
 
+    // pairs for sorted cells coordinates & distances
+    std::vector<std::pair<int , std::pair<int , int>>> sorted_dist;
+
     //Recursive function to populate vector
     void SolveHelper(int r, int c, int distance){
         //return if invalid cell or already visited
         if(grid_.IsInvalid(r , c) || flood_fill[r][c] != -1)
             return;
+
         flood_fill[r][c] = distance;
 
         auto* const current_cell = grid_.GetCell(r , c);
@@ -25,16 +29,17 @@ class DijkstraSolver{
                 SolveHelper(neighbor->row, neighbor->col, distance + 1);
         }
     }
-/*
-    void ColorGrid(){
-        for(int r = grid_.GetNumRows() - 1; r >= 0; r--){
+
+    //Sorting the cell according to their distance
+    void Sort_Distance(){
+        for(int r = 0; r < grid_.GetNumRows(); r++){
             for(int c = 0; c < grid_.GetNumCols(); c++){
-                int val = flood_fill[r][c];
-                grid_.setCellColor(r, c, ofColor(3*val,3*val,3*val,200));
+                sorted_dist.push_back({flood_fill[r][c], {r , c}});
             }
         }
+        std::sort(sorted_dist.begin() , sorted_dist.end());
     }
-*/
+
     void Print(){
         for(int r = grid_.GetNumRows() - 1; r >= 0; r--){
             for(int c = 0; c < grid_.GetNumCols(); c++){
@@ -63,11 +68,14 @@ public:
         Cell* const nw_corner = grid_.GetCell(grid_.GetNumRows()-1, 0);
         Cell* const se_corner = grid_.GetCell(0, grid_.GetNumCols()-1);
         SolveHelper(nw_corner->row, nw_corner->col, 0);
-
+        Sort_Distance();
         //Debbuging num cells
-        Print();
+        //Print();
     }
 
+    vector<pair<int , pair<int , int>>> Get_Sort_Dist(){
+        return sorted_dist;
+    }
 
 };
 
