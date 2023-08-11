@@ -4,7 +4,7 @@
 #include "Grid.h"
 #include <vector>
 
-class DijkstraSolver{
+class DijkstraSolver{ //SHOULD RE-RUN WHENEVER THE USER MAKES CHANGES TO MAZE
     Grid& grid_;
 
     // -1 for unvisited, -2 for blocked, else distance from source
@@ -20,7 +20,7 @@ class DijkstraSolver{
             return;
 
         flood_fill[r][c] = distance;
-
+        //std::cout << std::setw(2) <<" |"<<r<<"|"<<"|"<<c<< "| ";
         auto* const current_cell = grid_.GetCell(r , c);
         auto neighbors = current_cell->GetNeighbors();
         for (auto neighbor : neighbors){
@@ -31,13 +31,22 @@ class DijkstraSolver{
     }
 
     //Sorting the cell according to their distance
-    void Sort_Distance(){
+ /*   void Sort_Distance(){
         for(int r = 0; r < grid_.GetNumRows(); r++){
             for(int c = 0; c < grid_.GetNumCols(); c++){
                 sorted_dist.push_back({flood_fill[r][c], {r , c}});
             }
         }
         std::sort(sorted_dist.begin() , sorted_dist.end());
+    }
+  */
+    void dang(){
+        for(int r = 0; r < grid_.GetNumRows(); r++){
+            for(int c = 0; c < grid_.GetNumCols(); c++){
+                sorted_dist.push_back({flood_fill[r][c], {r , c}});
+            }
+        }
+        //std::sort(sorted_dist.begin() , sorted_dist.end());
     }
 
     void Print(){
@@ -68,7 +77,8 @@ public:
         Cell* const nw_corner = grid_.GetCell(grid_.GetNumRows()-1, 0);
         Cell* const se_corner = grid_.GetCell(0, grid_.GetNumCols()-1);
         SolveHelper(nw_corner->row, nw_corner->col, 0);
-        Sort_Distance();
+        dang();
+        //Sort_Distance();
         //Debbuging num cells
         //Print();
     }
@@ -77,6 +87,29 @@ public:
         return sorted_dist;
     }
 
+    vector<pair<int , pair<int , int>>>   floooder(){
+        return sorted_dist;
+    }
+
+    //Recursive function to populate vector
+    void RE_Dijkstra(int r, int c, int distance){
+        Cell* const nw_corner = grid_.GetCell(grid_.GetNumRows()-1, 0);
+        Cell* const se_corner = grid_.GetCell(0, grid_.GetNumCols()-1);
+
+        //return if invalid cell or already visited
+        if(grid_.IsInvalid(r , c) || flood_fill[r][c] != -1)
+            return;
+
+        flood_fill[r][c] = distance;
+
+        auto* const current_cell = grid_.GetCell(r , c);
+        auto neighbors = current_cell->GetNeighbors();
+        for (auto neighbor : neighbors){
+            if(current_cell->Linked(neighbor))
+                //adding +1 to unvisited neighbor
+                SolveHelper(neighbor->row, neighbor->col, distance + 1);
+        }
+    }
 };
 
 #endif // DIJKSTRA_H
