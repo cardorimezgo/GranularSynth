@@ -23,10 +23,36 @@ void ofApp::setup(){
     //Draw_Buffer.end();
 
     // start from frame 0
-    anima_frame = 0;
-    //timePreviousFrame = 0;    
+    anima_frame = 0;  
+
+    cnt = 0;
+    cnt2 = 0;
 }
 
+
+void ofApp::update(){
+    static unsigned long lastUpdateTime = 0;
+    unsigned long currentTime = ofGetElapsedTimeMillis();
+    static int stepSize = 10; // Control speed here: higher value for faster rendering, lower for slower.
+
+    if(currentTime - lastUpdateTime > MILLISECS_PER_FRAME) {
+        static int currentIndex = 0;
+        
+        for (int i = 0; i < stepSize; ++i) {
+            if (currentIndex < total_cells) {
+                Draw_Buffer.begin();
+                c_render.Draw(currentIndex);
+                Draw_Buffer.end();
+                currentIndex++;
+            }
+        }
+        
+        lastUpdateTime = currentTime;
+    }
+}
+
+
+/*
 //-Model--Controller-----------------------------------------------------------
 void ofApp::update(){
 
@@ -38,29 +64,36 @@ void ofApp::update(){
         ofSleepMillis(timeToWait);
     }
 
-    float deltaTime= (ofGetLastFrameTime() - timePreviousFrame) / 1000.0f;
+    float deltaTime = (ofGetLastFrameTime() - timePreviousFrame) / 1000.0f;
     //if (deltaTime > 0.016){
     //    deltaTime = 0.016;
     //}
 
-    timePreviousFrame = ofGetLastFrameTime();
-
-    if (anima_frame < total_cells){
+    timePreviousFrame = ofGetLastFrameTime();  */
+    /*
+    for (int i = 0; i < 50; i++){    
+        cnt = cnt + (1000 * deltaTime);
+        cnt2 = cnt2 + (1 * deltaTime);
+        std::cout<< "cnt:" << cnt << "   " << "cnt2:" <<cnt2 <<std::endl; 
+    }
+    *//*
+    cnt = cnt + (100000 * deltaTime);
+    int index = static_cast<int>(std::round(cnt));
+    std::cout<< "index:" << index <<std::endl; 
+    
+    if (index < total_cells){
             
         Draw_Buffer.begin();
-        c_render.Draw(anima_frame);
+        c_render.Draw(index);
         Draw_Buffer.end();
 
-        anima_frame+= 1;
-        
-
+        //anima_frame += 1;
     }
     //draw_maze.Reset(); Reset Maze every time we change of maze algo.
 }
-
+*/
 //-View-------------------------------------------------------------
-void ofApp::draw(){ //IMPLEMENTAR COLOR GRADIENT
-                    //check cell color order flood_fill
+void ofApp::draw(){ 
     Draw_Buffer.draw(0 , 0);
 }
 
