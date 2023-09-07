@@ -5,7 +5,7 @@
 #include <vector>
 #include <algorithm>
 
-class Depth_First_Search{ //RESET FLOOD_FLAT TO -1 EACH TIME WE RUN AGAIN DFS , SAME FOR OTHER DS 
+class Depth_First_Search{ 
 	Grid& grid_;	
 	std::vector<std::vector<int>> flood_fill; // -1 for unvisited, -2 for blocked, else distance from source.
 	std::vector<std::pair<int, std::pair<int , int>>> flood_flat; //vector for flattening vector of vectors
