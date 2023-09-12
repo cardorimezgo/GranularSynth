@@ -2,61 +2,56 @@
 #define DIJKSTRA_H
 
 #include "Grid.h"
-#include "Priority_Queue"
+//#include "Priority_Queue.h"
 #include <vector>
-#include <limits>
+//#include <limits>
 
 
 class DijkstraSolver{
-
     Grid& grid_;
+    std::vector<std::vector<int>>flood_fill;
+    std::vector<std::pair<int, std::pair<int,int>>>flat_tree;
 
-    // DS for handling (x , y) coordinates and distance of each cell
-    struct Cell_Dist{
-        int x;
-        int y;
-        int dist;
-    };
+    //the weights are already assigned by maze algo
+    void Dijkstra_Solver(int r , int c){
 
-    std::vector<Cell_Dist> cell_dist;
+        if(grid_.IsInvalid(r , c))
+        return;
+    } 
 
-    //start cell
-    Cell* const nw_corner = grid_.GetCell(grid_.GetNumRows()-1, 0);
-    //end cell
-    Cell* const se_corner = grid_.GetCell(0, grid_.GetNumCols()-1);
+    /*
+    void DFS_helper(int r, int c, int distance){
+		if(grid_.IsInvalid(r , c) || flood_fill[r][c] != -1)
+			return
 
-    void Dijkstra_Init(){  ///CALL THIS FUNCTION AT THE CONSTRUCTOR!?
+		flood_fill[r][c] = distance;
 
-        //Initialization distances to "infinity"
-        int index = 0;
-        for(int r = grid_.GetNumRows() - 1; r >= 0; r++){
-            for(int c = 0; i < grid_.GetNumCols(); c++){
-                cell_dist[index].x = r;
-                cell_dist[index].y = c;
-                cell_dist[index].dist = std::numeric_limits<int>::max(); //Using the maximum value for the integer type
-                index++;
+		auto* const current_cell = grid_.GetCell(r , c);
+		auto neighbors = current_cell->GetNeighbors();
+		for(auto neighbor : neighbors){
+			if(current_cell->Linked(neighbor))
+				DFS_helper(neighbor->row , neighbor->col, distance+1);
+		}
+	}
+    */
+    void Print(){
+        for(int r = grid_.GetNumRows() - 1; r >= 0; r--){
+            for(int c = 0; c < grid_.GetNumCols(); c++){
+                std::cout << std::setw(2) <<flood_fill[r][c] << " ";
             }
+            std::cout << std::endl;
         }
-
-        // Flattening array Column-major
-        //////////////////////// col * rows + row
-        int nw_corner_index = nw_corner->col * grid_.GetNumRows() + nw_corner->row;
-        // Initialization for the first cell
-        cell_dist[nw_corner_index].dist = 0;
-
-
     }
-
-    void Dijkstra_Solver(){
-
-        if(grid_.IsIvalid())
-    }
+    ////////////////////////////////////////////////////////////////////////////////*/
 
 public:
 
+    //todo: getter for running DIjkstra algo
+    // getter for the calculated distance values 
+    // give option to user to start anywhere he wants
     DijkstraSolver (Grid& grid):
     grid_(grid),
-    cell_dist(grid.GetNumRows() * grid.GetNumCols())
+    flood_fill(grid_.GetNumRows() , std::vector<int>(grid_.GetNumCols(), -1))
     { }
 
     void Reset(){
@@ -81,5 +76,3 @@ public:
 };
 
 #endif // DIJKSTRA_H
-                                 
-                                                     
