@@ -17,16 +17,16 @@ public:
             for(int cols = 0; cols < maze_.GetNumCols(); cols++){
                 int rand_int = dist2(rng_);
 
-            //Open north wall if possible else east
-            if(rand_int == 1){
-                if(!maze_.Link(rows, cols, Direction::North))
-                    maze_.Link(rows, cols, Direction::East);
-            }else{
-                if(!maze_.Link(rows, cols, Direction::East))
-                    maze_.Link(rows, cols, Direction::North);
+                //Open north wall if possible else east
+                if(rand_int == 1){
+                    if(!maze_.Link(rows, cols, Direction::North))
+                        maze_.Link(rows, cols, Direction::East);
+                }else{
+                    if(!maze_.Link(rows, cols, Direction::East))
+                        maze_.Link(rows, cols, Direction::North);
+                }
             }
-         }
-      }
+        }
     }
 };
 
