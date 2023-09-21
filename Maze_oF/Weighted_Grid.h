@@ -13,24 +13,27 @@ public:
         //set_Rnd_Edge(); ACTIVATE AFTER RUNNING TESTS
     }
 
+    //Set all the weights to a given value
     void init_Weights();
 
+    //Get the weight between two vertices
     int get_Weight(Cell* cell1, Cell* cell2);
 
-    void SetWeight (int row1, int col1, int row2, int col2, int weight);
+    //Modify weight between two vertices
+    void set_Weight(int row1, int col1, int row2, int col2, int weight);
     
-    
-    //set random weights for edges between cells
+    //Set all Edges to a random value
     void set_Rnd_Edge();
+    
+    //Print all edges for debugging purpose
+    void printAdjacencyList();
 
-    
-    
     /*
     //set weight based on audio data
     bool audio_Weight(Cell* cell);
     */
 
-    void printAdjacencyList();
+    
 };
 
 
