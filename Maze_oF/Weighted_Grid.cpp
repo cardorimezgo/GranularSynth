@@ -11,14 +11,14 @@ void Weighted_Grid::init_Weights(){
             for(Cell* neighbor : neighbors) {
                 if(neighbor == nullptr) {
                     continue;
-                }
+                }//Initialize all edges to -1 (both directions) undirected graph
                 adjacencyList[{current_cell , neighbor}] = -1;
             }
         }
     }        
 }
 
-void Weighted_Grid::SetWeight(int row1, int col1, int row2, int col2, int weight){
+void Weighted_Grid::set_Weight(int row1, int col1, int row2, int col2, int weight){
     if(IsInvalid(row1 , col1) || IsInvalid(row2 , col2)){
             return;
         }
@@ -29,9 +29,9 @@ void Weighted_Grid::SetWeight(int row1, int col1, int row2, int col2, int weight
 }
 
 void Weighted_Grid::set_Rnd_Edge(){
-    //std::random_device rd;
-    //std::mt19937 gen(rd());
-    //std::uniform_int_distribution<> distr(1 , 5);
+    std::random_device rd;
+    std::mt19937 gen(rd());
+    std::uniform_int_distribution<> distr(1 , 5);
     
     for(int r = 0; r < rows; r++){
         for(int c = 0; c < cols; c++){
@@ -45,22 +45,14 @@ void Weighted_Grid::set_Rnd_Edge(){
                 if(neighbor == nullptr){///////////check
                     //std::cout << "neighbor is null. Skipping" << std::endl;
                     continue;
+                }//avoid over-writing edges between pairs of vertices u,v and v,u
+                if(adjacencyList[{current_cell , neighbor}] == -1 && adjacencyList[{neighbor , current_cell}] == -1){
+                    adjacencyList[{current_cell , neighbor}] = distr(gen);
+                    adjacencyList[{neighbor , current_cell}] = distr(gen);
+                   // std::cout << "Setting weight for edge (" << current_cell->row << "," << current_cell->col << ") to ("
+                   //           << neighbor->row << "," << neighbor->col << ") as " << w << std::endl;
+
                 }
-
-                //current_cell->PrintCell(true);
-                
-                //std::cout << "current_cell:" << current_cell << "  neighbor:" << neighbor << std::endl;
-
-                /*
-                if(current_cell->row < neighbor->row || current_cell->row < neighbor->row && 
-                                                        current_cell->row == neighbor->row){
-
-                    //std::cout << "Setting edge for (" << current_cell->row << ", " << current_cell->col
-                             // << ") -> (" << neighbor->row << ", " << neighbor->col << ")." << std::endl;
-
-                    adjacencyList[{current_cell , neighbor}] = 4;//distr(gen); //generating random edge values
-                    
-                }*/
             }
 
         }
@@ -68,9 +60,9 @@ void Weighted_Grid::set_Rnd_Edge(){
 }
 
 int Weighted_Grid::get_Weight(Cell* cell1 , Cell* cell2){
+    int weight = -1;
     // To search for an edge from cell1 to cell2
     auto it = adjacencyList.find({cell1, cell2});
-    int weight;
 
     if (it != adjacencyList.end()) {
     // Edge from cell1 to cell2 exists, its weight is stored in it->second
@@ -88,8 +80,8 @@ void Weighted_Grid::printAdjacencyList() {
         const auto& key = entry.first;  // std::pair<Cell*, Cell*> 
         const auto& value = entry.second;  // int
 
-        std::cout << "(" << key.first->row << "," << key.first->row << ") -> "
-                  << "(" << key.second->col << "," << key.second->col << ") : "
+        std::cout << "(" << key.first->row << "," << key.first->col << ") -> "
+                  << "(" << key.second->row << "," << key.second->col << ") : "
                   << value << std::endl;
     }
 }
