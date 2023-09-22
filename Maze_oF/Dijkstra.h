@@ -1,22 +1,31 @@
 #ifndef DIJKSTRA_H
 #define DIJKSTRA_H
 
-#include "Grid.h"
-//#include "Priority_Queue.h"
+#include "Weighted_Grid.h"
 #include <vector>
 //#include <limits>
 
 
 class DijkstraSolver{
-    Grid& grid_;
-    std::vector<std::vector<int>>flood_fill;
-    std::vector<std::pair<int, std::pair<int,int>>>flat_tree;
+    Weighted_Grid& w_grid;
 
-    //the weights are already assigned by maze algo
-    void Dijkstra_Solver(int r , int c){
+    //Creation of struct for specific pair Cell and int that will be used in priority queue
+    using cell_Dist = std::pair<Cell* , int>;
+    struct Compare{
+        bool operator()(const cell_Dist& a, const cell_Dist& b)const{
+            return a.second > b.second;
+        }
+    };
+    std::priority_queue<cell_Dist, std::vector<cell_Dist>, Compare>minHeap;
 
-        if(grid_.IsInvalid(r , c))
+    //Weights are already assigned by Weighted_Grid
+    void Dijkstra_Solver(int r , int c, int distance){
+        if(w_grid.IsInvalid(r , c))
         return;
+        
+
+
+
     } 
 
     /*
@@ -66,7 +75,7 @@ public:
     void Solve(){
         Cell* const nw_corner = grid_.GetCell(grid_.GetNumRows()-1, 0);
         Cell* const se_corner = grid_.GetCell(0, grid_.GetNumCols()-1);
-        SolveHelper(nw_corner->row, nw_corner->col, 0);
+        //SolveHelper(nw_corner->row, nw_corner->col, 0);
 
         //Debbuging num cells
         //Print();
