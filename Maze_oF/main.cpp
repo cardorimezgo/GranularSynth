@@ -13,16 +13,20 @@ int main( ){
 
 
 //TODO:
-// Introduce randomness into Prims and Kruskals algos. 
+// (10)Refine interface design
+// (10)Option for adjusting maze's grid size
+// (4)Calculate longest path in maze
+// (5)Integrate Prims and Kruskals algos into Maze_Generator. 
 //	-Leave option for adjusting weights in graphs depending... 
 //    on audio frequency analysis for example
-// implement Dijkstra algo
-// implement Kruskal algo
-// implement Prime's algo
-// Generate switch function for maze algos.
-// Reset Grid values when generating new mazes
-// find out how to integrate color gradient add-on
-// implementation of ofxColorMap to differentiate distances between cells
-// Implement Dither algorithm to maze 
-// Implement communication bia OSC with supercollider
-// Integrate touch interface RBPi
+// (1)implement Dijkstra algo
+// (2)implement Kruskal algo
+// (3)implement Prime's algo
+// (4)implement DFS maze algos.
+// (7)Generate switch function for maze algos.
+// (6)Reset Grid values when generating new mazes
+// (8)find out how to integrate color gradient add-on
+// (9)implementation of ofxColorMap to differentiate distances between cells
+// (10)Implement Dither algorithm to maze 
+// (11)Implement communication bia OSC with supercollider
+// (12)Integrate touch interface RBPi
