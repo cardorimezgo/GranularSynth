@@ -27,10 +27,10 @@ class DijkstraSolver{
     std::vector<std::pair<int, std::pair<int , int>>> dist_flat; 
 
     void Dijkstra_Solver(int r , int c, int distance){
-        if(w_grid_.IsInvalid(r , c))
+        if(w_grid_.IsInvalid(r , c) || finalized[r][c] == 1)
             return;
 
-        Cell* origin = w_grid_.Get_Cell(r , c);
+        Cell* const origin = w_grid_.Get_Cell(r , c);
         minHeap.push({origin , distance}); //adding origin cell to pq
         dist[r][c] = distance; //setting 0 distance to origin cell
         finalized[r][c] = 1;  // origin cell finalized
@@ -38,7 +38,6 @@ class DijkstraSolver{
         int num_Fin = 0;
 
         while(num_Fin != w_grid_.Total_Cells()){
-            std::cout<<w_grid_.Total_Cells()<<std::endl;//////////!!!!!!
             auto neighbors = current_cell->GetNeighbors();
             for(auto neighbor : neighbors){
                 if(Isnt_Final(neighbor->row , neighbor->col)){
@@ -47,8 +46,9 @@ class DijkstraSolver{
                     std::pair<Cell* , int> newElement = std::make_pair(neighbor , weight);
                     minHeap.push(newElement);
                     // Adding and updating distance values
-                    int current_weight = dist[neighbor->row][neighbor->col];
-                    dist[neighbor->row][neighbor->col] = weight + current_weight;
+                    int current_dist = dist[neighbor->row][neighbor->col];
+                    if(current_dist > weight + dist[current_cell->row][current_cell->col])
+                        dist[neighbor->row][neighbor->col] = weight + dist[current_cell->row][current_cell->col];
                 }else{
                     continue;
                 }
@@ -68,6 +68,14 @@ class DijkstraSolver{
         for(int r = 0; r < w_grid_.GetNumRows(); r++){
             for(int c = 0; c < w_grid_.GetNumCols(); c++){
                 dist[r][c] = INT_MAX;
+            }
+        }
+    }
+
+    void Init_Final(){
+        for(int r = 0; r < w_grid_.GetNumRows(); r++){
+            for(int c = 0; c < w_grid_.GetNumCols(); c++){
+                finalized[r][c] = 0;
             }
         }
     }
@@ -120,8 +128,8 @@ public:
     {}    
 
     void Reset_DSs(){
-        // Clear Finalized
-        std::vector<std::vector<int>>().swap(finalized);
+        // Initialize all finalized values to 0
+        Init_Final();
         // Initialize all distance values to INT_MAX
         Init_Dist();
         //Clearing Priority Queue
@@ -130,7 +138,7 @@ public:
     }
 
     //(start cell - end cell)Finds a Path from the NW corner to the SE corner
-    void Solve(){
+    void Run(){
         Cell* const nw_corner = w_grid_.GetCell(w_grid_.GetNumRows()-1, 0);
         Cell* const se_corner = w_grid_.GetCell(0, w_grid_.GetNumCols()-1);
         Dijkstra_Solver(nw_corner->row, nw_corner->col, 0);
