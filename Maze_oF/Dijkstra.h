@@ -29,7 +29,7 @@ class DijkstraSolver{
     void Dijkstra_Solver(int r , int c, int distance){
         if(w_grid_.IsInvalid(r , c) || finalized[r][c] == 1)
             return;
-
+        
         Cell* const origin = w_grid_.Get_Cell(r , c);
         minHeap.push({origin , distance}); //adding origin cell to pq
         dist[r][c] = distance; //setting 0 distance to origin cell
@@ -40,15 +40,33 @@ class DijkstraSolver{
         while(num_Fin != w_grid_.Total_Cells()){
             auto neighbors = current_cell->GetNeighbors();
             for(auto neighbor : neighbors){
+                std::cout<<"current_cell_row"<<current_cell->row//////////////////////
+                <<", current_cell_col"<<current_cell->col
+                <<", neighbor_row"<<neighbor->row<<///////////////////////
+                ", neighbor_col"<<neighbor->col<<std::endl;///////////////////////
                 if(Isnt_Final(neighbor->row , neighbor->col)){
+                    std::cout<<"num_Fin:"<<num_Fin<<std::endl;///////////////////////
                     // Adding neighbor(s) to priority queue
                     int weight = w_grid_.get_Weight(current_cell , neighbor);
+                     std::cout<<"weight:"<<weight<<std::endl;//////////////////////////////////////////
                     std::pair<Cell* , int> newElement = std::make_pair(neighbor , weight);
                     minHeap.push(newElement);
                     // Adding and updating distance values
                     int current_dist = dist[neighbor->row][neighbor->col];
-                    if(current_dist > weight + dist[current_cell->row][current_cell->col])
+                    std::cout<<"current_dist: "<<current_dist<<std::endl;//////////////////////////////////
+                    if(current_dist > weight + dist[current_cell->row][current_cell->col]){
                         dist[neighbor->row][neighbor->col] = weight + dist[current_cell->row][current_cell->col];
+                    std::cout<<"current_dist: "<<dist[current_cell->row][current_cell->col]<<std::endl;//////
+                    std::cout<<" neighbor_dist: "<<dist[neighbor->row][neighbor->col]<<std::endl;///////////
+                    std::cout<<" pq_size: "<<minHeap.size()<<std::endl;}///////////
+                    ////////////// DEBUGGING //////////////////////////////
+                    auto tempQueue = minHeap;  // Make a copy
+                    while (!tempQueue.empty()) {
+                        auto top = tempQueue.top();
+                        std::cout << "(" << top.first->row << "," << top.first->col << ") : " << top.second << std::endl;
+                        tempQueue.pop();
+                    }
+                    ////////////////////////////////////////////
                 }else{
                     continue;
                 }
@@ -56,6 +74,7 @@ class DijkstraSolver{
             if(!minHeap.empty()){
                 cell_Dist pq_top = minHeap.top();
                 Cell* root = pq_top.first;
+                std::cout<<"root:"<<root<<std::endl;///////////////////////////////////
                 finalized[root->row][root->col] = 1;
                 num_Fin++;
                 current_cell = root;
@@ -81,9 +100,9 @@ class DijkstraSolver{
     }
 
     bool Isnt_Final(int r, int c){
-        if(w_grid_.IsInvalid(r , c)){
-            return false;
-        }
+        //if(w_grid_.IsInvalid(r , c)){
+        //    return false;
+        //}
         // check if the cell has been finalized
         return finalized[r][c] != 1;
     }
@@ -139,9 +158,8 @@ public:
 
     //(start cell - end cell)Finds a Path from the NW corner to the SE corner
     void Run(){
-        Cell* const nw_corner = w_grid_.GetCell(w_grid_.GetNumRows()-1, 0);
-        Cell* const se_corner = w_grid_.GetCell(0, w_grid_.GetNumCols()-1);
-        Dijkstra_Solver(nw_corner->row, nw_corner->col, 0);
+        Cell* const sw_corner = w_grid_.GetCell(w_grid_.GetNumRows()-1, 0);
+        Dijkstra_Solver(sw_corner->row, sw_corner->col, 0);
         //Dist_Sort();
 
         //Debbuging num cells
