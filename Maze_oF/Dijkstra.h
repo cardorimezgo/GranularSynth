@@ -2,6 +2,7 @@
 #define DIJKSTRA_H
 
 #include "Weighted_Grid.h"
+//#include "Cell.h"
 #include <vector>
 #include <map>
 
@@ -19,67 +20,63 @@ class DijkstraSolver{
     std::priority_queue<cell_Dist, std::vector<cell_Dist>, Compare>minHeap;
     
     // DS for storing cells that have already been processed (1)
-    std::vector<std::vector<int>> finalized;
+    std::vector<std::vector<bool>> finalized;
 
     // DS for updating distance value between cells and origin cell
     std::vector<std::vector<int>> dist;
     //vector for flattening vector of vectors 
     std::vector<std::pair<int, std::pair<int , int>>> dist_flat; 
 
-    void Dijkstra_Solver(int r , int c, int distance){
-        if(w_grid_.IsInvalid(r , c) || finalized[r][c] == 1)
+    void Dijkstra_Solver(int r , int c){
+        int distance = 0;//0 distance to origin cell
+        if(w_grid_.IsInvalid(r , c) || finalized[r][c] == true)
             return;
         
         Cell* const origin = w_grid_.Get_Cell(r , c);
         minHeap.push({origin , distance}); //adding origin cell to pq
-        dist[r][c] = distance; //setting 0 distance to origin cell
-        finalized[r][c] = 1;  // origin cell finalized
+        dist[r][c] = distance; 
         Cell* current_cell = origin;
         int num_Fin = 0;
-
-        while(num_Fin != w_grid_.Total_Cells()){
-            auto neighbors = current_cell->GetNeighbors();
+        
+        while(num_Fin != w_grid_.Total_Cells()){ //IS IT POSSIBLE WE ARE ACCESSING FORVIDEN NEIGHBORS?
+            //finalized[current_cell->row][current_cell->col] = true;
+            
+            Cell* ph =w_grid_.GetCell(2 , 2); ///// WE ARE NOT GETTING THE EDGE CELLS RIGHT!!!!!
+            auto neighbors = ph->GetNeighbors();
+            //auto neighbors = current_cell->GetNeighbors();
+            
+            std::cout<< "Checking neighbors for cell: "<< ph->row <<" "<<ph->col <<std::endl;
+            //std::cout<< "Checking neighbors for cell: "<< current_cell->row <<" "<<current_cell->col <<std::endl;
             for(auto neighbor : neighbors){
-                std::cout<<"current_cell_row"<<current_cell->row//////////////////////
-                <<", current_cell_col"<<current_cell->col
-                <<", neighbor_row"<<neighbor->row<<///////////////////////
-                ", neighbor_col"<<neighbor->col<<std::endl;///////////////////////
-                if(Isnt_Final(neighbor->row , neighbor->col)){
-                    std::cout<<"num_Fin:"<<num_Fin<<std::endl;///////////////////////
-                    // Adding neighbor(s) to priority queue
+                if(neighbor == nullptr){    
+                    std::cout<< "Null neighbor encountered!" << std::endl;
+                    continue; //Skip this iteration
+                }
+                std::cout<<neighbor->row<<neighbor->col<<std::endl;
+                num_Fin++;
+                //std::cout<<num_Fin<<std::endl;
+             /*   if(!finalized[neighbor->row][neighbor->col]){
                     int weight = w_grid_.get_Weight(current_cell , neighbor);
-                     std::cout<<"weight:"<<weight<<std::endl;//////////////////////////////////////////
+                    if(weight == INT_MAX) continue; // There is no edge
                     std::pair<Cell* , int> newElement = std::make_pair(neighbor , weight);
                     minHeap.push(newElement);
                     // Adding and updating distance values
                     int current_dist = dist[neighbor->row][neighbor->col];
-                    std::cout<<"current_dist: "<<current_dist<<std::endl;//////////////////////////////////
-                    if(current_dist > weight + dist[current_cell->row][current_cell->col]){
+                    if(current_dist > weight + dist[current_cell->row][current_cell->col])
                         dist[neighbor->row][neighbor->col] = weight + dist[current_cell->row][current_cell->col];
-                    std::cout<<"current_dist: "<<dist[current_cell->row][current_cell->col]<<std::endl;//////
-                    std::cout<<" neighbor_dist: "<<dist[neighbor->row][neighbor->col]<<std::endl;///////////
-                    std::cout<<" pq_size: "<<minHeap.size()<<std::endl;}///////////
-                    ////////////// DEBUGGING //////////////////////////////
-                    auto tempQueue = minHeap;  // Make a copy
-                    while (!tempQueue.empty()) {
-                        auto top = tempQueue.top();
-                        std::cout << "(" << top.first->row << "," << top.first->col << ") : " << top.second << std::endl;
-                        tempQueue.pop();
-                    }
-                    ////////////////////////////////////////////
                 }else{
                     continue;
-                }
+                }*/
             }
-            if(!minHeap.empty()){
+            /*if(!minHeap.empty()){
                 cell_Dist pq_top = minHeap.top();
                 Cell* root = pq_top.first;
                 std::cout<<"root:"<<root<<std::endl;///////////////////////////////////
-                finalized[root->row][root->col] = 1;
+                finalized[root->row][root->col] = true;
                 num_Fin++;
                 current_cell = root;
                 minHeap.pop();
-            }
+            }*/
         }
     } 
     
@@ -94,17 +91,9 @@ class DijkstraSolver{
     void Init_Final(){
         for(int r = 0; r < w_grid_.GetNumRows(); r++){
             for(int c = 0; c < w_grid_.GetNumCols(); c++){
-                finalized[r][c] = 0;
+                finalized[r][c] = false;
             }
         }
-    }
-
-    bool Isnt_Final(int r, int c){
-        //if(w_grid_.IsInvalid(r , c)){
-        //    return false;
-        //}
-        // check if the cell has been finalized
-        return finalized[r][c] != 1;
     }
 
     //Flattening vector of vectors
@@ -143,11 +132,11 @@ public:
     DijkstraSolver (Weighted_Grid& w_grid):
     w_grid_(w_grid),
     dist(w_grid_.GetNumRows() , std::vector<int>(w_grid_.GetNumCols(), INT_MAX)),
-    finalized(w_grid_.GetNumRows() , std::vector<int>(w_grid_.GetNumCols(), 0))
+    finalized(w_grid_.GetNumRows() , std::vector<bool>(w_grid_.GetNumCols(), false))
     {}    
 
     void Reset_DSs(){
-        // Initialize all finalized values to 0
+        // Initialize all finalized values to false
         Init_Final();
         // Initialize all distance values to INT_MAX
         Init_Dist();
@@ -159,7 +148,7 @@ public:
     //(start cell - end cell)Finds a Path from the NW corner to the SE corner
     void Run(){
         Cell* const sw_corner = w_grid_.GetCell(w_grid_.GetNumRows()-1, 0);
-        Dijkstra_Solver(sw_corner->row, sw_corner->col, 0);
+        Dijkstra_Solver(sw_corner->row, sw_corner->col);
         //Dist_Sort();
 
         //Debbuging num cells
