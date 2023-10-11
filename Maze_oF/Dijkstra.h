@@ -2,7 +2,6 @@
 #define DIJKSTRA_H
 
 #include "Weighted_Grid.h"
-//#include "Cell.h"
 #include <vector>
 #include <map>
 
@@ -28,47 +27,38 @@ class DijkstraSolver{
     std::vector<std::pair<int, std::pair<int , int>>> dist_flat; 
 
     void Dijkstra_Solver(int r , int c){
-        int distance = 0;//0 distance to origin cell
         if(w_grid_.IsInvalid(r , c) || finalized[r][c] == true)
             return;
-        
-        Cell* const origin = w_grid_.Get_Cell(r , c);
+
+        auto* const origin = w_grid_.Get_Cell(r , c);
+        auto current_cell = origin;
+        int distance = 0;//0 distance to origin cell
         minHeap.push({origin , distance}); //adding origin cell to pq
         dist[r][c] = distance; 
-        Cell* current_cell = origin;
         int num_Fin = 0;
         
-        while(num_Fin != w_grid_.Total_Cells()){ //IS IT POSSIBLE WE ARE ACCESSING FORVIDEN NEIGHBORS?
-            //finalized[current_cell->row][current_cell->col] = true;
-            
-            Cell* ph =w_grid_.GetCell(2 , 2); ///// WE ARE NOT GETTING THE EDGE CELLS RIGHT!!!!!
-            auto neighbors = ph->GetNeighbors();
-            //auto neighbors = current_cell->GetNeighbors();
-            
-            std::cout<< "Checking neighbors for cell: "<< ph->row <<" "<<ph->col <<std::endl;
-            //std::cout<< "Checking neighbors for cell: "<< current_cell->row <<" "<<current_cell->col <<std::endl;
+        while(num_Fin != w_grid_.Total_Cells()){ 
+            finalized[current_cell->row][current_cell->col] = true;
+            auto neighbors = current_cell->GetNeighbors();
             for(auto neighbor : neighbors){
-                if(neighbor == nullptr){    
-                    std::cout<< "Null neighbor encountered!" << std::endl;
-                    continue; //Skip this iteration
+                if(neighbor){//CHECK FOR LINKED NEIGHBORS!!!!!!!!!!!!!!!!!!!!
+                    if(!finalized[neighbor->row][neighbor->col]){
+                        int weight = w_grid_.get_Weight(current_cell , neighbor);
+
+                        if(weight == INT_MAX) continue; // There is no edge
+                        std::pair<Cell* , int> newElement = std::make_pair(neighbor , weight);
+                        minHeap.push(newElement);
+
+                        // Adding and updating distance values
+                        int current_dist = dist[neighbor->row][neighbor->col];
+                        if(current_dist > weight + dist[current_cell->row][current_cell->col])
+                            dist[neighbor->row][neighbor->col] = weight + dist[current_cell->row][current_cell->col];
+                    }else{
+                        continue;
+                    }
                 }
-                std::cout<<neighbor->row<<neighbor->col<<std::endl;
-                num_Fin++;
-                //std::cout<<num_Fin<<std::endl;
-             /*   if(!finalized[neighbor->row][neighbor->col]){
-                    int weight = w_grid_.get_Weight(current_cell , neighbor);
-                    if(weight == INT_MAX) continue; // There is no edge
-                    std::pair<Cell* , int> newElement = std::make_pair(neighbor , weight);
-                    minHeap.push(newElement);
-                    // Adding and updating distance values
-                    int current_dist = dist[neighbor->row][neighbor->col];
-                    if(current_dist > weight + dist[current_cell->row][current_cell->col])
-                        dist[neighbor->row][neighbor->col] = weight + dist[current_cell->row][current_cell->col];
-                }else{
-                    continue;
-                }*/
             }
-            /*if(!minHeap.empty()){
+            if(!minHeap.empty()){
                 cell_Dist pq_top = minHeap.top();
                 Cell* root = pq_top.first;
                 std::cout<<"root:"<<root<<std::endl;///////////////////////////////////
@@ -76,7 +66,7 @@ class DijkstraSolver{
                 num_Fin++;
                 current_cell = root;
                 minHeap.pop();
-            }*/
+            }
         }
     } 
     
