@@ -27,7 +27,7 @@ class DijkstraSolver{
     std::vector<std::pair<int, std::pair<int , int>>> dist_flat; 
 
     void Dijkstra_Solver(int r , int c){
-        if(w_grid_.IsInvalid(r , c) || finalized[r][c] == true)
+        if(w_grid_.IsInvalid(r , c))
             return;
 
         auto* const origin = w_grid_.Get_Cell(r , c);
@@ -37,35 +37,34 @@ class DijkstraSolver{
         dist[r][c] = distance; 
         int num_Fin = 0;
         
-        while(num_Fin != w_grid_.Total_Cells()){ 
+        while(!minHeap.empty() && num_Fin != w_grid_.Total_Cells()){ 
+            cell_Dist pq_top = minHeap.top();
+            current_cell = pq_top.first;
+            minHeap.pop(); //removing root from minHeap
+
+            if(finalized[current_cell->row][current_cell->col])
+                continue;
+
+            //Adding cell to finalized list
             finalized[current_cell->row][current_cell->col] = true;
+            num_Fin++;
+            std::cout<<"finalized: "<<current_cell->row<<" "<<current_cell->col<<std::endl;////////
+            
             auto neighbors = current_cell->GetNeighbors();
             for(auto neighbor : neighbors){
-                if(neighbor){//CHECK FOR LINKED NEIGHBORS!!!!!!!!!!!!!!!!!!!!
-                    if(!finalized[neighbor->row][neighbor->col]){
-                        int weight = w_grid_.get_Weight(current_cell , neighbor);
-
-                        if(weight == INT_MAX) continue; // There is no edge
-                        std::pair<Cell* , int> newElement = std::make_pair(neighbor , weight);
-                        minHeap.push(newElement);
-
-                        // Adding and updating distance values
-                        int current_dist = dist[neighbor->row][neighbor->col];
-                        if(current_dist > weight + dist[current_cell->row][current_cell->col])
-                            dist[neighbor->row][neighbor->col] = weight + dist[current_cell->row][current_cell->col];
-                    }else{
-                        continue;
+                if(neighbor && !finalized[neighbor->row][neighbor->col]){//CHECK FOR LINKED NEIGHBORS!!!!!!!!!!!!!!!!!!!!
+                    int weight = w_grid_.get_Weight(current_cell , neighbor);
+                    
+                    if(weight == INT_MAX) 
+                        continue; // There is no edge
+                        
+                    // Adding and updating distance values
+                    int new_dist = dist[current_cell->row][current_cell->col] + weight;
+                    if(new_dist < dist[neighbor->row][neighbor->col]){
+                        dist[neighbor->row][neighbor->col] = new_dist;
+                        minHeap.push({neighbor , new_dist}); // Inserting neighbor into minHeap
                     }
                 }
-            }
-            if(!minHeap.empty()){
-                cell_Dist pq_top = minHeap.top();
-                Cell* root = pq_top.first;
-                std::cout<<"root:"<<root<<std::endl;///////////////////////////////////
-                finalized[root->row][root->col] = true;
-                num_Fin++;
-                current_cell = root;
-                minHeap.pop();
             }
         }
     } 
