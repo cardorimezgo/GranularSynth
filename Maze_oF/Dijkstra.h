@@ -18,7 +18,7 @@ class DijkstraSolver{
     };
     std::priority_queue<cell_Dist, std::vector<cell_Dist>, Compare>minHeap;
     
-    // DS for storing cells that have already been processed (1)
+    // DS for storing cells that have already been processed
     std::vector<std::vector<bool>> finalized;
 
     // DS for updating distance value between cells and origin cell
@@ -52,7 +52,8 @@ class DijkstraSolver{
             
             auto neighbors = current_cell->GetNeighbors();
             for(auto neighbor : neighbors){
-                if(neighbor && !finalized[neighbor->row][neighbor->col]){//CHECK FOR LINKED NEIGHBORS!!!!!!!!!!!!!!!!!!!!
+                if(neighbor && !finalized[neighbor->row][neighbor->col] &&
+                   current_cell->Linked(neighbor)){//CHECK FOR LINKED NEIGHBORS!!!!!!!!!!!!!!!!!!!!
                     int weight = w_grid_.get_Weight(current_cell , neighbor);
                     
                     if(weight == INT_MAX) 
@@ -62,6 +63,8 @@ class DijkstraSolver{
                     int new_dist = dist[current_cell->row][current_cell->col] + weight;
                     if(new_dist < dist[neighbor->row][neighbor->col]){
                         dist[neighbor->row][neighbor->col] = new_dist;
+                        std::cout<<"current_row:"<<current_cell->row<<" current_col:"<<current_cell->col<<" weight:"<<weight
+                        <<" neighbor_row:"<<neighbor->row<<" neighbor_col:"<<neighbor->col<<" new_dist:"<<new_dist<<std::endl;
                         minHeap.push({neighbor , new_dist}); // Inserting neighbor into minHeap
                     }
                 }
