@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Weighted_Grid.h"
+#include <random>
 #include <vector>
 #include <map>
 
@@ -25,15 +26,25 @@ class Prim{
     //vector for flattening vector of vectors 
     std::vector<std::pair<int, std::pair<int , int>>> dist_flat; 
 
-    void Prim_Solver(int r , int c){
-        if(w_grid_.IsInvalid(r , c))
+    ///Random seed
+    std::random_device rd;
+    std::mt19937 gen;
+    
+
+    void Prim_Solver(){
+    std::uniform_int_distribution<> rows_rnd(0 , w_grid_.GetNumRows() - 1); //rows
+    std::uniform_int_distribution<> cols_rnd(0 , w_grid_.GetNumCols() - 1); //cols
+    int random_row = rows_rnd(gen);
+    int random_col = cols_rnd(gen);
+   
+        if(w_grid_.IsInvalid(random_row , random_col))
             return;
 
-        auto* const origin = w_grid_.Get_Cell(r , c);
+        auto* const origin = w_grid_.Get_Cell(random_row , random_col);
         auto current_cell = origin;
         int distance = 0;//0 distance to origin cell
         minHeap.push({origin , distance}); //adding origin cell to pq
-        dist[r][c] = distance; 
+        dist[random_row][random_col] = distance; 
         int num_Fin = 0;
         
         while(!minHeap.empty() && num_Fin != w_grid_.Total_Cells()){ 
@@ -47,24 +58,25 @@ class Prim{
             //Adding cell to finalized list
             finalized[current_cell->row][current_cell->col] = true;
             num_Fin++;
-            std::cout<<"finalized: "<<current_cell->row<<" "<<current_cell->col<<std::endl;////////
+            //std::cout<<"finalized: "<<current_cell->row<<" "<<current_cell->col<<std::endl;////////
             
             auto neighbors = current_cell->GetNeighbors();
             for(auto neighbor : neighbors){
                 if(neighbor && !finalized[neighbor->row][neighbor->col] &&
-                   current_cell->Linked(neighbor)){//CHECK FOR LINKED NEIGHBORS!!!!!!!!!!!!!!!!!!!!
+                   !current_cell->Linked(neighbor)){//CHECK FOR LINKED NEIGHBORS!!!!!!!!!!!!!!!!!!!!
                     int weight = w_grid_.get_Weight(current_cell , neighbor);
                     
                     if(weight == INT_MAX) 
                         continue; // There is no edge
                         
-                    // Adding and updating distance values
-                    int new_dist = dist[current_cell->row][current_cell->col] + weight;
-                    if(new_dist < dist[neighbor->row][neighbor->col]){
-                        dist[neighbor->row][neighbor->col] = new_dist;
-                        std::cout<<"current_row:"<<current_cell->row<<" current_col:"<<current_cell->col<<" weight:"<<weight
-                        <<" neighbor_row:"<<neighbor->row<<" neighbor_col:"<<neighbor->col<<" new_dist:"<<new_dist<<std::endl;
-                        minHeap.push({neighbor , new_dist}); // Inserting neighbor into minHeap
+                    // Adding and updating distance values                    
+                    if(weight < dist[neighbor->row][neighbor->col]){
+                        dist[neighbor->row][neighbor->col] = weight;
+                        current_cell->LinkCell(neighbor);   // Creating Link between Cells
+                        minHeap.push({neighbor , weight}); // Inserting neighbor into minHeap
+
+                        std::cout<<current_cell->row<<" "<<current_cell->col<<" -> "<<neighbor->row<<" "<<
+                        neighbor->col<<std::endl;
                     }
                 }
             }
@@ -123,8 +135,11 @@ public:
     Prim (Weighted_Grid& w_grid):
     w_grid_(w_grid),
     dist(w_grid_.GetNumRows() , std::vector<int>(w_grid_.GetNumCols(), INT_MAX)),
-    finalized(w_grid_.GetNumRows() , std::vector<bool>(w_grid_.GetNumCols(), false))
-    {}    
+    finalized(w_grid_.GetNumRows() , std::vector<bool>(w_grid_.GetNumCols(), false)),
+    gen(rd())
+    {
+        w_grid_.set_Rnd_Edges(0 , 3);
+    }    
 
     void Reset_DSs(){
         // Initialize all finalized values to false
@@ -132,14 +147,15 @@ public:
         // Initialize all distance values to INT_MAX
         Init_Dist();
         //Clearing Priority Queue
-        std::priority_queue<cell_Dist, std::vector<cell_Dist>, Compare> empty;
-        std::swap(minHeap , empty);
+        minHeap = std::priority_queue<cell_Dist, std::vector<cell_Dist>, Compare>();
+        // Setting Random weight values to grid 
+        w_grid_.set_Rnd_Edges(0 , 3);
     }
 
     //(start cell - end cell)Finds a Path from the NW corner to the SE corner
     void Run(){
-        Cell* const sw_corner = w_grid_.GetCell(w_grid_.GetNumRows()-1, 0);
-        Dijkstra_Solver(sw_corner->row, sw_corner->col);
+        //Cell* const sw_corner = w_grid_.GetCell(w_grid_.GetNumRows()-1, 0);
+        Prim_Solver();
         //Dist_Sort();
 
         //Debbuging num cells
