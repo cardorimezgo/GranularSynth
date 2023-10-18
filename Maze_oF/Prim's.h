@@ -22,21 +22,17 @@ class Prim{
     std::vector<std::vector<bool>> finalized;
 
     // DS for updating distance value between cells and origin cell
-    std::vector<std::vector<int>> dist;
-    //vector for flattening vector of vectors 
-    std::vector<std::pair<int, std::pair<int , int>>> dist_flat; 
+    std::vector<std::vector<int>> dist; 
 
+    void Prim_Solver(){
     ///Random seed
     std::random_device rd;
     std::mt19937 gen;
-    
-
-    void Prim_Solver(){
     std::uniform_int_distribution<> rows_rnd(0 , w_grid_.GetNumRows() - 1); //rows
     std::uniform_int_distribution<> cols_rnd(0 , w_grid_.GetNumCols() - 1); //cols
     int random_row = rows_rnd(gen);
     int random_col = cols_rnd(gen);
-   
+        
         if(w_grid_.IsInvalid(random_row , random_col))
             return;
 
@@ -58,12 +54,11 @@ class Prim{
             //Adding cell to finalized list
             finalized[current_cell->row][current_cell->col] = true;
             num_Fin++;
-            //std::cout<<"finalized: "<<current_cell->row<<" "<<current_cell->col<<std::endl;////////
             
             auto neighbors = current_cell->GetNeighbors();
             for(auto neighbor : neighbors){
                 if(neighbor && !finalized[neighbor->row][neighbor->col] &&
-                   !current_cell->Linked(neighbor)){//CHECK FOR LINKED NEIGHBORS!!!!!!!!!!!!!!!!!!!!
+                   !current_cell->Linked(neighbor)){
                     int weight = w_grid_.get_Weight(current_cell , neighbor);
                     
                     if(weight == INT_MAX) 
@@ -75,8 +70,8 @@ class Prim{
                         current_cell->LinkCell(neighbor);   // Creating Link between Cells
                         minHeap.push({neighbor , weight}); // Inserting neighbor into minHeap
 
-                        std::cout<<current_cell->row<<" "<<current_cell->col<<" -> "<<neighbor->row<<" "<<
-                        neighbor->col<<std::endl;
+                        //std::cout<<current_cell->row<<" "<<current_cell->col<<" -> "<<neighbor->row<<" "<<
+                        //neighbor->col<<std::endl;
                     }
                 }
             }
@@ -98,47 +93,17 @@ class Prim{
             }
         }
     }
-
-    //Flattening vector of vectors
-	//Sorting distance/color in ascending order
-	void Dist_Sort(){
-		for(int r = 0; r < dist.size(); r++){
-			// number of columns in row "r"
-			for(int c = 0; c < dist[r].size(); c++){
-				dist_flat.push_back({dist[r][c] , {r , c}});
-			}
-		} 
-		std::sort(dist_flat.begin(), dist_flat.end(), [](const auto& a , const auto& b){
-			return a.first < b.first;
-		});
-	}
-
-    void printDistFlat() {
-    std::cout << "Printing dist_flat:" << std::endl;
-    
-    for (const auto& element : dist_flat) {
-        int dist_value = element.first;
-        int row = element.second.first;
-        int col = element.second.second;
-
-        std::cout << "(" << dist_value << ", (" << row << ", " << col << "))" << std::endl;
-    }
-}
     
     ////////////////////////////////////////////////////////////////////////////////
 
 public:
 
-    //todo: getter for running DIjkstra algo
-    // getter for the calculated distance values 
-    // give option to user to start anywhere he wants
     Prim (Weighted_Grid& w_grid):
     w_grid_(w_grid),
     dist(w_grid_.GetNumRows() , std::vector<int>(w_grid_.GetNumCols(), INT_MAX)),
-    finalized(w_grid_.GetNumRows() , std::vector<bool>(w_grid_.GetNumCols(), false)),
-    gen(rd())
+    finalized(w_grid_.GetNumRows() , std::vector<bool>(w_grid_.GetNumCols(), false))
     {
-        w_grid_.set_Rnd_Edges(0 , 3);
+        w_grid_.set_Rnd_Edges();
     }    
 
     void Reset_DSs(){
@@ -149,22 +114,12 @@ public:
         //Clearing Priority Queue
         minHeap = std::priority_queue<cell_Dist, std::vector<cell_Dist>, Compare>();
         // Setting Random weight values to grid 
-        w_grid_.set_Rnd_Edges(0 , 3);
+        w_grid_.set_Rnd_Edges();
     }
 
-    //(start cell - end cell)Finds a Path from the NW corner to the SE corner
     void Run(){
-        //Cell* const sw_corner = w_grid_.GetCell(w_grid_.GetNumRows()-1, 0);
         Prim_Solver();
-        //Dist_Sort();
-
-        //Debbuging num cells
-        //printDistFlat();
     }
-
-    const std::vector<std::pair<int, std::pair<int , int>>>& Get_Dist_Flat(){
-			return dist_flat;
-		}		
 
 };
 
