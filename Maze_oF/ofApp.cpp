@@ -1,18 +1,23 @@
 #include "ofApp.h"
-#include "Binary_Tree.h"
+//#include "Binary_Tree.h"
 
-//-Default startup:  RANDOM MAZE!!!----------------------------------------------------------
+
+//- Default startup:  RANDOM MAZE!!!----------------------------------------------------------
+//- RESET EVERYTHING: GRID, MAZE ALGOS. , WEIGHTS ETC. WHEN CHANGING MAZES 
 void ofApp::setup(){
     total_cells = GRID_DIM_X * GRID_DIM_Y;
     ofBackground(0,0,0);
 
     // Maze algos initialization
-    std::vector<MazeGenerator*> generators;
-    generators.push_back(new BinaryTreeGenerator(draw_maze));
-    generators[0]->Generate();
+    //std::vector<MazeGenerator*> generators;
+    //generators.push_back(new BinaryTreeGenerator(maze));
+    //generators[0]->Generate();
 
-    DFS.DFS_Run();
-    DFS.Reset();
+    //DFS.DFS_Run();
+    //DFS.Reset();
+
+    prim.Run();
+    dj.Run();
 
     // allocating memory for image buffer
     Draw_Buffer.allocate(ofGetWidth(), ofGetHeight(), GL_RGBA);
@@ -21,12 +26,17 @@ void ofApp::setup(){
     //c_render.Draw_Walls();
     //ofClear(255 , 255 , 255 , 0);
     //Draw_Buffer.end();
+
+    
+    
 }
+
 //RESET FLOOD_FLAT TO -1 EACH TIME WE RUN AGAIN DFS , SAME FOR OTHER DS 
 void ofApp::update(){
+    
     static unsigned long lastUpdateTime = 0;
     unsigned long currentTime = ofGetElapsedTimeMillis();
-    static int stepSize = 10; // Control speed here: higher value for faster rendering, lower for slower.
+    static int stepSize = 22; // Control speed here: higher value for faster rendering, lower for slower.
 
     if(currentTime - lastUpdateTime > MILLISECS_PER_FRAME) {
         static int currentIndex = 0;
@@ -34,12 +44,11 @@ void ofApp::update(){
         for (int i = 0; i < stepSize; ++i) {
             if (currentIndex < total_cells) {
                 Draw_Buffer.begin();
-                c_render.Draw(currentIndex);
+                w_render.Draw(currentIndex , weight_maze, dj.Get_Dist_Flat());
                 Draw_Buffer.end();
                 currentIndex++;
             }
         }
-        
         lastUpdateTime = currentTime;
     }
 }
@@ -103,3 +112,61 @@ void ofApp::gotMessage(ofMessage msg){
 void ofApp::dragEvent(ofDragInfo dragInfo){ 
 
 }
+
+/* CHOOSE MAZE ALGO////////////////////////////////////////
+enum class MazeType {
+    BINARY_TREE,
+    KRUSKAL,
+    PRIMS,
+    ALDOUS_BRODER,
+    // ... other maze types ...
+};
+
+azeType selectedMaze;
+
+void ofApp::keyPressed(int key) {
+    switch (key) {
+        case 'b': // Assuming 'b' for binary tree
+            selectedMaze = MazeType::BINARY_TREE;
+            break;
+        case 'k': // Assuming 'k' for Kruskal
+            selectedMaze = MazeType::KRUSKAL;
+            break;
+        // ... other cases for other algorithms ...
+    }
+
+    setupMaze(selectedMaze);
+}
+
+void ofApp::setupMaze(MazeType type) {
+    generators.clear(); // Assuming generators is a class member vector
+
+    switch (type) {
+        case MazeType::BINARY_TREE:
+            generators.push_back(new BinaryTreeGenerator(maze));
+            // ... setup other parts specific to Binary Tree ...
+            break;
+
+        case MazeType::KRUSKAL:
+            // ... setup for Kruskal ...
+            break;
+
+        // ... other cases ...
+
+        default:
+            ofLogError() << "Unsupported maze type!";
+            return;
+    }
+
+    // Common setup code if any, for all algorithms
+    // e.g.:
+    generators[0]->Generate();
+}
+
+if (type == MazeType::PRIMS || type == MazeType::KRUSKAL) {
+    // Create Weighted_Grid instance
+} else {
+    // Create Grid instance
+}
+
+*/
