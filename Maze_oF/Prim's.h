@@ -1,12 +1,13 @@
 #pragma once
 
+#include "Maze_Generator.h"
 #include "Weighted_Grid.h"
 #include <random>
 #include <vector>
 #include <map>
 
 
-class Prim{
+class Prim: public MazeGenerator{
     Weighted_Grid& w_grid_;
 
     // Creation of struct for specific pair Cell and int that will be used in priority queue
@@ -24,7 +25,8 @@ class Prim{
     // DS for updating distance value between cells and origin cell
     std::vector<std::vector<int>> dist; 
 
-    void Prim_Solver(){
+    void Generate() override{
+    //void Prim_Solver(){
     ///Random seed
     std::random_device rd;
     std::mt19937 gen;
@@ -99,11 +101,13 @@ class Prim{
 public:
 
     Prim (Weighted_Grid& w_grid):
+    MazeGenerator(w_grid , "Prim's"),
     w_grid_(w_grid),
     dist(w_grid_.GetNumRows() , std::vector<int>(w_grid_.GetNumCols(), INT_MAX)),
     finalized(w_grid_.GetNumRows() , std::vector<bool>(w_grid_.GetNumCols(), false))
     {
         w_grid_.set_Rnd_Edges();
+        Run();
     }    
 
     void Reset_DSs(){
@@ -118,7 +122,7 @@ public:
     }
 
     void Run(){
-        Prim_Solver();
+        Generate();
     }
 
 };
