@@ -1,31 +1,19 @@
 #ifndef CELL_RENDERER_H
 #define CELL_RENDERER_H
 
-#include "Maze_Generator.h"
-#include "Binary_Tree.h"
-#include "Dijkstra.h"
 #include "Grid.h"
 
 class Cell_Renderer{
-    Grid& grid;
-    DijkstraSolver& dj;
 
-    // Flag for drawing Grid
+    // Flag for drawing/redrawing Grid
     bool needsRedraw = true;
 
 public:
 
-    Cell_Renderer(Grid& g , DijkstraSolver& d) :
-    grid(g),
-    dj(d)
+    Cell_Renderer()
     {}
-
-    void Draw_Walls();
-
-    void Draw_Rects();
-
-    void Anima_Maze(int cnt);
+     //parameters:   //animation frame   //weiighted or unweighted grid  //list of ordered vertices or cells
+    void Draw(int frame, const Grid& grid, const vector<pair<int, pair<int, int>>>& sorted);
 };
-
 
 #endif // CELL_RENDERER_H
