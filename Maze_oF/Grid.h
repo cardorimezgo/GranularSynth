@@ -6,10 +6,9 @@
 #include <unordered_set>
 #include <vector>
 
-class DijkstraSolver;
+class Grid{
 
-class Grid
-{
+protected:
     int rows;
     int cols;
     int margin;
@@ -26,7 +25,6 @@ public:
         rows(rows_), cols(cols_),
         margin(margin_), cell_sz(cell_sz_),
         cells(rows_, std::vector<Cell*>(cols_,nullptr))
-       // rects(rows_, std::vector<ofRectangle>(cols_))
     {
         for(int r = 0; r < rows; r++){
             for(int c = 0; c < cols; c++){
@@ -38,22 +36,36 @@ public:
         Reset();
     }
 
+    //Total number of cells in the maze
+    int Total_Cells() const{
+        return rows * cols; 
+    }
     // returns the number of rows
-    int GetNumRows(){
+    int GetNumRows() const{
         return rows;
     }
 
     // returns the number of cols
-    int GetNumCols(){
+    int GetNumCols() const{
         return cols;
     }
 
+    // returns the margin size
+    int  GetMargin() const{
+        return margin;
+    }
+
+    // return size of square cell
+    int GetCell_Sz() const{
+        return cell_sz;
+    }
+
     //Returns the number of unmasked cells
-    int GetNumCells(){
+    int GetNumCells() const{
         return cols * rows - masked_cells_.size();
     }
 
-    Cell* const GetCell(int row, int col){
+    Cell* const GetCell(int row, int col) const{
         return cells[row][col];
     }
 
@@ -67,9 +79,6 @@ public:
 
     //Text based display of cells in the maze
     void DebugDisplay();
-
-    //Draw lines for each cell of the Grid
-    void Display();
 
     //close the dir side border of the cell at (row , col)
     bool Unlink(int row, int col, Direction dir);
@@ -85,8 +94,10 @@ public:
 
     //close all walls of the Grid
     void Reset();
+
+    //virtual destructor: make class polymorphic allows the use of dynamic_cast
+    // for Cell_Renderer_Wt
+    virtual ~Grid() {}
 };
-
-
 
 #endif // GRID_H

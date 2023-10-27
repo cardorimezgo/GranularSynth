@@ -1,17 +1,18 @@
 #ifndef DEPTH_FIRST_SEARCH_H
 #define DEPTH_FIRST_SEARCH_H
 
-#include "Grid.h"
+#include "Maze_Solver.h"
+#include <iostream>
 #include <vector>
 #include <algorithm>
 
-class Depth_First_Search{ 
+/*class Depth_First_Search{ 
 	Grid& grid_;	
 	std::vector<std::vector<int>> flood_fill; // -1 for unvisited, -2 for blocked, else distance from source.
 	std::vector<std::pair<int, std::pair<int , int>>> flood_flat; //vector for flattening vector of vectors
 
 	//Recursive implementation of Depth Search algorithm 
-	void DFS_helper(int r, int c, int distance){
+	void DFS_Solver(int r, int c, int distance){
 		if(grid_.IsInvalid(r , c) || flood_fill[r][c] != -1)
 			return;
 
@@ -21,7 +22,7 @@ class Depth_First_Search{
 		auto neighbors = current_cell->GetNeighbors();
 		for(auto neighbor : neighbors){
 			if(current_cell->Linked(neighbor))
-				DFS_helper(neighbor->row , neighbor->col, distance+1);
+				DFS_Solver(neighbor->row , neighbor->col, distance+1);
 		}
 	}
 
@@ -48,7 +49,6 @@ class Depth_First_Search{
 		}
 	}
 
-
 public:
 	Depth_First_Search(Grid& grid):
 		grid_(grid), 
@@ -64,15 +64,50 @@ public:
 			}
 		}
 
-		void DFS_Run(){
-			Cell* const nw_corner = grid_.GetCell(grid_.GetNumRows() - 1, 0);
-			Cell* const se_corner = grid_.GetCell(0, grid_.GetNumCols() - 1);
-			DFS_helper(0, grid_.GetNumCols() - 1, 0); // Starting Cell & start value distance
+		void Run(){
+			Cell* const sw_corner = grid_.GetCell(grid_.GetNumRows() - 1, 0);
+			DFS_Solver(sw_corner->row, sw_corner->col, 0); // Starting Cell & start value distance
 			flood_fill_sort();			
 		}
 
-		const std::vector<std::pair<int, std::pair<int , int>>>& Get_DFS_flat(){
+		const std::vector<std::pair<int, std::pair<int , int>>>& Get_Flat_DS(){
 			return flood_flat;
 		}		
+};*/
+
+
+class Depth_First_Search: public MazeSolver{
+
+public:
+    Depth_First_Search(Grid& maze_): 
+	MazeSolver(maze_, "Depth_First_Search")
+    {
+		// Initializing to -1 every cell
+		flood_fill.resize(maze_.GetNumRows() , vector<int>(maze_.GetNumCols(), -1));
+	}
+
+    void DFS_Solver(int r, int c, int distance){
+        if(maze_.IsInvalid(r , c) || flood_fill[r][c] != -1)
+			return;
+
+		flood_fill[r][c] = distance;
+
+		auto* const current_cell = maze_.GetCell(r , c);
+		auto neighbors = current_cell->GetNeighbors();
+		for(auto neighbor : neighbors){
+			if(current_cell->Linked(neighbor))
+				DFS_Solver(neighbor->row , neighbor->col, distance+1);
+		}
+    }
+	
+	void Solve() override{
+		Cell* const sw_corner = maze_.GetCell(maze_.GetNumRows() - 1, 0);
+		// Starting Cell & start value distance
+		DFS_Solver(sw_corner->row, sw_corner->col, 0); 
+		//Sorting cells for the maze to be rendered 
+		flood_fill_sort();	
+	}
+
 };
+
 #endif // DEPTH_FIRST_SEARCH_H

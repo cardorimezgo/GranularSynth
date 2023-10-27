@@ -19,7 +19,8 @@ int main( ){
 // (5)Integrate Prims and Kruskals algos into Maze_Generator. 
 //	-Leave option for adjusting weights in graphs depending... 
 //    on audio frequency analysis for example
-// (1)implement Dijkstra algo
+// (1)implement Dijkstra algo (Done) TODO: --- checking for linked neighbors / send finalized to Cell renderer /
+//		 setting weight to same value / set option to adjust weight values
 // (2)implement Kruskal algo
 // (3)implement Prime's algo
 // (4)implement DFS maze algos.
@@ -29,4 +30,5 @@ int main( ){
 // (9)implementation of ofxColorMap to differentiate distances between cells
 // (10)Implement Dither algorithm to maze 
 // (11)Implement communication bia OSC with supercollider
-// (12)Integrate touch interface RBPi
+// (12)Integrate touch interface RBPi (reading USB port to download audio sample)
+

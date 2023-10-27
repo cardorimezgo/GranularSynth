@@ -48,12 +48,11 @@ class DijkstraSolver{
             //Adding cell to finalized list
             finalized[current_cell->row][current_cell->col] = true;
             num_Fin++;
-            std::cout<<"finalized: "<<current_cell->row<<" "<<current_cell->col<<std::endl;////////
             
             auto neighbors = current_cell->GetNeighbors();
             for(auto neighbor : neighbors){
                 if(neighbor && !finalized[neighbor->row][neighbor->col] &&
-                   current_cell->Linked(neighbor)){//CHECK FOR LINKED NEIGHBORS!!!!!!!!!!!!!!!!!!!!
+                   current_cell->Linked(neighbor)){
                     int weight = w_grid_.get_Weight(current_cell , neighbor);
                     
                     if(weight == INT_MAX) 
@@ -63,9 +62,10 @@ class DijkstraSolver{
                     int new_dist = dist[current_cell->row][current_cell->col] + weight;
                     if(new_dist < dist[neighbor->row][neighbor->col]){
                         dist[neighbor->row][neighbor->col] = new_dist;
-                        std::cout<<"current_row:"<<current_cell->row<<" current_col:"<<current_cell->col<<" weight:"<<weight
-                        <<" neighbor_row:"<<neighbor->row<<" neighbor_col:"<<neighbor->col<<" new_dist:"<<new_dist<<std::endl;
                         minHeap.push({neighbor , new_dist}); // Inserting neighbor into minHeap
+                        
+                        //std::cout<<"current_row:"<<current_cell->row<<" current_col:"<<current_cell->col<<" weight:"<<weight
+                        //<<" neighbor_row:"<<neighbor->row<<" neighbor_col:"<<neighbor->col<<" new_dist:"<<new_dist<<std::endl;
                     }
                 }
             }
@@ -118,14 +118,13 @@ class DijkstraSolver{
 
 public:
 
-    //todo: getter for running DIjkstra algo
-    // getter for the calculated distance values 
-    // give option to user to start anywhere he wants
     DijkstraSolver (Weighted_Grid& w_grid):
     w_grid_(w_grid),
     dist(w_grid_.GetNumRows() , std::vector<int>(w_grid_.GetNumCols(), INT_MAX)),
     finalized(w_grid_.GetNumRows() , std::vector<bool>(w_grid_.GetNumCols(), false))
-    {}    
+    {
+        w_grid_.init_Weights();
+    }    
 
     void Reset_DSs(){
         // Initialize all finalized values to false
@@ -135,19 +134,21 @@ public:
         //Clearing Priority Queue
         std::priority_queue<cell_Dist, std::vector<cell_Dist>, Compare> empty;
         std::swap(minHeap , empty);
+        // Setting weight values to grid 
+        w_grid_.init_Weights();
     }
 
     //(start cell - end cell)Finds a Path from the NW corner to the SE corner
     void Run(){
         Cell* const sw_corner = w_grid_.GetCell(w_grid_.GetNumRows()-1, 0);
         Dijkstra_Solver(sw_corner->row, sw_corner->col);
-        //Dist_Sort();
+        Dist_Sort();
 
         //Debbuging num cells
         //printDistFlat();
     }
 
-    const std::vector<std::pair<int, std::pair<int , int>>>& Get_Dist_Flat(){
+    const std::vector<std::pair<int, std::pair<int , int>>>& Get_Flat_DS(){
 			return dist_flat;
 		}		
 

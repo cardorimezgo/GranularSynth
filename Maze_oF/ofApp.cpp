@@ -1,5 +1,6 @@
 #include "ofApp.h"
-//#include "Binary_Tree.h"
+#include "Binary_Tree.h"
+#include "Prim's.h"
 
 
 //- Default startup:  RANDOM MAZE!!!----------------------------------------------------------
@@ -12,12 +13,15 @@ void ofApp::setup(){
     //std::vector<MazeGenerator*> generators;
     //generators.push_back(new BinaryTreeGenerator(maze));
     //generators[0]->Generate();
-
-    //DFS.DFS_Run();
+    
+    bt.Generate();
+    dfs.Solve();
+    
+    //bt.Run();
+    //DFS.Run();
     //DFS.Reset();
 
-    prim.Run();
-    dj.Run();
+    //dj.Run();
 
     // allocating memory for image buffer
     Draw_Buffer.allocate(ofGetWidth(), ofGetHeight(), GL_RGBA);
@@ -36,7 +40,7 @@ void ofApp::update(){
     
     static unsigned long lastUpdateTime = 0;
     unsigned long currentTime = ofGetElapsedTimeMillis();
-    static int stepSize = 22; // Control speed here: higher value for faster rendering, lower for slower.
+    static int stepSize = 22; // Control speed: higher value for faster rendering
 
     if(currentTime - lastUpdateTime > MILLISECS_PER_FRAME) {
         static int currentIndex = 0;
@@ -44,7 +48,7 @@ void ofApp::update(){
         for (int i = 0; i < stepSize; ++i) {
             if (currentIndex < total_cells) {
                 Draw_Buffer.begin();
-                w_render.Draw(currentIndex , weight_maze, dj.Get_Dist_Flat());
+                render.Draw(currentIndex , maze, dfs.Get_Flat_DS());
                 Draw_Buffer.end();
                 currentIndex++;
             }
@@ -122,7 +126,7 @@ enum class MazeType {
     // ... other maze types ...
 };
 
-azeType selectedMaze;
+MazeType selectedMaze;
 
 void ofApp::keyPressed(int key) {
     switch (key) {

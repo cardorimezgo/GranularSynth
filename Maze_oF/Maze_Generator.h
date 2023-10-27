@@ -11,7 +11,7 @@ public:
     std::string name_;
 
     MazeGenerator(Grid& maze, std::string name):
-        maze_(maze), rng_((std::random_device())()), name_(name)
+    maze_(maze), rng_((std::random_device())()), name_(name)
     {}
 
     const std::string& GetName(){

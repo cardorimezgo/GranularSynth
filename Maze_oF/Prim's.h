@@ -7,7 +7,7 @@
 #include <map>
 
 
-class Prim: public MazeGenerator{
+class Prim{
     Weighted_Grid& w_grid_;
 
     // Creation of struct for specific pair Cell and int that will be used in priority queue
@@ -25,17 +25,16 @@ class Prim: public MazeGenerator{
     // DS for updating distance value between cells and origin cell
     std::vector<std::vector<int>> dist; 
 
-    void Generate() override{
-    //void Prim_Solver(){
+    void Prim_Solver(){
     ///Random seed
     std::random_device rd;
-    std::mt19937 gen;
+    std::mt19937 gen(rd());
     std::uniform_int_distribution<> rows_rnd(0 , w_grid_.GetNumRows() - 1); //rows
     std::uniform_int_distribution<> cols_rnd(0 , w_grid_.GetNumCols() - 1); //cols
     int random_row = rows_rnd(gen);
     int random_col = cols_rnd(gen);
-        
-        if(w_grid_.IsInvalid(random_row , random_col))
+        //std::cout<<"ran_row: "<<random_row<<" | random_col: "<<random_col<<std::endl;
+        if(w_grid_.IsInvalid(random_row , random_col)) 
             return;
 
         auto* const origin = w_grid_.Get_Cell(random_row , random_col);
@@ -101,13 +100,12 @@ class Prim: public MazeGenerator{
 public:
 
     Prim (Weighted_Grid& w_grid):
-    MazeGenerator(w_grid , "Prim's"),
     w_grid_(w_grid),
     dist(w_grid_.GetNumRows() , std::vector<int>(w_grid_.GetNumCols(), INT_MAX)),
     finalized(w_grid_.GetNumRows() , std::vector<bool>(w_grid_.GetNumCols(), false))
     {
         w_grid_.set_Rnd_Edges();
-        Run();
+        Prim_Solver();
     }    
 
     void Reset_DSs(){
@@ -122,7 +120,7 @@ public:
     }
 
     void Run(){
-        Generate();
+        Prim_Solver();
     }
 
 };

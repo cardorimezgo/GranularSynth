@@ -14,8 +14,10 @@ public:
     maze_(maze), name_(name)
     {}
 
+    //Required implementation by each maze solving algorithm
     virtual void Solve() = 0;
 
+    //Get name of maze solving algorithm
     const std::string& GetName(){
         return name_;
     }
@@ -34,6 +36,7 @@ public:
 		});
 	}
 
+    //Return flattened and ordered list of cells
     const std::vector<std::pair<int, std::pair<int , int>>>& Get_Flat_DS(){
 		return grid_flat;
 	}		
