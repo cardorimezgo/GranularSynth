@@ -7,7 +7,7 @@
 #include <map>
 
 
-class Prim{
+class Prim: public MazeGenerator{
     Weighted_Grid& w_grid_;
 
     // Creation of struct for specific pair Cell and int that will be used in priority queue
@@ -25,23 +25,19 @@ class Prim{
     // DS for updating distance value between cells and origin cell
     std::vector<std::vector<int>> dist; 
 
-    void Prim_Solver(){
-    ///Random seed
-    std::random_device rd;
-    std::mt19937 gen(rd());
-    std::uniform_int_distribution<> rows_rnd(0 , w_grid_.GetNumRows() - 1); //rows
-    std::uniform_int_distribution<> cols_rnd(0 , w_grid_.GetNumCols() - 1); //cols
-    int random_row = rows_rnd(gen);
-    int random_col = cols_rnd(gen);
-        //std::cout<<"ran_row: "<<random_row<<" | random_col: "<<random_col<<std::endl;
-        if(w_grid_.IsInvalid(random_row , random_col)) 
+    void Prim_Solver(int rnd_row , int rnd_col){
+        //Generating random origin cell
+        //int rnd_row , rnd_col;
+        //Gen_Rnd_Cell(rnd_row , rnd_col);
+
+        if(w_grid_.IsInvalid(rnd_row , rnd_col)) 
             return;
 
-        auto* const origin = w_grid_.Get_Cell(random_row , random_col);
+        auto* const origin = w_grid_.Get_Cell(rnd_row , rnd_col);
         auto current_cell = origin;
         int distance = 0;//0 distance to origin cell
         minHeap.push({origin , distance}); //adding origin cell to pq
-        dist[random_row][random_col] = distance; 
+        dist[rnd_row][rnd_col] = distance; 
         int num_Fin = 0;
         
         while(!minHeap.empty() && num_Fin != w_grid_.Total_Cells()){ 
@@ -70,14 +66,11 @@ class Prim{
                         dist[neighbor->row][neighbor->col] = weight;
                         current_cell->LinkCell(neighbor);   // Creating Link between Cells
                         minHeap.push({neighbor , weight}); // Inserting neighbor into minHeap
-
-                        //std::cout<<current_cell->row<<" "<<current_cell->col<<" -> "<<neighbor->row<<" "<<
-                        //neighbor->col<<std::endl;
                     }
                 }
             }
         }
-    } 
+    }
     
     void Init_Dist(){
         for(int r = 0; r < w_grid_.GetNumRows(); r++){
@@ -100,12 +93,12 @@ class Prim{
 public:
 
     Prim (Weighted_Grid& w_grid):
+    MazeGenerator(w_grid_, "BinaryTree"),
     w_grid_(w_grid),
     dist(w_grid_.GetNumRows() , std::vector<int>(w_grid_.GetNumCols(), INT_MAX)),
     finalized(w_grid_.GetNumRows() , std::vector<bool>(w_grid_.GetNumCols(), false))
     {
         w_grid_.set_Rnd_Edges();
-        Prim_Solver();
     }    
 
     void Reset_DSs(){
@@ -119,9 +112,18 @@ public:
         w_grid_.set_Rnd_Edges();
     }
 
-    void Run(){
-        Prim_Solver();
+    void Generate(int row , int col) override{
+        Prim_Solver(row , col);
     }
+
+    void Gen_Rnd_Cell(int& random_row, int& random_col) {
+        std::uniform_int_distribution<int> rows_rnd(0, w_grid_.GetNumRows() - 1); //rows
+        std::uniform_int_distribution<int> cols_rnd(0, w_grid_.GetNumCols() - 1); //cols
+        int random_row = rows_rnd(rng_);
+        int random_col = cols_rnd(rng_);
+    }
+
+
 
 };
 
