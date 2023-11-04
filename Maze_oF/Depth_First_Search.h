@@ -37,6 +37,16 @@ public:
 		flood_fill_sort();	
 	}
 
+	//Get longest simple path
+	void L_Path() {
+		//need : // store or send flood_fill_sort for drawing maze structure, could we just run it twice and render that version?
+		//		 last cell from the DFS firt run cell[x][x]
+		//		 clean flood_fill
+		//		 clean flood_fill_sort
+		//		 run Solve with cell[x][x]
+		//
+	}
+
 	/*void Reset(){
 			for(int r = 0; r < grid_.GetNumRows(); r++){
 				for(int c = 0; c < grid_.GetNumCols(); c++){
