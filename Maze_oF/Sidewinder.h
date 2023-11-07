@@ -1,19 +1,4 @@
 #pragma once
-// start south west corner
-// use of random function from Maze_Generator class
-// every cell must be visited once 
-// 
-// each eastern cell that is carved should be stored in a group
-// from the group of carved cells we randomly chose one and link north
-// once we carved north on one of the grouped cells, we move east to the next cell (without carving east)
-// cotinue the same process  
-// when arriving to the east boundary of the grid, close the group of cells visited (even if its one) and link north
-// go up the next row and repeat the same process
-// When arriving to the top row, the option of linking north is deactivated, we can only link east (which will give us an open row corridor)
-
-// random function alternate between two functions: 
-// 1) carve east: link eastern neighbor
-// 2) chose one of the group of cells to carve north
 #include "Maze_Generator.h"
 
 class Sidewinder : public MazeGenerator {
@@ -23,27 +8,30 @@ public:
 	Sidewinder(Grid& maze): MazeGenerator(maze , "SideWinder")
 	{}
 
-	//set initial row and col to [GRID_DIM_Y - 1] and [0] respectively 
-	void Generate(int in_row, int in_col) override {
-		int num_cells = 0;
-		vector<int> group;
-		Cell* c;
+	void Generate(int i_r, int i_c) override {
 
-		while (num_cells != maze_.Total_Cells()) {
+			for (int r = maze_.GetNumRows()- 1; r >= 0; r--) {
+				int group_run = 0;
+				for (int c = 0; c < maze_.GetNumCols(); c++) {
+					std::uniform_int_distribution<int> e_or_n(0, 1);
+					bool io = e_or_n(rng_) != 0;
 
-			for (int r = in_row; r >= 0; r--) {
-				for (int c = in_col; c < maze_.GetNumCols(); c++) {
-					std::uniform_int_distribution<int> distribution(0 , 1);
-					bool IO = distribution(rng_) != 0; // converting to boolean variable
-					if(IO){
-						c[r][c].Link(r, c + 1, Direction::East);
-						group.push_back(c);
-
+					if(io){
+						if (!maze_.Link(r, c, Direction::East))
+							io = 0;
 					}
 					else{
-						std::uniform_int_distribution<int> (0, 1); /// set vals 
+						// Select random cell from the group of cells visited
+						if (!group.empty()) {
+							std::uniform_int_distribution<> group_c(0, group.size() - 1);
+							int ran_index = group_c(rng_);
+							maze_.Link(r, ran_index, Direction::North);
+						}
+						else {
+							maze_.Link(r, c, Direction::North);
+						}
+						group.clear();
 					}
-
 					num_cells++;
 				}
 			}
