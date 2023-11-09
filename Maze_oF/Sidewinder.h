@@ -11,8 +11,7 @@ public:
 	void Generate(int i_r, int i_c) override {
 		std::uniform_int_distribution<int> e_or_n(1, 2);
 
-		for (int r = 0; r < maze_.GetNumRows() - 1; r++) {
-		//for (int r = maze_.GetNumRows() - 1; r > 0; r--) {
+		for (int r = maze_.GetNumRows() - 1; r > 0; r--) {
 		int group_run = 0;
 			for (int c = 0; c < maze_.GetNumCols(); c++) {		
 				int rand_int = e_or_n(rng_);
@@ -31,8 +30,9 @@ public:
 				}
 			}
 		}
-		for (int c = 0; c < maze_.GetNumCols(); c++) {
-			maze_.Link(maze_.GetNumRows() - 1, c, Direction::East);
+		for (int c = 0; c < maze_.GetNumCols() - 1; c++) {
+			maze_.Link(0, c, Direction::East);
 		}
 	}
+
 };
