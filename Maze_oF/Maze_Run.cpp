@@ -1,6 +1,9 @@
 #include "Maze_Run.h"
+#include <memory>
 
-void Maze_Run::Select_Maze(int key) {
+bool Maze_Run::Select_Maze(int key) {
+    bool chose = false;
+
     switch (key) {
     case 'b':
         maze_algo = Maze_Algos::Binary_Tree;
@@ -32,30 +35,33 @@ void Maze_Run::Select_Maze(int key) {
         break;
     case 'p':
         maze_algo = Maze_Algos::Prims;
+        std::cout << "Prim's" << std::endl;
         break;
     case 'k':
         maze_algo = Maze_Algos::Kruskals;
         break;
+    default:
+        return false;   //invalid key entered
     }
+    std::cout << "maze algorithm selected: " << key << std::endl;
+    return true;
 }
 
 
 void Maze_Run::Setup_Maze(Maze_Algos type) {
 	
-	MazeSolver* m_solver;
+	std::unique_ptr<MazeSolver> m_solver; //use of smart pointer
 
 	switch (type) {
 	case Maze_Algos::Binary_Tree:
 		bt.Generate(0, 0);
-		delete m_solver;  // consider changing for unique_ptr
-		m_solver = new Depth_First_Search(maze);
+		m_solver = std::make_unique<Depth_First_Search>(maze);
 		m_solver->Solve(sz.get_Total_Rows() - 1, 0);
 		m_solver->Get_Flat_DS();
 		break;
 	case Maze_Algos::Sidewinder:
 		sw.Generate(maze.GetNumRows() - 1, 0);
-		delete m_solver; // consider changing for unique_ptr
-		m_solver = new Depth_First_Search(maze);
+		m_solver = std::make_unique<Depth_First_Search>(maze);
 		m_solver->Solve(sz.get_Total_Rows() - 1, 0);
 		m_solver->Get_Flat_DS();
 		break;
@@ -65,10 +71,9 @@ void Maze_Run::Setup_Maze(Maze_Algos type) {
 		int rnd_row, rnd_col;
 		prim.Gen_Rnd_Cell(rnd_row, rnd_col);
 		prim.Generate(rnd_row, rnd_col);
-		delete m_solver;   // consider changing for unique_ptr
-		m_solver = new Dijkstra(w_maze);
+		m_solver = std::make_unique<Dijkstra>(w_maze);
 		m_solver->Solve(rnd_row, rnd_col);
 		m_solver->Get_Flat_DS();
 		break;
-	}
+   	}
 }
