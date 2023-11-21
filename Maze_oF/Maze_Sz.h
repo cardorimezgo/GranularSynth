@@ -14,9 +14,7 @@ public:
 	margin(0)
 	{}
 
-	//evaluate if it would be a good idea to remove this types of getter functions from Grid class
-	// which return the same information (Get_Cell_sz, Get_Num_Cols, etc.)
-	void set_Maze_Sz(int num);
+	bool set_Maze_Sz(int num);
 
 	int get_Total_Cells();
 
@@ -27,6 +25,4 @@ public:
 	int get_Margin();
 
 	int get_cell_Sz();
-
-
 };

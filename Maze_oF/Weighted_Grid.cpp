@@ -22,7 +22,7 @@ void Weighted_Grid::init_Weights(){
 void Weighted_Grid::set_Rnd_Edges(){
     std::random_device rd;
     std::mt19937 gen(rd());
-    std::uniform_int_distribution<> distr(0 , 3);
+    std::uniform_int_distribution<> distr(1 , 3);
     
     for(int r = 0; r < rows; r++){
         for(int c = 0; c < cols; c++){

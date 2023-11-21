@@ -10,15 +10,13 @@ public:
     std::mt19937 rng_;
     std::string name_;
 
-    MazeGenerator(Grid& maze, std::string name):
-    maze_(maze), rng_((std::random_device())()), name_(name)
+    MazeGenerator(Grid& maze):
+    maze_(maze), rng_((std::random_device())())
     {}
 
-    const std::string& GetName(){
-        return name_;
-    }
+    virtual ~MazeGenerator() {} //Virtual destructor
 
-    virtual void Generate() = 0;
+    virtual void Generate(int row , int col) = 0;
 };
 
 

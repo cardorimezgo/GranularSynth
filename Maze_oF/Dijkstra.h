@@ -8,7 +8,7 @@
 
 class Dijkstra : public MazeSolver {
     
-    Weighted_Grid& w_grid_;
+    //Weighted_Grid& w_grid_;
 
     // Creation of struct for specific pair Cell and int that will be used in priority queue
     using cell_Dist = std::pair<Cell*, int>;
@@ -23,17 +23,17 @@ class Dijkstra : public MazeSolver {
     std::vector<std::vector<bool>> finalized;
 
     void Dijkstra_Solver(int r, int c) {
-        if (w_grid_.IsInvalid(r, c))
+        if (maze_.IsInvalid(r, c))
             return;
 
-        auto* const origin = w_grid_.Get_Cell(r, c);
+        auto* const origin = maze_.Get_Cell(r, c);
         auto current_cell = origin;
         int distance = 0;//0 distance to origin cell
         minHeap.push({ origin , distance }); //adding origin cell to pq
         flood_fill[r][c] = distance;
         int num_Fin = 0;
 
-        while (!minHeap.empty() && num_Fin != w_grid_.Total_Cells()) {
+        while (!minHeap.empty() && num_Fin != maze_.Total_Cells()) {
             cell_Dist pq_top = minHeap.top();
             current_cell = pq_top.first;
             minHeap.pop(); //removing root from minHeap
@@ -49,7 +49,7 @@ class Dijkstra : public MazeSolver {
             for (auto neighbor : neighbors) {
                 if (neighbor && !finalized[neighbor->row][neighbor->col] &&
                     current_cell->Linked(neighbor)) {
-                    int weight = w_grid_.get_Weight(current_cell, neighbor);
+                    int weight = maze_.get_Weight(current_cell, neighbor);
                     
                     if (weight == INT_MAX)
                         continue; // There is no edge
@@ -84,19 +84,22 @@ class Dijkstra : public MazeSolver {
    */
 
 public:
-    Dijkstra(Weighted_Grid& w_grid) :
-    MazeSolver(w_grid_, "Dijkstra"),
-    w_grid_(w_grid),
-    finalized(w_grid_.GetNumRows(), std::vector<bool>(w_grid_.GetNumCols(), false))
+    Dijkstra(Grid& maze) :
+    MazeSolver(maze),
+    finalized(maze_.GetNumRows(), std::vector<bool>(maze_.GetNumCols(), false))
     {
-        flood_fill.resize(w_grid_.GetNumRows(), std::vector<int>(w_grid_.GetNumCols(), INT_MAX));
+        flood_fill.resize(maze_.GetNumRows(), std::vector<int>(maze_.GetNumCols(), INT_MAX));
     }    
 
-    void Solve(int row , int col) override {
+    void Solve(int row , int col) override { ///DO WE HAVE TO INCLUDE maze_.init_Weights(); & maze_.set_Rnd_Edges(); AS IN PRIMS?????
         // Starting Cell & start value distance
         Dijkstra_Solver(row, col);
         //Sorting cells for the maze to be rendered 
         flood_fill_sort();
+    }
+
+    const std::vector<std::pair<int, std::pair<int, int>>>& Get_Flat_DS() override{
+        return grid_flat;
     }
 
     /*void Reset_DSs(){

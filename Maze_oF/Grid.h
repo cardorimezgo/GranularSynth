@@ -95,9 +95,33 @@ public:
     //close all walls of the Grid
     void Reset();
 
-    //virtual destructor: make class polymorphic allows the use of dynamic_cast
-    // for Cell_Renderer_Wt
-    virtual ~Grid() {}
+
+    ////////////////////////////////////////////////////////////
+    /////////// SETTING WEIGHTED GRAPH FUNCTIONS
+
+    std::unordered_map<std::pair<Cell*, Cell*>, int, hash_Cell_Ptr> adjacencyList;
+
+
+    //Set all the weights to a given value
+    void init_Weights();
+
+    //Get the weight between two vertices
+    int get_Weight(Cell* cell1, Cell* cell2);
+
+    //Set all Edges to a random value
+    void set_Rnd_Edges();
+
+    //Print all edges for debugging purpose
+    void printAdjacencyList();
+
+    Cell* Get_Cell(int r, int c) {
+        return cells[r][c];
+    }
+
+    /*
+    //set weight based on audio data
+    bool audio_Weight(Cell* cell);
+    */
 };
 
 #endif // GRID_H

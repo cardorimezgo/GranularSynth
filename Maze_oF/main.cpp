@@ -2,8 +2,8 @@
 #include "ofApp.h"
 
 //========================================================================
-int main( ){
-    ofSetupOpenGL(800, 480, OF_WINDOW);			// <-------- setup the GL context
+int main() {
+	ofSetupOpenGL(800, 480, OF_WINDOW);			// <-------- setup the GL context
 	// this kicks off the running of my app
 	// can be OF_WINDOW or OF_FULLSCREEN
 	// pass in width and height too:
@@ -15,7 +15,7 @@ int main( ){
 //TODO:
 // (10)Refine interface design
 // (10)Option for adjusting maze's grid size
-// (4)Calculate longest path in maze
+// (4)Calculate longest path in maze (use DFS for all algos weighted and unweighted mazes)
 // (5)Integrate Prims and Kruskals algos into Maze_Generator. 
 //	-Leave option for adjusting weights in graphs depending... 
 //    on audio frequency analysis for example
@@ -31,4 +31,3 @@ int main( ){
 // (10)Implement Dither algorithm to maze 
 // (11)Implement communication bia OSC with supercollider
 // (12)Integrate touch interface RBPi (reading USB port to download audio sample)
-

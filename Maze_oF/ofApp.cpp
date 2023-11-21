@@ -22,8 +22,7 @@ void ofApp::update() {
             for (int i = 0; i < stepSize; ++i) {
                 if (currentIndex < sz.get_Total_Cells()) {
                     Draw_Buffer.begin();
-                    //render.Draw(currentIndex, maze, dfs.Get_Flat_DS());
-                    c_render.Draw(currentIndex);
+                    run.Render(currentIndex);
                     Draw_Buffer.end();
                     currentIndex++;
                 }

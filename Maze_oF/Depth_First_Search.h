@@ -10,7 +10,7 @@ class Depth_First_Search: public MazeSolver{
 
 public:
     Depth_First_Search(Grid& maze_): 
-	MazeSolver(maze_, "Depth_First_Search")
+	MazeSolver(maze_)
     {
 		// Initializing to -1 every cell
 		flood_fill.resize(maze_.GetNumRows() , vector<int>(maze_.GetNumCols(), -1));
@@ -35,6 +35,10 @@ public:
 		DFS_Solver(row , col , 0); 
 		//Sorting cells for the maze to be rendered 
 		flood_fill_sort();	
+	}
+
+	const std::vector<std::pair<int, std::pair<int, int>>>& Get_Flat_DS() override {
+		return grid_flat;
 	}
 
 	//Get longest simple path
