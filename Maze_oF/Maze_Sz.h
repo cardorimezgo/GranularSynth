@@ -24,5 +24,5 @@ public:
 
 	int get_Margin();
 
-	int get_cell_Sz();
+	int get_Cell_Sz();
 };

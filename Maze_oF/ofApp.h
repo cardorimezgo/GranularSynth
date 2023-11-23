@@ -2,23 +2,9 @@
 
 #include "ofMain.h"
 #include "Grid.h"
-//#include "Weighted_Grid.h"
-//#include "Depth_First_Search.h"
-//#include "Dijkstra.h"
-//#include "Cell_Renderer.h"
-//#include "Prim's.h"
-//#include "Binary_Tree.h"
-//#include "Sidewinder.h"
-//#include "Maze_Solver.h"
 #include "Maze_Algos.h"
 #include "Maze_Run.h"
-#include "Maze_Sz.h"
-
-//Grid variables   /// the number of cols and rows arent constant, will change according to user's needs
-//constexpr auto GRID_DIM_X = 100; ///cols//100///50///25///10
-//constexpr auto GRID_DIM_Y = 60; //rows////60///30///15////6
-//constexpr auto MARG = 0;
-//constexpr auto CELL_SZ = 8; //////////////8///16///32///80         
+#include "Maze_Sz.h"        
 
 // Delta time
 const int FPS = 60;
@@ -57,24 +43,11 @@ public:
 	/////////////////////
 
 	ofFbo Draw_Buffer;
-	/*
-	Maze_Sz sz;
-	
-	Weighted_Grid w_maze = Weighted_Grid(sz.get_Total_Rows(), sz.get_Total_Cols(), sz.get_Margin(), sz.get_cell_Sz());
-	Depth_First_Search dfs = Depth_First_Search(maze);
-	
-	
-	
-	Cell_Renderer c_render = Cell_Renderer(maze, dfs);
-	*/
-	//Dijkstra dj = Dijkstra(weight_maze);
-	//BinaryTreeGenerator bt = BinaryTreeGenerator(maze);
-	//Sidewinder sw = Sidewinder(maze);
-	//Prim prim = Prim(weight_maze);
-	Maze_Sz sz;
-	Maze_Run run = Maze_Run (sz);
+
 	Maze_Algos maze_algo;
-	Grid maze = Grid(sz.get_Total_Rows(), sz.get_Total_Cols(), sz.get_Margin(), sz.get_cell_Sz());
+	Maze_Sz sz;	
+	Grid maze = Grid(sz);
+	Maze_Run run = Maze_Run(sz , maze);
 
 private:
 	AppState currentState;

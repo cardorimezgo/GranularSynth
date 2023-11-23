@@ -2,8 +2,8 @@
 #include "Grid.h"
 
 void Grid::DebugDisplay(){
-    for(int r = 0; r < rows; r++){
-        for(int c = 0; c < cols; c++){
+    for(int r = 0; r < sz.get_Total_Rows(); r++){
+        for(int c = 0; c < sz.get_Total_Cols(); c++){
             cells[r][c]->PrintCell();
         }
     }
@@ -27,7 +27,7 @@ bool Grid::Mask(int r, int c){
     cell->DeleteNeighbor(Direction::South);
     cell->DeleteNeighbor(Direction::East);
     cell->DeleteNeighbor(Direction::West);
-    masked_cells_.insert(HashCell(cell, cols));
+    masked_cells_.insert(HashCell(cell, sz.get_Total_Cols()));
     return true;
 }
 
@@ -48,8 +48,8 @@ bool Grid::Unmask(int r, int c){
 }
 
 void Grid::Reset(){
-    for(int r = 0; r < rows; r++){
-        for(int c = 0; c < cols; c++){
+    for(int r = 0; r < sz.get_Total_Rows(); r++){
+        for(int c = 0; c < sz.get_Total_Cols(); c++){
             auto* cell = cells[r][c];
             Unmask(r , c);
             cell->UnlinkCell(Direction::North);
@@ -61,8 +61,8 @@ void Grid::Reset(){
 }
 
 void Grid::init_Weights() {
-    for (int r = 0; r < rows; r++) {
-        for (int c = 0; c < cols; c++) {
+    for (int r = 0; r < sz.get_Total_Rows(); r++) {
+        for (int c = 0; c < sz.get_Total_Cols(); c++) {
             Cell* current_cell = cells[r][c];
             if (current_cell == nullptr) {
                 continue;
@@ -84,8 +84,8 @@ void Grid::set_Rnd_Edges() {
     std::mt19937 gen(rd());
     std::uniform_int_distribution<> distr(1, 3);
 
-    for (int r = 0; r < rows; r++) {
-        for (int c = 0; c < cols; c++) {
+    for (int r = 0; r < sz.get_Total_Rows(); r++) {
+        for (int c = 0; c < sz.get_Total_Cols(); c++) {
             Cell* current_cell = cells[r][c];
             if (current_cell == nullptr) {
                 continue;

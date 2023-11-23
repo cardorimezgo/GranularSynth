@@ -1,5 +1,4 @@
 #include "Maze_Run.h"
-#include <memory>
 
 bool Maze_Run::Select_Maze(int key) {
     bool chose = false;
@@ -49,33 +48,42 @@ bool Maze_Run::Select_Maze(int key) {
 
 
 void Maze_Run::Setup_Maze(Maze_Algos type) {
-	
-	std::unique_ptr<MazeSolver> m_solver; //use of smart pointer
-
-	switch (type) {
-	case Maze_Algos::Binary_Tree:
-		bt.Generate(0, 0);
-		m_solver = std::make_unique<Depth_First_Search>(maze);
-		m_solver->Solve(sz.get_Total_Rows() - 1, 0);
-		m_solver->Get_Flat_DS();
-		break;
-	case Maze_Algos::Sidewinder:
-		sw.Generate(maze.GetNumRows() - 1, 0);
-		m_solver = std::make_unique<Depth_First_Search>(maze);
-		m_solver->Solve(sz.get_Total_Rows() - 1, 0);
-		m_solver->Get_Flat_DS();
-		break;
-	case Maze_Algos::Prims:
-		int rnd_row, rnd_col;
-		prim.Gen_Rnd_Cell(rnd_row, rnd_col);
-		prim.Generate(rnd_row, rnd_col);
-		m_solver = std::make_unique<Dijkstra>(maze);
-		m_solver->Solve(rnd_row, rnd_col);
-		m_solver->Get_Flat_DS();
-		break;
-   	}
+ 
+switch (type) {
+    case Maze_Algos::Binary_Tree:
+            bt.Generate(0, 0);
+            m_solver = std::make_unique<Depth_First_Search>(maze);
+            m_solver->Solve(sz.get_Total_Rows() - 1, 0);
+            break;
+        case Maze_Algos::Sidewinder:
+            sw.Generate(maze.GetNumRows() - 1, 0);
+            m_solver = std::make_unique<Depth_First_Search>(maze);
+            m_solver->Solve(sz.get_Total_Rows() - 1, 0);
+            //m_solver->Get_Flat_DS();
+            break;
+        case Maze_Algos::Prims:
+            int rnd_row, rnd_col;
+            prim.Gen_Rnd_Cell(rnd_row, rnd_col);
+            prim.Generate(rnd_row, rnd_col);
+            m_solver = std::make_unique<Dijkstra>(maze);
+            m_solver->Solve(rnd_row, rnd_col);
+            //m_solver->Get_Flat_DS();
+            break;
+        }
+c_render = std::make_unique<Cell_Renderer>(maze, m_solver.get());
 }
 
-void Maze_Run::Render(int frame) {
-    c_render.Draw(frame);
+void Maze_Run::Render(int frame){
+    if (c_render) {
+        c_render->Draw(frame);
+    }
+    else {
+        std::cout << "ordered list error" << std::endl;
+        return;
+    }
+
+}
+
+void Maze_Run::Print_List() {
+    dfs.printGridFlat();
 }

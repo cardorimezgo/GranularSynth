@@ -21,7 +21,7 @@ public:
 			return;
 
 		flood_fill[r][c] = distance;
-
+		cout << "r:" << r << " c:" << c <<" dist: " << distance << endl;////////////////
 		auto* const current_cell = maze_.GetCell(r , c);
 		auto neighbors = current_cell->GetNeighbors();
 		for(auto neighbor : neighbors){

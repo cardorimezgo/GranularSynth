@@ -7,19 +7,18 @@
 class Cell_Renderer{
 
     Grid& grid;
-    MazeSolver& m_solver;
+    MazeSolver* m_solver;
 
     // Flag for drawing/redrawing Grid
     bool needsRedraw = true;
 
 public:
 
-    Cell_Renderer(Grid& _grid , MazeSolver& _m_solver) : 
+    Cell_Renderer(Grid& _grid , MazeSolver* _m_solver) : 
         grid(_grid),
         m_solver(_m_solver)
     {}
-     //parameters:   //animation frame   //weiighted or unweighted grid  //list of ordered vertices or cells
-    //void Draw(int frame, const Grid& grid, const vector<pair<int, pair<int, int>>>& sorted);
+     
     void Draw(int frame);
 };
 

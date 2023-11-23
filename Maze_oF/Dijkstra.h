@@ -2,7 +2,6 @@
 #define DIJKSTRA_H
 
 #include "Maze_Solver.h"
-#include "Weighted_Grid.h"
 #include <vector>
 #include <map>
 

@@ -31,3 +31,8 @@ int main() {
 // (10)Implement Dither algorithm to maze 
 // (11)Implement communication bia OSC with supercollider
 // (12)Integrate touch interface RBPi (reading USB port to download audio sample)
+
+
+///ISSUES : -PRINTING TWO TIMES FLOOD_FILL WHEN QUITING THE PROGRAM
+//			-NOT GETTING TOTAL NUMBER OF  CELLS IN FLOOD_FILL
+//			-WHEN FLOOD FILL HAS LESS THAN TOTAL NUMBER OF CELLS, THE ORDERED LIST WILL ADD NEGATIVE NUMBERS PER EACH CELL MISSING			

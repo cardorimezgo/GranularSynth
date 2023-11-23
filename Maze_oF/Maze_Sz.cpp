@@ -25,6 +25,11 @@ bool Maze_Sz::set_Maze_Sz(int num) {
 		cols_sz = 100;
 		cell_sz = 8;
 		break;
+	case '0':		//Debugging
+		rows_sz = 3;
+		cols_sz = 3;
+		cell_sz = 80;
+		break;
 	default:
 		return false; // wrong key entered
 	}
@@ -49,6 +54,6 @@ int Maze_Sz::get_Margin() {
 	return margin;
 }
 
-int Maze_Sz::get_cell_Sz() {
+int Maze_Sz::get_Cell_Sz() {
 	return cell_sz;
 }
