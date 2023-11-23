@@ -3,7 +3,7 @@
 #include "Grid.h"
 
 class Weighted_Grid : public Grid{
-
+//////////////////////na mas a ver que
 public:
     std::unordered_map<std::pair<Cell* , Cell*>, int , hash_Cell_Ptr> adjacencyList;
 
