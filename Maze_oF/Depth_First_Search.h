@@ -34,7 +34,8 @@ public:
 	void Solve(int row , int col) override{
 		DFS_Solver(row , col , 0); 
 		//Sorting cells for the maze to be rendered 
-		flood_fill_sort();	
+		flood_fill_sort();
+		printGridFlat();
 	}
 
 	const std::vector<std::pair<int, std::pair<int, int>>>& Get_Flat_DS() override {

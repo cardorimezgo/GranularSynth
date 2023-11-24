@@ -18,8 +18,11 @@ public:
         grid(_grid),
         m_solver(_m_solver)
     {}
+
+    Cell_Renderer(Grid& maze_):grid(maze_){}///////////////TESTER///////////////////////
      
     void Draw(int frame);
+    void DrawTest(int frame, const vector<pair<int, pair<int, int>>>& sorted);
 };
 
 #endif // CELL_RENDERER_H

@@ -52,14 +52,14 @@ void Maze_Run::Setup_Maze(Maze_Algos type) {
 switch (type) {
     case Maze_Algos::Binary_Tree:
             bt.Generate(0, 0);
-            m_solver = std::make_unique<Depth_First_Search>(maze);
-            m_solver->Solve(sz.get_Total_Rows() - 1, 0);
+            dfs.Solve(sz.get_Total_Rows() - 1, 0);
+            //m_solver = std::make_unique<Depth_First_Search>(maze);
+            //m_solver->Solve(sz.get_Total_Rows() - 1, 0);
             break;
         case Maze_Algos::Sidewinder:
             sw.Generate(maze.GetNumRows() - 1, 0);
             m_solver = std::make_unique<Depth_First_Search>(maze);
             m_solver->Solve(sz.get_Total_Rows() - 1, 0);
-            //m_solver->Get_Flat_DS();
             break;
         case Maze_Algos::Prims:
             int rnd_row, rnd_col;
@@ -67,7 +67,6 @@ switch (type) {
             prim.Generate(rnd_row, rnd_col);
             m_solver = std::make_unique<Dijkstra>(maze);
             m_solver->Solve(rnd_row, rnd_col);
-            //m_solver->Get_Flat_DS();
             break;
         }
 c_render = std::make_unique<Cell_Renderer>(maze, m_solver.get());

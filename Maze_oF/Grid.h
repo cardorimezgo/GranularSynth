@@ -114,6 +114,8 @@ public:
         return cells[r][c];
     }
 
+    ~Grid(); //Destructor
+
     /*
     //set weight based on audio data
     bool audio_Weight(Cell* cell);

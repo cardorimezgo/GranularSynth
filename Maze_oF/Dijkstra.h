@@ -83,8 +83,8 @@ class Dijkstra : public MazeSolver {
    */
 
 public:
-    Dijkstra(Grid& maze) :
-    MazeSolver(maze),
+    Dijkstra(Grid& maze_) :
+    MazeSolver(maze_),
     finalized(maze_.GetNumRows(), std::vector<bool>(maze_.GetNumCols(), false))
     {
         flood_fill.resize(maze_.GetNumRows(), std::vector<int>(maze_.GetNumCols(), INT_MAX));

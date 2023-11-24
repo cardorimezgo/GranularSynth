@@ -5,6 +5,9 @@
 #include "Maze_Algos.h"
 #include "Maze_Run.h"
 #include "Maze_Sz.h"        
+#include "Binary_Tree.h"//////////////////
+#include "Depth_First_Search.h"/////////////
+#include "Cell_Renderer.h"//////////
 
 // Delta time
 const int FPS = 60;
@@ -35,8 +38,6 @@ public:
 	void dragEvent(ofDragInfo dragInfo);
 	void gotMessage(ofMessage msg);
 
-	//int total_cells = 0;
-
 	///KEYBOARD INTERACTION
 	bool set_size = false;
 	bool set_maze = false;
@@ -48,6 +49,9 @@ public:
 	Maze_Sz sz;	
 	Grid maze = Grid(sz);
 	Maze_Run run = Maze_Run(sz , maze);
+	//BinaryTreeGenerator bt = BinaryTreeGenerator(maze);/////////
+	//Depth_First_Search dfs = Depth_First_Search(maze);/////////
+	//Cell_Renderer c_ren = Cell_Renderer(maze);///////////////
 
 private:
 	AppState currentState;

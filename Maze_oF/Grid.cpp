@@ -134,3 +134,12 @@ void Grid::printAdjacencyList() {
     }
 }
 
+Grid::~Grid() {
+    for (auto& row : cells) {
+        for (auto cell : row) {
+            cout << "deleting cell" << endl;
+            delete cell;
+        }
+    }
+}
+

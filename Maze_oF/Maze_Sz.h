@@ -8,9 +8,9 @@ class Maze_Sz {
 
 public:
 	Maze_Sz():
-	rows_sz(30),
-	cols_sz(50),
-	cell_sz(16),
+	rows_sz(3),//30
+	cols_sz(3),//50
+	cell_sz(80),//16
 	margin(0)
 	{}
 

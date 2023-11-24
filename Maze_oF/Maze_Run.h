@@ -33,6 +33,7 @@ public:
 	Maze_Run(Maze_Sz& sz_, Grid& maze_) :
 		sz(sz_),
 		maze(maze_),
+		maze_algo(Maze_Algos::Binary_Tree),
 		dfs(maze),
 		dj(maze),
 		bt(maze),

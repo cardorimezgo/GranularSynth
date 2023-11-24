@@ -3,7 +3,11 @@
 
     void ofApp::setup() {       
         ofBackground(0, 0, 0);
-    
+        
+        //bt.Generate(0, 0);
+        //dfs.Solve(sz.get_Total_Rows() - 1, 0);
+        //dfs.printGridFlat();
+
         currentState = WAITING_FOR_INPUT;
         Draw_Buffer.allocate(ofGetWidth(), ofGetHeight(), GL_RGBA);
     }
@@ -21,7 +25,8 @@
                 for (int i = 0; i < stepSize; ++i) {
                     if (currentIndex < sz.get_Total_Cells()) {
                         Draw_Buffer.begin();
-                        run.Render(currentIndex);
+                        //run.Render(currentIndex);
+                        //c_ren.DrawTest(currentIndex , dfs.Get_Flat_DS());
                         Draw_Buffer.end();
                         currentIndex++;
                     }
@@ -52,8 +57,8 @@
 
     //--------------------------------------------------------------
     void ofApp::keyPressed(int key) {
-
-        if (key>= '0' && key<= '4'){
+        
+        if (key >= '0' && key <= '4') {
             set_size = sz.set_Maze_Sz(key);
         }
 
@@ -65,7 +70,7 @@
             run.Setup_Maze(maze_algo);
             currentState = MAZE_GENERATION;
         }
-
+        
     }
 
     //--------------------------------------------------------------

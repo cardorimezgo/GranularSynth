@@ -89,8 +89,8 @@ class Prim: public MazeGenerator{
 
 public:
 
-    Prim (Grid& maze):
-    MazeGenerator(maze),
+    Prim (Grid& maze_):
+    MazeGenerator(maze_),
     dist(maze_.GetNumRows() , std::vector<int>(maze_.GetNumCols(), INT_MAX)),
     finalized(maze_.GetNumRows() , std::vector<bool>(maze_.GetNumCols(), false))
     {}    
