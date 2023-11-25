@@ -2,7 +2,7 @@
 #define BINARY_TREE_H
 
 #include "Maze_Generator.h"
-
+//comment
 class BinaryTreeGenerator: public MazeGenerator{
 public:
     BinaryTreeGenerator(Grid& maze): MazeGenerator(maze)
