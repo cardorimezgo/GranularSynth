@@ -4,7 +4,7 @@
 
 void Cell_Renderer::Draw(int frame) {
     const auto& sorted = m_solver->Get_Flat_DS();
-    //m_solver->printGridFlat();////////////////////////
+
     if (frame <= sorted.size()) {
         int color = sorted[frame].first;
         int row = sorted[frame].second.first;
@@ -47,7 +47,7 @@ void Cell_Renderer::Draw(int frame) {
         ofLog() << "Frame index out of bounds" << frame;
     }
 }    
-
+/// FOR RENDERING DIRECTLY ///DEBUGGING
 void Cell_Renderer::DrawTest(int frame, const vector<pair<int, pair<int, int>>>& sorted) {
     
     

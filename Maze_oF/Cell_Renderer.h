@@ -22,7 +22,7 @@ public:
     Cell_Renderer(Grid& maze_):grid(maze_){}///////////////TESTER///////////////////////
      
     void Draw(int frame);
-    void DrawTest(int frame, const vector<pair<int, pair<int, int>>>& sorted);
+    void DrawTest(int frame, const vector<pair<int, pair<int, int>>>& sorted); ////////TEST
 };
 
 #endif // CELL_RENDERER_H

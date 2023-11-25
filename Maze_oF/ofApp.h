@@ -16,7 +16,8 @@ const int MILLISECS_PER_FRAME = 1000 / FPS;
 enum AppState {
 	WAITING_FOR_INPUT,
 	MAZE_GENERATION,
-	MAZE_GENERATED
+	MAZE_GENERATED,
+	RENDERING_COMPLETE
 };
 
 class ofApp : public ofBaseApp {
@@ -38,7 +39,7 @@ public:
 	void dragEvent(ofDragInfo dragInfo);
 	void gotMessage(ofMessage msg);
 
-	///KEYBOARD INTERACTION
+	///KEYBOARD INPUT
 	bool set_size = false;
 	bool set_maze = false;
 	/////////////////////

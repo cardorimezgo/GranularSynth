@@ -51,10 +51,12 @@ void Maze_Run::Setup_Maze(Maze_Algos type) {
  
 switch (type) {
     case Maze_Algos::Binary_Tree:
+            cout << "binary tree solution" << endl;////////////debugging
             bt.Generate(0, 0);
-            dfs.Solve(sz.get_Total_Rows() - 1, 0);
-            //m_solver = std::make_unique<Depth_First_Search>(maze);
-            //m_solver->Solve(sz.get_Total_Rows() - 1, 0);
+            //dfs.Solve(sz.get_Total_Rows() - 1, 0); ///debugging
+            m_solver = std::make_unique<Depth_First_Search>(maze);
+            cout << "DFS Solution" << endl;////////////////debugging
+            m_solver->Solve(sz.get_Total_Rows() - 1, 0);
             break;
         case Maze_Algos::Sidewinder:
             sw.Generate(maze.GetNumRows() - 1, 0);

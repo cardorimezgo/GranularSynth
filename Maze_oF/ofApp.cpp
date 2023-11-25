@@ -6,7 +6,6 @@
         
         //bt.Generate(0, 0);
         //dfs.Solve(sz.get_Total_Rows() - 1, 0);
-        //dfs.printGridFlat();
 
         currentState = WAITING_FOR_INPUT;
         Draw_Buffer.allocate(ofGetWidth(), ofGetHeight(), GL_RGBA);
@@ -25,7 +24,7 @@
                 for (int i = 0; i < stepSize; ++i) {
                     if (currentIndex < sz.get_Total_Cells()) {
                         Draw_Buffer.begin();
-                        //run.Render(currentIndex);
+                        run.Render(currentIndex);
                         //c_ren.DrawTest(currentIndex , dfs.Get_Flat_DS());
                         Draw_Buffer.end();
                         currentIndex++;
@@ -33,13 +32,13 @@
                 }
                 lastUpdateTime = currentTime;
             }
+            currentState = MAZE_GENERATED;
         }
     }
 
     //-View-------------------------------------------------------------
     void ofApp::draw() {
-        ofClear(0, 0, 0);
-
+        
         if (currentState == WAITING_FOR_INPUT){
             std::string m_size = "chose 1 through 4 for the size of the maze: ";
             std::string c_maze = "chose initial letter for maze algorithm: ";
@@ -48,10 +47,15 @@
         }
 
         else if (currentState == MAZE_GENERATED) {
+            ofClear(0, 0, 0);
+            cout << "drawing maze" << endl;
+            
             Draw_Buffer.draw(0, 0);
-            currentState = WAITING_FOR_INPUT;
+            
             set_size = false;
             set_maze = false;
+            currentState = WAITING_FOR_INPUT;
+            //currentState = RENDERING_COMPLETE;
         }
     }
 

@@ -20,9 +20,11 @@ public:
                 if(rand_int == 1){
                     if(!maze_.Link(rows, cols, Direction::North))
                         maze_.Link(rows, cols, Direction::East);
+                    cout << "r:" << rows << " c:" << cols << " north" << endl;
                 }else{
                     if(!maze_.Link(rows, cols, Direction::East))
                         maze_.Link(rows, cols, Direction::North);
+                    cout << "r:" << rows << " c:" << cols << " east" << endl;
                 }
             }
         }
