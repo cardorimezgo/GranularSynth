@@ -1,13 +1,10 @@
 #pragma once
 
 #include "ofMain.h"
-#include "Grid.h"
 #include "Maze_Algos.h"
 #include "Maze_Run.h"
 #include "Maze_Sz.h"        
-#include "Binary_Tree.h"//////////////////
-#include "Depth_First_Search.h"/////////////
-#include "Cell_Renderer.h"//////////
+
 
 // Delta time
 const int FPS = 60;
@@ -48,11 +45,7 @@ public:
 
 	Maze_Algos maze_algo;
 	Maze_Sz sz;	
-	Grid maze = Grid(sz);
-	Maze_Run run = Maze_Run(sz , maze);
-	//BinaryTreeGenerator bt = BinaryTreeGenerator(maze);/////////
-	//Depth_First_Search dfs = Depth_First_Search(maze);/////////
-	//Cell_Renderer c_ren = Cell_Renderer(maze);///////////////
+	Maze_Run run = Maze_Run(sz);
 
 private:
 	AppState currentState;
