@@ -2,8 +2,8 @@
 #include "ofApp.h"
 
 //========================================================================
-int main( ){
-    ofSetupOpenGL(800, 480, OF_WINDOW);			// <-------- setup the GL context
+int main() {
+	ofSetupOpenGL(800, 480, OF_WINDOW);			// <-------- setup the GL context
 	// this kicks off the running of my app
 	// can be OF_WINDOW or OF_FULLSCREEN
 	// pass in width and height too:
@@ -15,7 +15,7 @@ int main( ){
 //TODO:
 // (10)Refine interface design
 // (10)Option for adjusting maze's grid size
-// (4)Calculate longest path in maze
+// (4)Calculate longest path in maze (use DFS for all algos weighted and unweighted mazes)
 // (5)Integrate Prims and Kruskals algos into Maze_Generator. 
 //	-Leave option for adjusting weights in graphs depending... 
 //    on audio frequency analysis for example
@@ -32,3 +32,8 @@ int main( ){
 // (11)Implement communication bia OSC with supercollider
 // (12)Integrate touch interface RBPi (reading USB port to download audio sample)
 
+
+///ISSUES : 
+//			-CREATE AN OPTION FOR JUST CHANGING THE MAZE SIZE AND KEEPING THE SELECTED ALGORITHM OR VICE VERSA, JUST FOR THE FIRST MAZE THERE MUST BE A SELECTION OF BOTH MAZE SIZE & ALGORITHM
+//			- NOT RERENDERING, ONLY RECALCULATING GREED AND MAZE SOLVING ALGO.
+//			-THE NUMBER OF CELLS ARE DESTROYED WHEN THE PROGRAM FINISHES, SHOULD THEY BE DESTROYED EVERY TIME A NEW MAZE IS CREATED?
