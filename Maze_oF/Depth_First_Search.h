@@ -21,7 +21,7 @@ public:
 			return;
 
 		flood_fill[r][c] = distance;
-		cout << "r:" << r << " c:" << c <<" dist: " << distance << endl;////////////////debugging
+		//cout << "r:" << r << " c:" << c <<" dist: " << distance << endl;////////////////debugging
 		auto* const current_cell = maze_.GetCell(r , c);
 		auto neighbors = current_cell->GetNeighbors();
 		for(auto neighbor : neighbors){
@@ -35,7 +35,7 @@ public:
 		DFS_Solver(row , col , 0); 
 		//Sorting cells for the maze to be rendered 
 		flood_fill_sort();
-		printGridFlat();////////////////debugging
+		//printGridFlat();////////////////debugging
 	}
 
 	const std::vector<std::pair<int, std::pair<int, int>>>& Get_Flat_DS() override {
@@ -52,13 +52,9 @@ public:
 		//
 	}
 
-	/*void Reset(){
-			for(int r = 0; r < grid_.GetNumRows(); r++){
-				for(int c = 0; c < grid_.GetNumCols(); c++){
-					flood_fill[r][c] = -1;
-				}
-			}
-		}*/
+	/*void Reinitialize(){
+	 flood_fill.resize(maze_.GetNumRows() , vector<int>(maze_.GetNumCols(), -1)); 
+	}*/
 
 };
 

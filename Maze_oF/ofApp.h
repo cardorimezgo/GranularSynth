@@ -14,7 +14,8 @@ enum AppState {
 	WAITING_FOR_INPUT,
 	MAZE_GENERATION,
 	MAZE_GENERATED,
-	RENDERING_COMPLETE
+	RENDERING_COMPLETE,
+	GENERATE
 };
 
 class ofApp : public ofBaseApp {
@@ -45,7 +46,7 @@ public:
 
 	Maze_Algos maze_algo;
 	Maze_Sz sz;	
-	Maze_Run run = Maze_Run(sz);
+	Maze_Run run = Maze_Run(sz , maze_algo);
 
 private:
 	AppState currentState;

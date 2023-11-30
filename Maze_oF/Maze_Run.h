@@ -16,8 +16,8 @@
 
 class Maze_Run {
 	Maze_Sz& sz;
-	Grid& maze;
-	Maze_Algos maze_algo;
+	Grid maze;
+	Maze_Algos& maze_algo;
 
 	Depth_First_Search dfs;
 	Dijkstra dj;
@@ -30,10 +30,10 @@ class Maze_Run {
 	std::unique_ptr<Cell_Renderer> c_render; // smart pointer for Cell_Renderer
 
 public:
-	Maze_Run(Maze_Sz& sz_, Grid& maze_) :
+	Maze_Run(Maze_Sz& sz_ , Maze_Algos& maze_algo_) :
 		sz(sz_),
-		maze(maze_),
-		maze_algo(Maze_Algos::Binary_Tree),
+		maze_algo(maze_algo_),
+		maze(sz_),
 		dfs(maze),
 		dj(maze),
 		bt(maze),

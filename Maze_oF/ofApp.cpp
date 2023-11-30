@@ -3,36 +3,32 @@
 
     void ofApp::setup() {       
         ofBackground(0, 0, 0);
-        
-        //bt.Generate(0, 0);
-        //dfs.Solve(sz.get_Total_Rows() - 1, 0);
 
         currentState = WAITING_FOR_INPUT;
         Draw_Buffer.allocate(ofGetWidth(), ofGetHeight(), GL_RGBA);
     }
 
-    void ofApp::update() {
+    void ofApp::update() {      
 
-        if (currentState == MAZE_GENERATION) {
-            static unsigned long lastUpdateTime = 0;
-            unsigned long currentTime = ofGetElapsedTimeMillis();
-            static int stepSize = 22; // Control speed: higher value for faster rendering
+        static unsigned long lastUpdateTime = 0;
+        unsigned long currentTime = ofGetElapsedTimeMillis();
+        static int currentIndex = 0;
+        static int stepSize = 22; // Adjust this value for faster or slower rendering
 
-            if (currentTime - lastUpdateTime > MILLISECS_PER_FRAME) {
-                static int currentIndex = 0;
-
-                for (int i = 0; i < stepSize; ++i) {
-                    if (currentIndex < sz.get_Total_Cells()) {
-                        Draw_Buffer.begin();
-                        run.Render(currentIndex);
-                        //c_ren.DrawTest(currentIndex , dfs.Get_Flat_DS());
-                        Draw_Buffer.end();
-                        currentIndex++;
-                    }
+        if (currentTime - lastUpdateTime > MILLISECS_PER_FRAME) {
+            if (currentState == MAZE_GENERATION) {  //<- remove state machine
+                Draw_Buffer.begin();
+                for (int i = 0; i < stepSize && currentIndex < sz.get_Total_Cells(); ++i) {
+                    run.Render(currentIndex);
+                    currentIndex++;
                 }
-                lastUpdateTime = currentTime;
+                Draw_Buffer.end();
+
+                if (currentIndex >= sz.get_Total_Cells()) {
+                    currentState = MAZE_GENERATED;
+                }
             }
-            currentState = MAZE_GENERATED;
+            lastUpdateTime = currentTime;
         }
     }
 
@@ -42,19 +38,20 @@
         if (currentState == WAITING_FOR_INPUT){
             std::string m_size = "chose 1 through 4 for the size of the maze: ";
             std::string c_maze = "chose initial letter for maze algorithm: ";
+            std::string g_maze = "press / when ready to generate";
             ofDrawBitmapString(m_size, 100, 100);
             ofDrawBitmapString(c_maze, 100,200);
+            ofDrawBitmapString(g_maze, 100, 250);
         }
 
         else if (currentState == MAZE_GENERATED) {
             ofClear(0, 0, 0);
-            cout << "drawing maze" << endl;
             
             Draw_Buffer.draw(0, 0);
             
             set_size = false;
             set_maze = false;
-            currentState = WAITING_FOR_INPUT;
+            //currentState = WAITING_FOR_INPUT;
             //currentState = RENDERING_COMPLETE;
         }
     }
@@ -67,12 +64,12 @@
         }
 
         if(key>= 'a' && key<= 'z' || key>= 'A' && key<= 'Z') {
-            set_maze = run.Select_Maze(key);        
+            set_maze = run.Select_Maze(key);
         }
 
-        if(set_size && set_maze){
+        if(set_size && set_maze && key == '/'){ // (/)SLASH STANDS FOR GENERATE BUTTON
             run.Setup_Maze(maze_algo);
-            currentState = MAZE_GENERATION;
+            currentState = MAZE_GENERATION;            
         }
         
     }

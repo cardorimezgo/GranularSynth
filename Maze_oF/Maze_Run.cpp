@@ -48,30 +48,30 @@ bool Maze_Run::Select_Maze(int key) {
 
 
 void Maze_Run::Setup_Maze(Maze_Algos type) {
- 
+    maze.Reinitialize();
+
 switch (type) {
     case Maze_Algos::Binary_Tree:
-            cout << "binary tree solution" << endl;////////////debugging
-            bt.Generate(0, 0);
-            //dfs.Solve(sz.get_Total_Rows() - 1, 0); ///debugging
-            m_solver = std::make_unique<Depth_First_Search>(maze);
-            cout << "DFS Solution" << endl;////////////////debugging
-            m_solver->Solve(sz.get_Total_Rows() - 1, 0);
-            break;
-        case Maze_Algos::Sidewinder:
-            sw.Generate(maze.GetNumRows() - 1, 0);
-            m_solver = std::make_unique<Depth_First_Search>(maze);
-            m_solver->Solve(sz.get_Total_Rows() - 1, 0);
-            break;
-        case Maze_Algos::Prims:
-            int rnd_row, rnd_col;
-            prim.Gen_Rnd_Cell(rnd_row, rnd_col);
-            prim.Generate(rnd_row, rnd_col);
-            m_solver = std::make_unique<Dijkstra>(maze);
-            m_solver->Solve(rnd_row, rnd_col);
-            break;
+        bt.Generate(0, 0);
+        m_solver = std::make_unique<Depth_First_Search>(maze);
+        m_solver->Solve(sz.get_Total_Rows() - 1, 0);
+        //change m_solver->flood_fill_sort() to true
+        break;
+    case Maze_Algos::Sidewinder:
+        sw.Generate(maze.GetNumRows() - 1, 0);
+        m_solver = std::make_unique<Depth_First_Search>(maze);
+        m_solver->Solve(sz.get_Total_Rows() - 1, 0);
+        break;
+    case Maze_Algos::Prims:
+        int rnd_row, rnd_col;
+        prim.Gen_Rnd_Cell(rnd_row, rnd_col);
+        prim.Generate(rnd_row, rnd_col);
+        m_solver = std::make_unique<Dijkstra>(maze);
+        m_solver->Solve(rnd_row, rnd_col);
+        break;
         }
-c_render = std::make_unique<Cell_Renderer>(maze, m_solver.get());
+
+    c_render = std::make_unique<Cell_Renderer>(maze, m_solver.get());
 }
 
 void Maze_Run::Render(int frame){
@@ -82,7 +82,6 @@ void Maze_Run::Render(int frame){
         std::cout << "ordered list error" << std::endl;
         return;
     }
-
 }
 
 void Maze_Run::Print_List() {
