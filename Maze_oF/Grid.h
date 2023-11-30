@@ -91,6 +91,9 @@ public:
     //close all walls of the Grid
     void Reset();
 
+    //clean number of cells and maze structure
+    void Reinitialize();
+
 
     ////////////////////////////////////////////////////////////
     /////////// SETTING WEIGHTED GRAPH FUNCTIONS
