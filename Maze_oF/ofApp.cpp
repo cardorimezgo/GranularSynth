@@ -1,120 +1,126 @@
-#include "ofApp.h"
-#include "ofGraphics.h"
+    #include "ofApp.h"
+    #include "ofGraphics.h"
 
-void ofApp::setup() {       
-    ofBackground(0, 0, 0);
-    
-    currentState = WAITING_FOR_INPUT;
-    Draw_Buffer.allocate(ofGetWidth(), ofGetHeight(), GL_RGBA);
-}
+    void ofApp::setup() {       
+        ofBackground(0, 0, 0);
 
-//RESET FLOOD_FLAT TO -1 EACH TIME WE RUN AGAIN DFS , SAME FOR OTHER DS 
-void ofApp::update() {
+        currentState = WAITING_FOR_INPUT;
+        Draw_Buffer.allocate(ofGetWidth(), ofGetHeight(), GL_RGBA);
+    }
 
-    if (currentState == MAZE_GENERATION) {
+    void ofApp::update() {      
+
         static unsigned long lastUpdateTime = 0;
         unsigned long currentTime = ofGetElapsedTimeMillis();
-        static int stepSize = 22; // Control speed: higher value for faster rendering
+        static int currentIndex = 0;
+        static int stepSize = 22; // Adjust this value for faster or slower rendering
 
         if (currentTime - lastUpdateTime > MILLISECS_PER_FRAME) {
-            static int currentIndex = 0;
-
-            for (int i = 0; i < stepSize; ++i) {
-                if (currentIndex < sz.get_Total_Cells()) {
-                    Draw_Buffer.begin();
-                    //render.Draw(currentIndex, maze, dfs.Get_Flat_DS());
-                    c_render.Draw(currentIndex);
-                    Draw_Buffer.end();
+            if (currentState == MAZE_GENERATION) {  //<- remove state machine
+                Draw_Buffer.begin();
+                
+                for (int i = 0; i < stepSize && currentIndex < sz.get_Total_Cells(); ++i) {
+                    run.Render(currentIndex);
                     currentIndex++;
+                }
+                Draw_Buffer.end();
+
+                if (currentIndex >= sz.get_Total_Cells()) {
+                    currentState = MAZE_GENERATED;
                 }
             }
             lastUpdateTime = currentTime;
         }
-        currentState = MAZE_GENERATED;
-    }
-}
-
-//-View-------------------------------------------------------------
-void ofApp::draw() {
-    if (currentState == WAITING_FOR_INPUT){
-        std::string m_size = "chose 1 through 4 for the size of the maze: ";
-        std::string c_maze = "chose initial letter for maze algorithm: ";
-        ofDrawBitmapString(m_size, 100, 100);
-        ofDrawBitmapString(c_maze, 100,200);
     }
 
-    else if (currentState == MAZE_GENERATED) {
-        Draw_Buffer.draw(0, 0);
-        currentState = WAITING_FOR_INPUT;
-        set_size = false;
-        set_maze = false;
+    //-View-------------------------------------------------------------
+    void ofApp::draw() {
+        
+        if (currentState == WAITING_FOR_INPUT){
+            std::string m_size = "chose 1 through 4 for the size of the maze: ";
+            std::string c_maze = "chose initial letter for maze algorithm: ";
+            std::string g_maze = "press / when ready to generate";
+            ofDrawBitmapString(m_size, 100, 100);
+            ofDrawBitmapString(c_maze, 100,200);
+            ofDrawBitmapString(g_maze, 100, 250);
+        }
+
+        else if (MAZE_GENERATED){
+            ofClear(0, 0, 0);
+            
+            Draw_Buffer.draw(0, 0);
+            
+            set_size = false;
+            set_maze = false;
+            //currentState = WAITING_FOR_INPUT;
+            //currentState = RENDERING_COMPLETE;
+        }
     }
-}
 
-//--------------------------------------------------------------
-void ofApp::keyPressed(int key) {
+    //--------------------------------------------------------------
+    void ofApp::keyPressed(int key) {
+        
+        if (key >= '0' && key <= '4') {
+            set_size = sz.set_Maze_Sz(key);
+        }
 
-    if (key>= '1' && key<= '4'){
-        set_size = sz.set_Maze_Sz(key);
+        if(key>= 'a' && key<= 'z' || key>= 'A' && key<= 'Z') {
+            set_maze = run.Select_Maze(key);
+        }
+
+        if(set_size && set_maze && key == '/'){ // (/)SLASH STANDS FOR GENERATE BUTTON
+            run.Setup_Maze(maze_algo);
+            currentState = MAZE_GENERATION;            
+        }
+        
     }
 
-    if(key>= 'a' && key<= 'z' || key>= 'A' && key<= 'Z') {
-        set_maze = run.Select_Maze(key);        
+    //--------------------------------------------------------------
+    void ofApp::keyReleased(int key) {
+
     }
 
-    if(set_size && set_maze){
-        run.Setup_Maze(maze_algo);
-        currentState = MAZE_GENERATION;
+    //--------------------------------------------------------------
+    void ofApp::mouseMoved(int x, int y) {
+
     }
 
-}
+    //--------------------------------------------------------------
+    void ofApp::mouseDragged(int x, int y, int button) {
 
-//--------------------------------------------------------------
-void ofApp::keyReleased(int key) {
+    }
 
-}
+    //--------------------------------------------------------------
+    void ofApp::mousePressed(int x, int y, int button) {
 
-//--------------------------------------------------------------
-void ofApp::mouseMoved(int x, int y) {
+    }
 
-}
+    //--------------------------------------------------------------
+    void ofApp::mouseReleased(int x, int y, int button) {
 
-//--------------------------------------------------------------
-void ofApp::mouseDragged(int x, int y, int button) {
+    }
 
-}
+    //--------------------------------------------------------------
+    void ofApp::mouseEntered(int x, int y) {
 
-//--------------------------------------------------------------
-void ofApp::mousePressed(int x, int y, int button) {
+    }
 
-}
+    //--------------------------------------------------------------
+    void ofApp::mouseExited(int x, int y) {
 
-//--------------------------------------------------------------
-void ofApp::mouseReleased(int x, int y, int button) {
+    }
 
-}
+    //--------------------------------------------------------------
+    void ofApp::windowResized(int w, int h) {
 
-//--------------------------------------------------------------
-void ofApp::mouseEntered(int x, int y) {
+    }
 
-}
+    //--------------------------------------------------------------
+    void ofApp::gotMessage(ofMessage msg) {
 
-//--------------------------------------------------------------
-void ofApp::mouseExited(int x, int y) {
+    }
 
-}
+    //--------------------------------------------------------------
+    void ofApp::dragEvent(ofDragInfo dragInfo) {
 
-//--------------------------------------------------------------
-void ofApp::windowResized(int w, int h) {
-
-}
-
-//--------------------------------------------------------------
-void ofApp::gotMessage(ofMessage msg) {
-
-}
-
-//--------------------------------------------------------------
-void ofApp::dragEvent(ofDragInfo dragInfo) {
-
-}
+    }
