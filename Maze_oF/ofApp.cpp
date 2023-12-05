@@ -12,13 +12,18 @@
 
         static unsigned long lastUpdateTime = 0;
         unsigned long currentTime = ofGetElapsedTimeMillis();
-        static int currentIndex = 0;
+        //static int currentIndex = 0;
         static int stepSize = 22; // Adjust this value for faster or slower rendering
 
         if (currentTime - lastUpdateTime > MILLISECS_PER_FRAME) {
             if (currentState == MAZE_GENERATION) {  //<- remove state machine
                 Draw_Buffer.begin();
-                
+
+                if (clearBuffer) {
+                    ofClear(0, 0, 0);
+                    clearBuffer = false;
+                }
+
                 for (int i = 0; i < stepSize && currentIndex < sz.get_Total_Cells(); ++i) {
                     run.Render(currentIndex);
                     currentIndex++;
@@ -45,15 +50,12 @@
             ofDrawBitmapString(g_maze, 100, 250);
         }
 
-        else if (MAZE_GENERATED){
-            ofClear(0, 0, 0);
-            
+        else{
+            ofSetColor(255, 255, 255);
             Draw_Buffer.draw(0, 0);
             
-            set_size = false;
-            set_maze = false;
-            //currentState = WAITING_FOR_INPUT;
-            //currentState = RENDERING_COMPLETE;
+            //set_size = false;
+            //set_maze = false;
         }
     }
 
@@ -69,8 +71,10 @@
         }
 
         if(set_size && set_maze && key == '/'){ // (/)SLASH STANDS FOR GENERATE BUTTON
+            currentIndex = 0;
+            clearBuffer = true;
             run.Setup_Maze(maze_algo);
-            currentState = MAZE_GENERATION;            
+            currentState = MAZE_GENERATION;        
         }
         
     }
