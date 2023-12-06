@@ -1,24 +1,10 @@
 #pragma once
 
 #include "ofMain.h"
-#include "Grid.h"
-#include "Weighted_Grid.h"
-#include "Depth_First_Search.h"
-#include "Dijkstra.h"
-#include "Cell_Renderer.h"
-#include "Prim's.h"
-#include "Binary_Tree.h"
-#include "Sidewinder.h"
-#include "Maze_Solver.h"
 #include "Maze_Algos.h"
 #include "Maze_Run.h"
-#include "Maze_Sz.h"
+#include "Maze_Sz.h"        
 
-//Grid variables   /// the number of cols and rows arent constant, will change according to user's needs
-constexpr auto GRID_DIM_X = 100; ///cols//100///50///25///10
-constexpr auto GRID_DIM_Y = 60; //rows////60///30///15////6
-constexpr auto MARG = 0;
-constexpr auto CELL_SZ = 8; //////////////8///16///32///80         
 
 // Delta time
 const int FPS = 60;
@@ -27,7 +13,9 @@ const int MILLISECS_PER_FRAME = 1000 / FPS;
 enum AppState {
 	WAITING_FOR_INPUT,
 	MAZE_GENERATION,
-	MAZE_GENERATED
+	MAZE_GENERATED,
+	RENDERING_COMPLETE,
+	GENERATE
 };
 
 class ofApp : public ofBaseApp {
@@ -49,25 +37,19 @@ public:
 	void dragEvent(ofDragInfo dragInfo);
 	void gotMessage(ofMessage msg);
 
-	int total_cells = 0;
-
-	///KEYBOARD INTERACTION
+	///KEYBOARD INPUT
 	bool set_size = false;
 	bool set_maze = false;
 	/////////////////////
 
+	bool clearBuffer = false;
+	int currentIndex = 0;
+
 	ofFbo Draw_Buffer;
-	Grid maze = Grid(GRID_DIM_Y, GRID_DIM_X, MARG, CELL_SZ);
-	Weighted_Grid weight_maze = Weighted_Grid(GRID_DIM_Y, GRID_DIM_X, MARG, CELL_SZ);
-	Depth_First_Search dfs = Depth_First_Search(maze);
-	Dijkstra dj = Dijkstra(weight_maze);
-	BinaryTreeGenerator bt = BinaryTreeGenerator(maze);
-	Sidewinder sw = Sidewinder(maze);
-	Prim prim = Prim(weight_maze);
+	
 	Maze_Algos maze_algo;
-	Maze_Run run;
-	Maze_Sz sz;
-	Cell_Renderer c_render = Cell_Renderer(maze , dfs);
+	Maze_Sz sz;	
+	Maze_Run run = Maze_Run(sz , maze_algo);
 
 private:
 	AppState currentState;

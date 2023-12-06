@@ -13,7 +13,7 @@
         static unsigned long lastUpdateTime = 0;
         unsigned long currentTime = ofGetElapsedTimeMillis();
         //static int currentIndex = 0;
-        static int stepSize = 22; // Adjust this value for faster or slower rendering
+        static int stepSize = 5; // Adjust this value for faster or slower rendering
 
         if (currentTime - lastUpdateTime > MILLISECS_PER_FRAME) {
             if (currentState == MAZE_GENERATION) {  //<- remove state machine
@@ -53,9 +53,6 @@
         else{
             ofSetColor(255, 255, 255);
             Draw_Buffer.draw(0, 0);
-            
-            //set_size = false;
-            //set_maze = false;
         }
     }
 
