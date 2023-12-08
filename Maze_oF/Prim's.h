@@ -1,14 +1,12 @@
 #pragma once
 
-#include "Maze_Generator.h"
-#include "Weighted_Grid.h"
+#include "Maze_Generator.h""
 #include <random>
 #include <vector>
 #include <map>
 
 
 class Prim: public MazeGenerator{
-    Weighted_Grid& w_grid_;
 
     // Creation of struct for specific pair Cell and int that will be used in priority queue
     using cell_Dist = std::pair<Cell* , int>;
@@ -23,24 +21,71 @@ class Prim: public MazeGenerator{
     std::vector<std::vector<bool>> finalized;
 
     // DS for updating distance value between cells and origin cell
-    std::vector<std::vector<int>> dist; 
+    std::vector<std::vector<int>> dist; // can we get rid of distance !?
 
-    void Prim_Solver(int rnd_row , int rnd_col){
-        //Generating random origin cell
-        //int rnd_row , rnd_col;
-        //Gen_Rnd_Cell(rnd_row , rnd_col);
+    void Prim_Solver_(int rnd_row, int rnd_col) {
 
-        if(w_grid_.IsInvalid(rnd_row , rnd_col)) 
+        if (maze_.IsInvalid(rnd_row, rnd_col))
             return;
 
-        auto* const origin = w_grid_.Get_Cell(rnd_row , rnd_col);
+        auto* const origin = maze_.Get_Cell(rnd_row, rnd_col);
+        auto current_cell = origin;
+        int distance = 0;//0 distance to origin cell
+
+        vector<pair<Cell*, int>> weights = maze_.get_Weights(current_cell);
+        for (const auto& weight : weights) {
+            minHeap.push(weight);
+        }
+
+        dist[rnd_row][rnd_col] = distance;
+        int num_Fin = 0;
+
+        while (!minHeap.empty() && num_Fin != maze_.Total_Cells()) { // total number of cells should be visited.
+            cell_Dist pq_top = minHeap.top(); ////////////////
+            current_cell = pq_top.first; /////////////////////////
+            minHeap.pop(); //removing root from minHeap ///////////////////////////
+
+            if (finalized[current_cell->row][current_cell->col])
+                continue;
+
+            //Adding cell to finalized list
+            finalized[current_cell->row][current_cell->col] = true;
+            num_Fin++;
+
+            auto neighbors = current_cell->GetNeighbors();
+            for (auto neighbor : neighbors) {
+                if (neighbor && !finalized[neighbor->row][neighbor->col] && //We have to keep track of all the visited cells edges  CHECK IF CURRENT CELL AND NEIGHBOR ARE LINKED BEFORE ADDING ELEMENTS TO THE PQ
+                    !current_cell->Linked(neighbor)) { //cell not linked to neighbor (avoid loops)
+                    int weight = maze_.get_Weight(current_cell, neighbor);
+
+                    if (weight == INT_MAX)
+                        continue; // There is no edge
+
+                    // Adding and updating distance values                    
+                    if (weight < dist[neighbor->row][neighbor->col]) { // Before linking make sure the cell hasn't been added to the maze
+                        dist[neighbor->row][neighbor->col] = weight;
+                        current_cell->LinkCell(neighbor);   // Creating Link between Cells
+                        minHeap.push({ neighbor , weight }); 
+                    }
+                }
+            }
+        }
+    }
+
+    //GENERATING STRANGE RENDERING ///////////////////////////////////////////////////////////
+    void Prim_Solver(int rnd_row , int rnd_col){
+
+        if(maze_.IsInvalid(rnd_row , rnd_col)) 
+            return;
+
+        auto* const origin = maze_.Get_Cell(rnd_row , rnd_col);
         auto current_cell = origin;
         int distance = 0;//0 distance to origin cell
         minHeap.push({origin , distance}); //adding origin cell to pq
         dist[rnd_row][rnd_col] = distance; 
         int num_Fin = 0;
         
-        while(!minHeap.empty() && num_Fin != w_grid_.Total_Cells()){ 
+        while(!minHeap.empty() && num_Fin != maze_.Total_Cells()){ 
             cell_Dist pq_top = minHeap.top();
             current_cell = pq_top.first;
             minHeap.pop(); //removing root from minHeap
@@ -56,7 +101,7 @@ class Prim: public MazeGenerator{
             for(auto neighbor : neighbors){
                 if(neighbor && !finalized[neighbor->row][neighbor->col] &&
                    !current_cell->Linked(neighbor)){
-                    int weight = w_grid_.get_Weight(current_cell , neighbor);
+                    int weight = maze_.get_Weight(current_cell , neighbor);
                     
                     if(weight == INT_MAX) 
                         continue; // There is no edge
@@ -71,37 +116,34 @@ class Prim: public MazeGenerator{
             }
         }
     }
-    
+    /*
     void Init_Dist(){
-        for(int r = 0; r < w_grid_.GetNumRows(); r++){
-            for(int c = 0; c < w_grid_.GetNumCols(); c++){
+        for(int r = 0; r < maze_.GetNumRows(); r++){
+            for(int c = 0; c < maze_.GetNumCols(); c++){
                 dist[r][c] = INT_MAX;
             }
         }
     }
 
     void Init_Final(){
-        for(int r = 0; r < w_grid_.GetNumRows(); r++){
-            for(int c = 0; c < w_grid_.GetNumCols(); c++){
+        for(int r = 0; r < maze_.GetNumRows(); r++){
+            for(int c = 0; c < maze_.GetNumCols(); c++){
                 finalized[r][c] = false;
             }
         }
     }
-    
+    */
     ////////////////////////////////////////////////////////////////////////////////
 
 public:
 
-    Prim (Weighted_Grid& w_grid):
-    MazeGenerator(w_grid_, "BinaryTree"),
-    w_grid_(w_grid),
-    dist(w_grid_.GetNumRows() , std::vector<int>(w_grid_.GetNumCols(), INT_MAX)),
-    finalized(w_grid_.GetNumRows() , std::vector<bool>(w_grid_.GetNumCols(), false))
-    {
-        w_grid_.set_Rnd_Edges();
-    }    
-
-    void Reset_DSs(){
+    Prim (Grid& maze_):
+    MazeGenerator(maze_),
+    dist(maze_.GetNumRows() , std::vector<int>(maze_.GetNumCols(), INT_MAX)),
+    finalized(maze_.GetNumRows() , std::vector<bool>(maze_.GetNumCols(), false))
+    {}    
+    /*
+    void Reset(){
         // Initialize all finalized values to false
         Init_Final();
         // Initialize all distance values to INT_MAX
@@ -109,18 +151,20 @@ public:
         //Clearing Priority Queue
         minHeap = std::priority_queue<cell_Dist, std::vector<cell_Dist>, Compare>();
         // Setting Random weight values to grid 
-        w_grid_.set_Rnd_Edges();
+        //maze_.set_Rnd_Edges();
     }
-
+    */
     void Generate(int row , int col) override{
+        maze_.init_Weights(); 
+        maze_.set_Rnd_Edges();
         Prim_Solver(row , col);
     }
 
     void Gen_Rnd_Cell(int& random_row, int& random_col) {
-        std::uniform_int_distribution<int> rows_rnd(0, w_grid_.GetNumRows() - 1); //rows
-        std::uniform_int_distribution<int> cols_rnd(0, w_grid_.GetNumCols() - 1); //cols
-        int random_row = rows_rnd(rng_);
-        int random_col = cols_rnd(rng_);
+        std::uniform_int_distribution<int> rows_rnd(0, maze_.GetNumRows() - 1); //rows
+        std::uniform_int_distribution<int> cols_rnd(0, maze_.GetNumCols() - 1); //cols
+        random_row = rows_rnd(rng_);
+        random_col = cols_rnd(rng_);
     }
 
 
