@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Maze_Generator.h""
+#include "Maze_Generator.h"
 #include <random>
 #include <vector>
 #include <map>
@@ -8,155 +8,66 @@
 
 class Prim: public MazeGenerator{
 
-    // Creation of struct for specific pair Cell and int that will be used in priority queue
-    using cell_Dist = std::pair<Cell* , int>;
-    struct Compare{
-        bool operator()(const cell_Dist& a, const cell_Dist& b)const{
-            return a.second > b.second;
-        }
-    };
-    std::priority_queue<cell_Dist, std::vector<cell_Dist>, Compare>minHeap;
-    
-    // DS for storing cells that have already been processed
-    std::vector<std::vector<bool>> finalized;
+// DS for storing cells that have already been processed
+std::vector<std::vector<bool>> finalized;
+std::priority_queue<Cells_Edge, std::vector<Cells_Edge>, std::greater<> > minHeap;
 
-    // DS for updating distance value between cells and origin cell
-    std::vector<std::vector<int>> dist; // can we get rid of distance !?
+void Prim_Solver(int rnd_row, int rnd_col) {
 
-    void Prim_Solver_(int rnd_row, int rnd_col) {
+    if (maze_.IsInvalid(rnd_row, rnd_col))
+        return;
 
-        if (maze_.IsInvalid(rnd_row, rnd_col))
-            return;
+    auto* const origin = maze_.Get_Cell(rnd_row, rnd_col);
+    auto current_cell = origin;
+    int num_Fin = 1;
 
-        auto* const origin = maze_.Get_Cell(rnd_row, rnd_col);
-        auto current_cell = origin;
-        int distance = 0;//0 distance to origin cell
+    finalized[current_cell->row][current_cell->col] = true;
 
-        vector<pair<Cell*, int>> weights = maze_.get_Weights(current_cell);
-        for (const auto& weight : weights) {
-            minHeap.push(weight);
-        }
-
-        dist[rnd_row][rnd_col] = distance;
-        int num_Fin = 0;
-
-        while (!minHeap.empty() && num_Fin != maze_.Total_Cells()) { // total number of cells should be visited.
-            cell_Dist pq_top = minHeap.top(); ////////////////
-            current_cell = pq_top.first; /////////////////////////
-            minHeap.pop(); //removing root from minHeap ///////////////////////////
-
-            if (finalized[current_cell->row][current_cell->col])
-                continue;
-
-            //Adding cell to finalized list
-            finalized[current_cell->row][current_cell->col] = true;
-            num_Fin++;
-
-            auto neighbors = current_cell->GetNeighbors();
-            for (auto neighbor : neighbors) {
-                if (neighbor && !finalized[neighbor->row][neighbor->col] && //We have to keep track of all the visited cells edges  CHECK IF CURRENT CELL AND NEIGHBOR ARE LINKED BEFORE ADDING ELEMENTS TO THE PQ
-                    !current_cell->Linked(neighbor)) { //cell not linked to neighbor (avoid loops)
-                    int weight = maze_.get_Weight(current_cell, neighbor);
-
-                    if (weight == INT_MAX)
-                        continue; // There is no edge
-
-                    // Adding and updating distance values                    
-                    if (weight < dist[neighbor->row][neighbor->col]) { // Before linking make sure the cell hasn't been added to the maze
-                        dist[neighbor->row][neighbor->col] = weight;
-                        current_cell->LinkCell(neighbor);   // Creating Link between Cells
-                        minHeap.push({ neighbor , weight }); 
-                    }
-                }
-            }
-        }
-    }
-
-    //GENERATING STRANGE RENDERING ///////////////////////////////////////////////////////////
-    void Prim_Solver(int rnd_row , int rnd_col){
-
-        if(maze_.IsInvalid(rnd_row , rnd_col)) 
-            return;
-
-        auto* const origin = maze_.Get_Cell(rnd_row , rnd_col);
-        auto current_cell = origin;
-        int distance = 0;//0 distance to origin cell
-        minHeap.push({origin , distance}); //adding origin cell to pq
-        dist[rnd_row][rnd_col] = distance; 
-        int num_Fin = 0;
-        
-        while(!minHeap.empty() && num_Fin != maze_.Total_Cells()){ 
-            cell_Dist pq_top = minHeap.top();
-            current_cell = pq_top.first;
-            minHeap.pop(); //removing root from minHeap
-
-            if(finalized[current_cell->row][current_cell->col])
-                continue;
-
-            //Adding cell to finalized list
-            finalized[current_cell->row][current_cell->col] = true;
-            num_Fin++;
+    while (num_Fin != maze_.Total_Cells()) { // total number of cells should be visited.
             
-            auto neighbors = current_cell->GetNeighbors();
-            for(auto neighbor : neighbors){
-                if(neighbor && !finalized[neighbor->row][neighbor->col] &&
-                   !current_cell->Linked(neighbor)){
-                    int weight = maze_.get_Weight(current_cell , neighbor);
-                    
-                    if(weight == INT_MAX) 
-                        continue; // There is no edge
-                        
-                    // Adding and updating distance values                    
-                    if(weight < dist[neighbor->row][neighbor->col]){
-                        dist[neighbor->row][neighbor->col] = weight;
-                        current_cell->LinkCell(neighbor);   // Creating Link between Cells
-                        minHeap.push({neighbor , weight}); // Inserting neighbor into minHeap
-                    }
-                }
-            }
-        }
-    }
-    /*
-    void Init_Dist(){
-        for(int r = 0; r < maze_.GetNumRows(); r++){
-            for(int c = 0; c < maze_.GetNumCols(); c++){
-                dist[r][c] = INT_MAX;
-            }
-        }
-    }
+        vector<Cells_Edge> cell_wt = maze_.get_Weights(current_cell);
 
-    void Init_Final(){
-        for(int r = 0; r < maze_.GetNumRows(); r++){
-            for(int c = 0; c < maze_.GetNumCols(); c++){
-                finalized[r][c] = false;
+        for (const auto& c_w : cell_wt) { // adding weights to the priority queue
+            if (!finalized[c_w.neighbor_c->row][c_w.neighbor_c->col]) {
+                minHeap.push(c_w);
             }
         }
+
+        // Least weight value from cell
+        Cells_Edge pq_top = minHeap.top(); 
+        Cell* neighbor  = pq_top.neighbor_c;
+        current_cell = pq_top.current_c;
+
+        if (finalized[current_cell->row][current_cell->col] && finalized[neighbor->row][neighbor->col]) {
+            minHeap.pop();
+            continue;
+        }
+
+        // If the neighbor of the current cell with the lowest weight value is not part of the maze ,link them.
+        // check for cell not linked to neighbor (avoid loops)
+        // removing root from minHeap when the two cells have been linked
+        //Adding cell to finalized list
+        if (!finalized[neighbor->row][neighbor->col] && !current_cell->Linked(neighbor)) {
+            current_cell->LinkCell(neighbor);
+            current_cell = neighbor;
+            minHeap.pop();
+            finalized[current_cell->row][current_cell->col] = true;
+            num_Fin++;
+        }
     }
-    */
-    ////////////////////////////////////////////////////////////////////////////////
+}
 
 public:
 
     Prim (Grid& maze_):
     MazeGenerator(maze_),
-    dist(maze_.GetNumRows() , std::vector<int>(maze_.GetNumCols(), INT_MAX)),
     finalized(maze_.GetNumRows() , std::vector<bool>(maze_.GetNumCols(), false))
     {}    
-    /*
-    void Reset(){
-        // Initialize all finalized values to false
-        Init_Final();
-        // Initialize all distance values to INT_MAX
-        Init_Dist();
-        //Clearing Priority Queue
-        minHeap = std::priority_queue<cell_Dist, std::vector<cell_Dist>, Compare>();
-        // Setting Random weight values to grid 
-        //maze_.set_Rnd_Edges();
-    }
-    */
+
     void Generate(int row , int col) override{
         maze_.init_Weights(); 
         maze_.set_Rnd_Edges();
+        finalized.resize(maze_.GetNumRows(), std::vector<bool>(maze_.GetNumCols(), false));////!!!!!errror
         Prim_Solver(row , col);
     }
 
@@ -166,8 +77,14 @@ public:
         random_row = rows_rnd(rng_);
         random_col = cols_rnd(rng_);
     }
-
-
-
+    
+    void Clear_Gen_DS() override {
+        MazeGenerator::Clear_Gen_DS();
+        finalized.clear();
+        //Clearing Priority Queue
+        std::priority_queue<Cells_Edge, std::vector<Cells_Edge>, std::greater<> > empty;
+        std::swap(minHeap, empty);
+    }
+    
 };
 
