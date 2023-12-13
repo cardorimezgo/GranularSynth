@@ -13,27 +13,18 @@ int main() {
 
 
 //TODO:
-// (10)Refine interface design
-// (10)Option for adjusting maze's grid size
-// (4)Calculate longest path in maze (use DFS for all algos weighted and unweighted mazes)
-// (5)Integrate Prims and Kruskals algos into Maze_Generator. 
+// (7)Refine interface design
+// (6)Option for adjusting maze's grid size(granular)
+// (2)Calculate longest path in maze (use DFS for all algos weighted and unweighted mazes) 
 //	-Leave option for adjusting weights in graphs depending... 
 //    on audio frequency analysis for example
-// (1)implement Dijkstra algo (Done) TODO: --- checking for linked neighbors / send finalized to Cell renderer /
-//		 setting weight to same value / set option to adjust weight values
-// (2)implement Kruskal algo
-// (3)implement Prime's algo
-// (4)implement DFS maze algos.
-// (7)Generate switch function for maze algos.
-// (6)Reset Grid values when generating new mazes
-// (8)find out how to integrate color gradient add-on
-// (9)implementation of ofxColorMap to differentiate distances between cells
-// (10)Implement Dither algorithm to maze 
-// (11)Implement communication via OSC with supercollider
-// (12)Integrate touch interface RBPi (reading USB port to download audio sample)
+// (1)implement DFS maze algos.
+// (3)find out how to integrate color gradient add-on
+// (4)implementation of ofxColorMap to differentiate distances between cells
+// (5)Implement Dither algorithm to maze 
+// (8)Implement communication via OSC with supercollider
+// (9)Integrate touch interface RBPi (reading USB port to download audio sample)
 
 
 ///ISSUES : 
-//			- OVERFLOW ERROR WHEN SELECTING NUMBER 4 MAZE SIZE AND PRIME ALGO. MULTIPLE PROBLEMS WITH PRIM'S ALGORITHM (POSSIBLE CAUSE NOT CLEANING THE DIFFERENT DS)
 //			-DYNAMIC RENDERING OF THE MAZE,  AVOIDING REDRESHING THE WHOLE TEXTURE AND UPDATE ONLY THE ESSENTIALS
-//			- CHECK FOR THE BOOK ALGORITHMS VERSION OF PRIM'S

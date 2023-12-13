@@ -12,5 +12,3 @@ enum class Maze_Algos {
     Prims,
     Kruskals
 };
-
-void Setup_Maze(Maze_Algos type);

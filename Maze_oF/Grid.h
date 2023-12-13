@@ -3,17 +3,27 @@
 
 #include "ofMain.h"
 #include "Cell.h"
+#include "Maze_Sz.h"
 #include <unordered_set>
 #include <vector>
 
+struct Cells_Edge {  //Struct for handling two cells and their corresponsing edge at Grid & Prim's classes 
+    Cell* current_c;
+    Cell* neighbor_c;
+    int weight;
+
+    Cells_Edge(Cell* current, Cell* neighbor, int w) :current_c(current), neighbor_c(neighbor), weight(w) {}
+
+    //Defining comparator for edge weight
+    bool operator>(const Cells_Edge& other) const {
+        return weight > other.weight;
+    }
+};
+
 class Grid{
+    Maze_Sz& sz;
 
 protected:
-    int rows;
-    int cols;
-    int margin;
-    int cell_sz;
-
     //2D vector storing cells in the grid
     std::vector<std::vector<Cell*>>cells;
 
@@ -21,13 +31,12 @@ protected:
     std::unordered_set<int>masked_cells_;
 
 public:
-    Grid(int rows_, int cols_, int margin_, int cell_sz_):
-        rows(rows_), cols(cols_),
-        margin(margin_), cell_sz(cell_sz_),
-        cells(rows_, std::vector<Cell*>(cols_,nullptr))
+    Grid(Maze_Sz& sz_):
+        sz(sz_),
+        cells(sz_.get_Total_Rows(), std::vector<Cell*>(sz_.get_Total_Cols(), nullptr))
     {
-        for(int r = 0; r < rows; r++){
-            for(int c = 0; c < cols; c++){
+        for(int r = 0; r < sz_.get_Total_Rows(); r++){
+            for(int c = 0; c < sz_.get_Total_Cols(); c++){
                 // grid creation
                 cells[r][c]= new Cell(r,c);
             }
@@ -37,32 +46,32 @@ public:
     }
 
     //Total number of cells in the maze
-    int Total_Cells() const{
-        return rows * cols; 
+    int Total_Cells() const{ 
+        return sz.get_Total_Cells();
     }
     // returns the number of rows
     int GetNumRows() const{
-        return rows;
+        return sz.get_Total_Rows();
     }
 
     // returns the number of cols
     int GetNumCols() const{
-        return cols;
+        return sz.get_Total_Cols();
     }
 
     // returns the margin size
     int  GetMargin() const{
-        return margin;
+        return sz.get_Margin();
     }
 
     // return size of square cell
     int GetCell_Sz() const{
-        return cell_sz;
+        return sz.get_Cell_Sz();
     }
 
     //Returns the number of unmasked cells
     int GetNumCells() const{
-        return cols * rows - masked_cells_.size();
+        return sz.get_Total_Cols() * sz.get_Total_Rows() - masked_cells_.size();
     }
 
     Cell* const GetCell(int row, int col) const{
@@ -71,7 +80,7 @@ public:
 
     //Identifies invalid cells, including those on the outer edge of the maze
     bool IsInvalid(int r, int c){
-        if(r >= rows || r < 0 || c >= cols || c < 0){
+        if(r >= sz.get_Total_Rows() || r < 0 || c >= sz.get_Total_Cols() || c < 0){
             return true;
         }
         return false;
@@ -92,12 +101,47 @@ public:
     //Unmask cell at [row, col] if valid, else return false
     bool Unmask(int row, int col);
 
+    Cell* Get_Cell(int r, int c) {
+        return cells[r][c];
+    }
+
     //close all walls of the Grid
     void Reset();
 
-    //virtual destructor: make class polymorphic allows the use of dynamic_cast
-    // for Cell_Renderer_Wt
-    virtual ~Grid() {}
+    //clean number of cells and maze structure
+    void Reinitialize();
+
+    ////////////////////////////////////////////////////////////
+    /////////// SETTING WEIGHTED GRAPH FUNCTIONS
+
+    std::unordered_map<std::pair<Cell*, Cell*>, int, hash_Cell_Ptr> adjacencyList;
+
+    //Set all the weights to a given value
+    void init_Weights();
+
+    int get_Weight(Cell* cell1 , Cell* cell2);
+
+    // Get neighbor's weights for a given Cell
+    std::vector<Cells_Edge> get_Weights(Cell* cell);
+
+    //Set all Edges to a random value
+    void set_Rnd_Edges();
+
+    //Print all edges for debugging purpose
+    void printAdjacencyList();
+
+    ///////////////////////////////////////////////////////////
+
+    ~Grid(); //Destructor
+
+    /*
+    //set weight based on audio data
+    bool audio_Weight(Cell* cell);
+    */
+
+private:
+
+    void Clear_Cells();
 };
 
 #endif // GRID_H

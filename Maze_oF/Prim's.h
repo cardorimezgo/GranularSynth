@@ -67,7 +67,7 @@ public:
     void Generate(int row , int col) override{
         maze_.init_Weights(); 
         maze_.set_Rnd_Edges();
-        finalized.resize(maze_.GetNumRows(), std::vector<bool>(maze_.GetNumCols(), false));////!!!!!errror
+        finalized.resize(maze_.GetNumRows(), std::vector<bool>(maze_.GetNumCols(), false));
         Prim_Solver(row , col);
     }
 

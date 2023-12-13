@@ -13,7 +13,7 @@
         static unsigned long lastUpdateTime = 0;
         unsigned long currentTime = ofGetElapsedTimeMillis();
         //static int currentIndex = 0;
-        static int stepSize = 5; // Adjust this value for faster or slower rendering
+        static int stepSize = 25; // Adjust this value for faster or slower rendering
 
         if (currentTime - lastUpdateTime > MILLISECS_PER_FRAME) {
             if (currentState == MAZE_GENERATION) {  //<- remove state machine

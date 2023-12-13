@@ -3,7 +3,6 @@
 #include "Maze_Sz.h"
 #include "Maze_Algos.h"
 #include "Grid.h"
-//#include "Weighted_Grid.h"
 #include "Maze_Algos.h"
 #include "Maze_Solver.h"
 #include "Binary_Tree.h"
@@ -13,31 +12,25 @@
 #include "Dijkstra.h"
 #include "Cell_Renderer.h"
 
+#include <memory>
+
 class Maze_Run {
 	Maze_Sz& sz;
-	Maze_Algos maze_algo;
 	Grid maze;
-	
-	Depth_First_Search dfs;
-	Dijkstra dj;
+	Maze_Algos& maze_algo;
 
-	BinaryTreeGenerator bt;
-	Sidewinder sw;
-	Prim prim;	
-	
-
-	Cell_Renderer c_render;
+	// Use of smart pointer to manage Maze_Solver, Maze_Generator and Renderer 
+	std::unique_ptr<MazeSolver> m_solver; 
+	std::unique_ptr<MazeGenerator> m_gen;
+	std::unique_ptr<Cell_Renderer> c_render; 
 
 public:
-	Maze_Run(Maze_Sz& sz_):
+	Maze_Run(Maze_Sz& sz_ , Maze_Algos& maze_algo_) :
 		sz(sz_),
-		maze(sz_.get_Total_Rows(), sz_.get_Total_Cols(), sz_.get_Margin(), sz_.get_cell_Sz()),
-		dfs(maze),
-		dj(maze),
-		bt(maze),
-		sw(maze),
-		prim(maze),
-		c_render(maze, dfs)
+		maze_algo(maze_algo_),
+		maze(sz_),
+		m_solver(nullptr),
+		c_render(nullptr)		
 	{}
 
 	bool Select_Maze(int key);
@@ -46,5 +39,5 @@ public:
 
 	void Render(int frame);
 
-
+	void Clear_DataS();
 };

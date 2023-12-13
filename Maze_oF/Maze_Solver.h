@@ -10,8 +10,7 @@ protected:
     Grid& maze_;
     std::vector<std::vector<int>> flood_fill; 
 	std::vector<std::pair<int, std::pair<int , int>>> grid_flat; //vector for flattening vector of vectors
-    std::string name_;
-
+    
     //Flattening vector of vectors
 	//Sorting distance/color in ascending order
 	void flood_fill_sort(){
@@ -28,23 +27,21 @@ protected:
 
 public:
 
-    MazeSolver(Grid& maze, std::string name) :
-        maze_(maze), name_(name)
+    MazeSolver(Grid& maze) :
+        maze_(maze)
     {}
 
-    //Required implementation by each maze solving algorithm
+    virtual ~MazeSolver() {} 
+
     virtual void Solve(int row , int col) = 0;
 
-    //Return flattened and ordered list of cells
-    const std::vector<std::pair<int, std::pair<int , int>>>& Get_Flat_DS(){
-		return grid_flat;
-	}		
+    virtual const std::vector<std::pair<int, std::pair<int, int>>>& Get_Flat_DS() = 0;
 
-    //Get name of maze solving algorithm
-    const std::string& GetName() {
-        return name_;
+    virtual void Clear_Solve_DS() {
+        flood_fill.clear();
+        grid_flat.clear();
     }
-
+   
     void printGridFlat() {
     std::cout << "Printing dist_flat:" << std::endl;
     

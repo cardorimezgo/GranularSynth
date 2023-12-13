@@ -5,7 +5,7 @@ class Sidewinder : public MazeGenerator {
 
 public:
 
-	Sidewinder(Grid& maze): MazeGenerator(maze , "SideWinder")
+	Sidewinder(Grid& maze): MazeGenerator(maze)
 	{}
 
 	void Generate(int i_r, int i_c) override {

@@ -8,15 +8,13 @@ class Maze_Sz {
 
 public:
 	Maze_Sz():
-	rows_sz(30),
-	cols_sz(50),
-	cell_sz(16),
+	rows_sz(30),//30
+	cols_sz(50),//50
+	cell_sz(16),//16
 	margin(0)
 	{}
 
-	//evaluate if it would be a good idea to remove this types of getter functions from Grid class
-	// which return the same information (Get_Cell_sz, Get_Num_Cols, etc.)
-	void set_Maze_Sz(int num);
+	bool set_Maze_Sz(int num);
 
 	int get_Total_Cells();
 
@@ -26,7 +24,5 @@ public:
 
 	int get_Margin();
 
-	int get_cell_Sz();
-
-
+	int get_Cell_Sz();
 };

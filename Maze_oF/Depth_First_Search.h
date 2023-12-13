@@ -10,7 +10,7 @@ class Depth_First_Search: public MazeSolver{
 
 public:
     Depth_First_Search(Grid& maze_): 
-	MazeSolver(maze_, "Depth_First_Search")
+	MazeSolver(maze_)
     {
 		// Initializing to -1 every cell
 		flood_fill.resize(maze_.GetNumRows() , vector<int>(maze_.GetNumCols(), -1));
@@ -21,7 +21,7 @@ public:
 			return;
 
 		flood_fill[r][c] = distance;
-
+		//cout << "r:" << r << " c:" << c <<" dist: " << distance << endl;////////////////debugging
 		auto* const current_cell = maze_.GetCell(r , c);
 		auto neighbors = current_cell->GetNeighbors();
 		for(auto neighbor : neighbors){
@@ -34,27 +34,17 @@ public:
 	void Solve(int row , int col) override{
 		DFS_Solver(row , col , 0); 
 		//Sorting cells for the maze to be rendered 
-		flood_fill_sort();	
+		flood_fill_sort();
+		//printGridFlat();////////////////debugging
 	}
 
-	//Get longest simple path
-	void L_Path() {
-		//need : // store or send flood_fill_sort for drawing maze structure, could we just run it twice and render that version?
-		//		 last cell from the DFS firt run cell[x][x]
-		//		 clean flood_fill
-		//		 clean flood_fill_sort
-		//		 run Solve with cell[x][x]
-		//
+	const std::vector<std::pair<int, std::pair<int, int>>>& Get_Flat_DS() override {
+		return grid_flat;
 	}
 
-	/*void Reset(){
-			for(int r = 0; r < grid_.GetNumRows(); r++){
-				for(int c = 0; c < grid_.GetNumCols(); c++){
-					flood_fill[r][c] = -1;
-				}
-			}
-		}*/
+	void Clear_Solve_DS() override{
+		MazeSolver::Clear_Solve_DS();
+	}
 
 };
-
 #endif // DEPTH_FIRST_SEARCH_H
