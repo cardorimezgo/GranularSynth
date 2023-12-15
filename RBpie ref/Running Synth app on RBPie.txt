@@ -1,0 +1,5 @@
+Running Synth app on RBPie with 7" touchscreen
+
+- run command startx
+- when desktop and cursor visible, right click and select terminal
+- search for the app in the directory,compile and run
