@@ -1,5 +1,7 @@
 Running Synth app on RBPie with 7" touchscreen
 
-- run command startx
+- run command startx for Openbox interface
 - when desktop and cursor visible, right click and select terminal
-- search for the app in the directory,compile and run
+- search for the app in the directory,compile and run.
+
+- Use WinSCP to share files with RBPie.
