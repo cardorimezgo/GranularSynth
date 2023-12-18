@@ -5,6 +5,7 @@
 class Wilsons: public MazeGenerator {
 	
 	vector<int> path;
+	std::unordered_map<int, int>un_map;
 
 public:
 
@@ -26,14 +27,17 @@ void Generate(int row, int col) override {
 		auto* current_cell = maze_.GetCell(rnd_r, rnd_c);
 
 		Make_Path(current_cell);
-		///Linking and adding to the maze only when the path has found a finalized cell
+			///Linking and adding to the maze only when the path has found a finalized cell
+		
+		
 	}
 }
 
 void Make_Path(Cell* current_c) {
+	// create flag that marks cell is finalized
 	int num_step = 0;
 	std::uniform_int_distribution<int>nbr(0, 3);
-	path[num_step] = Encode_Cell(current_c->row , current_c->col); ///DYNAMIC VECTOR GROWTH
+	path.push_back(Encode_Cell(current_c->row , current_c->col)); //Adding first cell to the path
 	
 	while (!finalized[current_c->row][current_c->col]) {
 		int rnd_nbr = nbr(rng_);
@@ -42,17 +46,26 @@ void Make_Path(Cell* current_c) {
 		auto neighbor = current_c->GetNeighbor(dir);
 
 		if (neighbor) {
-			
-			if (path[num_step]) {
-
-				//eliminate the last cells up until the one that is being intersected
-				//ENCODING AND DECODING CELLS.
-			}
-			else /*no path or finalized*/ {
-				path[num_step] = Encode_Cell(neighbor->row , neighbor->col);
-				current_c = neighbor;
+			int encoded_cell = Encode_Cell(neighbor->row, neighbor->col);
+			auto it = un_map.find(encoded_cell);
+			if (it != un_map.end()) {  //loop reached 
 				
-				// you found a finalized cell, close path and add it to finalized cells
+				int start_loop = it->second;
+				path.erase(path.begin() + start_loop + 1, path.end()); //erase cells that make a loop
+
+				//update un_map
+				for (auto iter = un_map.begin(); iter != un_map.end();){
+					if (iter->second >= start_loop) {
+						iter = un_map.erase(iter);
+					}else {
+						iter++;
+					}
+				}
+			}
+			else {  /*no path or finalized*/
+				un_map[encoded_cell] = path.size();
+				path.push_back(encoded_cell); //adding cell to the path
+				current_c = neighbor;
 			}
 		}
 		else {
