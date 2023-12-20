@@ -1,5 +1,9 @@
 Graphics References:
 
 Dithering
-- https://surma.dev/things/ditherpunk/
-- https://forums.tigsource.com/index.php?topic=40832.msg1363742#msg1363742
+- Ditherpunk — The article I wish I had about monochrome image dithering | https://surma.dev/things/ditherpunk/
+- Return of the Obra Dinn [GDC 2016 Demo Build] | https://forums.tigsource.com/index.php?topic=40832.msg1363742#msg1363742
+- DIP Lecture 20: Dithering and halftoning | https://www.youtube.com/watch?v=UJtV3DdjCVY
+- Audio Dither Explained | https://www.youtube.com/watch?v=zWpWIQw7HWU
+- Ordered Dithering - Computerphile | https://www.youtube.com/watch?v=IviNO7iICTM
+- Error Diffusion Dithering - Computerphile | https://www.youtube.com/watch?v=ico4fJfohMQ
