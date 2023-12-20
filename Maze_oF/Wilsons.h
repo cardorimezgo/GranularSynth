@@ -1,5 +1,5 @@
 #pragma once
-#include<iostream>
+
 #include "Maze_Generator.h"
 
 class Wilsons: public MazeGenerator {
@@ -35,11 +35,8 @@ void Generate(int row, int col) override {
 				c1->LinkCell(c2);
 				// Finalizing all the cells in the path except the last one which was already finalized
 				finalized[Decode_Cell(path[i]).first][Decode_Cell(path[i]).second] = true;
-			}
-			int dec_row = Decode_Cell(path[path.size() - 1]).first;
-			int dec_col = Decode_Cell(path[path.size() - 1]).second;
-			finalized[dec_row][dec_col] = true;
-			num_fin += path.size();
+			}			
+			num_fin += path.size() - 1; //-1 for the already finalized cell
 		}
 		else {
 			continue;
@@ -65,16 +62,17 @@ void Make_Path(Cell* current_c) {
 			if (it != un_map.end()) {  //loop reached 
 				
 				int start_loop = it->second;
-				path.erase(path.begin() + start_loop + 1, path.end()); //erase cells that make a loop
+				path.erase(path.begin() + start_loop + 1, path.end()); //erase cells that make a loop in path
 
 				//update un_map
 				for (auto iter = un_map.begin(); iter != un_map.end();){
-					if (iter->second >= start_loop) {
-						iter = un_map.erase(iter);
+					if (iter->second > start_loop) {
+						iter = un_map.erase(iter); //erase cells that make a loop in unordered_map
 					}else {
 						iter++;
 					}
 				}
+				current_c = neighbor;
 			}else{  //neighbor isn't in path
 				un_map[encoded_cell] = path.size();
 				path.push_back(encoded_cell); //adding cell to the path
