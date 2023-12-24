@@ -1,8 +1,29 @@
-- Roads en Microsound (granular audio)
+- Roads en Microsound (granular audio) p.47
+
 	1) A sense of regular pulse and meter begins to occur from approximately 8 Hz
 	down to 0.12 Hz and below (Fraisse 1982). Not coincidentally, it is in this
 	rhythmically apprensible range that the most salient and expressive vibrato,
 	tremolo, and spatial panning effects occur.
+
+	2) Users of these programs stipulated sets of individual time and amplitude points, where each
+	   set was in a separate ®le. They then speci®ed logical operations such as linking,
+	   mingling, and merging, to map from a time-point set to an amplitude-point set
+	   in order to construct a skeleton of a waveform fragment. Since these points
+	   were relatively sparse compared to the number of samples needed to make a
+	   continuous sound, the software performed a linear interpolation to connect intermediate 
+	    amplitude values between the stipulated points. This interpolation,
+	   as it were, fleshed out the skeleton.
+	   Whereas in Gendyn the breakpoints are calculated from a nonlinear stochastic algorithm, 
+	   in sieve theory the breakpoints would be calculated according to a partitioning algorithm based on sieved amplitude and time
+	   dimensions.
+
+	3) Aliasing(pag.46) This occurs when a signal is sampled at a rate that is insufficient to accurately 
+	   represent its frequency content. According to the Nyquist Theorem, to accurately sample a waveform, 
+	   the sampling rate must be at least twice the highest frequency in the waveform.
+	   Aliasing remains a pernicious problem in sound synthesis. The lack of frequency headroom in the compact disc standard rate of 44.1 kHz opens the door
+	   to aliasing from within the synthesis algorithm. Even common waveforms cause
+	   aliasing when extended beyond a narrow frequency range. Consider these cases
+    	   of aliasing in synthesis
 
 	- Page 88 on the anatomy of a grain, duration(Individial grains with a duration less than about 2 ms sound like clicks)
 	- Short grains withhold the impression of pitch. At 5 ms it is vague, becoming clearer by 25 ms. The longer the grain, the more surely the ear can hear its pitch.
@@ -12,11 +33,19 @@
 ------------------------------------------------------------------------------------------------------------------------
 -Idea sobre interfaz (Los diferentes numeros adelante de cada punto, estan relacionados a los texto de Roads Microsounds con el mismo numero )
 
-	- Presentar los algoritmos a escoger por el usuario con algun nombre que describa la utilidad o patron que 	estaria relacionado con su sonido. Tal vez relacionado con
+	- Presentar los algoritmos a escoger por el usuario con algun nombre que describa la utilidad o patron que estaria relacionado con su sonido. Tal vez relacionado con
     el mismo bias que presenta el algoritmo como por ejemplo para Binary Tree el crecimiento este y norte creando una especie de escalera.
 
 	- Which of the maze algorithms don't have a tree structure; prim's, kruskal's , wilson's, hunt and kill???
 	1) Cual seria el papel te tendria la interfaz en relacion con el ritmo? debido a silencios entre granos por ejemplo.
 	1) Que tan rapido pasan mis dedos por los differentes granos?
 	1) Cuantos dedos estoy ocupando?
+
+	2) problemas que me podria encontrar por mochar segmentos de audio.
+
+	3) Sampling Rate Considerations: Higher sampling rates (like 96 kHz or 192 kHz) provide more frequency headroom, reducing the likelihood of aliasing. However, they also
+	   require more processing power and memory.
+	3) Test and Constrain: As the text suggests, introducing tests and constraints on waveforms and frequencies processed by your granular synthesizer is prudent.
+	   Band-limited Sources: Using band-limited waveforms or pre-filtering source material can help mitigate aliasing.
+	   User Inputs: If users input their own sounds, providing guidelines or automatic filtering based on the current sampling rate can help prevent aliasing issues.
 	   
