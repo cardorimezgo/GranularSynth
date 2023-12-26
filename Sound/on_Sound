@@ -43,6 +43,8 @@
 	    Otra cosa que es importante tener encuenta son el numbero de ayudas visuales que tiene con el MPC;
 	    .es una reticula, lo cual facilita ordenar mentalmente la distribucion de los sonidos.
      	    .tambien tiene ayuda de colores aunque no estoy completamente seguro de cual sea el papel que juega en la interfaz.
+	III)  "clouds" of sound that have different densities of grains. Currently I'm varying the density of the grains uniformly to the whole grid, 
+		so I was wondering what would be the technical challenges of doing something like this.
 	    
 
 	- Which of the maze algorithms don't have a tree structure; prim's, kruskal's , wilson's, hunt and kill???
