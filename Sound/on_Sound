@@ -33,8 +33,17 @@
 ------------------------------------------------------------------------------------------------------------------------
 -Idea sobre interfaz (Los diferentes numeros adelante de cada punto, estan relacionados a los texto de Roads Microsounds con el mismo numero )
 
-	- Presentar los algoritmos a escoger por el usuario con algun nombre que describa la utilidad o patron que estaria relacionado con su sonido. Tal vez relacionado con
-    el mismo bias que presenta el algoritmo como por ejemplo para Binary Tree el crecimiento este y norte creando una especie de escalera.
+	I) Presentar los algoritmos a escoger por el usuario con algun nombre que describa la utilidad o patron que estaria relacionado con su sonido. 
+	   Tal vez relacionado con el mismo bias que presenta el algoritmo como por ejemplo para Binary Tree el crecimiento este y norte creando una 
+	   especie de escalera.
+	II) Las veces que he visto tocar en vivo a Fred again, es interesante como se ve conectado con el 
+	    MPC; con la distribucion de los botones, sonidos grabados y modificaciones que puede ir haciendo sobre ellos.
+	    Es muy importante tener esto en cuenta cuando desarrollemos la interfaz. De alguna manera proyecta un sentimento de concentracion y al mismo
+	    tiempo abandono, esta tan integrado en su proceso de generacion de musica que se ve mas libre para poder dejarse llevar por lo que esta escuchando.
+	    Otra cosa que es importante tener encuenta son el numbero de ayudas visuales que tiene con el MPC;
+	    .es una reticula, lo cual facilita ordenar mentalmente la distribucion de los sonidos.
+     	    .tambien tiene ayuda de colores aunque no estoy completamente seguro de cual sea el papel que juega en la interfaz.
+	    
 
 	- Which of the maze algorithms don't have a tree structure; prim's, kruskal's , wilson's, hunt and kill???
 	1) Cual seria el papel te tendria la interfaz en relacion con el ritmo? debido a silencios entre granos por ejemplo.
