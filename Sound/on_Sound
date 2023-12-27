@@ -1,4 +1,4 @@
-- Roads en Microsound (granular audio) p.47
+- Roads en Microsound (granular audio) p.97
 
 	1) A sense of regular pulse and meter begins to occur from approximately 8 Hz
 	down to 0.12 Hz and below (Fraisse 1982). Not coincidentally, it is in this
@@ -25,6 +25,12 @@
 	   aliasing when extended beyond a narrow frequency range. Consider these cases
     	   of aliasing in synthesis
 
+	4) The idea that all grains have the same duration is aesthetically limiting.
+		Experiments (described in chapter 3) show that grain size is one of the most
+		important time-varying parameters of granular synthesis.
+		The main problem being that such a frame rate will tend to
+		cause audible artefacts
+
 	- Page 88 on the anatomy of a grain, duration(Individial grains with a duration less than about 2 ms sound like clicks)
 	- Short grains withhold the impression of pitch. At 5 ms it is vague, becoming clearer by 25 ms. The longer the grain, the more surely the ear can hear its pitch.
 	- Granulation(chapter 5) scan across a long sample waveform, extracting many different grains over time.
@@ -36,6 +42,7 @@
 	I) Presentar los algoritmos a escoger por el usuario con algun nombre que describa la utilidad o patron que estaria relacionado con su sonido. 
 	   Tal vez relacionado con el mismo bias que presenta el algoritmo como por ejemplo para Binary Tree el crecimiento este y norte creando una 
 	   especie de escalera.
+
 	II) Las veces que he visto tocar en vivo a Fred again, es interesante como se ve conectado con el 
 	    MPC; con la distribucion de los botones, sonidos grabados y modificaciones que puede ir haciendo sobre ellos.
 	    Es muy importante tener esto en cuenta cuando desarrollemos la interfaz. De alguna manera proyecta un sentimento de concentracion y al mismo
@@ -43,6 +50,7 @@
 	    Otra cosa que es importante tener encuenta son el numbero de ayudas visuales que tiene con el MPC;
 	    .es una reticula, lo cual facilita ordenar mentalmente la distribucion de los sonidos.
      	    .tambien tiene ayuda de colores aunque no estoy completamente seguro de cual sea el papel que juega en la interfaz.
+
 	III)  "clouds" of sound that have different densities of grains. Currently I'm varying the density of the grains uniformly to the whole grid, 
 		so I was wondering what would be the technical challenges of doing something like this.
 	    
