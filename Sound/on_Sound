@@ -1,6 +1,17 @@
-- Roads en Microsound (granular audio) p.104
+- Roads en Microsound (granular audio) p.115 Generate simple examples of synths with the described characteristics.
+	"In its most basic form, the grain generator is a simple digital synthesis instrument. Its circuit consists of a wavetable 
+	oscillator whose amplitude is controlled by a Gaussian envelope" (Roads, Microsounds P.104)
 
-	1) A sense of regular pulse and meter begins to occur from approximately 8 Hz
+
+?????????????????????????? como se ve reflejada la densidad de granos (weighted graphs for silence) ????????????????????????????????
+?????????????????????????? como puede haber diferentes duraciones de grano si todos las celdas son iguales????????????????????????????????
+???????????????????????????  Frequency band of the cloud ???????????????????????????????
+???????????????????????????? Amplitude envelope of the cloud ??????????????????????????????
+???????????????????????????? Waveform(s) within the grains ??????????????????????????????
+???????????????????????????? Spatial dispersion of the cloud, where the number of output channels is implementation-specific ??????????????????????????????
+
+
+1) A sense of regular pulse and meter begins to occur from approximately 8 Hz
 	down to 0.12 Hz and below (Fraisse 1982). Not coincidentally, it is in this
 	rhythmically apprensible range that the most salient and expressive vibrato,
 	tremolo, and spatial panning effects occur.
@@ -36,6 +47,10 @@
 		A variation on the pure Gaussian curve is a quasi-Gaussian envelope
 		It transitions smoothly at the extrema of the envelope while maximizing the effective amplitude.
 
+	6) (p.107) Synchronous densities in the range of about 0.1 to 20 grains per second will generate metrical rhythms. When densities change over time,
+		the listener hears accelerandi and rallentandi. At higher densities, the grains fuse into continuous tones.
+		At higher densities, the grains fuse into continuous tones.
+
 	- Page 88 on the anatomy of a grain, duration(Individial grains with a duration less than about 2 ms sound like clicks)
 	- Short grains withhold the impression of pitch. At 5 ms it is vague, becoming clearer by 25 ms. The longer the grain, the more surely the ear can hear its pitch.
 	- Granulation(chapter 5) scan across a long sample waveform, extracting many different grains over time.
@@ -43,6 +58,7 @@
 	The Grain Generator... 104
 ------------------------------------------------------------------------------------------------------------------------
 -Idea sobre interfaz (Los diferentes numeros adelante de cada punto, estan relacionados a los texto de Roads Microsounds con el mismo numero )
+------------------------------------------------------------------------------------------------------------------------
 
 	I) Presentar los algoritmos a escoger por el usuario con algun nombre que describa la utilidad o patron que estaria relacionado con su sonido. 
 	   Tal vez relacionado con el mismo bias que presenta el algoritmo como por ejemplo para Binary Tree el crecimiento este y norte creando una 
@@ -74,3 +90,12 @@
 	   User Inputs: If users input their own sounds, providing guidelines or automatic filtering based on the current sampling rate can help prevent aliasing issues.
 
 	5) What are the envelops that we will use in the synth? will there be any
+
+	6) Cuando la persona toca la pantalla usualmente sino es que casi siempre tocara mas de una celda al mismo tiempo. Esto es un factor importante ya que de acuerdo
+	   	a los estudios en sintesis granuluar, hay un cambio en muy importante en como se percibe el sonido si los granos estan separados bajo la misma medida o si la 
+		distribucion varia entre ellos. Como se traduce esto en la interfaz? El movimiento que tenga la persona en la interfaz dictara que tan rapido o lento se 
+		reproduszan los granos. Como se podria lograr una reproduccion sucesiva y bajo una misma medida de los granos? si cada vez que la persona toca la pantalla esta
+		tocando varios granos al mismo tiempo y al avanzar desplazando sus dedos muy probablemente seguira ocurrido, por lo cual tocara varias celdas no solo una 
+		conforme arrastra sus dedos sobre el laberinto. 
+		Una de las opciones que tenemos aqui podria ser el mappear silencios no unicamente sonidos a cada celda, por ejemplo hacer un laberinto donde hay 50/50 ratio entre 
+		sonidos y silencio.
