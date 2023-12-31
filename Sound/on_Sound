@@ -74,7 +74,12 @@
 
 	III)  "clouds" of sound that have different densities of grains. Currently I'm varying the density of the grains uniformly to the whole grid, 
 		so I was wondering what would be the technical challenges of doing something like this.
-	    
+	
+	IV) Una de las ideas centrales del sintetizador es que sea facil de utilizar en tiempo real para hacer cosas interesantes en poco tiempo, en 
+		una presentacion en vivo por ejemplo no hay mucho tiempo para estar entrando a menus y submenus. Los gestos que haga el usuario deben 
+		ser intuitivos visual, acustica y propiocepcion.
+
+	V) amplitude of waveform related to the brightness intensity of the grain. Bright color = high amplitude and vice versa
 
 	- Which of the maze algorithms don't have a tree structure; prim's, kruskal's , wilson's, hunt and kill???
 	1) Cual seria el papel te tendria la interfaz en relacion con el ritmo? debido a silencios entre granos por ejemplo.
