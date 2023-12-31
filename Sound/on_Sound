@@ -1,8 +1,14 @@
+-----------------------------------------------------------------------------------------------------------------------------------
+References
+-----------------------------------------------------------------------------------------------------------------------------------
+- BoarderLands Granular | https://www.youtube.com/watch?v=FfWSsfE1SIE
+- New Pulsar Generator (nuPG) 1.0 | https://github.com/marcinpiet/nuPG_1.0/tree/main
 - Roads en Microsound (granular audio) p.122
 	"In its most basic form, the grain generator is a simple digital synthesis instrument. Its circuit consists of a wavetable 
 	oscillator whose amplitude is controlled by a Gaussian envelope" (Roads, Microsounds P.104)
-
-
+-----------------------------------------------------------------------------------------------------------------------------------
+Basics
+---------------------------------------------------------------------------------------------------------------------------------
 ?????????????????????????? como se ve reflejada la densidad de granos (weighted graphs for silence) ????????????????????????????????
 ?????????????????????????? como puede haber diferentes duraciones de grano si todos las celdas son iguales????????????????????????????????
 ???????????????????????????  Frequency band of the cloud ???????????????????????????????
@@ -57,7 +63,7 @@
 	- Other parameters for the grain include: duration, frequency of waveform, amplitude coefficient and spatial location.
 	The Grain Generator... 104
 ------------------------------------------------------------------------------------------------------------------------
--Idea sobre interfaz (Los diferentes numeros adelante de cada punto, estan relacionados a los texto de Roads Microsounds con el mismo numero )
+- Idea sobre interfaz (Los diferentes numeros adelante de cada punto, estan relacionados a los texto de Roads Microsounds con el mismo numero )
 ------------------------------------------------------------------------------------------------------------------------
 
 	I) Presentar los algoritmos a escoger por el usuario con algun nombre que describa la utilidad o patron que estaria relacionado con su sonido. 
