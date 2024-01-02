@@ -57,11 +57,18 @@ Basics
 		the listener hears accelerandi and rallentandi. At higher densities, the grains fuse into continuous tones.
 		At higher densities, the grains fuse into continuous tones.
 
-	- Page 88 on the anatomy of a grain, duration(Individial grains with a duration less than about 2 ms sound like clicks)
-	- Short grains withhold the impression of pitch. At 5 ms it is vague, becoming clearer by 25 ms. The longer the grain, the more surely the ear can hear its pitch.
-	- Granulation(chapter 5) scan across a long sample waveform, extracting many different grains over time.
-	- Other parameters for the grain include: duration, frequency of waveform, amplitude coefficient and spatial location.
-	The Grain Generator... 104
+	7) (p.139)  Grainlet synthesis generalizes this linkage between synthesis
+		parameters. The fundamental notion of grainlet synthesis is that any parameter of synthesis can be made dependent on (or linked to) any 
+		other parameter.The synthesis parameters include the following:
+		1Cloud density (number of grainlets per second)
+		2 Grainlet amplitude
+		3 Grainlet start-time
+		4 Grainlet frequency
+		5 Grainlet duration
+		6 Grainlet waveform	
+		7 Grainlet position in the stereo field
+		8 Grainlet spatial depth (amount of reverberation)
+
 ------------------------------------------------------------------------------------------------------------------------
 - Idea sobre interfaz (Los diferentes numeros adelante de cada punto, estan relacionados a los texto de Roads Microsounds con el mismo numero )
 ------------------------------------------------------------------------------------------------------------------------
