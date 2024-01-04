@@ -3,7 +3,7 @@ References
 -----------------------------------------------------------------------------------------------------------------------------------
 - BoarderLands Granular | https://www.youtube.com/watch?v=FfWSsfE1SIE
 - New Pulsar Generator (nuPG) 1.0 | https://github.com/marcinpiet/nuPG_1.0/tree/main
-- Roads en Microsound (granular audio) p.177
+- Roads en Microsound (granular audio) p.207
 	"In its most basic form, the grain generator is a simple digital synthesis instrument. Its circuit consists of a wavetable 
 	oscillator whose amplitude is controlled by a Gaussian envelope" (Roads, Microsounds P.104)
 -----------------------------------------------------------------------------------------------------------------------------------
@@ -23,7 +23,7 @@ Basics
 	tremolo, and spatial panning effects occur.
 
 	2) Users of these programs stipulated sets of individual time and amplitude points, where each
-	   set was in a separate ®le. They then speci®ed logical operations such as linking,
+	   set was in a separate file. They then specified logical operations such as linking,
 	   mingling, and merging, to map from a time-point set to an amplitude-point set
 	   in order to construct a skeleton of a waveform fragment. Since these points
 	   were relatively sparse compared to the number of samples needed to make a
@@ -68,6 +68,27 @@ Basics
 		6 Grainlet waveform	
 		7 Grainlet position in the stereo field
 		8 Grainlet spatial depth (amount of reverberation)
+
+	8) (p.203) Multiple clouds interaction It is fascinating to experiment with extracting grains from several dfferent sources, leading to hybrid textures, such as grains from a cello
+		or voice mixed with grains from a cymbal. By controlling the distribution of grains from different sources, we can create clouds which evolve from
+		one texture to another.
+
+	9) (p.205) Selective granulation means granulating one of these separated components.
+		For example, only those sounds that fall above or below a given amplitude
+		threshold. This principle is the foundation of dynamics processing on a micro
+		time scale (see the description later). The granulated sounds can then be combined with the original to create a new hybrid texture.
+
+	10) (p.205) Overlaying many copies of a grain with dfferent phase delays increases its
+		perceived volume and creates a kind of chorus effect.
+
+	11) (p.205) Looping through the incoming samples repeatedly, causes the incoming
+		sound to be time-stretched. The playback or looping rate can vary by
+		changing the speed at which the granulator reads through the samples: from
+		normal speed to a slowed-down rate in which a single grain repeats over and
+		over. Here a brief grain telescopes into a slowly evolving sound object that
+		lasts hundreds of times longer than the original.
+		Reading from stored sound ®les, has the advantage that it can select grains from any time-point in the sound, making it
+		possible to time shrink and time scramble. 
 
 ------------------------------------------------------------------------------------------------------------------------
 - Idea sobre interfaz (Los diferentes numeros adelante de cada punto, estan relacionados a los texto de Roads Microsounds con el mismo numero )
