@@ -3,7 +3,7 @@ References
 -----------------------------------------------------------------------------------------------------------------------------------
 - BoarderLands Granular | https://www.youtube.com/watch?v=FfWSsfE1SIE
 - New Pulsar Generator (nuPG) 1.0 | https://github.com/marcinpiet/nuPG_1.0/tree/main
-- Roads en Microsound (granular audio) p.207
+- Roads en Microsound (granular audio) p.220
 	"In its most basic form, the grain generator is a simple digital synthesis instrument. Its circuit consists of a wavetable 
 	oscillator whose amplitude is controlled by a Gaussian envelope" (Roads, Microsounds P.104)
 -----------------------------------------------------------------------------------------------------------------------------------
@@ -33,14 +33,6 @@ Basics
 	   Whereas in Gendyn the breakpoints are calculated from a nonlinear stochastic algorithm, 
 	   in sieve theory the breakpoints would be calculated according to a partitioning algorithm based on sieved amplitude and time
 	   dimensions.
-
-	3) Aliasing(pag.46) This occurs when a signal is sampled at a rate that is insufficient to accurately 
-	   represent its frequency content. According to the Nyquist Theorem, to accurately sample a waveform, 
-	   the sampling rate must be at least twice the highest frequency in the waveform.
-	   Aliasing remains a pernicious problem in sound synthesis. The lack of frequency headroom in the compact disc standard rate of 44.1 kHz opens the door
-	   to aliasing from within the synthesis algorithm. Even common waveforms cause
-	   aliasing when extended beyond a narrow frequency range. Consider these cases
-    	   of aliasing in synthesis
 
 	4) The idea that all grains have the same duration is aesthetically limiting.
 		Experiments (described in chapter 3) show that grain size is one of the most
@@ -120,13 +112,7 @@ Basics
 	1) Que tan rapido pasan mis dedos por los differentes granos?
 	1) Cuantos dedos estoy ocupando?
 
-	2) problemas que me podria encontrar por mochar segmentos de audio.
-
-	3) Sampling Rate Considerations: Higher sampling rates (like 96 kHz or 192 kHz) provide more frequency headroom, reducing the likelihood of aliasing. However, they also
-	   require more processing power and memory.
-	3) Test and Constrain: As the text suggests, introducing tests and constraints on waveforms and frequencies processed by your granular synthesizer is prudent.
-	   Band-limited Sources: Using band-limited waveforms or pre-filtering source material can help mitigate aliasing.
-	   User Inputs: If users input their own sounds, providing guidelines or automatic filtering based on the current sampling rate can help prevent aliasing issues.
+	
 
 	5) What are the envelops that we will use in the synth? will there be any
 
@@ -138,3 +124,35 @@ Basics
 		conforme arrastra sus dedos sobre el laberinto. 
 		Una de las opciones que tenemos aqui podria ser el mappear silencios no unicamente sonidos a cada celda, por ejemplo hacer un laberinto donde hay 50/50 ratio entre 
 		sonidos y silencio.
+
+------------------------------------------------------------------------------------------------------------------------
+- TroubleShooting, Undesired Artifacts, noises, etc. 
+------------------------------------------------------------------------------------------------------------------------
+	|) Aliasing(pag.46) This occurs when a signal is sampled at a rate that is insufficient to accurately 
+	   represent its frequency content. According to the Nyquist Theorem, to accurately sample a waveform, 
+	   the sampling rate must be at least twice the highest frequency in the waveform.
+	   Aliasing remains a pernicious problem in sound synthesis. The lack of frequency headroom in the compact disc standard rate of 44.1 kHz opens the door
+	   to aliasing from within the synthesis algorithm. Even common waveforms cause
+	   aliasing when extended beyond a narrow frequency range. Consider these cases
+    	   of aliasing in synthesis
+	.) problemas que me podria encontrar por mochar segmentos de audio.
+
+	.) Sampling Rate Considerations: Higher sampling rates (like 96 kHz or 192 kHz) provide more frequency headroom, reducing the likelihood of aliasing. However, they also
+	   require more processing power and memory.
+	.) Test and Constrain: As the text suggests, introducing tests and constraints on waveforms and frequencies processed by your granular synthesizer is prudent.
+	   Band-limited Sources: Using band-limited waveforms or pre-filtering source material can help mitigate aliasing.
+	   User Inputs: If users input their own sounds, providing guidelines or automatic filtering based on the current sampling rate can help prevent aliasing issues.
+
+	|) Crossfade (p.214) Malah (1979) developed a computer-based pitch-synchronous technique with
+		triangular windows called time-domain harmonic scaling (TDHS). TDHS achieves pitch 
+		synchronization by continuously altering the lengths of the windows
+		so that signals sum in phase. In a related method, Jones and Parks (1988)
+		showed how to smoothly reconstruct the signal by using grain envelopes
+		that overlap slightly, creating a seamless crossfade between grains. In their
+		approach, the duration of the grains (which varies according to the fundamental frequency) 
+		is independent of the crossfade point, which is always in phase
+		with its successor grain. A local search and correlation over a window no
+		greater than a 20 ms ®nds a crossfade point. This calculation operates in real
+		time.
+
+	|) Avoiding Artifacts: By applying an envelope with a quick attack and gradual decay, each grain blends smoothly into the next, reducing harshness and clicks.
