@@ -112,7 +112,16 @@ Basics
 	1) Que tan rapido pasan mis dedos por los differentes granos?
 	1) Cuantos dedos estoy ocupando?
 
-	
+	VI) Assign frequencies to grains by:
+		-Harmonic Relationships: Assigning frequencies to grains that are harmonically related (e.g., integer multiples of a fundamental frequency)
+		can create a coherent, musically pleasing texture.
+		-Scale-Based Frequencies: Selecting grain frequencies based on musical scales or intervals can ensure a musical coherence.
+		-Randomization Within Bounds: Implementing controlled randomization where grain frequencies vary randomly but within a specified range
+		or set of frequencies that are musically related.
+		-Envelope and Amplitude Modulation: Using amplitude modulation techniques to shape the dynamics of grains, thereby reducing harshness
+		even when frequencies vary.
+		Time-Variant Frequency Changes: Applying slow, gradual changes to the frequencies of grains over time to create evolving textures rather
+		than abrupt changes which may sound chaotic.
 
 	5) What are the envelops that we will use in the synth? will there be any
 
