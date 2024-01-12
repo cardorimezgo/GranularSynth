@@ -28,3 +28,22 @@ Assessment: Note any lag or delay in response, which could impact the user exper
 Objective: To gather subjective feedback on the touchscreen's performance.
 Method: After users perform the tests, ask for their feedback on the ease of use, accuracy, and any difficulties they experienced.
 Assessment: Use the feedback to gauge overall user satisfaction and identify areas for improvement.
+
+---------- About detecting multiple fingers at the same time------------------------------------------------------------------------
+Addressing the Software Aspect:
+Multiple Touch Points Handling:
+
+The current setup probably captures only the latest touch event, hence the single circle. Modify the code to maintain a list or array of active touch points. Each touch point should have its own coordinates and state (active/inactive).
+Drawing Multiple Circles:
+
+In the draw() function, iterate over each active touch point and draw a circle at each location. This will result in multiple circles being drawn on the screen, one for each active touch.
+Updating Touch Points:
+
+In the update() function or the relevant touch event handlers, update the coordinates of each active touch point as they move.
+Handling Erratic Behavior:
+
+The random appearance of circles in untouched areas could be due to noise or inaccuracies in the touch data. Implementing smoothing algorithms or touch data validation (like debouncing) could help.
+Addressing the Hardware Limitations:
+Performance Test: The erratic behavior and limitations in tracking multiple fingers might also stem from hardware constraints of the touchscreen, particularly its ability to accurately and consistently track multiple simultaneous touches.
+Touchscreen Specs: Ensure that the touchscreen is indeed capable of precise multitouch tracking. Some screens might have limitations in how they handle multitouch or could be prone to errors with rapid movements or close-proximity touches.
+Calibration: Check if the touchscreen requires calibration to improve accuracy.
