@@ -1,0 +1,23 @@
+From : https://github.com/torvalds/linux/blob/master/Documentation/input/multi-touch-protocol.rst#f5
+
+- SYN_MT_REPORT : instructs the receiver to accept the data for the current contact and prepare to receive another
+
+- SYN_REPORT :  raw data for all present contacts are sent between every synchronization
+
+- ABS_MT_SLOT : Instructs the receiver to prepare for updates of the given slot
+
+- ABS_MT_TRACKING_ID : Creation, replacement and destruction of contacts is achieved by modifying the associated slot.
+
+- ABS_MT_SLOT :  total number of type B slots reported
+
+- ev.type : The type field essentially tells you what kind of event you're dealing with: is it a key press, a touch event, a mouse movement, etc.
+	+ EV_KEY for key/button press events
+	+ EV_ABS for absolute positioning
+	+ EV_REL for relative positioning
+	+ EV_SYN for synchronization events
+
+- ev.code : provides more specific information within the given event type. It specifies exactly which key, button, or axis the event is about.
+	+ For EV_KEY events (keyboard or button press), ev.code 	  would be a key code like KEY_A, KEY_ENTER, etc.
+	+ For EV_ABS events ABS_MT_POSITION_X, ABS_MT_POSITION_Y for 	  multitouch coordinates, and so forth.
+
+
