@@ -15,6 +15,10 @@ class ofApp : public ofBaseApp{
 	vector<Square> squares;
 	/////////////////////////////////
 
+	std::unordered_map<int, ofxRPiTouch::TouchPoint_xy> TouchPointsB;
+	std::unordered_map<int, ofxRPiTouch::TouchPoint_xy>* writeBuffer = &ofxRPiTouch::TouchPointsA;
+	std::unordered_map<int, ofxRPiTouch::TouchPoint_xy>* readBuffer = &TouchPointsB;
+
 	public:
 		void setup();
 		void update();
@@ -35,6 +39,8 @@ class ofApp : public ofBaseApp{
 		void gotMessage(ofMessage msg);
 		
 		ofxRPiTouch touch;
-		vector<int>fingersFounnd;
+		vector<int>fingersFound;
 		//vector<ofPoint> linePoints; //drawing Line_Test
+		ofPoint fingerPosition; // lag test
+
 };
