@@ -3,9 +3,15 @@
 #include "ofMain.h"
 #include "ofxRPiTouch.h"
 
+
+// Delta time
+const int FPS = 60;
+const int MILLISECS_PER_FRAME = 1000 / FPS;
+
 class ofApp : public ofBaseApp{
 
 	/// Square Multitouch_Test///////// 
+	/*
 	struct Square {
 		ofRectangle rect;
 		ofColor color;
@@ -13,11 +19,8 @@ class ofApp : public ofBaseApp{
 	};
 
 	vector<Square> squares;
+	*/
 	/////////////////////////////////
-
-	std::unordered_map<int, ofxRPiTouch::TouchPoint_xy> TouchPointsB;
-	std::unordered_map<int, ofxRPiTouch::TouchPoint_xy>* writeBuffer = &ofxRPiTouch::TouchPointsA;
-	std::unordered_map<int, ofxRPiTouch::TouchPoint_xy>* readBuffer = &TouchPointsB;
 
 	public:
 		void setup();
@@ -38,9 +41,10 @@ class ofApp : public ofBaseApp{
 		void dragEvent(ofDragInfo dragInfo);
 		void gotMessage(ofMessage msg);
 		
-		ofxRPiTouch touch;
+		ofxRPiTouch touchHandler;
 		vector<int>fingersFound;
 		//vector<ofPoint> linePoints; //drawing Line_Test
-		ofPoint fingerPosition; // lag test
-
+		//ofPoint fingerPosition; // lag test
+		vector<ofPoint> fingersPos;
+		ofFbo Draw_Buffer;
 };

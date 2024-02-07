@@ -1,10 +1,12 @@
 #include "ofApp.h"
+#include "ofGraphics.h"
 
 //--------------------------------------------------------------
 void ofApp::setup(){
-	touch.init("/dev/input/event2");
-	ofLog() << touch.getName();
+	touchHandler.init("/dev/input/event2");
+	ofLog() << touchHandler.getName();
 
+	/*
 	/// Square Multitouch_Test///////////////////////////////////////
 	//create a grid of squares
 	int gridSize = 4; //4x4 grid size
@@ -19,11 +21,18 @@ void ofApp::setup(){
 		}
 	}
 	//////////////////////////////////////////////////////////////
+	*/
+
 }
 
 //--------------------------------------------------------------
 void ofApp::update(){
+	///// Lag_Test
+	//update finger position
+	//fingerPosition.set(touchHandler.getAbsPos().x, touchHandler.getAbsPos().y);
+	///////////////////////////////////////////////////////////
 
+	/*
 	/// Square Multitouch_Test///////////////////////////////////////
 	//reset touch status
 	for (auto& square : squares) {
@@ -39,10 +48,42 @@ void ofApp::update(){
 		}
 	}
 	///////////////////////////////////////////////////////////////////
+	*/
+
+	static unsigned long lastUpdateTime = 0;
+	unsigned long currentTime = ofGetElapsedTimeMillis();
+
+	if (currentTime - lastUpdateTime > MILLISECS_PER_FRAME) {
+		Draw_Buffer.begin();
+		
+		// clear previous frame's touch position
+		fingersPos.clear();
+
+		touchHandler.withReadBuffer([&](const auto& readBuffer) { //capture by REFERENCE 
+			for (const auto& pair : readbuffer) {
+				auto key = pair.first;
+				auto touchPoint = pair.second;
+				if (fingersPos.size() < 3) { // Checking through all the keys of the unordered_map (3 fingers max)
+					fingersPos.push_back(ofPoint(touchPoint.x, touchPoint.y)); // Getting values of unordered_map
+				}
+			}
+		});
+		Draw_Buffer.end();
+		//Swap the buffers, preparing for the next frame
+		touchHandler.swapBuffers();
+		lastUpdateTime = currentTime;
+	}	
 }
 
 //--------------------------------------------------------------
 void ofApp::draw(){
+
+	
+		ofSetColor(255, 0, 0);
+		for (const auto& pos : fingersPos) {
+			ofDrawCircle(pos , 10); //Circle radius 10
+		}
+		
 
 	////////////////Drawing_Line Test////////////////////////////////
 	/*
@@ -58,7 +99,7 @@ void ofApp::draw(){
 	}
 	*/
 	/////////////////////////////////////////////////////////////////////
-
+	/*
 	/// Square Multitouch_Test///////////////////////////////////////
 	//draw squares
 	for (auto& square : squares) {
@@ -66,20 +107,31 @@ void ofApp::draw(){
 		ofDrawRectangle(square.rect);
 	}
 	////////////////////////////////////////////////////////////////
+	*/
 
+	///// Lag_Test
+	//Draw a circle at the finger position
+	/*
+	ofSetColor(255, 0, 0);
+	ofDrawCircle(fingerPosition, 10); //Circle radius 10
+	/*
+	/////////////////////////////////////
+	 
 		// INPUT iformation ///////////////////////////////////////////////
+	/*
 	stringstream statusStream;
 	ofSetColor(255, 255, 255);
 
-	statusStream << "X: " << touch.getCoordTouch().x << endl
-		<< "Y: " << touch.getCoordTouch().y << endl
-		<< "BTN: " << touch.getButton() << endl
-		<< "mtSlot: " << touch.getMTSlot() + 1 << endl
-		<< "absPosX: " << touch.getAbsPos().x << endl
-		<< "absPosY: " << touch.getAbsPos().y << endl
-		<< "AbsTrackingID: " << touch.getAbsTrackingID() << endl
+	statusStream << "X: " << touchHandler.getCoordTouch().x << endl
+		<< "Y: " << touchHandler.getCoordTouch().y << endl
+		<< "BTN: " << touchHandler.getButton() << endl
+		<< "mtSlot: " << touchHandler.getMTSlot() + 1 << endl
+		<< "absPosX: " << touchHandler.getAbsPos().x << endl
+		<< "absPosY: " << touchHandler.getAbsPos().y << endl
+		<< "AbsTrackingID: " << touchHandler.getAbsTrackingID() << endl
 		<< endl;
 	ofDrawBitmapString(statusStream.str(), 20, 20);
+	*/
 	///////////////////////////////////////////////////////////////////
 
 }
@@ -140,5 +192,5 @@ void ofApp::dragEvent(ofDragInfo dragInfo){
 }
 //--------------------------------------------------------------
 void ofApp::exit() {
-	touch.exit();
+	touchHandler.exit();
 }
