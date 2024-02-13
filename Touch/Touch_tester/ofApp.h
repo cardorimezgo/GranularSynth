@@ -3,24 +3,11 @@
 #include "ofMain.h"
 #include "ofxRPiTouch.h"
 
-
 // Delta time
 const int FPS = 60;
 const int MILLISECS_PER_FRAME = 1000 / FPS;
 
 class ofApp : public ofBaseApp{
-
-	/// Square Multitouch_Test///////// 
-	/*
-	struct Square {
-		ofRectangle rect;
-		ofColor color;
-		bool isTouched = false;
-	};
-
-	vector<Square> squares;
-	*/
-	/////////////////////////////////
 
 	public:
 		void setup();
@@ -41,10 +28,10 @@ class ofApp : public ofBaseApp{
 		void dragEvent(ofDragInfo dragInfo);
 		void gotMessage(ofMessage msg);
 		
-		ofxRPiTouch touchHandler;
-		vector<int>fingersFound;
-		//vector<ofPoint> linePoints; //drawing Line_Test
-		//ofPoint fingerPosition; // lag test
-		vector<ofPoint> fingersPos;
 		ofFbo Draw_Buffer;
+		ofxRPiTouch touchHandler;
+		vector<ofPoint> fingersPos;
+		vector<int> slot_;
+		vector<int> trackingID_;
+		
 };
