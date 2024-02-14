@@ -46,6 +46,10 @@ public:
     struct TouchPoint_xy {
         int x;
         int y;
+        int trackingID;
+        int slot;
+        int posX;
+        int posY;
     };
 
 private:
@@ -68,7 +72,9 @@ public:
     int mtSlot;
     int absMTPosX, absMTPosY;
     int absMTTrackingID;
-    int trackingID;
+
+    int currentSlot;
+    //int trackingID;
     //int screenW = 480;
     //int screenH = 800;
 
@@ -119,20 +125,32 @@ public:
 
             //TOUCH
             if (ev.type == EV_ABS) {
-                if (ev.code == ABS_MT_TRACKING_ID) {
-                    if (ev.value >= 0 && TouchPointsA.size() < 3) {
-                        trackingID = ev.value;
-                        TouchPointsA[trackingID] = TouchPoint_xy();
+
+                switch (ev.code) {
+
+                case ABS_MT_SLOT:
+                {
+                    currentSlot = ev.value;
+                    TouchPointsA[currentSlot].slot = ev.value;                    
+                }break;
+                case ABS_MT_TRACKING_ID:
+                {
+                    TouchPointsA[currentSlot] = TouchPoint_xy();
+                    TouchPointsA[currentSlot].trackingID = ev.value;
+                }break;
+                case ABS_MT_POSITION_X:
+                {
+                    if (TouchPointsA.find(currentSlot) != TouchPointsA.end()) {
+                        TouchPointsA[currentSlot].x = ofMap(ev.value, 0, 480, 0, 480);
                     }
-                    else if (ev.value < 0) {
-                        TouchPointsA.erase(trackingID); // removing touch point
+                }break;
+                case ABS_MT_POSITION_Y:
+                {
+                    if (TouchPointsA.find(currentSlot) != TouchPointsA.end()) {
+                        TouchPointsA[currentSlot].y = ofMap(ev.value, 0, 800, 0, 800);
                     }
-                }
-                else if (ev.code == ABS_MT_POSITION_X) {
-                    TouchPointsA[trackingID].x = ofMap(ev.value, 0, 480, 0, 480);
-                }
-                else if (ev.code == ABS_MT_POSITION_Y) {
-                    TouchPointsA[trackingID].y = ofMap(ev.value, 0, 800, 0, 800);
+                }break;
+
                 }
             }
         }
