@@ -3,7 +3,7 @@
 
 //--------------------------------------------------------------
 void ofApp::setup(){
-	touchHandler.init("/dev/input/event0");
+	touchHandler.init("/dev/input/event1");
 }
 
 //--------------------------------------------------------------
@@ -19,6 +19,7 @@ void ofApp::update(){
 		fingersPos.clear();
 
 		touchHandler.withReadBuffer([&](const auto& readBuffer) { //capture by REFERENCE 
+			
 			for (const auto& pair : readBuffer) {
 				auto key = pair.first;
 				auto touchPoint = pair.second;
@@ -39,8 +40,8 @@ void ofApp::update(){
 //--------------------------------------------------------------
 void ofApp::draw(){
 	ofSetColor(255, 255, 255);
-	ofDrawBitmapString("Testeando el texteador", 40, 20);
 
+	Draw_Buffer.draw(0,0); // is this location right for the Draw member?!!
 	stringstream statusStream;	
 	for (size_t i = 0; i < fingersPos.size(); i++) {
 		const auto pos = fingersPos[i];
