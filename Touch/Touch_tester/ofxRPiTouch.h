@@ -141,13 +141,13 @@ public:
                 case ABS_MT_POSITION_X:
                 {
                     if (TouchPointsA.find(currentSlot) != TouchPointsA.end()) {
-                        TouchPointsA[currentSlot].x = ofMap(ev.value, 0, 480, 0, 480);
+                        TouchPointsA[currentSlot].x = ofMap(ev.value, 0, 1024, 0, 800);
                     }
                 }break;
                 case ABS_MT_POSITION_Y:
                 {
                     if (TouchPointsA.find(currentSlot) != TouchPointsA.end()) {
-                        TouchPointsA[currentSlot].y = ofMap(ev.value, 0, 800, 0, 800);
+                        TouchPointsA[currentSlot].y = ofMap(ev.value, 0, 600, 0, 480);
                     }
                 }break;
 
