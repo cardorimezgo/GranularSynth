@@ -1,1 +1,42 @@
 Multitouch Actions for open Frameworks | https://github.com/soixantecircuits/ofxMtActions/tree/master?tab=readme-ov-file
+----------------------------------------------------------------------------
+TOUCH GROUPS & CROSS EVENTS
+Touch groups - summarize multiple fingers in the context of a
+touch group object.This object provides the position (x and
+y) as the centroid of its constituent touches.
+
+Cross events - Are events that fire when a touch group
+(described above) moves across a path that the developer
+specifies
+
+Functions part of Touch groups:
+
+maxTouchInterval -  specifies maximum
+time between the first and last element of this touch group,
+which defaults to 100 milliseconds for nearly simultaneous
+touches.
+
+maxRadius - declare the maximum distance
+between the touches of a multi-finger gesture.
+
+downInside and downOutside - specify shapes that touches need to be inside (or outside) of
+for the touch group to fire.
+-------------------------------------------------------------------------------
+Rotation Gesture :
+
+Sound Panning: Use rotation to control the stereo panning of a sound. Rotating clockwise could pan the sound to the right speaker, while counter-clockwise rotation could pan it to the left. This creates a spatial audio effect, making the sound appear to move around the listener.
+
+Pitch Control: Analogous to a vinyl record player, rotating the touch interface could speed up or slow down the playback, affecting the pitch. Clockwise rotations could increase the pitch (like speeding up a record), and counter-clockwise rotations could decrease it (like slowing down a record).
+
+Volume Control: Rotation could also mimic the action of turning a volume knob. A clockwise rotation increases the volume, while a counter-clockwise rotation decreases it. This provides a natural and intuitive way to adjust sound levels.
+
+Filter Adjustment: Use rotation to adjust audio filters, such as reverb, echo, or flanger effects. Different directions and speeds of rotation could control the intensity and parameters of the effect, adding a dynamic layer to sound manipulation.
+
+Scratching: Emulate the scratching of a DJ turntable. The speed and direction of the rotation could control the scratch effect on a track, allowing users to add their own flare to music in real-time.
+
+Sound Navigation: For longer audio tracks, rotation could be used to scrub through the track. This would allow users to move forward or backward within the audio, with the speed of rotation controlling the scrubbing speed.
+
+Parameter Morphing: If your application involves synthesized sound or soundscapes, rotation could morph between different presets or sound parameters, creating evolving textures and tones.
+
+Directional Sound Rotation: In a multi-speaker setup or with headphones that support spatial audio, rotating could literally rotate the sound field around the listener, providing an immersive audio experience.
+------------------------------------------------------------------------
