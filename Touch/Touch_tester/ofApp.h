@@ -2,10 +2,13 @@
 
 #include "ofMain.h"
 #include "ofxRPiTouch.h"
+#include "ofxOsc.h"
 
-// Delta time
-const int FPS = 60;
-const int MILLISECS_PER_FRAME = 1000 / FPS;
+//send host (ip address)
+#define HOST "localhost"
+
+//send port
+#define PORT 57120
 
 class ofApp : public ofBaseApp{
 
@@ -28,10 +31,12 @@ class ofApp : public ofBaseApp{
 		void dragEvent(ofDragInfo dragInfo);
 		void gotMessage(ofMessage msg);
 		
-		ofFbo Draw_Buffer;
 		ofxRPiTouch touchHandler;
-		vector<ofPoint> fingersPos;
-		vector<int> slot_;
-		vector<int> trackingID_;
+		ofxOscSender sender;
+
+		vector<ofPoint> fingersPos; // x, y coords.
+		vector<int> slot_; // slot assigned to touch event
+		vector<int> trackingID_; // Identification of touch event
+		
 		
 };

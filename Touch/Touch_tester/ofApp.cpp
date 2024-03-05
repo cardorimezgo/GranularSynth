@@ -3,45 +3,53 @@
 
 //--------------------------------------------------------------
 void ofApp::setup(){
-	touchHandler.init("/dev/input/event1");
+	touchHandler.init("/dev/input/event0");
+
+	//open an outgoing connection to HOST:PORT
+	sender.setup(HOST, PORT);
 }
 
 //--------------------------------------------------------------
-void ofApp::update(){
+void ofApp::update(){ //// USE TRACKINGID TO CHECK IF THERE IS TOUCH INPUT TO AVOID CALCULATIONS WITH NO INPUT 
+	ofxOscMessage m;
+	
+	fingersPos.clear();
+	trackingID_.clear();
+	slot_.clear();
 
-	static unsigned long lastUpdateTime = 0;
-	unsigned long currentTime = ofGetElapsedTimeMillis();
-
-	if (currentTime - lastUpdateTime > MILLISECS_PER_FRAME) {
-		Draw_Buffer.begin();
-		
-		// clear previous frame's touch position
-		fingersPos.clear();
-
-		touchHandler.withReadBuffer([&](const auto& readBuffer) { //capture by REFERENCE 
+	touchHandler.withReadBuffer([&](const auto& readBuffer) { //capture by REFERENCE 
 			
-			for (const auto& pair : readBuffer) {
-				auto key = pair.first;
-				auto touchPoint = pair.second;
-				if (fingersPos.size() < 3) { // Checking through all the keys of the unordered_map (3 fingers max)
-					fingersPos.push_back(ofPoint(touchPoint.x, touchPoint.y)); // Getting values of unordered_map
-					trackingID_.push_back(touchPoint.trackingID);
-					slot_.push_back(touchPoint.slot);
-				}
+		for (const auto& pair : readBuffer) {
+			auto key = pair.first;
+			auto touchPoint = pair.second;
+			if (fingersPos.size() < 3) { // Checking for number of touch events be 3 or less
+				
+				fingersPos.push_back(ofPoint(touchPoint.x, touchPoint.y)); // storing x,y position 
+				m.setAddress("/fingers/position");
+				m.addIntArg(touchPoint.x);
+				m.addIntArg(touchPoint.y);
+				sender.sendMessage(m,false);
+
+				trackingID_.push_back(touchPoint.trackingID); // store ID#
+				m.setAddress("/fingers/trackingID");
+				m.addIntArg(touchPoint.trackingID);
+				sender.sendMessage(m, false);
+
+				slot_.push_back(touchPoint.slot); //store slot#
+				m.setAddress("/fingers/slot");
+				m.addIntArg(touchPoint.slot);
+				sender.sendMessage(m, false);
 			}
-		});
-		Draw_Buffer.end();
-		//Swap the buffers, preparing for the next frame
-		touchHandler.swapBuffers();
-		lastUpdateTime = currentTime;
-	}	
+		}
+	});
+	touchHandler.swapBuffers();
+
 }
 
 //--------------------------------------------------------------
 void ofApp::draw(){
 	ofSetColor(255, 255, 255);
 
-	Draw_Buffer.draw(0,0); // is this location right for the Draw member?!!
 	stringstream statusStream;	
 	for (size_t i = 0; i < fingersPos.size(); i++) {
 		const auto pos = fingersPos[i];
