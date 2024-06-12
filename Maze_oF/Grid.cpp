@@ -60,6 +60,20 @@ void Grid::Reset(){
     }
 }
 
+void Grid::Reinitialize() {
+    cells.clear();
+    cells.resize(sz.get_Total_Rows(), std::vector<Cell*>(sz.get_Total_Cols(), nullptr));
+
+    for (int r = 0; r < sz.get_Total_Rows(); r++) {
+        for (int c = 0; c < sz.get_Total_Cols(); c++) {
+            // grid creation
+            cells[r][c] = new Cell(r, c);
+        }
+    }
+    // assigning cardinal directions to cells "configuring cells"
+    Reset();
+}
+
 void Grid::init_Weights() {
     for (int r = 0; r < sz.get_Total_Rows(); r++) {
         for (int c = 0; c < sz.get_Total_Cols(); c++) {
